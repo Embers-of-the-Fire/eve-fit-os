@@ -1,0 +1,25 @@
+[package]
+name = "eve-fit-os"
+version = "0.1.0"
+edition = "2021"
+include = [
+    "src/**/*",
+    "Cargo.toml",
+    "Cargo.lock",
+    "build.rs",
+    "efos.proto",
+]
+
+[dependencies]
+anyhow = "1.0.95"
+prost = { version = "0.13.4", optional = true }
+
+[build-dependencies]
+prost-build = { version = "0.13.4", optional = true }
+
+[dev-dependencies]
+serde_json = "1.0.138"
+
+[features]
+default = ["protobuf"]
+protobuf = ["dep:prost", "dep:prost-build"]
