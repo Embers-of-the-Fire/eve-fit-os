@@ -34,18 +34,18 @@ fn get_modifier_func(
     group_id: Option<i32>,
 ) -> Option<Modifier> {
     match func {
-        DogmaEffectModifierInfoFunc::LocationRequiredSkillModifier => Some(
-            Modifier::LocationRequiredSkillModifier(skill_type_id.unwrap()),
-        ),
+        DogmaEffectModifierInfoFunc::LocationRequiredSkillModifier => {
+            Some(Modifier::LocationRequiredSkillModifier(skill_type_id?))
+        }
         DogmaEffectModifierInfoFunc::LocationGroupModifier => {
-            Some(Modifier::LocationGroupModifier(group_id.unwrap()))
+            Some(Modifier::LocationGroupModifier(group_id?))
         }
         DogmaEffectModifierInfoFunc::LocationModifier => {
             Some(Modifier::LocationModifier)
         }
         DogmaEffectModifierInfoFunc::ItemModifier => Some(Modifier::ItemModifier),
         DogmaEffectModifierInfoFunc::OwnerRequiredSkillModifier => {
-            Some(Modifier::OwnerRequiredSkillModifier(skill_type_id.unwrap()))
+            Some(Modifier::OwnerRequiredSkillModifier(skill_type_id?))
         }
         // EffectStopper has no effect on the attributes; just on what you can bring online.
         DogmaEffectModifierInfoFunc::EffectStopper => None,
@@ -94,7 +94,7 @@ fn get_effect_operator(operation: i32) -> Option<EffectOperator> {
         5 => Some(EffectOperator::PostDiv),
         6 => Some(EffectOperator::PostPercent),
         7 => Some(EffectOperator::PostAssign),
-        /* We ignore operator 9 (calculates Skill Level based on Skill Points; irrelevant for fits). */
+        // We ignore operator 9 (calculates Skill Level based on Skill Points; irrelevant for fits).
         9 => None,
         _ => panic!("Unknown effect operation: {}", operation),
     }
@@ -159,7 +159,7 @@ impl Item {
                         continue;
                     }
 
-                    /* If the origin is an Item(), the domain is OtherID, but there is no charge, skip the effect. */
+                    // If the origin is an Item(), the domain is OtherID, but there is no charge, skip the effect.
                     if let (Object::Item(_), DogmaEffectModifierInfoDomain::OtherID) =
                         (&origin, &modifier.domain)
                     {

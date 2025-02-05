@@ -17,7 +17,7 @@ impl Item {
             self.set_attribute(dogma_attribute.attribute_id, dogma_attribute.value);
         }
 
-        /* Some attributes of items come from the Type information. */
+        // Some attributes of items come from the Type information.
         let ty = info.get_type(self.type_id);
         if let Some(mass) = ty.mass {
             self.set_attribute(ATTRIBUTE_MASS_ID, mass);

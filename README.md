@@ -20,7 +20,8 @@
     ```
 
 2.  Download FSD files.  
-    You have to manually download FSD datasets and unzip it to a separate folder (in this guide, `./fsd`). URL: [fsd.zip](https://eve-static-data-export.s3-eu-west-1.amazonaws.com/tranquility/fsd.zip).
+    You have to manually download FSD datasets and unzip it to a separate folder (in this guide, `./fsd`).
+    URL: [fsd.zip](https://eve-static-data-export.s3-eu-west-1.amazonaws.com/tranquility/fsd.zip).
 3.  Convert FSD files to protobuf.
     1.  Initialize UV env
         
