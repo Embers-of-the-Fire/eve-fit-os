@@ -23,15 +23,14 @@ message TypeDogma {
 
 message Types {
     message Type {
-        required string name = 1;
-        required int32 groupID = 2;
-        required int32 categoryID = 3;
-        required bool published = 4;
+        required int32 groupID = 1;
+        required int32 categoryID = 2;
+        required bool published = 3;
 
-        optional double capacity = 5;
-        optional double mass = 6;
-        optional double radius = 7;
-        optional double volume = 8;
+        optional double capacity = 4;
+        optional double mass = 5;
+        optional double radius = 6;
+        optional double volume = 7;
     }
 
     map<int32, Type> entries = 1;
@@ -112,22 +111,7 @@ message DogmaEffects {
 
         required string name = 1;
         required int32 effectCategory = 2;
-        required bool electronicChance = 3;
-        required bool isAssistance = 4;
-        required bool isOffensive = 5;
-        required bool isWarpSafe = 6;
-        required bool propulsionChance = 7;
-        required bool rangeChance = 8;
-
-        optional int32 dischargeAttributeID = 9;
-        optional int32 durationAttributeID = 10;
-        optional int32 rangeAttributeID = 11;
-        optional int32 falloffAttributeID = 12;
-        optional int32 trackingSpeedAttributeID = 13;
-        optional int32 fittingUsageChanceAttributeID = 14;
-        optional int32 resistanceAttributeID = 15;
-
-        repeated ModifierInfo modifierInfo = 16;
+        repeated ModifierInfo modifierInfo = 3;
     }
 
     map<int32, DogmaEffect> entries = 1;

@@ -100,21 +100,7 @@ impl Database {
                 .into_iter()
                 .map(|(k, v)| {
                     (k, fit::DogmaEffect {
-                        discharge_attribute_id: v.discharge_attribute_id,
-                        duration_attribute_id: v.duration_attribute_id,
                         effect_category: v.effect_category,
-                        electronic_chance: v.electronic_chance,
-                        is_assistance: v.is_assistance,
-                        is_offensive: v.is_offensive,
-                        is_warp_safe: v.is_warp_safe,
-                        propulsion_chance: v.propulsion_chance,
-                        range_chance: v.range_chance,
-                        range_attribute_id: v.range_attribute_id,
-                        falloff_attribute_id: v.falloff_attribute_id,
-                        tracking_speed_attribute_id: v.tracking_speed_attribute_id,
-                        fitting_usage_chance_attribute_id: v
-                            .fitting_usage_chance_attribute_id,
-                        resistance_attribute_id: v.resistance_attribute_id,
                         modifier_info: v
                             .modifier_info
                             .into_iter()

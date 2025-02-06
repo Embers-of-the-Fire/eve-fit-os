@@ -29,28 +29,6 @@ def convert(path: PathLike, out: PathLike, data):
     for id, entry in dogmaEffects.items():
         pb2.entries[id].name = entry["effectName"]
         pb2.entries[id].effectCategory = entry["effectCategory"]
-        pb2.entries[id].electronicChance = entry["electronicChance"]
-        pb2.entries[id].isAssistance = entry["isAssistance"]
-        pb2.entries[id].isOffensive = entry["isOffensive"]
-        pb2.entries[id].isWarpSafe = entry["isWarpSafe"]
-        pb2.entries[id].propulsionChance = entry["propulsionChance"]
-        pb2.entries[id].rangeChance = entry["rangeChance"]
-
-        if "dischargeAttributeID" in entry:
-            pb2.entries[id].dischargeAttributeID = entry["dischargeAttributeID"]
-        if "durationAttributeID" in entry:
-            pb2.entries[id].durationAttributeID = entry["durationAttributeID"]
-        if "rangeAttributeID" in entry:
-            pb2.entries[id].rangeAttributeID = entry["rangeAttributeID"]
-        if "falloffAttributeID" in entry:
-            pb2.entries[id].falloffAttributeID = entry["falloffAttributeID"]
-        if "trackingSpeedAttributeID" in entry:
-            pb2.entries[id].trackingSpeedAttributeID = entry["trackingSpeedAttributeID"]
-        if "fittingUsageChanceAttributeID" in entry:
-            pb2.entries[id].fittingUsageChanceAttributeID = entry["fittingUsageChanceAttributeID"]
-        if "resistanceAttributeID" in entry:
-            pb2.entries[id].resistanceAttributeID = entry["resistanceAttributeID"]
-
         if "modifierInfo" in entry:
             for modifier_info in entry["modifierInfo"]:
                 pbmi = pb2.DogmaEffect.ModifierInfo()

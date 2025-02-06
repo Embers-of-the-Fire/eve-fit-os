@@ -96,20 +96,7 @@ pub struct DogmaEffectModifierInfo {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DogmaEffect {
-    pub discharge_attribute_id: Option<i32>,
-    pub duration_attribute_id: Option<i32>,
     pub effect_category: i32,
-    pub electronic_chance: bool,
-    pub is_assistance: bool,
-    pub is_offensive: bool,
-    pub is_warp_safe: bool,
-    pub propulsion_chance: bool,
-    pub range_chance: bool,
-    pub range_attribute_id: Option<i32>,
-    pub falloff_attribute_id: Option<i32>,
-    pub tracking_speed_attribute_id: Option<i32>,
-    pub fitting_usage_chance_attribute_id: Option<i32>,
-    pub resistance_attribute_id: Option<i32>,
     pub modifier_info: Vec<DogmaEffectModifierInfo>,
 }
 

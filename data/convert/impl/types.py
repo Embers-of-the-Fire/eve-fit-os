@@ -30,7 +30,6 @@ def convert(path: PathLike, out: PathLike, data):
     pb2 = efos_pb2.Types()
 
     for id, entry in types.items():
-        pb2.entries[id].name = entry["name"]
         pb2.entries[id].groupID = entry["groupID"]
         pb2.entries[id].categoryID = data["groups"][entry["groupID"]]["categoryID"]
         pb2.entries[id].published = entry["published"]
