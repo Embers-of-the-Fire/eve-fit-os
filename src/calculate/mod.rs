@@ -7,6 +7,7 @@ pub mod item;
 mod pass_1;
 mod pass_2;
 mod pass_3;
+mod pass_4;
 
 #[derive(Debug, Clone, Copy)]
 pub struct DamageProfile {
@@ -62,6 +63,7 @@ pub fn calculate(fit: &impl FitProvider, info: &impl InfoProvider) -> Ship {
 
     pass_1::pass(fit, info, &mut ship);
     pass_2::pass(fit, info, &mut ship);
-    pass_3::pass(info, &mut ship);
+    pass_3::pass(fit, info, &mut ship);
+    pass_4::pass(fit, info, &mut ship);
     ship
 }

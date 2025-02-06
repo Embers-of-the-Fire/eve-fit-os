@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 use super::Ship;
 use super::item::{Attribute, EffectOperator, Item, Object};
 use crate::constant::PENALTY_FACTOR;
-use crate::provider::InfoProvider;
+use crate::provider::{FitProvider, InfoProvider};
 
 const OPERATOR_HAS_PENALTY: [EffectOperator; 5] = [
     EffectOperator::PreMul,
@@ -268,7 +268,7 @@ impl Item {
     }
 }
 
-pub(crate) fn pass(info: &impl InfoProvider, ship: &mut Ship) {
+pub(crate) fn pass(_fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut Ship) {
     let mut cache = Cache::default();
 
     ship.hull

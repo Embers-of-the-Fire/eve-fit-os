@@ -1,3 +1,13 @@
+pub mod patches {
+    pub mod attr {
+        include!(concat!(env!("OUT_DIR"), "/patch_attrs.rs"));
+    }
+
+    pub mod effect {
+        include!(concat!(env!("OUT_DIR"), "/patch_effects.rs"));
+    }
+}
+
 // ########################
 // Type ID Constants
 // ########################
@@ -32,15 +42,6 @@ pub const ATTRIBUTE_RECHARGE_RATE_ID: i32 = 55;
 
 /// Capacitor capacity attribute name (base capacitor value)
 pub const ATTRIBUTE_CAPACITOR_CAPACITY_ID: i32 = 482;
-
-/// Capacitor peak delta attribute name (used for capacitor simulation)
-pub const ATTR_CAPACITOR_PEAK_DELTA: &str = "capacitorPeakDelta";
-
-/// Cycle time attribute name (module activation cycle)
-pub const ATTR_CYCLE_TIME: &str = "cycleTime";
-
-/// Capacitor depletes in attribute name (calculation result)
-pub const ATTR_CAPACITOR_DEPLETES_IN: &str = "capacitorDepletesIn";
 
 // #######################
 // Skill-related Constants
