@@ -25,6 +25,9 @@ pub const ATTRIBUTE_MASS_ID: i32 = 4;
 /// Capacitor need ID
 pub const ATTRIBUTE_CAPACITOR_NEED_ID: i32 = 6;
 
+/// Item overload damage ID
+pub const ATTRIBUTE_HEAT_DAMAGE: i32 = 1211;
+
 /// Capacity attribute ID (corresponding to `capacity`)
 pub const ATTRIBUTE_CAPACITY_ID: i32 = 38;
 

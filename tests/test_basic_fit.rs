@@ -2,6 +2,7 @@ use std::collections::BTreeMap;
 use std::fs::File;
 
 use eve_fit_os::calculate::calculate;
+use eve_fit_os::constant::patches::attr::ATTR_SHIELD_EFFECTIVE_BOOST_RATE;
 use eve_fit_os::fit::{
     FitContainer, ItemCharge, ItemDrone, ItemFit, ItemImplant, ItemModule, ItemSlot,
     ItemSlotType, ItemState,
@@ -28,6 +29,15 @@ fn test_basic_fit() {
                 state: ItemState::Active,
                 charge: Some(ItemCharge { type_id: 2613 }),
             })
+            .chain(vec![ItemModule {
+                type_id: 10850,
+                slot: ItemSlot {
+                    slot_type: ItemSlotType::Medium,
+                    index: 0,
+                },
+                state: ItemState::Overload,
+                charge: None,
+            }])
             .collect(),
         drones: vec![ItemDrone {
             type_id: 2456,
@@ -51,5 +61,8 @@ fn test_basic_fit() {
         .and_then(|t| t.attributes.get(&114))
         .and_then(|t| t.value)
         .unwrap_or_default();
-    println!("Missile damage: {:?}", raw_dmg,)
+    println!("Missile damage: {:?}", raw_dmg);
+
+    let shield = out.hull.attributes.get(&ATTR_SHIELD_EFFECTIVE_BOOST_RATE).unwrap();
+    println!("Shield boost rate: {:?}", shield.value);
 }
