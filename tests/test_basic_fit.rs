@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 use std::fs::File;
 
 use eve_fit_os::calculate::calculate;
@@ -11,7 +11,7 @@ use eve_fit_os::protobuf::Database;
 
 #[test]
 fn test_basic_fit() {
-    let skill_all_5: BTreeMap<i32, u8> = {
+    let skill_all_5: HashMap<i32, u8> = {
         let rdr =
             File::open(concat!(env!("CARGO_MANIFEST_DIR"), "/skills.json")).unwrap();
         serde_json::from_reader(rdr).unwrap()

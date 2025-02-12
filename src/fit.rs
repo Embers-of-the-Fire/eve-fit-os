@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 use crate::provider::FitProvider;
 
@@ -158,11 +158,11 @@ pub struct ItemFit {
 #[derive(Debug, Clone)]
 pub struct FitContainer {
     pub fit: ItemFit,
-    pub skills: BTreeMap<i32, u8>,
+    pub skills: HashMap<i32, u8>,
 }
 
 impl FitContainer {
-    pub fn new(fit: ItemFit, skills: BTreeMap<i32, u8>) -> Self {
+    pub fn new(fit: ItemFit, skills: HashMap<i32, u8>) -> Self {
         Self { fit, skills }
     }
 }
@@ -172,7 +172,7 @@ impl FitProvider for FitContainer {
         &self.fit
     }
 
-    fn skills(&self) -> &BTreeMap<i32, u8> {
+    fn skills(&self) -> &HashMap<i32, u8> {
         &self.skills
     }
 }

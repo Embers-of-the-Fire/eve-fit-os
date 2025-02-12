@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 use crate::fit;
 
@@ -11,6 +11,6 @@ pub trait InfoProvider {
 }
 
 pub trait FitProvider {
-    fn skills(&self) -> &BTreeMap<i32, u8>;
+    fn skills(&self) -> &HashMap<i32, u8>;
     fn fit(&self) -> &fit::ItemFit;
 }
