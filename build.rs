@@ -9,7 +9,6 @@ use serde::Deserialize;
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
 fn main() -> Result<()> {
-    println!("cargo::rerun-if-changed=.env");
     dotenvy::dotenv()?;
 
     #[cfg(feature = "protobuf")]
