@@ -41,11 +41,46 @@ impl Database {
     pub fn init(path: impl AsRef<Path>) -> anyhow::Result<Self> {
         let path = path.as_ref();
         let dogma_attr: efos::DogmaAttributes = load_protobuf(path, "dogmaAttributes")?;
-        let dogma_eff: efos::DogmaEffects = load_protobuf(path, "dogmaEffects")?;
+        let dogma_effect: efos::DogmaEffects = load_protobuf(path, "dogmaEffects")?;
         let type_dogma: efos::TypeDogma = load_protobuf(path, "typeDogma")?;
         let types: efos::Types = load_protobuf(path, "types")?;
 
-        Ok(Self {
+        Ok(Self::init_from_protobuf(
+            dogma_attr,
+            dogma_effect,
+            type_dogma,
+            types,
+        ))
+    }
+
+    pub fn init_from_bytes(
+        dogma_attr_buffer: &[u8],
+        dogma_effect_buffer: &[u8],
+        type_dogma_buffer: &[u8],
+        types_buffer: &[u8],
+    ) -> anyhow::Result<Self> {
+        let dogma_attr: efos::DogmaAttributes =
+            efos::DogmaAttributes::decode(dogma_attr_buffer)?;
+        let dogma_effect: efos::DogmaEffects =
+            efos::DogmaEffects::decode(dogma_effect_buffer)?;
+        let type_dogma: efos::TypeDogma = efos::TypeDogma::decode(type_dogma_buffer)?;
+        let types: efos::Types = efos::Types::decode(types_buffer)?;
+
+        Ok(Self::init_from_protobuf(
+            dogma_attr,
+            dogma_effect,
+            type_dogma,
+            types,
+        ))
+    }
+
+    pub fn init_from_protobuf(
+        dogma_attr: efos::DogmaAttributes,
+        dogma_effect: efos::DogmaEffects,
+        type_dogma: efos::TypeDogma,
+        types: efos::Types,
+    ) -> Self {
+        Self {
             types: types
                 .entries
                 .into_iter()
@@ -95,7 +130,7 @@ impl Database {
                     })
                 })
                 .collect(),
-            dogma_effects: dogma_eff
+            dogma_effects: dogma_effect
                 .entries
                 .into_iter()
                 .map(|(k, v)| {
@@ -117,7 +152,7 @@ impl Database {
                     })
                 })
                 .collect(),
-        })
+        }
     }
 }
 
