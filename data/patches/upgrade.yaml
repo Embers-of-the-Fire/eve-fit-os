@@ -1,0 +1,37 @@
+description: |
+  Sum up all upgrade costs and apply them to the ship.
+  The upgradeUsed attribute will reflect how much calibration is used.
+
+attributes:
+- new:
+    name: upgradeUsed
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: upgradeUsed
+  effectCategory: online
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: upgradeUsed
+    modifyingAttribute: upgradeCost
+    operation: modAdd
+
+typeDogma:
+- patch:
+  - category: Module
+    hasAnyAttributes:
+    - name: upgradeCost
+  dogmaEffects:
+  - effect: upgradeUsed
+    isDefault: false
