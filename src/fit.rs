@@ -116,6 +116,7 @@ pub enum ItemSlotType {
     Rig,
     SubSystem,
     Service,
+    TacticalMode,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

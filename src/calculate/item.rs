@@ -127,6 +127,7 @@ pub enum SlotType {
     Rig,
     SubSystem,
     Service,
+    TacticalMode,
     DroneBay,
     Charge,
     Implant,
@@ -142,6 +143,7 @@ impl From<ItemSlotType> for SlotType {
             ItemSlotType::Rig => SlotType::Rig,
             ItemSlotType::SubSystem => SlotType::SubSystem,
             ItemSlotType::Service => SlotType::Service,
+            ItemSlotType::TacticalMode => SlotType::TacticalMode,
         }
     }
 }
@@ -161,6 +163,7 @@ impl Slot {
                 | SlotType::Low
                 | SlotType::Rig
                 | SlotType::SubSystem
+                | SlotType::TacticalMode
         )
     }
 }
@@ -247,6 +250,21 @@ impl Item {
             type_id,
             slot: Slot {
                 slot_type: SlotType::Fake,
+                index: None,
+            },
+            charge: None,
+            state: EffectCategory::Active,
+            max_state: EffectCategory::Active,
+            attributes: BTreeMap::new(),
+            effects: Vec::new(),
+        }
+    }
+
+    pub fn new_tactical_mode(type_id: i32) -> Self {
+        Self {
+            type_id,
+            slot: Slot {
+                slot_type: SlotType::TacticalMode,
                 index: None,
             },
             charge: None,
