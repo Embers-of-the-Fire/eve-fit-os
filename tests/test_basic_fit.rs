@@ -43,7 +43,10 @@ fn test_basic_fit() {
             type_id: 2456,
             state: ItemState::Active,
         }],
-        implants: vec![ItemImplant { type_id: 27252 }],
+        implants: vec![
+            ItemImplant { type_id: 57123 },
+            ItemImplant { type_id: 57124 },
+        ],
     };
 
     let container = FitContainer::new(fit, skill_all_5);
@@ -63,6 +66,19 @@ fn test_basic_fit() {
         .unwrap_or_default();
     println!("Missile damage: {:?}", raw_dmg);
 
-    let shield = out.hull.attributes.get(&ATTR_SHIELD_EFFECTIVE_BOOST_RATE).unwrap();
+    let shield = out
+        .hull
+        .attributes
+        .get(&ATTR_SHIELD_EFFECTIVE_BOOST_RATE)
+        .unwrap();
     println!("Shield boost rate: {:?}", shield.value);
+
+    let el = out
+        .implants
+        .iter()
+        .find(|t| t.type_id == 57123)
+        .and_then(|t| t.attributes.get(&314))
+        .and_then(|t| t.value);
+
+    println!("Implant 57123 sub effect: {:?}", el);
 }

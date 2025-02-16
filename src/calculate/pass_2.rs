@@ -363,6 +363,20 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                             }
                         }
                     }
+
+                    for item in &mut ship.implants {
+                        if item.attributes.contains_key(attribute_skill_id)
+                            && item.attributes[attribute_skill_id].base_value
+                                == skill_type_id as f64
+                        {
+                            item.add_effect(
+                                info,
+                                effect.target_attribute_id,
+                                category_id,
+                                &effect,
+                            );
+                        }
+                    }
                 }
             }
         }
