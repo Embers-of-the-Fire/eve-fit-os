@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 use crate::fit::{ItemSlotType, ItemState};
 
@@ -175,7 +175,7 @@ pub struct Item {
     pub charge: Option<Box<Item>>,
     pub state: EffectCategory,
     pub max_state: EffectCategory,
-    pub attributes: BTreeMap<i32, Attribute>,
+    pub attributes: HashMap<i32, Attribute>,
     pub effects: Vec<i32>,
 }
 
@@ -192,7 +192,7 @@ impl Item {
             charge: None,
             state: EffectCategory::Active,
             max_state: EffectCategory::Active,
-            attributes: BTreeMap::new(),
+            attributes: HashMap::new(),
             effects: Vec::new(),
         }
     }
@@ -210,7 +210,7 @@ impl Item {
                 .map(|charge_type_id| Box::new(Self::new_charge(charge_type_id))),
             state,
             max_state: EffectCategory::Passive,
-            attributes: BTreeMap::new(),
+            attributes: HashMap::new(),
             effects: Vec::new(),
         }
     }
@@ -225,7 +225,7 @@ impl Item {
             charge: None,
             state,
             max_state: EffectCategory::Active,
-            attributes: BTreeMap::new(),
+            attributes: HashMap::new(),
             effects: Vec::new(),
         }
     }
@@ -240,7 +240,7 @@ impl Item {
             charge: None,
             state: EffectCategory::Active,
             max_state: EffectCategory::Active,
-            attributes: BTreeMap::new(),
+            attributes: HashMap::new(),
             effects: Vec::new(),
         }
     }
@@ -255,7 +255,7 @@ impl Item {
             charge: None,
             state: EffectCategory::Active,
             max_state: EffectCategory::Active,
-            attributes: BTreeMap::new(),
+            attributes: HashMap::new(),
             effects: Vec::new(),
         }
     }
@@ -270,7 +270,7 @@ impl Item {
             charge: None,
             state: EffectCategory::Active,
             max_state: EffectCategory::Active,
-            attributes: BTreeMap::new(),
+            attributes: HashMap::new(),
             effects: Vec::new(),
         }
     }

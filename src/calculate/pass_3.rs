@@ -1,4 +1,4 @@
-use std::collections::BTreeMap;
+use std::collections::HashMap;
 
 use super::Ship;
 use super::item::{Attribute, EffectOperator, Item, Object};
@@ -15,14 +15,14 @@ const OPERATOR_HAS_PENALTY: [EffectOperator; 5] = [
 
 #[derive(Default, Debug)]
 struct Cache {
-    hull: BTreeMap<i32, f64>,
-    character: BTreeMap<i32, f64>,
-    structure: BTreeMap<i32, f64>,
-    target: BTreeMap<i32, f64>,
-    items: BTreeMap<usize, BTreeMap<i32, f64>>,
-    implants: BTreeMap<usize, BTreeMap<i32, f64>>,
-    charge: BTreeMap<usize, BTreeMap<i32, f64>>,
-    skills: BTreeMap<usize, BTreeMap<i32, f64>>,
+    hull: HashMap<i32, f64>,
+    character: HashMap<i32, f64>,
+    structure: HashMap<i32, f64>,
+    target: HashMap<i32, f64>,
+    items: HashMap<usize, HashMap<i32, f64>>,
+    implants: HashMap<usize, HashMap<i32, f64>>,
+    charge: HashMap<usize, HashMap<i32, f64>>,
+    skills: HashMap<usize, HashMap<i32, f64>>,
 }
 
 impl Attribute {
@@ -251,7 +251,7 @@ impl Item {
     fn store_cached_values(
         &mut self,
         info: &impl InfoProvider,
-        cache: &BTreeMap<i32, f64>,
+        cache: &HashMap<i32, f64>,
     ) {
         for (attribute_id, value) in cache {
             if let Some(attribute) = self.attributes.get_mut(attribute_id) {
