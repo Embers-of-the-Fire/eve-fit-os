@@ -230,12 +230,12 @@ impl Item {
         }
     }
 
-    pub fn new_implant(type_id: i32) -> Self {
+    pub fn new_implant(type_id: i32, index: i32) -> Self {
         Self {
             type_id,
             slot: Slot {
                 slot_type: SlotType::Implant,
-                index: None,
+                index: Some(index),
             },
             charge: None,
             state: EffectCategory::Active,

@@ -76,7 +76,7 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
     }
 
     for implant in &fit.fit().implants {
-        let mut item = Item::new_implant(implant.type_id);
+        let mut item = Item::new_implant(implant.type_id, implant.index);
         item.update_attributes(info);
         ship.implants.push(item);
     }

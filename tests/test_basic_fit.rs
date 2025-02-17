@@ -44,8 +44,14 @@ fn test_basic_fit() {
             state: ItemState::Active,
         }],
         implants: vec![
-            ItemImplant { type_id: 57123 },
-            ItemImplant { type_id: 57124 },
+            ItemImplant {
+                type_id: 57123,
+                index: 1,
+            },
+            ItemImplant {
+                type_id: 57124,
+                index: 2,
+            },
         ],
     };
 

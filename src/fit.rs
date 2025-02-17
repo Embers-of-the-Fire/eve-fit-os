@@ -147,7 +147,9 @@ pub struct ItemDrone {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ItemImplant {
     pub type_id: i32,
+    pub index: i32,
 }
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ItemFit {
     pub ship_type_id: i32,
