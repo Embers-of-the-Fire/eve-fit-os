@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use std::fs::File;
 
 use eve_fit_os::calculate::calculate;
+use eve_fit_os::calculate::item::SlotType;
 use eve_fit_os::constant::patches::attr::ATTR_SHIELD_EFFECTIVE_BOOST_RATE;
 use eve_fit_os::fit::{
     FitContainer, ItemCharge, ItemDrone, ItemFit, ItemImplant, ItemModule, ItemSlot,
@@ -41,6 +42,7 @@ fn test_basic_fit() {
             .collect(),
         drones: vec![ItemDrone {
             type_id: 2456,
+            group_id: 10,
             state: ItemState::Active,
         }],
         implants: vec![
@@ -87,4 +89,11 @@ fn test_basic_fit() {
         .and_then(|t| t.value);
 
     println!("Implant 57123 sub effect: {:?}", el);
+
+    println!(
+        "Drone: {:?}",
+        out.modules
+            .iter()
+            .find(|t| matches!(t.slot.slot_type, SlotType::DroneBay { .. }))
+    )
 }

@@ -141,6 +141,7 @@ pub struct ItemModule {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ItemDrone {
     pub type_id: i32,
+    pub group_id: u8,
     pub state: ItemState,
 }
 

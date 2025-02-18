@@ -128,7 +128,7 @@ pub enum SlotType {
     SubSystem,
     Service,
     TacticalMode,
-    DroneBay,
+    DroneBay { group_id: u8 },
     Charge,
     Implant,
     Fake,
@@ -215,11 +215,11 @@ impl Item {
         }
     }
 
-    pub fn new_drone(type_id: i32, state: EffectCategory) -> Self {
+    pub fn new_drone(type_id: i32, group_id: u8, state: EffectCategory) -> Self {
         Self {
             type_id,
             slot: Slot {
-                slot_type: SlotType::DroneBay,
+                slot_type: SlotType::DroneBay { group_id },
                 index: None,
             },
             charge: None,
