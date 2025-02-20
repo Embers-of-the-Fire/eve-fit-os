@@ -9,7 +9,7 @@ mod pass_2;
 mod pass_3;
 mod pass_4;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct DamageProfile {
     pub em: f64,
     pub explosive: f64,

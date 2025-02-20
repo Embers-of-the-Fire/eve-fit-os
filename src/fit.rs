@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::provider::FitProvider;
+use crate::{calculate::DamageProfile, provider::FitProvider};
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Type {
@@ -151,9 +151,10 @@ pub struct ItemImplant {
     pub index: i32,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct ItemFit {
     pub ship_type_id: i32,
+    pub damage_profile: DamageProfile,
     pub modules: Vec<ItemModule>,
     pub drones: Vec<ItemDrone>,
     pub implants: Vec<ItemImplant>,
