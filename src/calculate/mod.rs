@@ -56,6 +56,22 @@ impl Ship {
             target: Item::new_fake(0),
         }
     }
+
+    pub fn new_with_damage_profile(
+        ship_id: i32,
+        damage_profile: DamageProfile,
+    ) -> Self {
+        Self {
+            hull: Item::new_fake(ship_id),
+            modules: Vec::new(),
+            skills: Vec::new(),
+            implants: Vec::new(),
+            character: Item::new_fake(CHARACTER_TYPE_ID),
+            damage_profile,
+            structure: Item::new_fake(0),
+            target: Item::new_fake(0),
+        }
+    }
 }
 
 pub fn calculate(fit: &impl FitProvider, info: &impl InfoProvider) -> Ship {
