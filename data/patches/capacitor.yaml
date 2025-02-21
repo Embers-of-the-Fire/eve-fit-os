@@ -40,6 +40,18 @@ attributes:
   defaultValue: 100
   highIsGood: true
   stackable: true
+- new:
+    name: capacitorBoost
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: capacitorPeakLoadWithBoost
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
 
 # Not calculated via dogma, as this requires simulation. This has to be
 # calculated and set by the dogma-engine.
@@ -137,6 +149,28 @@ effects:
     modifiedAttribute: cycleTime
     modifyingAttribute: moduleReactivationDelay
     operation: modAdd
+
+- new:
+    name: capacitorPeakLoadWithBoost
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: capacitorPeakLoadWithBoost
+    modifyingAttribute: capacitorNeed
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: capacitorPeakLoadWithBoost
+    modifyingAttribute: capacitorBoost
+    operation: modSub
+
 - new:
     name: capacitorPeakLoad
   effectCategory: active
@@ -150,7 +184,7 @@ effects:
   - domain: itemID
     func: ItemModifier
     modifiedAttribute: capacitorPeakLoad
-    modifyingAttribute: capacitorNeed
+    modifyingAttribute: capacitorPeakLoadWithBoost
     operation: preAssign
   - domain: itemID
     func: ItemModifier
@@ -199,6 +233,22 @@ effects:
     modifyingAttribute: capacitorPeakRecharge
     operation: postDiv
 
+- new:
+    name: capacitorBoost
+  effectCategory: passive
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: otherID
+    func: ItemModifier
+    modifiedAttribute: capacitorBoost
+    modifyingAttribute: capacitorBonus
+    operation: preAssign
+
 typeDogma:
 - patch:
   - category: Ship
@@ -206,10 +256,21 @@ typeDogma:
   - effect: capacitorPeakRecharge
     isDefault: false
 - patch:
+  - category: Charge
+    hasAllAttributes:
+      - name: capacitorBonus
+  dogmaEffects:
+  - effect: capacitorBoost
+    isDefault: false
+- patch:
   - category: Module
     hasAllAttributes:
     - name: capacitorNeed
+  - group: Capacitor Booster
+  - group: Ancillary Shield Booster
   dogmaEffects:
+  - effect: capacitorPeakLoadWithBoost
+    isDefault: false
   - effect: capacitorPeakLoad
     isDefault: false
 - patch:
@@ -217,6 +278,12 @@ typeDogma:
     hasAllAttributes:
     - name: capacitorNeed
     # Some modules use "duration" for their cycle time.
+    - name: duration
+  - group: Capacitor Booster
+    hasAllAttributes:
+    - name: duration
+  - group: Ancillary Shield Booster
+    hasAllAttributes:
     - name: duration
   dogmaEffects:
   - effect: cycleTimeDuration
@@ -227,6 +294,12 @@ typeDogma:
     - name: capacitorNeed
     # Some modules use "durationHighisGood" for their cycle time.
     - name: durationHighisGood
+  - group: Capacitor Booster
+    hasAllAttributes:
+    - name: durationHighisGood
+  - group: Ancillary Shield Booster
+    hasAllAttributes:
+    - name: durationHighisGood
   dogmaEffects:
   - effect: cycleTimeDurationHighisGood
     isDefault: false
@@ -236,6 +309,12 @@ typeDogma:
     - name: capacitorNeed
     # Other modules use "speed" for their cycle time.
     - name: speed
+  - group: Capacitor Booster
+    hasAllAttributes:
+    - name: speed
+  - group: Ancillary Shield Booster
+    hasAllAttributes:
+    - name: speed
   dogmaEffects:
   - effect: cycleTimeSpeed
     isDefault: false
@@ -244,6 +323,12 @@ typeDogma:
     hasAllAttributes:
     - name: capacitorNeed
     # Other modules use "moduleReactivationDelay" for their cycle time.
+    - name: moduleReactivationDelay
+  - group: Capacitor Booster
+    hasAllAttributes:
+    - name: moduleReactivationDelay
+  - group: Ancillary Shield Booster
+    hasAllAttributes:
     - name: moduleReactivationDelay
   dogmaEffects:
   - effect: cycleTimeReactivationDelay

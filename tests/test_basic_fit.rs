@@ -1,9 +1,11 @@
 use std::collections::HashMap;
 use std::fs::File;
 
-use eve_fit_os::calculate::calculate;
-use eve_fit_os::calculate::item::SlotType;
-use eve_fit_os::constant::patches::attr::ATTR_SHIELD_EFFECTIVE_BOOST_RATE;
+use eve_fit_os::calculate::{DamageProfile, calculate};
+use eve_fit_os::constant::patches::attr::{
+    ATTR_CAPACITOR_PEAK_LOAD, ATTR_CAPACITOR_PEAK_RECHARGE,
+    ATTR_SHIELD_EFFECTIVE_BOOST_RATE,
+};
 use eve_fit_os::fit::{
     FitContainer, ItemCharge, ItemDrone, ItemFit, ItemImplant, ItemModule, ItemSlot,
     ItemSlotType, ItemState,
@@ -19,6 +21,7 @@ fn test_basic_fit() {
     };
 
     let fit = ItemFit {
+        damage_profile: DamageProfile::default(),
         ship_type_id: 628,
         modules: (0..3)
             .map(|index| ItemModule {
@@ -30,15 +33,27 @@ fn test_basic_fit() {
                 state: ItemState::Active,
                 charge: Some(ItemCharge { type_id: 2613 }),
             })
-            .chain(vec![ItemModule {
-                type_id: 10850,
-                slot: ItemSlot {
-                    slot_type: ItemSlotType::Medium,
-                    index: 0,
+            .chain(vec![
+                ItemModule {
+                    type_id: 10850,
+                    slot: ItemSlot {
+                        slot_type: ItemSlotType::Medium,
+                        index: 0,
+                    },
+                    state: ItemState::Overload,
+                    charge: None,
                 },
-                state: ItemState::Overload,
-                charge: None,
-            }])
+                ItemModule {
+                    type_id: 3568,
+                    slot: ItemSlot {
+                        slot_type: ItemSlotType::Medium,
+                        index: 1,
+                    },
+                    state: ItemState::Active,
+                    // charge: None,
+                    charge: Some(ItemCharge { type_id: 11285 }),
+                },
+            ])
             .collect(),
         drones: vec![ItemDrone {
             type_id: 2456,
@@ -90,10 +105,50 @@ fn test_basic_fit() {
 
     println!("Implant 57123 sub effect: {:?}", el);
 
+    // println!(
+    //     "Drone: {:?}",
+    //     out.modules
+    //         .iter()
+    //         .find(|t| matches!(t.slot.slot_type, SlotType::DroneBay { .. }))
+    // )
     println!(
-        "Drone: {:?}",
+        "cap: {:?}",
+        out.hull
+            .attributes
+            .get(&ATTR_CAPACITOR_PEAK_RECHARGE)
+            .unwrap()
+            .value
+            .unwrap_or_default()
+            - out
+                .hull
+                .attributes
+                .get(&ATTR_CAPACITOR_PEAK_LOAD)
+                .unwrap()
+                .value
+                .unwrap_or_default(),
+    );
+
+    println!(
+        "item cap: {:?}, charge cap: {:?}",
         out.modules
             .iter()
-            .find(|t| matches!(t.slot.slot_type, SlotType::DroneBay { .. }))
-    )
+            .find(|u| u.type_id == 3568)
+            .unwrap()
+            .attributes
+            // .get(&ATTR_CAPACITOR_PEAK_LOAD_WITH_BOOST)
+            .get(&ATTR_CAPACITOR_PEAK_LOAD)
+            .unwrap()
+            .value,
+        out.modules
+            .iter()
+            .find(|u| u.type_id == 3568)
+            .unwrap()
+            .charge
+            .as_ref()
+            .unwrap()
+            .attributes
+            .get(&67)
+            .unwrap()
+            .value,
+    );
 }

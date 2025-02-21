@@ -1,7 +1,9 @@
 def _fixup_attribute(attribute, data):
     try:
         attribute["attributeID"] = [
-            id for id, item in data["dogmaAttributes"].items() if item["name"] == attribute["attribute"]
+            id
+            for id, item in data["dogmaAttributes"].items()
+            if item["name"] == attribute["attribute"]
         ][0]
     except IndexError:
         raise ValueError(f"Unknown attribute: {attribute['attribute']}")
@@ -11,7 +13,9 @@ def _fixup_attribute(attribute, data):
 def _fixup_effect(effect, data):
     try:
         effect["effectID"] = [
-            id for id, item in data["dogmaEffects"].items() if item["effectName"] == effect["effect"]
+            id
+            for id, item in data["dogmaEffects"].items()
+            if item["effectName"] == effect["effect"]
         ][0]
     except IndexError:
         raise ValueError(f"Unknown attribute: {effect['effect']}")
@@ -33,16 +37,34 @@ def patch(entries, patches, data):
             if "category" in patchTarget:
                 try:
                     categoryID = [
-                        id for id, category in data["categories"].items() if category["name"] == patchTarget["category"]
+                        id
+                        for id, category in data["categories"].items()
+                        if category["name"] == patchTarget["category"]
                     ][0]
                 except IndexError:
                     raise ValueError(f"Unknown category: {patchTarget['category']}")
 
-                groupIDs = [id for id, item in data["groups"].items() if item["categoryID"] == categoryID]
+                groupIDs = [
+                    id for id, item in data["groups"].items() if item["categoryID"] == categoryID
+                ]
                 typeIDs = [id for id, item in data["types"].items() if item["groupID"] in groupIDs]
+            elif "group" in patchTarget:
+                try:
+                    groupID = [
+                        id
+                        for id, group in data["groups"].items()
+                        if group["name"] == patchTarget["group"]
+                    ][0]
+                except IndexError:
+                    raise ValueError(f"Unknown group: {patchTarget['group']}")
+                typeIDs = [id for id, item in data["types"].items() if item["groupID"] == groupID]
             elif "type" in patchTarget:
                 try:
-                    typeIDs = [id for id, item in data["types"].items() if item["name"] == patchTarget["type"]]
+                    typeIDs = [
+                        id
+                        for id, item in data["types"].items()
+                        if item["name"] == patchTarget["type"]
+                    ]
                 except IndexError:
                     raise ValueError(f"Unknown type: {patchTarget['type']}")
             else:
@@ -60,7 +82,9 @@ def patch(entries, patches, data):
                 for attribute in patchTarget["hasAllAttributes"]:
                     try:
                         attributeID = [
-                            id for id, item in data["dogmaAttributes"].items() if item["name"] == attribute["name"]
+                            id
+                            for id, item in data["dogmaAttributes"].items()
+                            if item["name"] == attribute["name"]
                         ][0]
                     except IndexError:
                         raise ValueError(f"Unknown attribute: {attribute['name']}")
@@ -68,7 +92,8 @@ def patch(entries, patches, data):
                     filteredTypeIDs = []
                     for typeID in typeIDs:
                         if attributeID in [
-                            attribute["attributeID"] for attribute in entries[typeID]["dogmaAttributes"]
+                            attribute["attributeID"]
+                            for attribute in entries[typeID]["dogmaAttributes"]
                         ]:
                             filteredTypeIDs.append(typeID)
 
@@ -80,14 +105,17 @@ def patch(entries, patches, data):
                 for attribute in patchTarget["hasAnyAttributes"]:
                     try:
                         attributeID = [
-                            id for id, item in data["dogmaAttributes"].items() if item["name"] == attribute["name"]
+                            id
+                            for id, item in data["dogmaAttributes"].items()
+                            if item["name"] == attribute["name"]
                         ][0]
                     except IndexError:
                         raise ValueError(f"Unknown attribute: {attribute['name']}")
 
                     for typeID in typeIDs:
                         if attributeID in [
-                            attribute["attributeID"] for attribute in entries[typeID]["dogmaAttributes"]
+                            attribute["attributeID"]
+                            for attribute in entries[typeID]["dogmaAttributes"]
                         ]:
                             filteredTypeIDs.append(typeID)
 
@@ -99,13 +127,17 @@ def patch(entries, patches, data):
                 for effect in patchTarget["hasAnyEffects"]:
                     try:
                         effectID = [
-                            id for id, item in data["dogmaEffects"].items() if item["effectName"] == effect["name"]
+                            id
+                            for id, item in data["dogmaEffects"].items()
+                            if item["effectName"] == effect["name"]
                         ][0]
                     except IndexError:
                         raise ValueError(f"Unknown effect: {effect['name']}")
 
                     for typeID in typeIDs:
-                        if effectID in [effect["effectID"] for effect in entries[typeID]["dogmaEffects"]]:
+                        if effectID in [
+                            effect["effectID"] for effect in entries[typeID]["dogmaEffects"]
+                        ]:
                             filteredTypeIDs.append(typeID)
 
                 typeIDs = filteredTypeIDs

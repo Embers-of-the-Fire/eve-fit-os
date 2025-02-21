@@ -1,6 +1,7 @@
 use super::super::Ship;
 use crate::constant::patches::attr::{
-    ATTR_CAPACITOR_DEPLETES_IN, ATTR_CAPACITOR_PEAK_DELTA, ATTR_CYCLE_TIME,
+    ATTR_CAPACITOR_BOOST, ATTR_CAPACITOR_DEPLETES_IN, ATTR_CAPACITOR_PEAK_DELTA,
+    ATTR_CYCLE_TIME,
 };
 use crate::constant::{
     ATTRIBUTE_CAPACITOR_CAPACITY_ID, ATTRIBUTE_CAPACITOR_NEED_ID,
@@ -50,7 +51,8 @@ pub fn attribute_capacitor_depletes_in(ship: &mut Ship) {
                 continue;
             }
 
-            if !item.attributes.contains_key(&ATTRIBUTE_CAPACITOR_NEED_ID)
+            if !(item.attributes.contains_key(&ATTRIBUTE_CAPACITOR_NEED_ID)
+                || item.attributes.contains_key(&ATTR_CAPACITOR_BOOST))
                 || !item.attributes.contains_key(&ATTR_CYCLE_TIME)
             {
                 continue;
@@ -66,6 +68,7 @@ pub fn attribute_capacitor_depletes_in(ship: &mut Ship) {
             let capacitor_need = item
                 .attributes
                 .get(&ATTRIBUTE_CAPACITOR_NEED_ID)
+                .or_else(|| item.attributes.get(&ATTR_CAPACITOR_BOOST))
                 .unwrap()
                 .value
                 .unwrap();
