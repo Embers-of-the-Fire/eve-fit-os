@@ -1,5 +1,9 @@
 use super::Ship;
 use super::item::{Attribute, EffectCategory, Item, Slot};
+use crate::constant::patches::attr::{
+    ATTR_DAMAGE_PROFILE_EM, ATTR_DAMAGE_PROFILE_EXPLOSIVE, ATTR_DAMAGE_PROFILE_KINETIC,
+    ATTR_DAMAGE_PROFILE_THERMAL,
+};
 use crate::constant::{
     ATTRIBUTE_CAPACITY_ID, ATTRIBUTE_MASS_ID, ATTRIBUTE_RADIUS_ID,
     ATTRIBUTE_SKILL_LEVEL_ID, ATTRIBUTE_VOLUME_ID,
@@ -36,6 +40,15 @@ impl Item {
 
 pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut Ship) {
     ship.hull.update_attributes(info);
+    
+    [
+        (ATTR_DAMAGE_PROFILE_EM, ship.damage_profile.em),
+        (ATTR_DAMAGE_PROFILE_EXPLOSIVE, ship.damage_profile.explosive),
+        (ATTR_DAMAGE_PROFILE_KINETIC, ship.damage_profile.kinetic),
+        (ATTR_DAMAGE_PROFILE_THERMAL, ship.damage_profile.thermal),
+    ]
+    .into_iter()
+    .for_each(|(id, val)| ship.hull.set_attribute(id, val));
 
     for (skill_id, skill_level) in fit.skills() {
         let mut skill = Item::new_fake(*skill_id);

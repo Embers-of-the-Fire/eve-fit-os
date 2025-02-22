@@ -75,7 +75,8 @@ impl Ship {
 }
 
 pub fn calculate(fit: &impl FitProvider, info: &impl InfoProvider) -> Ship {
-    let mut ship = Ship::new(fit.fit().ship_type_id);
+    let mut ship =
+        Ship::new_with_damage_profile(fit.fit().ship_type_id, fit.fit().damage_profile);
 
     pass_1::pass(fit, info, &mut ship);
     pass_2::pass(fit, info, &mut ship);
