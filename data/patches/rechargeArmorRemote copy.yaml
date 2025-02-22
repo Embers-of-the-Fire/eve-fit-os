@@ -1,0 +1,61 @@
+description: |
+  This patch introduces attributes to calculate the remote armor repair rate.
+
+  It calculates this for both modules that influence the remote armor repair rate,
+  and for the ship that receives the remote armor repair rate.
+
+  Unlike local armor repair rate, remote armor repair rate has no "effective" attribute.
+  This is because remote armor repair rate is not affected by the ship's resonances.
+
+attributes:
+- new:
+    name: armorRemoteRepairRate
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: armorRemoteRepairRate
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: armorRemoteRepairRate
+    modifyingAttribute: thousand
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: armorRemoteRepairRate
+    modifyingAttribute: armorDamageAmount
+    operation: postMul
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: armorRemoteRepairRate
+    modifyingAttribute: duration
+    operation: postDiv
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: armorRemoteRepairRate
+    modifyingAttribute: armorRemoteRepairRate
+    operation: modAdd
+
+
+typeDogma:
+- patch:
+  - category: Module
+    hasAllAttributes:
+    - name: armorDamageAmount
+    - name: duration
+    hasAnyEffects:
+    - name: shipModuleRemoteArmorRepairer
+  dogmaEffects:
+  - effect: armorRemoteRepairRate
+    isDefault: false
