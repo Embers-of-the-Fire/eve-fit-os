@@ -282,9 +282,6 @@ typeDogma:
   - group: Capacitor Booster
     hasAllAttributes:
     - name: duration
-  - group: Ancillary Shield Booster
-    hasAllAttributes:
-    - name: duration
   dogmaEffects:
   - effect: cycleTimeDuration
     isDefault: false
@@ -295,9 +292,6 @@ typeDogma:
     # Some modules use "durationHighisGood" for their cycle time.
     - name: durationHighisGood
   - group: Capacitor Booster
-    hasAllAttributes:
-    - name: durationHighisGood
-  - group: Ancillary Shield Booster
     hasAllAttributes:
     - name: durationHighisGood
   dogmaEffects:
@@ -312,9 +306,6 @@ typeDogma:
   - group: Capacitor Booster
     hasAllAttributes:
     - name: speed
-  - group: Ancillary Shield Booster
-    hasAllAttributes:
-    - name: speed
   dogmaEffects:
   - effect: cycleTimeSpeed
     isDefault: false
@@ -325,9 +316,6 @@ typeDogma:
     # Other modules use "moduleReactivationDelay" for their cycle time.
     - name: moduleReactivationDelay
   - group: Capacitor Booster
-    hasAllAttributes:
-    - name: moduleReactivationDelay
-  - group: Ancillary Shield Booster
     hasAllAttributes:
     - name: moduleReactivationDelay
   dogmaEffects:
