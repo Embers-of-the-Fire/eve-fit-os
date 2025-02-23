@@ -192,6 +192,11 @@ effects:
     modifiedAttribute: fighterMissilesDamagePerSecond
     modifyingAttribute: fighterDamageMissilesSpeed
     operation: postDiv
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamagePerSecond
+    modifyingAttribute: fighterMissilesDamagePerSecond
+    operation: modAdd
   - domain: shipID
     func: ItemModifier
     modifiedAttribute: fighterDamagePerSecond
@@ -293,6 +298,11 @@ effects:
     modifiedAttribute: fighterAttackTurretDamagePerSecond
     modifyingAttribute: fighterDamageAttackTurretSpeed
     operation: postDiv
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamagePerSecond
+    modifyingAttribute: fighterAttackTurretDamagePerSecond
+    operation: modAdd
   - domain: shipID
     func: ItemModifier
     modifiedAttribute: fighterDamagePerSecond
@@ -394,6 +404,11 @@ effects:
     modifiedAttribute: fighterAttackMissileDamagePerSecond
     modifyingAttribute: fighterDamageAttackMissileSpeed
     operation: postDiv
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamagePerSecond
+    modifyingAttribute: fighterAttackMissileDamagePerSecond
+    operation: modAdd
   - domain: shipID
     func: ItemModifier
     modifiedAttribute: fighterDamagePerSecond
