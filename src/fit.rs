@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
-use crate::{calculate::DamageProfile, provider::FitProvider};
+use crate::calculate::DamageProfile;
+use crate::calculate::item::FighterAbility;
+use crate::provider::FitProvider;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Type {
@@ -146,6 +148,13 @@ pub struct ItemDrone {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct ItemFighter {
+    pub type_id: i32,
+    pub group_id: u8,
+    pub ability: FighterAbility,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ItemImplant {
     pub type_id: i32,
     pub index: i32,
@@ -157,6 +166,7 @@ pub struct ItemFit {
     pub damage_profile: DamageProfile,
     pub modules: Vec<ItemModule>,
     pub drones: Vec<ItemDrone>,
+    pub fighters: Vec<ItemFighter>,
     pub implants: Vec<ItemImplant>,
 }
 

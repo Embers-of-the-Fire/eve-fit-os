@@ -40,7 +40,7 @@ impl Item {
 
 pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut Ship) {
     ship.hull.update_attributes(info);
-    
+
     [
         (ATTR_DAMAGE_PROFILE_EM, ship.damage_profile.em),
         (ATTR_DAMAGE_PROFILE_EXPLOSIVE, ship.damage_profile.explosive),
@@ -85,6 +85,17 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
         let mut item = Item::new_drone(drone.type_id, drone.group_id, state);
         item.update_attributes(info);
 
+        ship.modules.push(item);
+    }
+
+    for fighter in &fit.fit().fighters {
+        let mut item = Item::new_fighter(
+            fighter.type_id,
+            fighter.group_id,
+            EffectCategory::Active,
+            fighter.ability,
+        );
+        item.update_attributes(info);
         ship.modules.push(item);
     }
 

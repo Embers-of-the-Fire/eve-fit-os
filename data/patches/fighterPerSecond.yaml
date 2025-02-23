@@ -1,0 +1,457 @@
+description: |
+  Patch in an attribute to indicate the damage of a fighter.
+
+  Note that bombs are actually real bombs, so we have to calculate
+  their damage and DPS on pass 4.
+
+attributes:
+- new:
+    name: fighterDamagePerSecond
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterMissilesDamagePerSecond
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterAttackMissileDamagePerSecond
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterAttackTurretDamagePerSecond
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageMissilesSpeed
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageAttackMissileSpeed
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageAttackTurretSpeed
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageBombSpeed
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageMissiles
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageAttackMissile
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageAttackTurret
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageBomb
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageMissilesSum
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageAttackTurretSum
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterDamageAttackMissileSum
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: fighterDamageMissilesSum
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissilesSum
+    modifyingAttribute: fighterAbilityMissilesDamageEM
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissilesSum
+    modifyingAttribute: fighterAbilityMissilesDamageTherm
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissilesSum
+    modifyingAttribute: fighterAbilityMissilesDamageKin
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissilesSum
+    modifyingAttribute: fighterAbilityMissilesDamageExp
+    operation: modAdd
+- new:
+    name: fighterDamageMissiles
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissiles
+    modifyingAttribute: fighterDamageMissilesSum
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissiles
+    modifyingAttribute: fighterAbilityMissilesDamageMultiplier
+    operation: preMul
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissiles
+    modifyingAttribute: fighterMissilesActive
+    operation: postMul
+- new:
+    name: fighterDamageMissilesSpeed
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissilesSpeed
+    modifyingAttribute: fighterAbilityMissilesDuration
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageMissilesSpeed
+    modifyingAttribute: thousand
+    operation: postDiv
+- new:
+    name: fighterMissilesDamagePerSecond
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterMissilesDamagePerSecond
+    modifyingAttribute: fighterDamageMissiles
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterMissilesDamagePerSecond
+    modifyingAttribute: fighterDamageMissilesSpeed
+    operation: postDiv
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: fighterDamagePerSecond
+    modifyingAttribute: fighterMissilesDamagePerSecond
+    operation: modAdd
+
+- new:
+    name: fighterDamageAttackTurretSum
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurretSum
+    modifyingAttribute: fighterAbilityAttackTurretDamageEM
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurretSum
+    modifyingAttribute: fighterAbilityAttackTurretDamageTherm
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurretSum
+    modifyingAttribute: fighterAbilityAttackTurretDamageKin
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurretSum
+    modifyingAttribute: fighterAbilityAttackTurretDamageExp
+    operation: modAdd
+- new:
+    name: fighterDamageAttackTurret
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurret
+    modifyingAttribute: fighterDamageAttackTurretSum
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurret
+    modifyingAttribute: fighterAbilityAttackTurretDamageMultiplier
+    operation: preMul
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurret
+    modifyingAttribute: fighterAttackTurretActive
+    operation: postMul
+- new:
+    name: fighterDamageAttackTurretSpeed
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurretSpeed
+    modifyingAttribute: fighterAbilityAttackTurretDuration
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackTurretSpeed
+    modifyingAttribute: thousand
+    operation: postDiv
+- new:
+    name: fighterAttackTurretDamagePerSecond
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterAttackTurretDamagePerSecond
+    modifyingAttribute: fighterDamageAttackTurret
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterAttackTurretDamagePerSecond
+    modifyingAttribute: fighterDamageAttackTurretSpeed
+    operation: postDiv
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: fighterDamagePerSecond
+    modifyingAttribute: fighterAttackTurretDamagePerSecond
+    operation: modAdd
+
+- new:
+    name: fighterDamageAttackMissileSum
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissileSum
+    modifyingAttribute: fighterAbilityAttackMissileDamageEM
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissileSum
+    modifyingAttribute: fighterAbilityAttackMissileDamageTherm
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissileSum
+    modifyingAttribute: fighterAbilityAttackMissileDamageKin
+    operation: modAdd
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissileSum
+    modifyingAttribute: fighterAbilityAttackMissileDamageExp
+    operation: modAdd
+- new:
+    name: fighterDamageAttackMissile
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissile
+    modifyingAttribute: fighterDamageAttackMissileSum
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissile
+    modifyingAttribute: fighterAbilityAttackMissileDamageMultiplier
+    operation: preMul
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissile
+    modifyingAttribute: fighterAttackMissileActive
+    operation: postMul
+- new:
+    name: fighterDamageAttackMissileSpeed
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissileSpeed
+    modifyingAttribute: fighterAbilityAttackMissileDuration
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterDamageAttackMissileSpeed
+    modifyingAttribute: thousand
+    operation: postDiv
+- new:
+    name: fighterAttackMissileDamagePerSecond
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterAttackMissileDamagePerSecond
+    modifyingAttribute: fighterDamageAttackMissile
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: fighterAttackMissileDamagePerSecond
+    modifyingAttribute: fighterDamageAttackMissileSpeed
+    operation: postDiv
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: fighterDamagePerSecond
+    modifyingAttribute: fighterAttackMissileDamagePerSecond
+    operation: modAdd
+
+typeDogma:
+- patch:
+  - category: Fighter
+    hasAnyAttributes:
+      - name: fighterAbilityMissilesDamageEM
+      - name: fighterAbilityMissilesDamageTherm
+      - name: fighterAbilityMissilesDamageKin
+      - name: fighterAbilityMissilesDamageExp
+    hasAllAttributes:
+      - name: fighterAbilityMissilesDuration
+  dogmaEffects:
+  - effect: fighterDamageMissilesSpeed
+    isDefault: false
+  - effect: fighterDamageMissilesSum
+    isDefault: false
+  - effect: fighterDamageMissiles
+    isDefault: false
+  - effect: fighterMissilesDamagePerSecond
+    isDefault: false
+- patch:
+  - category: Fighter
+    hasAnyAttributes:
+      - name: fighterAbilityAttackTurretDamageEM
+      - name: fighterAbilityAttackTurretDamageTherm
+      - name: fighterAbilityAttackTurretDamageKin
+      - name: fighterAbilityAttackTurretDamageExp
+    hasAllAttributes:
+      - name: fighterAbilityAttackTurretDuration
+  dogmaEffects:
+  - effect: fighterDamageAttackTurretSpeed
+    isDefault: false
+  - effect: fighterDamageAttackTurretSum
+    isDefault: false
+  - effect: fighterDamageAttackTurret
+    isDefault: false
+  - effect: fighterAttackTurretDamagePerSecond
+    isDefault: false
+- patch:
+  - category: Fighter
+    hasAnyAttributes:
+      - name: fighterAbilityAttackMissileDamageEM
+      - name: fighterAbilityAttackMissileDamageTherm
+      - name: fighterAbilityAttackMissileDamageKin
+      - name: fighterAbilityAttackMissileDamageExp
+    hasAllAttributes:
+      - name: fighterAbilityAttackMissileDuration
+  dogmaEffects:
+  - effect: fighterDamageAttackMissileSpeed
+    isDefault: false
+  - effect: fighterDamageAttackMissileSum
+    isDefault: false
+  - effect: fighterDamageAttackMissile
+    isDefault: false
+  - effect: fighterAttackMissileDamagePerSecond
+    isDefault: false

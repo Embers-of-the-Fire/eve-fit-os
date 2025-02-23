@@ -13,6 +13,7 @@ include = [
 [dependencies]
 anyhow = "1.0.95"
 prost = { version = "0.13.4", optional = true }
+bitflags = "2.8.0"
 
 [build-dependencies]
 convert_case = "0.7.1"

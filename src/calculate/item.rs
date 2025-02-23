@@ -1,5 +1,11 @@
 use std::collections::HashMap;
 
+use bitflags::bitflags;
+
+use crate::constant::patches::attr::{
+    ATTR_FIGHTER_ATTACK_MISSILE_ACTIVE, ATTR_FIGHTER_ATTACK_TURRET_ACTIVE,
+    ATTR_FIGHTER_BOMB_ACTIVE, ATTR_FIGHTER_MISSILES_ACTIVE,
+};
 use crate::fit::{ItemSlotType, ItemState};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
@@ -119,6 +125,16 @@ impl Attribute {
     }
 }
 
+bitflags! {
+    #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+    pub struct FighterAbility: u8 {
+        const ATTACK_TURRET = 0b0000_0001;
+        const MISSILES = 0b0000_0010;
+        const ATTACK_MISSILE = 0b0000_0100;
+        const BOMB = 0b0000_1000;
+    }
+}
+
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum SlotType {
     High,
@@ -128,7 +144,13 @@ pub enum SlotType {
     SubSystem,
     Service,
     TacticalMode,
-    DroneBay { group_id: u8 },
+    DroneBay {
+        group_id: u8,
+    },
+    Fighter {
+        group_id: u8,
+        ability: FighterAbility,
+    },
     Charge,
     Implant,
     Fake,
@@ -228,6 +250,41 @@ impl Item {
             attributes: HashMap::new(),
             effects: Vec::new(),
         }
+    }
+
+    pub fn new_fighter(
+        type_id: i32,
+        group_id: u8,
+        state: EffectCategory,
+        ability: FighterAbility,
+    ) -> Self {
+        let mut item = Self {
+            type_id,
+            slot: Slot {
+                slot_type: SlotType::Fighter { group_id, ability },
+                index: None,
+            },
+            charge: None,
+            state,
+            max_state: EffectCategory::Active,
+            attributes: HashMap::new(),
+            effects: Vec::new(),
+        };
+
+        if ability.contains(FighterAbility::ATTACK_TURRET) {
+            item.add_attribute(ATTR_FIGHTER_ATTACK_TURRET_ACTIVE, 0.0, 1.0);
+        }
+        if ability.contains(FighterAbility::MISSILES) {
+            item.add_attribute(ATTR_FIGHTER_MISSILES_ACTIVE, 0.0, 1.0);
+        }
+        if ability.contains(FighterAbility::ATTACK_MISSILE) {
+            item.add_attribute(ATTR_FIGHTER_ATTACK_MISSILE_ACTIVE, 0.0, 1.0);
+        }
+        if ability.contains(FighterAbility::BOMB) {
+            item.add_attribute(ATTR_FIGHTER_BOMB_ACTIVE, 0.0, 1.0);
+        }
+
+        item
     }
 
     pub fn new_implant(type_id: i32, index: i32) -> Self {

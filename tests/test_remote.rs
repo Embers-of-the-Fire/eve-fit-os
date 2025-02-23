@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::fs::File;
 
-use eve_fit_os::calculate::calculate;
+use eve_fit_os::calculate::{DamageProfile, calculate};
 use eve_fit_os::constant::patches::attr::{
     ATTR_ARMOR_REMOTE_REPAIR_RATE, ATTR_HULL_REMOTE_REPAIR_RATE,
     ATTR_REMOTE_CAPACITOR_TRANSMITTER_RATE, ATTR_SHIELD_REMOTE_BOOST_RATE,
@@ -20,6 +20,8 @@ fn test_remote() {
     };
 
     let fit = ItemFit {
+        fighters: vec![],
+        damage_profile: DamageProfile::default(),
         ship_type_id: 628,
         modules: vec![
             ItemModule {

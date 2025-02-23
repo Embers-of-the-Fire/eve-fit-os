@@ -21,6 +21,7 @@ fn test_basic_fit() {
     };
 
     let fit = ItemFit {
+        fighters: vec![],
         damage_profile: DamageProfile::default(),
         ship_type_id: 628,
         modules: (0..3)

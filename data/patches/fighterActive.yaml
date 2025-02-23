@@ -1,0 +1,124 @@
+description: |
+  Patch in an attribute to indicate if a fighter's specific
+  weapon set is active.
+
+attributes:
+- new:
+    name: fighterAttackTurretActive
+  # set to 1 to enable
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterMissilesActive
+  # set to 1 to enable
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterAttackMissileActive
+  # set to 1 to enable
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterBombActive
+  # set to 1 to enable
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: lightFighterActive
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: supportFighterActive
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: heavyFighterActive
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: fighterCount
+  published: true
+  defaultValue: 1
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: lightFighterActive
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: lightFighterActive
+    modifyingAttribute: fighterCount
+    operation: modAdd
+- new:
+    name: supportFighterActive
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: supportFighterActive
+    modifyingAttribute: fighterCount
+    operation: modAdd
+- new:
+    name: heavyFighterActive
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: heavyFighterActive
+    modifyingAttribute: fighterCount
+    operation: modAdd
+
+typeDogma:
+- patch:
+  - group: Light Fighter
+  - group: Structure Light Fighter
+  dogmaEffects:
+  - effect: lightFighterActive
+    isDefault: false
+- patch:
+  - group: Heavy Fighter
+  - group: Structure Heavy Fighter
+  dogmaEffects:
+  - effect: heavyFighterActive
+    isDefault: false
+- patch:
+  - group: Support Fighter
+  - group: Structure Support Fighter
+  dogmaEffects:
+  - effect: supportFighterActive
+    isDefault: false
