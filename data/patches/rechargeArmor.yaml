@@ -79,6 +79,7 @@ typeDogma:
     - name: duration
     hasAnyEffects:
     - name: armorRepair
+    - name: fueledArmorRepair
   dogmaEffects:
   - effect: armorRepairRate
     isDefault: false

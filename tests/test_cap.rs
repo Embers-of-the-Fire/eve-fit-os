@@ -3,7 +3,7 @@ use std::fs::File;
 
 use eve_fit_os::calculate::{DamageProfile, calculate};
 use eve_fit_os::constant::patches::attr::{
-    ATTR_CAPACITOR_PEAK_LOAD, ATTR_CAPACITOR_PEAK_RECHARGE,
+    ATTR_CAPACITOR_PEAK_LOAD, ATTR_CAPACITOR_PEAK_RECHARGE, ATTR_SHIELD_BOOST_RATE,
 };
 use eve_fit_os::fit::{
     FitContainer, ItemCharge, ItemFit, ItemModule, ItemSlot, ItemSlotType, ItemState,
@@ -82,5 +82,13 @@ fn test_cap() {
             .get(&67)
             .unwrap()
             .value,
+    );
+
+    println!(
+        "shield repair: {:?}",
+        out.hull
+            .attributes
+            .get(&ATTR_SHIELD_BOOST_RATE)
+            .and_then(|u| u.value)
     );
 }

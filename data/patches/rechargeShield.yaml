@@ -78,6 +78,7 @@ typeDogma:
     - name: shieldBonus
     hasAnyEffects:
     - name: shieldBoosting
+    - name: fueledShieldBoosting
   dogmaEffects:
   - effect: shieldBoostRate
     isDefault: false
