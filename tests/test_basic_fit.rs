@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use std::fs::File;
 
+use eve_fit_os::calculate::item::ItemID;
 use eve_fit_os::calculate::{DamageProfile, calculate};
 use eve_fit_os::constant::patches::attr::{
     ATTR_CAPACITOR_PEAK_LOAD, ATTR_CAPACITOR_PEAK_RECHARGE,
@@ -73,7 +74,7 @@ fn test_basic_fit() {
         ],
     };
 
-    let container = FitContainer::new(fit, skill_all_5);
+    let container = FitContainer::new(fit, skill_all_5, Default::default());
 
     let info =
         Database::init(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();
@@ -83,7 +84,7 @@ fn test_basic_fit() {
     let raw_dmg = out
         .modules
         .iter()
-        .find(|t| t.type_id == 1877)
+        .find(|t| t.item_id == ItemID::Item(1877))
         .and_then(|t| t.charge.as_ref())
         .and_then(|t| t.attributes.get(&114))
         .and_then(|t| t.value)
@@ -100,7 +101,7 @@ fn test_basic_fit() {
     let el = out
         .implants
         .iter()
-        .find(|t| t.type_id == 57123)
+        .find(|t| t.item_id == ItemID::Item(57123))
         .and_then(|t| t.attributes.get(&314))
         .and_then(|t| t.value);
 
@@ -133,7 +134,7 @@ fn test_basic_fit() {
         "item cap: {:?}, charge cap: {:?}",
         out.modules
             .iter()
-            .find(|u| u.type_id == 3568)
+            .find(|u| u.item_id == ItemID::Item(3568))
             .unwrap()
             .attributes
             // .get(&ATTR_CAPACITOR_PEAK_LOAD_WITH_BOOST)
@@ -142,7 +143,7 @@ fn test_basic_fit() {
             .value,
         out.modules
             .iter()
-            .find(|u| u.type_id == 3568)
+            .find(|u| u.item_id == ItemID::Item(3568))
             .unwrap()
             .charge
             .as_ref()

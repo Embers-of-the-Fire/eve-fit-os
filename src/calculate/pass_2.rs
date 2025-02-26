@@ -132,10 +132,11 @@ impl Item {
     fn collect_effects(
         &mut self,
         info: &impl InfoProvider,
+        dynamic: &impl FitProvider,
         origin: Object,
         effects: &mut Vec<Pass2Effect>,
     ) {
-        for dogma_effect in info.get_dogma_effects(self.type_id) {
+        for dogma_effect in info.get_dogma_effects(self.item_id.as_type_id(dynamic)) {
             let type_dogma_effect = info.get_dogma_effect(dogma_effect.effect_id);
             let category = get_effect_category(type_dogma_effect.effect_category);
 
@@ -199,31 +200,35 @@ impl Item {
 pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut Ship) {
     let mut effects = vec![];
 
-    ship.hull.collect_effects(info, Object::Ship, &mut effects);
+    ship.hull
+        .collect_effects(info, fit, Object::Ship, &mut effects);
     ship.character
-        .collect_effects(info, Object::Character, &mut effects);
+        .collect_effects(info, fit, Object::Character, &mut effects);
     for (index, item) in ship.modules.iter_mut().enumerate() {
-        item.collect_effects(info, Object::Item(index), &mut effects);
+        item.collect_effects(info, fit, Object::Item(index), &mut effects);
         if let Some(charge) = &mut item.charge {
-            charge.collect_effects(info, Object::Charge(index), &mut effects);
+            charge.collect_effects(info, fit, Object::Charge(index), &mut effects);
         }
     }
     for (index, skill) in ship.skills.iter_mut().enumerate() {
-        skill.collect_effects(info, Object::Skill(index), &mut effects);
+        skill.collect_effects(info, fit, Object::Skill(index), &mut effects);
     }
     for (index, implant) in ship.implants.iter_mut().enumerate() {
-        implant.collect_effects(info, Object::Implant(index), &mut effects);
+        implant.collect_effects(info, fit, Object::Implant(index), &mut effects);
     }
 
     for effect in effects {
         let source_type_id = match effect.source {
             Object::Ship => fit.fit().ship_type_id,
-            Object::Item(index) => ship.modules[index].type_id,
-            Object::Implant(index) => ship.implants[index].type_id,
-            Object::Charge(index) => {
-                ship.modules[index].charge.as_ref().unwrap().type_id
-            }
-            Object::Skill(index) => ship.skills[index].type_id,
+            Object::Item(index) => ship.modules[index].item_id.as_type_id(fit),
+            Object::Implant(index) => ship.implants[index].item_id.as_type_id(fit),
+            Object::Charge(index) => ship.modules[index]
+                .charge
+                .as_ref()
+                .unwrap()
+                .item_id
+                .as_type_id(fit),
+            Object::Skill(index) => ship.skills[index].item_id.as_type_id(fit),
             Object::Character => CHARACTER_TYPE_ID,
             Object::Structure => continue, // unimplemented
             Object::Target => continue,    // unimplemented
@@ -278,7 +283,7 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                 }
             }
             Modifier::LocationGroupModifier(group_id) => {
-                let ty = info.get_type(ship.hull.type_id);
+                let ty = info.get_type(ship.hull.item_id.as_type_id(fit));
                 if ty.group_id == group_id {
                     ship.hull.add_effect(
                         info,
@@ -289,7 +294,7 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                 }
 
                 for item in &mut ship.modules {
-                    let ty = info.get_type(item.type_id);
+                    let ty = info.get_type(item.item_id.as_type_id(fit));
 
                     if ty.group_id == group_id {
                         item.add_effect(
@@ -301,7 +306,7 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                     }
 
                     if let Some(charge) = &mut item.charge {
-                        let ty = info.get_type(charge.type_id);
+                        let ty = info.get_type(charge.item_id.as_type_id(fit));
 
                         if ty.group_id == group_id {
                             charge.add_effect(

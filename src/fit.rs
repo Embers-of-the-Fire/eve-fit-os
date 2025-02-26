@@ -102,6 +102,12 @@ pub struct DogmaEffect {
     pub modifier_info: Vec<DogmaEffectModifierInfo>,
 }
 
+#[derive(Debug, Clone, PartialEq)]
+pub struct DynamicItem {
+    pub base_type: i32,
+    pub dynamic_attributes: Vec<TypeDogmaAttribute>,
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ItemState {
     Passive,
@@ -174,11 +180,20 @@ pub struct ItemFit {
 pub struct FitContainer {
     pub fit: ItemFit,
     pub skills: HashMap<i32, u8>,
+    pub dynamic: HashMap<i32, DynamicItem>,
 }
 
 impl FitContainer {
-    pub fn new(fit: ItemFit, skills: HashMap<i32, u8>) -> Self {
-        Self { fit, skills }
+    pub fn new(
+        fit: ItemFit,
+        skills: HashMap<i32, u8>,
+        dynamic: HashMap<i32, DynamicItem>,
+    ) -> Self {
+        Self {
+            fit,
+            skills,
+            dynamic,
+        }
     }
 }
 
@@ -189,5 +204,13 @@ impl FitProvider for FitContainer {
 
     fn skills(&self) -> &HashMap<i32, u8> {
         &self.skills
+    }
+
+    fn get_dynamic_item(&self, dynamic_item_id: i32) -> &DynamicItem {
+        self.dynamic.get(&dynamic_item_id).unwrap()
+    }
+
+    fn get_dynamic_item_base_type_id(&self, dynamic_item_id: i32) -> i32 {
+        self.dynamic.get(&dynamic_item_id).unwrap().base_type
     }
 }

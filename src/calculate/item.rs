@@ -7,6 +7,7 @@ use crate::constant::patches::attr::{
     ATTR_FIGHTER_BOMB_ACTIVE, ATTR_FIGHTER_MISSILES_ACTIVE,
 };
 use crate::fit::{ItemSlotType, ItemState};
+use crate::provider::FitProvider;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub enum EffectCategory {
@@ -192,7 +193,7 @@ impl Slot {
 
 #[derive(Debug, Clone)]
 pub struct Item {
-    pub type_id: i32,
+    pub item_id: ItemID,
     pub slot: Slot,
     pub charge: Option<Box<Item>>,
     pub state: EffectCategory,
@@ -201,12 +202,27 @@ pub struct Item {
     pub effects: Vec<i32>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub enum ItemID {
+    Item(i32),
+    Dynamic(i32),
+}
+
+impl ItemID {
+    pub fn as_type_id(&self, dynamic: &impl FitProvider) -> i32 {
+        match self {
+            Self::Item(type_id) => *type_id,
+            Self::Dynamic(dyn_id) => dynamic.get_dynamic_item_base_type_id(*dyn_id),
+        }
+    }
+}
+
 impl Item {
     // constructor
 
     pub fn new_charge(type_id: i32) -> Self {
         Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::Charge,
                 index: None,
@@ -226,7 +242,25 @@ impl Item {
         state: EffectCategory,
     ) -> Self {
         Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
+            slot,
+            charge: charge_type_id
+                .map(|charge_type_id| Box::new(Self::new_charge(charge_type_id))),
+            state,
+            max_state: EffectCategory::Passive,
+            attributes: HashMap::new(),
+            effects: Vec::new(),
+        }
+    }
+
+    pub fn new_dynamic(
+        item_id: i32,
+        slot: Slot,
+        charge_type_id: Option<i32>,
+        state: EffectCategory,
+    ) -> Self {
+        Self {
+            item_id: ItemID::Dynamic(item_id),
             slot,
             charge: charge_type_id
                 .map(|charge_type_id| Box::new(Self::new_charge(charge_type_id))),
@@ -239,7 +273,7 @@ impl Item {
 
     pub fn new_drone(type_id: i32, group_id: u8, state: EffectCategory) -> Self {
         Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::DroneBay { group_id },
                 index: None,
@@ -259,7 +293,7 @@ impl Item {
         ability: FighterAbility,
     ) -> Self {
         let mut item = Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::Fighter { group_id, ability },
                 index: None,
@@ -289,7 +323,7 @@ impl Item {
 
     pub fn new_implant(type_id: i32, index: i32) -> Self {
         Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::Implant,
                 index: Some(index),
@@ -304,7 +338,7 @@ impl Item {
 
     pub fn new_fake(type_id: i32) -> Self {
         Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::Fake,
                 index: None,
@@ -319,7 +353,7 @@ impl Item {
 
     pub fn new_tactical_mode(type_id: i32) -> Self {
         Self {
-            type_id,
+            item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::TacticalMode,
                 index: None,
