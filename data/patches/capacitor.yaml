@@ -151,7 +151,7 @@ effects:
     operation: modAdd
 
 - new:
-    name: capacitorPeakLoadWithBoost
+    name: capacitorPeakLoadWithBoostSum
   effectCategory: active
   electronicChance: false
   isAssistance: false
@@ -170,6 +170,36 @@ effects:
     modifiedAttribute: capacitorPeakLoadWithBoost
     modifyingAttribute: capacitorBoost
     operation: modSub
+- new:
+    name: capacitorPeakLoadWithBoost
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: capacitorPeakLoad
+    modifyingAttribute: capacitorPeakLoadWithBoost
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: capacitorPeakLoad
+    modifyingAttribute: cycleTime
+    operation: postDiv
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: capacitorPeakLoad
+    modifyingAttribute: thousand
+    operation: postMul
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: capacitorPeakLoad
+    modifyingAttribute: capacitorPeakLoad
+    operation: modAdd
 
 - new:
     name: capacitorPeakLoad
@@ -184,7 +214,7 @@ effects:
   - domain: itemID
     func: ItemModifier
     modifiedAttribute: capacitorPeakLoad
-    modifyingAttribute: capacitorPeakLoadWithBoost
+    modifyingAttribute: capacitorNeed
     operation: preAssign
   - domain: itemID
     func: ItemModifier
@@ -264,14 +294,18 @@ typeDogma:
     isDefault: false
 - patch:
   - category: Module
+    excludeGroup: Capacitor Booster
     hasAllAttributes:
     - name: capacitorNeed
-  - group: Capacitor Booster
-  - group: Ancillary Shield Booster
   dogmaEffects:
-  - effect: capacitorPeakLoadWithBoost
-    isDefault: false
   - effect: capacitorPeakLoad
+    isDefault: false
+- patch:
+  - group: Capacitor Booster
+  dogmaEffects:
+  - effect: capacitorPeakLoadWithBoostSum
+    isDefault: false
+  - effect: capacitorPeakLoadWithBoost
     isDefault: false
 - patch:
   - category: Module

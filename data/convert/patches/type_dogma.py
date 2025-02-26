@@ -70,6 +70,17 @@ def patch(entries, patches, data):
             else:
                 raise ValueError("Unknown patch type")
 
+            if "excludeGroup" in patchTarget:
+                try:
+                    groupID = [
+                        id
+                        for id, group in data["groups"].items()
+                        if group["name"] == patchTarget["excludeGroup"]
+                    ][0]
+                except IndexError:
+                    raise ValueError(f"Unknown group: {patchTarget['excludeGroup']}")
+                typeIDs = [id for id in typeIDs if data["types"][id]["groupID"] != groupID]
+
             # Ensure there is a dogma entry for each type.
             for typeID in typeIDs:
                 if typeID not in entries:
