@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use std::fs::File;
 
+use eve_fit_os::calculate::item::ItemID;
 use eve_fit_os::calculate::{DamageProfile, calculate};
 use eve_fit_os::constant::patches::attr::{
     ATTR_ARMOR_REMOTE_REPAIR_RATE, ATTR_HULL_REMOTE_REPAIR_RATE,
@@ -25,7 +26,7 @@ fn test_remote() {
         ship_type_id: 628,
         modules: vec![
             ItemModule {
-                type_id: 4299,
+                item_id: ItemID::Item(4299),
                 slot: ItemSlot {
                     slot_type: ItemSlotType::Medium,
                     index: 0,
@@ -34,7 +35,7 @@ fn test_remote() {
                 charge: None,
             },
             ItemModule {
-                type_id: 3588,
+                item_id: ItemID::Item(3588),
                 slot: ItemSlot {
                     slot_type: ItemSlotType::Medium,
                     index: 0,
@@ -43,7 +44,7 @@ fn test_remote() {
                 charge: None,
             },
             ItemModule {
-                type_id: 26912,
+                item_id: ItemID::Item(26912),
                 slot: ItemSlot {
                     slot_type: ItemSlotType::Medium,
                     index: 0,
@@ -52,7 +53,7 @@ fn test_remote() {
                 charge: None,
             },
             ItemModule {
-                type_id: 1190,
+                item_id: ItemID::Item(1190),
                 slot: ItemSlot {
                     slot_type: ItemSlotType::Medium,
                     index: 0,

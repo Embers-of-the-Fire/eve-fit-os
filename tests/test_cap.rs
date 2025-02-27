@@ -24,7 +24,7 @@ fn test_cap() {
         damage_profile: DamageProfile::default(),
         ship_type_id: 628,
         modules: vec![ItemModule {
-            type_id: 32772,
+            item_id: ItemID::Item(32772),
             slot: ItemSlot {
                 slot_type: ItemSlotType::Medium,
                 index: 0,

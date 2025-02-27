@@ -1,5 +1,5 @@
 use super::Ship;
-use super::item::{Attribute, EffectCategory, Item, Slot};
+use super::item::{Attribute, EffectCategory, Item, ItemID, Slot};
 use crate::constant::patches::attr::{
     ATTR_DAMAGE_PROFILE_EM, ATTR_DAMAGE_PROFILE_EXPLOSIVE, ATTR_DAMAGE_PROFILE_KINETIC,
     ATTR_DAMAGE_PROFILE_THERMAL,
@@ -16,17 +16,30 @@ impl Item {
             .insert(attribute_id, Attribute::new_base(value));
     }
 
+    pub(super) fn set_attribute_dynamic(&mut self, attribute_id: i32, factor: f64) {
+        self.attributes
+            .entry(attribute_id)
+            .and_modify(|e| e.base_value *= factor);
+    }
+
     pub(super) fn update_attributes(
         &mut self,
         info: &impl InfoProvider,
         dynamic: &impl FitProvider,
     ) {
         // TODO: Set dynamic item attributes.
-        
+
         let type_id = self.item_id.as_type_id(dynamic);
 
         for dogma_attribute in info.get_dogma_attributes(type_id) {
             self.set_attribute(dogma_attribute.attribute_id, dogma_attribute.value);
+        }
+
+        if let ItemID::Dynamic(dy) = self.item_id {
+            let dyn_item = dynamic.get_dynamic_item(dy);
+            for (attribute_id, value) in &dyn_item.dynamic_attributes {
+                self.set_attribute_dynamic(*attribute_id, *value);
+            }
         }
 
         let ty = info.get_type(type_id);
@@ -47,11 +60,7 @@ impl Item {
     }
 }
 
-pub(crate) fn pass(
-    fit: &impl FitProvider,
-    info: &impl InfoProvider,
-    ship: &mut Ship,
-) {
+pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut Ship) {
     ship.hull.update_attributes(info, fit);
 
     [
@@ -74,7 +83,7 @@ pub(crate) fn pass(
         let state = module.state.into();
 
         let mut item = Item::new_module(
-            module.type_id,
+            module.item_id,
             Slot {
                 slot_type: module.slot.slot_type.into(),
                 index: Some(module.slot.index),

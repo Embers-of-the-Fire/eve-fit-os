@@ -27,7 +27,7 @@ fn test_basic_fit() {
         ship_type_id: 628,
         modules: (0..3)
             .map(|index| ItemModule {
-                type_id: 1877,
+                item_id: ItemID::Item(1877),
                 slot: ItemSlot {
                     slot_type: ItemSlotType::High,
                     index,
@@ -37,7 +37,7 @@ fn test_basic_fit() {
             })
             .chain(vec![
                 ItemModule {
-                    type_id: 10850,
+                    item_id: ItemID::Item(10850),
                     slot: ItemSlot {
                         slot_type: ItemSlotType::Medium,
                         index: 0,
@@ -46,7 +46,7 @@ fn test_basic_fit() {
                     charge: None,
                 },
                 ItemModule {
-                    type_id: 3568,
+                    item_id: ItemID::Item(3568),
                     slot: ItemSlot {
                         slot_type: ItemSlotType::Medium,
                         index: 1,

@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use crate::calculate::DamageProfile;
-use crate::calculate::item::FighterAbility;
+use crate::calculate::item::{FighterAbility, ItemID};
 use crate::provider::FitProvider;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -105,7 +105,8 @@ pub struct DogmaEffect {
 #[derive(Debug, Clone, PartialEq)]
 pub struct DynamicItem {
     pub base_type: i32,
-    pub dynamic_attributes: Vec<TypeDogmaAttribute>,
+    /// attr key, factor
+    pub dynamic_attributes: HashMap<i32, f64>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -140,7 +141,7 @@ pub struct ItemSlot {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ItemModule {
-    pub type_id: i32,
+    pub item_id: ItemID,
     pub slot: ItemSlot,
     pub state: ItemState,
     pub charge: Option<ItemCharge>,

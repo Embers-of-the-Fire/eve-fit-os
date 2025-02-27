@@ -236,31 +236,13 @@ impl Item {
     }
 
     pub fn new_module(
-        type_id: i32,
+        item_id: ItemID,
         slot: Slot,
         charge_type_id: Option<i32>,
         state: EffectCategory,
     ) -> Self {
         Self {
-            item_id: ItemID::Item(type_id),
-            slot,
-            charge: charge_type_id
-                .map(|charge_type_id| Box::new(Self::new_charge(charge_type_id))),
-            state,
-            max_state: EffectCategory::Passive,
-            attributes: HashMap::new(),
-            effects: Vec::new(),
-        }
-    }
-
-    pub fn new_dynamic(
-        item_id: i32,
-        slot: Slot,
-        charge_type_id: Option<i32>,
-        state: EffectCategory,
-    ) -> Self {
-        Self {
-            item_id: ItemID::Dynamic(item_id),
+            item_id,
             slot,
             charge: charge_type_id
                 .map(|charge_type_id| Box::new(Self::new_charge(charge_type_id))),
