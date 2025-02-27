@@ -13,4 +13,7 @@ pub trait InfoProvider {
 pub trait FitProvider {
     fn skills(&self) -> &HashMap<i32, u8>;
     fn fit(&self) -> &fit::ItemFit;
+
+    fn get_dynamic_item_base_type_id(&self, dynamic_item_id: i32) -> i32;
+    fn get_dynamic_item(&self, dynamic_item_id: i32) -> &fit::DynamicItem;
 }

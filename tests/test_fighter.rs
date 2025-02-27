@@ -43,7 +43,7 @@ fn test_fighter() {
         implants: vec![],
     };
 
-    let container = FitContainer::new(fit, skill_all_5);
+    let container = FitContainer::new(fit, skill_all_5, Default::default());
 
     let info =
         Database::init(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();

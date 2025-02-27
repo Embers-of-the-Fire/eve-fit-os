@@ -1,5 +1,5 @@
 use super::Ship;
-use super::item::{Attribute, EffectCategory, Item, Slot};
+use super::item::{Attribute, EffectCategory, Item, ItemID, Slot};
 use crate::constant::patches::attr::{
     ATTR_DAMAGE_PROFILE_EM, ATTR_DAMAGE_PROFILE_EXPLOSIVE, ATTR_DAMAGE_PROFILE_KINETIC,
     ATTR_DAMAGE_PROFILE_THERMAL,
@@ -16,13 +16,35 @@ impl Item {
             .insert(attribute_id, Attribute::new_base(value));
     }
 
-    pub(super) fn update_attributes(&mut self, info: &impl InfoProvider) {
-        for dogma_attribute in info.get_dogma_attributes(self.type_id) {
+    pub(super) fn set_attribute_dynamic(&mut self, attribute_id: i32, factor: f64) {
+        self.attributes
+            .entry(attribute_id)
+            .and_modify(|e| e.base_value *= factor);
+    }
+
+    pub(super) fn update_attributes(
+        &mut self,
+        info: &impl InfoProvider,
+        dynamic: &impl FitProvider,
+    ) {
+        // TODO: Set dynamic item attributes.
+
+        let type_id = self.item_id.as_type_id(dynamic);
+
+        for dogma_attribute in info.get_dogma_attributes(type_id) {
             self.set_attribute(dogma_attribute.attribute_id, dogma_attribute.value);
         }
 
+        if let ItemID::Dynamic(dy) = self.item_id {
+            let dyn_item = dynamic.get_dynamic_item(dy);
+            for (attribute_id, value) in &dyn_item.dynamic_attributes {
+                self.set_attribute_dynamic(*attribute_id, *value);
+            }
+        }
+
+        let ty = info.get_type(type_id);
+
         // Some attributes of items come from the Type information.
-        let ty = info.get_type(self.type_id);
         if let Some(mass) = ty.mass {
             self.set_attribute(ATTRIBUTE_MASS_ID, mass);
         }
@@ -39,7 +61,7 @@ impl Item {
 }
 
 pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut Ship) {
-    ship.hull.update_attributes(info);
+    ship.hull.update_attributes(info, fit);
 
     [
         (ATTR_DAMAGE_PROFILE_EM, ship.damage_profile.em),
@@ -52,7 +74,7 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
 
     for (skill_id, skill_level) in fit.skills() {
         let mut skill = Item::new_fake(*skill_id);
-        skill.update_attributes(info);
+        skill.update_attributes(info, fit);
         skill.set_attribute(ATTRIBUTE_SKILL_LEVEL_ID, *skill_level as f64);
         ship.skills.push(skill);
     }
@@ -61,7 +83,7 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
         let state = module.state.into();
 
         let mut item = Item::new_module(
-            module.type_id,
+            module.item_id,
             Slot {
                 slot_type: module.slot.slot_type.into(),
                 index: Some(module.slot.index),
@@ -70,9 +92,9 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
             state,
         );
 
-        item.update_attributes(info);
+        item.update_attributes(info, fit);
         if let Some(charge) = &mut item.charge {
-            charge.update_attributes(info);
+            charge.update_attributes(info, fit);
         }
 
         ship.modules.push(item);
@@ -83,7 +105,7 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
         let state = state.fallback_active();
 
         let mut item = Item::new_drone(drone.type_id, drone.group_id, state);
-        item.update_attributes(info);
+        item.update_attributes(info, fit);
 
         ship.modules.push(item);
     }
@@ -95,13 +117,13 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
             EffectCategory::Active,
             fighter.ability,
         );
-        item.update_attributes(info);
+        item.update_attributes(info, fit);
         ship.modules.push(item);
     }
 
     for implant in &fit.fit().implants {
         let mut item = Item::new_implant(implant.type_id, implant.index);
-        item.update_attributes(info);
+        item.update_attributes(info, fit);
         ship.implants.push(item);
     }
 }

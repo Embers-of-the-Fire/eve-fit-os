@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use std::fs::File;
 
+use eve_fit_os::calculate::item::ItemID;
 use eve_fit_os::calculate::{DamageProfile, calculate};
 use eve_fit_os::constant::patches::attr::{
     ATTR_CAPACITOR_PEAK_LOAD, ATTR_CAPACITOR_PEAK_RECHARGE, ATTR_SHIELD_BOOST_RATE,
@@ -23,7 +24,7 @@ fn test_cap() {
         damage_profile: DamageProfile::default(),
         ship_type_id: 628,
         modules: vec![ItemModule {
-            type_id: 32772,
+            item_id: ItemID::Item(32772),
             slot: ItemSlot {
                 slot_type: ItemSlotType::Medium,
                 index: 0,
@@ -36,7 +37,7 @@ fn test_cap() {
         implants: vec![],
     };
 
-    let container = FitContainer::new(fit, skill_all_5);
+    let container = FitContainer::new(fit, skill_all_5,Default::default());
 
     let info =
         Database::init(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();
@@ -64,7 +65,7 @@ fn test_cap() {
         "item cap: {:?}, charge cap: {:?}",
         out.modules
             .iter()
-            .find(|u| u.type_id == 32772)
+            .find(|u| u.item_id == ItemID::Item(32772))
             .unwrap()
             .attributes
             // .get(&ATTR_CAPACITOR_PEAK_LOAD_WITH_BOOST)
@@ -73,7 +74,7 @@ fn test_cap() {
             .value,
         out.modules
             .iter()
-            .find(|u| u.type_id == 32772)
+            .find(|u| u.item_id == ItemID::Item(32772))
             .unwrap()
             .charge
             .as_ref()
