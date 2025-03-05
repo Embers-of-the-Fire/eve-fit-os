@@ -4,10 +4,11 @@ use crate::fit;
 
 pub trait InfoProvider {
     fn get_dogma_attributes(&self, type_id: i32) -> Vec<fit::TypeDogmaAttribute>;
-    fn get_dogma_attribute(&self, attribute_id: i32) -> fit::DogmaAttribute;
+    fn get_dogma_attribute(&self, attribute_id: i32) -> &fit::DogmaAttribute;
     fn get_dogma_effects(&self, type_id: i32) -> Vec<fit::TypeDogmaEffect>;
-    fn get_dogma_effect(&self, effect_id: i32) -> fit::DogmaEffect;
-    fn get_type(&self, type_id: i32) -> fit::Type;
+    fn get_dogma_effect(&self, effect_id: i32) -> &fit::DogmaEffect;
+    fn get_buff(&self, buff_id: i32) -> &fit::Buff;
+    fn get_type(&self, type_id: i32) -> &fit::Type;
 }
 
 pub trait FitProvider {

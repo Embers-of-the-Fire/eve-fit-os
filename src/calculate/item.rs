@@ -6,7 +6,7 @@ use crate::constant::patches::attr::{
     ATTR_FIGHTER_ATTACK_MISSILE_ACTIVE, ATTR_FIGHTER_ATTACK_TURRET_ACTIVE,
     ATTR_FIGHTER_BOMB_ACTIVE, ATTR_FIGHTER_MISSILES_ACTIVE,
 };
-use crate::fit::{ItemSlotType, ItemState};
+use crate::fit::{BuffOperation, ItemSlotType, ItemState};
 use crate::provider::FitProvider;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
@@ -45,7 +45,7 @@ impl EffectCategory {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum EffectOperator {
     PreAssign,
     PreMul,
@@ -88,6 +88,17 @@ impl EffectOperator {
     }
 }
 
+impl From<BuffOperation> for EffectOperator {
+    fn from(val: BuffOperation) -> Self {
+        match val {
+            BuffOperation::PostMul => EffectOperator::PostMul,
+            BuffOperation::PostPercent => EffectOperator::PostPercent,
+            BuffOperation::ModAdd => EffectOperator::ModAdd,
+            BuffOperation::PostAssignment => EffectOperator::PostAssign,
+        }
+    }
+}
+
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum Object {
     Ship,
@@ -114,6 +125,7 @@ pub struct Attribute {
     pub base_value: f64,
     pub value: Option<f64>,
     pub effects: Vec<Effect>,
+    pub buffs: Vec<i32>, // only valid buffs, added in pass 3
 }
 
 impl Attribute {
@@ -122,6 +134,7 @@ impl Attribute {
             base_value: value,
             value: None,
             effects: Vec::new(),
+            buffs: Vec::new(),
         }
     }
 }

@@ -116,3 +116,53 @@ message DogmaEffects {
 
     map<int32, DogmaEffect> entries = 1;
 }
+
+message BuffCollections {
+    message Buff {
+        enum AggregateMode {
+            MAXIMUM = 0;
+            MINIMUM = 1;
+        }
+
+        enum ShowOutputValueInUI {
+            SHOW_NORMAL = 0;
+            SHOW_INVERTED = 1;
+            HIDE = 2;
+        }
+
+        enum OperationName {
+            POST_MUL = 0;
+            POST_PERCENT = 1;
+            MOD_ADD = 2;
+            POST_ASSIGNMENT = 3;
+        }
+
+        message ItemModifier {
+            required int32 dogmaAttributeID = 1;
+        }
+
+        message LocationGroupModifier {
+            required int32 dogmaAttributeID = 1;
+            required int32 groupID = 2;
+        }
+
+        message LocationRequiredSkillModifier {
+            required int32 dogmaAttributeID = 1;
+            required int32 skillID = 2;
+        }
+
+        required AggregateMode aggregateMode = 1;
+        required int32 buffID = 2;
+        required string developerDescription = 3;
+        repeated ItemModifier itemModifiers = 4;
+        repeated LocationGroupModifier locationGroupModifiers = 5;
+        repeated ItemModifier locationModifiers = 6;
+        repeated LocationRequiredSkillModifier locationRequiredSkillModifiers = 7;
+        required OperationName operationName = 8;
+        required ShowOutputValueInUI showOutputValueInUI = 9;
+
+        optional string displayName = 10;
+    }
+
+    map<int32, Buff> entries = 1;
+}

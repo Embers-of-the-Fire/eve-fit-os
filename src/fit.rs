@@ -102,6 +102,47 @@ pub struct DogmaEffect {
     pub modifier_info: Vec<DogmaEffectModifierInfo>,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct BuffItemModifier {
+    pub dogma_attribute_id: i32,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct BuffGroupModifier {
+    pub dogma_attribute_id: i32,
+    pub group_id: i32,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct BuffSkillModifier {
+    pub dogma_attribute_id: i32,
+    pub skill_id: i32,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum BuffAggregateMode {
+    Maximum,
+    Minimum,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum BuffOperation {
+    PostMul,
+    PostPercent,
+    ModAdd,
+    PostAssignment,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct Buff {
+    pub aggregate_mode: BuffAggregateMode,
+    pub item_modifiers: Vec<BuffItemModifier>,
+    pub location_modifiers: Vec<BuffItemModifier>,
+    pub location_group_modifiers: Vec<BuffGroupModifier>,
+    pub location_required_skill_modifiers: Vec<BuffSkillModifier>,
+    pub operation: BuffOperation,
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct DynamicItem {
     pub base_type: i32,

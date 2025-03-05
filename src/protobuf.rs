@@ -35,6 +35,7 @@ pub struct Database {
     pub type_dogma: HashMap<i32, TypeDogmaItem>,
     pub dogma_attributes: HashMap<i32, fit::DogmaAttribute>,
     pub dogma_effects: HashMap<i32, fit::DogmaEffect>,
+    pub buff_collections: HashMap<i32, fit::Buff>,
 }
 
 impl Database {
@@ -44,12 +45,15 @@ impl Database {
         let dogma_effect: efos::DogmaEffects = load_protobuf(path, "dogmaEffects")?;
         let type_dogma: efos::TypeDogma = load_protobuf(path, "typeDogma")?;
         let types: efos::Types = load_protobuf(path, "types")?;
+        let buff_collections: efos::BuffCollections =
+            load_protobuf(path, "dbuffcollections")?;
 
         Ok(Self::init_from_protobuf(
             dogma_attr,
             dogma_effect,
             type_dogma,
             types,
+            buff_collections,
         ))
     }
 
@@ -58,6 +62,7 @@ impl Database {
         dogma_effect_buffer: &[u8],
         type_dogma_buffer: &[u8],
         types_buffer: &[u8],
+        buff_collections_buffer: &[u8],
     ) -> anyhow::Result<Self> {
         let dogma_attr: efos::DogmaAttributes =
             efos::DogmaAttributes::decode(dogma_attr_buffer)?;
@@ -65,12 +70,15 @@ impl Database {
             efos::DogmaEffects::decode(dogma_effect_buffer)?;
         let type_dogma: efos::TypeDogma = efos::TypeDogma::decode(type_dogma_buffer)?;
         let types: efos::Types = efos::Types::decode(types_buffer)?;
+        let buff_collections: efos::BuffCollections =
+            efos::BuffCollections::decode(buff_collections_buffer)?;
 
         Ok(Self::init_from_protobuf(
             dogma_attr,
             dogma_effect,
             type_dogma,
             types,
+            buff_collections,
         ))
     }
 
@@ -79,6 +87,7 @@ impl Database {
         dogma_effect: efos::DogmaEffects,
         type_dogma: efos::TypeDogma,
         types: efos::Types,
+        buff_collections: efos::BuffCollections,
     ) -> Self {
         Self {
             types: types
@@ -152,27 +161,78 @@ impl Database {
                     })
                 })
                 .collect(),
+            buff_collections: buff_collections
+                .entries
+                .into_iter()
+                .map(|(k, v)| {
+                    (k, fit::Buff {
+                        aggregate_mode: match v.aggregate_mode {
+                            0 => fit::BuffAggregateMode::Maximum,
+                            1 => fit::BuffAggregateMode::Minimum,
+                            _ => {
+                                panic!("Unknown aggregate mode: {:?}", v.aggregate_mode)
+                            }
+                        },
+                        operation: match v.operation_name {
+                            0 => fit::BuffOperation::PostMul,
+                            1 => fit::BuffOperation::PostPercent,
+                            2 => fit::BuffOperation::ModAdd,
+                            3 => fit::BuffOperation::PostAssignment,
+                            _ => {
+                                panic!("Unknown buff operation: {:?}", v.operation_name)
+                            }
+                        },
+                        item_modifiers: v
+                            .item_modifiers
+                            .into_iter()
+                            .map(|m| fit::BuffItemModifier {
+                                dogma_attribute_id: m.dogma_attribute_id,
+                            })
+                            .collect(),
+                        location_modifiers: v
+                            .location_modifiers
+                            .into_iter()
+                            .map(|m| fit::BuffItemModifier {
+                                dogma_attribute_id: m.dogma_attribute_id,
+                            })
+                            .collect(),
+                        location_group_modifiers: v
+                            .location_group_modifiers
+                            .into_iter()
+                            .map(|m| fit::BuffGroupModifier {
+                                dogma_attribute_id: m.dogma_attribute_id,
+                                group_id: m.group_id,
+                            })
+                            .collect(),
+                        location_required_skill_modifiers: v
+                            .location_required_skill_modifiers
+                            .into_iter()
+                            .map(|m| fit::BuffSkillModifier {
+                                dogma_attribute_id: m.dogma_attribute_id,
+                                skill_id: m.skill_id,
+                            })
+                            .collect(),
+                    })
+                })
+                .collect(),
         }
     }
 }
 
 impl InfoProvider for Database {
-    fn get_dogma_attribute(&self, attribute_id: i32) -> crate::fit::DogmaAttribute {
-        *self.dogma_attributes.get(&attribute_id).unwrap()
+    fn get_dogma_attribute(&self, attribute_id: i32) -> &fit::DogmaAttribute {
+        self.dogma_attributes.get(&attribute_id).unwrap()
     }
 
-    fn get_dogma_attributes(
-        &self,
-        type_id: i32,
-    ) -> Vec<crate::fit::TypeDogmaAttribute> {
+    fn get_dogma_attributes(&self, type_id: i32) -> Vec<fit::TypeDogmaAttribute> {
         self.type_dogma
             .get(&type_id)
             .map(|t| t.attributes.clone())
             .unwrap_or_default()
     }
 
-    fn get_dogma_effect(&self, effect_id: i32) -> crate::fit::DogmaEffect {
-        self.dogma_effects.get(&effect_id).unwrap().clone()
+    fn get_dogma_effect(&self, effect_id: i32) -> &fit::DogmaEffect {
+        self.dogma_effects.get(&effect_id).unwrap()
     }
 
     fn get_dogma_effects(&self, type_id: i32) -> Vec<fit::TypeDogmaEffect> {
@@ -182,7 +242,11 @@ impl InfoProvider for Database {
             .unwrap_or_default()
     }
 
-    fn get_type(&self, type_id: i32) -> fit::Type {
-        *self.types.get(&type_id).unwrap()
+    fn get_buff(&self, buff_id: i32) -> &fit::Buff {
+        self.buff_collections.get(&buff_id).unwrap()
+    }
+
+    fn get_type(&self, type_id: i32) -> &fit::Type {
+        self.types.get(&type_id).unwrap()
     }
 }

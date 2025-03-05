@@ -145,7 +145,7 @@ impl Item {
             }
 
             if !type_dogma_effect.modifier_info.is_empty() {
-                for modifier in type_dogma_effect.modifier_info {
+                for modifier in &type_dogma_effect.modifier_info {
                     let effect_modifier = get_modifier_func(
                         modifier.func,
                         modifier.skill_type_id,

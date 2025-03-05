@@ -1,4 +1,5 @@
 use item::Item;
+use pass_4::Cache;
 
 use crate::constant::CHARACTER_TYPE_ID;
 use crate::provider::{FitProvider, InfoProvider};
@@ -8,6 +9,7 @@ mod pass_1;
 mod pass_2;
 mod pass_3;
 mod pass_4;
+mod pass_5;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct DamageProfile {
@@ -78,9 +80,12 @@ pub fn calculate(fit: &impl FitProvider, info: &impl InfoProvider) -> Ship {
     let mut ship =
         Ship::new_with_damage_profile(fit.fit().ship_type_id, fit.fit().damage_profile);
 
+    let mut cache = Cache::default();
+
     pass_1::pass(fit, info, &mut ship);
     pass_2::pass(fit, info, &mut ship);
-    pass_3::pass(fit, info, &mut ship);
-    pass_4::pass(fit, info, &mut ship);
+    pass_3::pass(fit, info, &mut ship, &mut cache);
+    pass_4::pass(fit, info, &mut ship, &mut cache);
+    pass_5::pass(fit, info, &mut ship);
     ship
 }
