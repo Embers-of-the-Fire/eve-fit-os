@@ -56,6 +56,14 @@ def _fixup_modifier_info(modifier, data):
             except IndexError:
                 raise ValueError(f"Unknown skill: {modifier['skillType']}")
         del modifier["skillType"]
+    if "group" in modifier:
+        try:
+            modifier["groupID"] = [
+                id for id, group in data["groups"].items() if group["name"] == modifier["skillType"]
+            ][0]
+        except IndexError:
+            raise ValueError(f"Unknown group: {modifier['group']}")
+        del modifier["group"]
     if "operation" in modifier:
         modifier["operation"] = effectOperationNameToId[modifier["operation"]]
 

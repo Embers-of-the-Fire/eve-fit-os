@@ -1,0 +1,62 @@
+description: |
+  Patch in an attribute to indicate the warp speed (in AU/s).
+
+attributes:
+- new:
+    name: warpSpeed
+  published: true
+  defaultValue: 0.0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: setBonusAscendancy
+  effectCategory: passive
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: charID
+    func: LocationRequiredSkillModifier
+    modifiedAttribute: WarpSBonus
+    modifyingAttribute: implantSetWarpSpeed
+    operation: preMul
+    skillType: Cybernetics
+- new:
+    name: warpSpeed
+  effectCategory: passive
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: warpSpeed
+    modifyingAttribute: baseWarpSpeed
+    operation: preAssign
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: warpSpeed
+    modifyingAttribute: warpSpeedMultiplier
+    operation: preMul
+
+typeDogma:
+- patch:
+  - category: Implant
+    hasAnyAttributes:
+    - name: implantSetWarpSpeed
+  dogmaEffects:
+  - effect: setBonusAscendancy
+    isDefault: false
+- patch:
+  - category: Ship
+  dogmaEffects:
+  - effect: warpSpeed
+    isDefault: false
