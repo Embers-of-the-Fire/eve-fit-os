@@ -1,0 +1,40 @@
+description: |
+  This patch sums a ship's total mass.
+
+attributes:
+- new:
+    name: totalMass
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: totalMass
+  effectCategory: passive
+  electronicChance: false
+  isAssistance: false
+  isOffensive: true
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: totalMass
+    modifyingAttribute: mass
+    operation: modAdd
+
+typeDogma:
+- patch:
+  - category: Ship
+  - category: Module
+  - category: Drone
+  - category: Subsystem
+  - category: Structure
+  - category: Structure Module
+  - category: Fighter
+  dogmaEffects:
+  - effect: totalMass
+    isDefault: false
