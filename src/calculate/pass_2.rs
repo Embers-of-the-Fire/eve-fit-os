@@ -216,12 +216,16 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
     for (index, implant) in ship.implants.iter_mut().enumerate() {
         implant.collect_effects(info, fit, Object::Implant(index), &mut effects);
     }
+    for (index, booster) in ship.boosters.iter_mut().enumerate() {
+        booster.collect_effects(info, fit, Object::Booster(index), &mut effects);
+    }
 
     for effect in effects {
         let source_type_id = match effect.source {
             Object::Ship => fit.fit().ship_type_id,
             Object::Item(index) => ship.modules[index].item_id.as_type_id(fit),
             Object::Implant(index) => ship.implants[index].item_id.as_type_id(fit),
+            Object::Booster(index) => ship.boosters[index].item_id.as_type_id(fit),
             Object::Charge(index) => ship.modules[index]
                 .charge
                 .as_ref()
@@ -243,6 +247,7 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                     Object::Structure => &mut ship.structure,
                     Object::Item(index) => &mut ship.modules[index],
                     Object::Implant(index) => &mut ship.implants[index],
+                    Object::Booster(index) => &mut ship.boosters[index],
                     Object::Charge(index) => {
                         ship.modules[index].charge.as_mut().unwrap()
                     }

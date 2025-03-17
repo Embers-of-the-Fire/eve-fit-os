@@ -44,6 +44,7 @@ fn test_warfare() {
         ],
         drones: vec![],
         implants: vec![],
+        boosters: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());

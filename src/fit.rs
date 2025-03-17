@@ -208,6 +208,12 @@ pub struct ItemImplant {
     pub index: i32,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct ItemBooster {
+    pub type_id: i32,
+    pub index: i32,
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct ItemFit {
     pub ship_type_id: i32,
@@ -216,6 +222,7 @@ pub struct ItemFit {
     pub drones: Vec<ItemDrone>,
     pub fighters: Vec<ItemFighter>,
     pub implants: Vec<ItemImplant>,
+    pub boosters: Vec<ItemBooster>,
 }
 
 #[derive(Debug, Clone)]

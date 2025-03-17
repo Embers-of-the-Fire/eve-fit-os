@@ -52,6 +52,9 @@ impl Attribute {
                 .implants
                 .get(&index)
                 .and_then(|x| x.get(&attribute_id)),
+            Object::Booster(index) => {
+                cache.charge.get(&index).and_then(|x| x.get(&attribute_id))
+            }
             Object::Charge(index) => {
                 cache.charge.get(&index).and_then(|x| x.get(&attribute_id))
             }
@@ -79,6 +82,7 @@ impl Attribute {
                     Object::Ship => &ship.hull,
                     Object::Item(index) => &ship.modules[index],
                     Object::Implant(index) => &ship.implants[index],
+                    Object::Booster(index) => &ship.boosters[index],
                     Object::Charge(index) => {
                         if let Some(charge) = &ship.modules[index].charge {
                             charge
@@ -235,6 +239,13 @@ impl Attribute {
                     .or_default()
                     .insert(attribute_id, current_value);
             }
+            Object::Booster(index) => {
+                cache
+                    .charge
+                    .entry(index)
+                    .or_default()
+                    .insert(attribute_id, current_value);
+            }
             Object::Charge(index) => {
                 cache
                     .charge
@@ -313,6 +324,9 @@ pub(crate) fn pass(
     for (index, implant) in ship.implants.iter().enumerate() {
         implant.calculate_values(info, ship, cache, Object::Implant(index));
     }
+    for (index, booster) in ship.boosters.iter().enumerate() {
+        booster.calculate_values(info, ship, cache, Object::Booster(index));
+    }
 
     ship.hull.store_cached_values(info, &cache.hull);
     ship.character.store_cached_values(info, &cache.character);
@@ -329,5 +343,8 @@ pub(crate) fn pass(
     }
     for (index, implant) in ship.implants.iter_mut().enumerate() {
         implant.store_cached_values(info, &cache.implants[&index]);
+    }
+    for (index, booster) in ship.boosters.iter_mut().enumerate() {
+        booster.store_cached_values(info, &cache.charge[&index]);
     }
 }

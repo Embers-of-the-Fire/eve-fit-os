@@ -126,4 +126,10 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
         item.update_attributes(info, fit);
         ship.implants.push(item);
     }
+
+    for booster in &fit.fit().boosters {
+        let mut item = Item::new_booster(booster.type_id, booster.index);
+        item.update_attributes(info, fit);
+        ship.boosters.push(item);
+    }
 }

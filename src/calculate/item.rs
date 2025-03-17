@@ -104,6 +104,7 @@ pub enum Object {
     Ship,
     Item(usize),
     Implant(usize),
+    Booster(usize),
     Charge(usize),
     Skill(usize),
     Character,
@@ -167,6 +168,7 @@ pub enum SlotType {
     },
     Charge,
     Implant,
+    Booster,
     Fake,
 }
 
@@ -321,6 +323,21 @@ impl Item {
             item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::Implant,
+                index: Some(index),
+            },
+            charge: None,
+            state: EffectCategory::Active,
+            max_state: EffectCategory::Active,
+            attributes: HashMap::new(),
+            effects: Vec::new(),
+        }
+    }
+
+    pub fn new_booster(type_id: i32, index: i32) -> Self {
+        Self {
+            item_id: ItemID::Item(type_id),
+            slot: Slot {
+                slot_type: SlotType::Booster,
                 index: Some(index),
             },
             charge: None,

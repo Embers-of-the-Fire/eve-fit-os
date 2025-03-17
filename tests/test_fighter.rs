@@ -41,6 +41,7 @@ fn test_fighter() {
         ))
         .collect(),
         implants: vec![],
+        boosters: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());

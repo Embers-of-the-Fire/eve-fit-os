@@ -72,6 +72,7 @@ fn test_basic_fit() {
                 index: 2,
             },
         ],
+        boosters: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());

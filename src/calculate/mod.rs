@@ -36,6 +36,7 @@ pub struct Ship {
     pub modules: Vec<Item>,
     pub skills: Vec<Item>,
     pub implants: Vec<Item>,
+    pub boosters: Vec<Item>,
     pub character: Item,
     pub damage_profile: DamageProfile,
 
@@ -51,6 +52,7 @@ impl Ship {
             modules: Vec::new(),
             skills: Vec::new(),
             implants: Vec::new(),
+            boosters: Vec::new(),
             character: Item::new_fake(CHARACTER_TYPE_ID),
             damage_profile: DamageProfile::default(),
 
@@ -68,6 +70,7 @@ impl Ship {
             modules: Vec::new(),
             skills: Vec::new(),
             implants: Vec::new(),
+            boosters: Vec::new(),
             character: Item::new_fake(CHARACTER_TYPE_ID),
             damage_profile,
             structure: Item::new_fake(0),
