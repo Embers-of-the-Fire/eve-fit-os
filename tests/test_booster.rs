@@ -5,7 +5,7 @@ use eve_fit_os::calculate::item::ItemID;
 use eve_fit_os::calculate::{DamageProfile, calculate};
 use eve_fit_os::constant::patches::attr::ATTR_CAPACITOR_PEAK_DELTA;
 use eve_fit_os::fit::{
-    FitContainer, ItemBooster, ItemFit, ItemModule, ItemSlot, ItemSlotType,
+    FitContainer, ItemBooster, ItemCharge, ItemFit, ItemModule, ItemSlot, ItemSlotType,
     ItemState,
 };
 use eve_fit_os::protobuf::Database;
@@ -23,20 +23,19 @@ fn test_cap() {
         damage_profile: DamageProfile::default(),
         ship_type_id: 628,
         modules: vec![ItemModule {
-            item_id: ItemID::Item(3530),
+            item_id: ItemID::Item(499),
             slot: ItemSlot {
-                slot_type: ItemSlotType::Medium,
+                slot_type: ItemSlotType::High,
                 index: 0,
             },
             state: ItemState::Active,
-            charge: None,
+            charge: Some(ItemCharge { type_id: 210 }),
             // charge: None,
         }],
         drones: vec![],
         implants: vec![],
-        // boosters: vec![],
         boosters: vec![ItemBooster {
-            type_id: 63816,
+            type_id: 81083,
             index: 0,
         }],
     };
@@ -56,5 +55,16 @@ fn test_cap() {
             .unwrap()
             .value
             .unwrap_or_default()
+    );
+
+    println!(
+        "attr: {:?}",
+        out.boosters
+            .first()
+            .unwrap()
+            .attributes
+            .iter()
+            .map(|e| (e.0, e.1.value))
+            .collect::<HashMap<_, _>>()
     );
 }

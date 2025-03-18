@@ -21,6 +21,7 @@ pub(super) struct Cache {
     pub target: HashMap<i32, f64>,
     pub items: HashMap<usize, HashMap<i32, f64>>,
     pub implants: HashMap<usize, HashMap<i32, f64>>,
+    pub boosters: HashMap<usize, HashMap<i32, f64>>,
     pub charge: HashMap<usize, HashMap<i32, f64>>,
     pub skills: HashMap<usize, HashMap<i32, f64>>,
 
@@ -241,7 +242,7 @@ impl Attribute {
             }
             Object::Booster(index) => {
                 cache
-                    .charge
+                    .boosters
                     .entry(index)
                     .or_default()
                     .insert(attribute_id, current_value);
@@ -345,6 +346,6 @@ pub(crate) fn pass(
         implant.store_cached_values(info, &cache.implants[&index]);
     }
     for (index, booster) in ship.boosters.iter_mut().enumerate() {
-        booster.store_cached_values(info, &cache.charge[&index]);
+        booster.store_cached_values(info, &cache.boosters[&index]);
     }
 }
