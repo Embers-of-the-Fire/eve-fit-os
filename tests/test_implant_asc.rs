@@ -20,6 +20,7 @@ fn test_implant_asc() {
         ship_type_id: 628,
         modules: vec![],
         drones: vec![],
+        boosters: vec![],
         implants: vec![
             ItemImplant {
                 type_id: 33516,
