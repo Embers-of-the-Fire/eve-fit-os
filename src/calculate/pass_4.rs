@@ -213,6 +213,18 @@ impl Attribute {
             }
         }
 
+        // special patch. ship resistance should be within 0.0 ~ 1.0.
+        const RESONANCE_VALUE: &[i32] = &[
+            271, 272, 273, 274, // shield
+            267, 268, 269, 270, // armor
+            113, 111, 109, 110, // hull
+        ];
+        let current_value = if RESONANCE_VALUE.contains(&attribute_id) {
+            current_value.clamp(0.0, 1.0)
+        } else {
+            current_value
+        };
+
         match item {
             Object::Ship => {
                 cache.hull.insert(attribute_id, current_value);
