@@ -21,6 +21,7 @@ def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
     pb2 = efos_pb2.DogmaAttributes()
 
     for id, entry in dogmaAttributes.items():
+        pb2.entries[id].name = entry["name"]
         pb2.entries[id].published = entry["published"]
         pb2.entries[id].defaultValue = entry["defaultValue"]
         pb2.entries[id].highIsGood = entry["highIsGood"]

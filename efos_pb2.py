@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nefos.proto\x12\x04\x65\x66os\"\x95\x03\n\tTypeDogma\x12-\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1c.efos.TypeDogma.EntriesEntry\x1a\x88\x02\n\x0eTypeDogmaEntry\x12G\n\x0f\x64ogmaAttributes\x18\x01 \x03(\x0b\x32..efos.TypeDogma.TypeDogmaEntry.DogmaAttributes\x12\x41\n\x0c\x64ogmaEffects\x18\x02 \x03(\x0b\x32+.efos.TypeDogma.TypeDogmaEntry.DogmaEffects\x1a\x35\n\x0f\x44ogmaAttributes\x12\x13\n\x0b\x61ttributeID\x18\x01 \x02(\x05\x12\r\n\x05value\x18\x02 \x02(\x01\x1a\x33\n\x0c\x44ogmaEffects\x12\x10\n\x08\x65\x66\x66\x65\x63tID\x18\x01 \x02(\x05\x12\x11\n\tisDefault\x18\x02 \x02(\x08\x1aN\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12-\n\x05value\x18\x02 \x01(\x0b\x32\x1e.efos.TypeDogma.TypeDogmaEntry:\x02\x38\x01\"\xf4\x01\n\x05Types\x12)\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x18.efos.Types.EntriesEntry\x1a~\n\x04Type\x12\x0f\n\x07groupID\x18\x01 \x02(\x05\x12\x12\n\ncategoryID\x18\x02 \x02(\x05\x12\x11\n\tpublished\x18\x03 \x02(\x08\x12\x10\n\x08\x63\x61pacity\x18\x04 \x01(\x01\x12\x0c\n\x04mass\x18\x05 \x01(\x01\x12\x0e\n\x06radius\x18\x06 \x01(\x01\x12\x0e\n\x06volume\x18\x07 \x01(\x01\x1a@\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\x1f\n\x05value\x18\x02 \x01(\x0b\x32\x10.efos.Types.Type:\x02\x38\x01\"\xa6\x01\n\nCategories\x12.\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1d.efos.Categories.EntriesEntry\x1a\x1d\n\x08\x43\x61tegory\x12\x11\n\tpublished\x18\x01 \x02(\x08\x1aI\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12(\n\x05value\x18\x02 \x01(\x0b\x32\x19.efos.Categories.Category:\x02\x38\x01\"\xa8\x01\n\x06Groups\x12*\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x19.efos.Groups.EntriesEntry\x1a.\n\x05Group\x12\x12\n\ncategoryID\x18\x01 \x02(\x05\x12\x11\n\tpublished\x18\x02 \x02(\x08\x1a\x42\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.efos.Groups.Group:\x02\x38\x01\"\xc6\x01\n\x0cMarketGroups\x12\x30\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1f.efos.MarketGroups.EntriesEntry\x1a\x34\n\x0bMarketGroup\x12\x15\n\rparentGroupID\x18\x01 \x01(\x05\x12\x0e\n\x06iconID\x18\x02 \x01(\x05\x1aN\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12-\n\x05value\x18\x02 \x01(\x0b\x32\x1e.efos.MarketGroups.MarketGroup:\x02\x38\x01\"\xfe\x01\n\x0f\x44ogmaAttributes\x12\x33\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\".efos.DogmaAttributes.EntriesEntry\x1a`\n\x0e\x44ogmaAttribute\x12\x11\n\tpublished\x18\x01 \x02(\x08\x12\x14\n\x0c\x64\x65\x66\x61ultValue\x18\x02 \x02(\x01\x12\x12\n\nhighIsGood\x18\x03 \x02(\x08\x12\x11\n\tstackable\x18\x04 \x02(\x08\x1aT\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\x33\n\x05value\x18\x02 \x01(\x0b\x32$.efos.DogmaAttributes.DogmaAttribute:\x02\x38\x01\"\x8c\x06\n\x0c\x44ogmaEffects\x12\x30\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1f.efos.DogmaEffects.EntriesEntry\x1a\xf9\x04\n\x0b\x44ogmaEffect\x12\x16\n\x0e\x65\x66\x66\x65\x63tCategory\x18\x01 \x02(\x05\x12\x41\n\x0cmodifierInfo\x18\x02 \x03(\x0b\x32+.efos.DogmaEffects.DogmaEffect.ModifierInfo\x1a\x8e\x04\n\x0cModifierInfo\x12\x42\n\x06\x64omain\x18\x01 \x02(\x0e\x32\x32.efos.DogmaEffects.DogmaEffect.ModifierInfo.Domain\x12>\n\x04\x66unc\x18\x02 \x02(\x0e\x32\x30.efos.DogmaEffects.DogmaEffect.ModifierInfo.Func\x12\x1b\n\x13modifiedAttributeID\x18\x03 \x01(\x05\x12\x1c\n\x14modifyingAttributeID\x18\x04 \x01(\x05\x12\x11\n\toperation\x18\x05 \x01(\x05\x12\x0f\n\x07groupID\x18\x06 \x01(\x05\x12\x13\n\x0bskillTypeID\x18\x07 \x01(\x05\"d\n\x06\x44omain\x12\n\n\x06itemID\x10\x00\x12\n\n\x06shipID\x10\x01\x12\n\n\x06\x63harID\x10\x02\x12\x0b\n\x07otherID\x10\x03\x12\x0f\n\x0bstructureID\x10\x04\x12\n\n\x06target\x10\x05\x12\x0c\n\x08targetID\x10\x06\"\x9f\x01\n\x04\x46unc\x12\x10\n\x0cItemModifier\x10\x00\x12\x19\n\x15LocationGroupModifier\x10\x01\x12\x14\n\x10LocationModifier\x10\x02\x12!\n\x1dLocationRequiredSkillModifier\x10\x03\x12\x1e\n\x1aOwnerRequiredSkillModifier\x10\x04\x12\x11\n\rEffectStopper\x10\x05\x1aN\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12-\n\x05value\x18\x02 \x01(\x0b\x32\x1e.efos.DogmaEffects.DogmaEffect:\x02\x38\x01\"\xf1\x08\n\x0f\x42uffCollections\x12\x33\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\".efos.BuffCollections.EntriesEntry\x1a\xdc\x07\n\x04\x42uff\x12?\n\raggregateMode\x18\x01 \x02(\x0e\x32(.efos.BuffCollections.Buff.AggregateMode\x12\x0e\n\x06\x62uffID\x18\x02 \x02(\x05\x12>\n\ritemModifiers\x18\x03 \x03(\x0b\x32\'.efos.BuffCollections.Buff.ItemModifier\x12P\n\x16locationGroupModifiers\x18\x04 \x03(\x0b\x32\x30.efos.BuffCollections.Buff.LocationGroupModifier\x12\x42\n\x11locationModifiers\x18\x05 \x03(\x0b\x32\'.efos.BuffCollections.Buff.ItemModifier\x12`\n\x1elocationRequiredSkillModifiers\x18\x06 \x03(\x0b\x32\x38.efos.BuffCollections.Buff.LocationRequiredSkillModifier\x12?\n\roperationName\x18\x07 \x02(\x0e\x32(.efos.BuffCollections.Buff.OperationName\x12K\n\x13showOutputValueInUI\x18\x08 \x02(\x0e\x32..efos.BuffCollections.Buff.ShowOutputValueInUI\x1a(\n\x0cItemModifier\x12\x18\n\x10\x64ogmaAttributeID\x18\x01 \x02(\x05\x1a\x42\n\x15LocationGroupModifier\x12\x18\n\x10\x64ogmaAttributeID\x18\x01 \x02(\x05\x12\x0f\n\x07groupID\x18\x02 \x02(\x05\x1aJ\n\x1dLocationRequiredSkillModifier\x12\x18\n\x10\x64ogmaAttributeID\x18\x01 \x02(\x05\x12\x0f\n\x07skillID\x18\x02 \x02(\x05\")\n\rAggregateMode\x12\x0b\n\x07MAXIMUM\x10\x00\x12\x0b\n\x07MINIMUM\x10\x01\"C\n\x13ShowOutputValueInUI\x12\x0f\n\x0bSHOW_NORMAL\x10\x00\x12\x11\n\rSHOW_INVERTED\x10\x01\x12\x08\n\x04HIDE\x10\x02\"\x92\x01\n\rOperationName\x12\x0e\n\nPRE_ASSIGN\x10\x00\x12\x0b\n\x07PRE_MUL\x10\x01\x12\x0b\n\x07PRE_DIV\x10\x02\x12\x0b\n\x07MOD_ADD\x10\x03\x12\x0b\n\x07MOD_SUB\x10\x04\x12\x0c\n\x08POST_MUL\x10\x05\x12\x0c\n\x08POST_DIV\x10\x06\x12\x10\n\x0cPOST_PERCENT\x10\x07\x12\x0f\n\x0bPOST_ASSIGN\x10\x08\x1aJ\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12)\n\x05value\x18\x02 \x01(\x0b\x32\x1a.efos.BuffCollections.Buff:\x02\x38\x01')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\nefos.proto\x12\x04\x65\x66os\"\x95\x03\n\tTypeDogma\x12-\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1c.efos.TypeDogma.EntriesEntry\x1a\x88\x02\n\x0eTypeDogmaEntry\x12G\n\x0f\x64ogmaAttributes\x18\x01 \x03(\x0b\x32..efos.TypeDogma.TypeDogmaEntry.DogmaAttributes\x12\x41\n\x0c\x64ogmaEffects\x18\x02 \x03(\x0b\x32+.efos.TypeDogma.TypeDogmaEntry.DogmaEffects\x1a\x35\n\x0f\x44ogmaAttributes\x12\x13\n\x0b\x61ttributeID\x18\x01 \x02(\x05\x12\r\n\x05value\x18\x02 \x02(\x01\x1a\x33\n\x0c\x44ogmaEffects\x12\x10\n\x08\x65\x66\x66\x65\x63tID\x18\x01 \x02(\x05\x12\x11\n\tisDefault\x18\x02 \x02(\x08\x1aN\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12-\n\x05value\x18\x02 \x01(\x0b\x32\x1e.efos.TypeDogma.TypeDogmaEntry:\x02\x38\x01\"\xf4\x01\n\x05Types\x12)\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x18.efos.Types.EntriesEntry\x1a~\n\x04Type\x12\x0f\n\x07groupID\x18\x01 \x02(\x05\x12\x12\n\ncategoryID\x18\x02 \x02(\x05\x12\x11\n\tpublished\x18\x03 \x02(\x08\x12\x10\n\x08\x63\x61pacity\x18\x04 \x01(\x01\x12\x0c\n\x04mass\x18\x05 \x01(\x01\x12\x0e\n\x06radius\x18\x06 \x01(\x01\x12\x0e\n\x06volume\x18\x07 \x01(\x01\x1a@\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\x1f\n\x05value\x18\x02 \x01(\x0b\x32\x10.efos.Types.Type:\x02\x38\x01\"\xa6\x01\n\nCategories\x12.\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1d.efos.Categories.EntriesEntry\x1a\x1d\n\x08\x43\x61tegory\x12\x11\n\tpublished\x18\x01 \x02(\x08\x1aI\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12(\n\x05value\x18\x02 \x01(\x0b\x32\x19.efos.Categories.Category:\x02\x38\x01\"\xa8\x01\n\x06Groups\x12*\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x19.efos.Groups.EntriesEntry\x1a.\n\x05Group\x12\x12\n\ncategoryID\x18\x01 \x02(\x05\x12\x11\n\tpublished\x18\x02 \x02(\x08\x1a\x42\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12!\n\x05value\x18\x02 \x01(\x0b\x32\x12.efos.Groups.Group:\x02\x38\x01\"\xc6\x01\n\x0cMarketGroups\x12\x30\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1f.efos.MarketGroups.EntriesEntry\x1a\x34\n\x0bMarketGroup\x12\x15\n\rparentGroupID\x18\x01 \x01(\x05\x12\x0e\n\x06iconID\x18\x02 \x01(\x05\x1aN\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12-\n\x05value\x18\x02 \x01(\x0b\x32\x1e.efos.MarketGroups.MarketGroup:\x02\x38\x01\"\x8c\x02\n\x0f\x44ogmaAttributes\x12\x33\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\".efos.DogmaAttributes.EntriesEntry\x1an\n\x0e\x44ogmaAttribute\x12\x11\n\tpublished\x18\x01 \x02(\x08\x12\x14\n\x0c\x64\x65\x66\x61ultValue\x18\x02 \x02(\x01\x12\x12\n\nhighIsGood\x18\x03 \x02(\x08\x12\x11\n\tstackable\x18\x04 \x02(\x08\x12\x0c\n\x04name\x18\x05 \x02(\t\x1aT\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12\x33\n\x05value\x18\x02 \x01(\x0b\x32$.efos.DogmaAttributes.DogmaAttribute:\x02\x38\x01\"\x9a\x06\n\x0c\x44ogmaEffects\x12\x30\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\x1f.efos.DogmaEffects.EntriesEntry\x1a\x87\x05\n\x0b\x44ogmaEffect\x12\x16\n\x0e\x65\x66\x66\x65\x63tCategory\x18\x01 \x02(\x05\x12\x41\n\x0cmodifierInfo\x18\x02 \x03(\x0b\x32+.efos.DogmaEffects.DogmaEffect.ModifierInfo\x12\x0c\n\x04name\x18\x03 \x02(\t\x1a\x8e\x04\n\x0cModifierInfo\x12\x42\n\x06\x64omain\x18\x01 \x02(\x0e\x32\x32.efos.DogmaEffects.DogmaEffect.ModifierInfo.Domain\x12>\n\x04\x66unc\x18\x02 \x02(\x0e\x32\x30.efos.DogmaEffects.DogmaEffect.ModifierInfo.Func\x12\x1b\n\x13modifiedAttributeID\x18\x03 \x01(\x05\x12\x1c\n\x14modifyingAttributeID\x18\x04 \x01(\x05\x12\x11\n\toperation\x18\x05 \x01(\x05\x12\x0f\n\x07groupID\x18\x06 \x01(\x05\x12\x13\n\x0bskillTypeID\x18\x07 \x01(\x05\"d\n\x06\x44omain\x12\n\n\x06itemID\x10\x00\x12\n\n\x06shipID\x10\x01\x12\n\n\x06\x63harID\x10\x02\x12\x0b\n\x07otherID\x10\x03\x12\x0f\n\x0bstructureID\x10\x04\x12\n\n\x06target\x10\x05\x12\x0c\n\x08targetID\x10\x06\"\x9f\x01\n\x04\x46unc\x12\x10\n\x0cItemModifier\x10\x00\x12\x19\n\x15LocationGroupModifier\x10\x01\x12\x14\n\x10LocationModifier\x10\x02\x12!\n\x1dLocationRequiredSkillModifier\x10\x03\x12\x1e\n\x1aOwnerRequiredSkillModifier\x10\x04\x12\x11\n\rEffectStopper\x10\x05\x1aN\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12-\n\x05value\x18\x02 \x01(\x0b\x32\x1e.efos.DogmaEffects.DogmaEffect:\x02\x38\x01\"\xf1\x08\n\x0f\x42uffCollections\x12\x33\n\x07\x65ntries\x18\x01 \x03(\x0b\x32\".efos.BuffCollections.EntriesEntry\x1a\xdc\x07\n\x04\x42uff\x12?\n\raggregateMode\x18\x01 \x02(\x0e\x32(.efos.BuffCollections.Buff.AggregateMode\x12\x0e\n\x06\x62uffID\x18\x02 \x02(\x05\x12>\n\ritemModifiers\x18\x03 \x03(\x0b\x32\'.efos.BuffCollections.Buff.ItemModifier\x12P\n\x16locationGroupModifiers\x18\x04 \x03(\x0b\x32\x30.efos.BuffCollections.Buff.LocationGroupModifier\x12\x42\n\x11locationModifiers\x18\x05 \x03(\x0b\x32\'.efos.BuffCollections.Buff.ItemModifier\x12`\n\x1elocationRequiredSkillModifiers\x18\x06 \x03(\x0b\x32\x38.efos.BuffCollections.Buff.LocationRequiredSkillModifier\x12?\n\roperationName\x18\x07 \x02(\x0e\x32(.efos.BuffCollections.Buff.OperationName\x12K\n\x13showOutputValueInUI\x18\x08 \x02(\x0e\x32..efos.BuffCollections.Buff.ShowOutputValueInUI\x1a(\n\x0cItemModifier\x12\x18\n\x10\x64ogmaAttributeID\x18\x01 \x02(\x05\x1a\x42\n\x15LocationGroupModifier\x12\x18\n\x10\x64ogmaAttributeID\x18\x01 \x02(\x05\x12\x0f\n\x07groupID\x18\x02 \x02(\x05\x1aJ\n\x1dLocationRequiredSkillModifier\x12\x18\n\x10\x64ogmaAttributeID\x18\x01 \x02(\x05\x12\x0f\n\x07skillID\x18\x02 \x02(\x05\")\n\rAggregateMode\x12\x0b\n\x07MAXIMUM\x10\x00\x12\x0b\n\x07MINIMUM\x10\x01\"C\n\x13ShowOutputValueInUI\x12\x0f\n\x0bSHOW_NORMAL\x10\x00\x12\x11\n\rSHOW_INVERTED\x10\x01\x12\x08\n\x04HIDE\x10\x02\"\x92\x01\n\rOperationName\x12\x0e\n\nPRE_ASSIGN\x10\x00\x12\x0b\n\x07PRE_MUL\x10\x01\x12\x0b\n\x07PRE_DIV\x10\x02\x12\x0b\n\x07MOD_ADD\x10\x03\x12\x0b\n\x07MOD_SUB\x10\x04\x12\x0c\n\x08POST_MUL\x10\x05\x12\x0c\n\x08POST_DIV\x10\x06\x12\x10\n\x0cPOST_PERCENT\x10\x07\x12\x0f\n\x0bPOST_ASSIGN\x10\x08\x1aJ\n\x0c\x45ntriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\x05\x12)\n\x05value\x18\x02 \x01(\x0b\x32\x1a.efos.BuffCollections.Buff:\x02\x38\x01')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'efos_pb2', globals())
@@ -71,39 +71,39 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _MARKETGROUPS_ENTRIESENTRY._serialized_start=1136
   _MARKETGROUPS_ENTRIESENTRY._serialized_end=1214
   _DOGMAATTRIBUTES._serialized_start=1217
-  _DOGMAATTRIBUTES._serialized_end=1471
+  _DOGMAATTRIBUTES._serialized_end=1485
   _DOGMAATTRIBUTES_DOGMAATTRIBUTE._serialized_start=1289
-  _DOGMAATTRIBUTES_DOGMAATTRIBUTE._serialized_end=1385
-  _DOGMAATTRIBUTES_ENTRIESENTRY._serialized_start=1387
-  _DOGMAATTRIBUTES_ENTRIESENTRY._serialized_end=1471
-  _DOGMAEFFECTS._serialized_start=1474
-  _DOGMAEFFECTS._serialized_end=2254
-  _DOGMAEFFECTS_DOGMAEFFECT._serialized_start=1541
-  _DOGMAEFFECTS_DOGMAEFFECT._serialized_end=2174
-  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO._serialized_start=1648
-  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO._serialized_end=2174
-  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_DOMAIN._serialized_start=1912
-  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_DOMAIN._serialized_end=2012
-  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_FUNC._serialized_start=2015
-  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_FUNC._serialized_end=2174
-  _DOGMAEFFECTS_ENTRIESENTRY._serialized_start=2176
-  _DOGMAEFFECTS_ENTRIESENTRY._serialized_end=2254
-  _BUFFCOLLECTIONS._serialized_start=2257
-  _BUFFCOLLECTIONS._serialized_end=3394
-  _BUFFCOLLECTIONS_BUFF._serialized_start=2330
-  _BUFFCOLLECTIONS_BUFF._serialized_end=3318
-  _BUFFCOLLECTIONS_BUFF_ITEMMODIFIER._serialized_start=2873
-  _BUFFCOLLECTIONS_BUFF_ITEMMODIFIER._serialized_end=2913
-  _BUFFCOLLECTIONS_BUFF_LOCATIONGROUPMODIFIER._serialized_start=2915
-  _BUFFCOLLECTIONS_BUFF_LOCATIONGROUPMODIFIER._serialized_end=2981
-  _BUFFCOLLECTIONS_BUFF_LOCATIONREQUIREDSKILLMODIFIER._serialized_start=2983
-  _BUFFCOLLECTIONS_BUFF_LOCATIONREQUIREDSKILLMODIFIER._serialized_end=3057
-  _BUFFCOLLECTIONS_BUFF_AGGREGATEMODE._serialized_start=3059
-  _BUFFCOLLECTIONS_BUFF_AGGREGATEMODE._serialized_end=3100
-  _BUFFCOLLECTIONS_BUFF_SHOWOUTPUTVALUEINUI._serialized_start=3102
-  _BUFFCOLLECTIONS_BUFF_SHOWOUTPUTVALUEINUI._serialized_end=3169
-  _BUFFCOLLECTIONS_BUFF_OPERATIONNAME._serialized_start=3172
-  _BUFFCOLLECTIONS_BUFF_OPERATIONNAME._serialized_end=3318
-  _BUFFCOLLECTIONS_ENTRIESENTRY._serialized_start=3320
-  _BUFFCOLLECTIONS_ENTRIESENTRY._serialized_end=3394
+  _DOGMAATTRIBUTES_DOGMAATTRIBUTE._serialized_end=1399
+  _DOGMAATTRIBUTES_ENTRIESENTRY._serialized_start=1401
+  _DOGMAATTRIBUTES_ENTRIESENTRY._serialized_end=1485
+  _DOGMAEFFECTS._serialized_start=1488
+  _DOGMAEFFECTS._serialized_end=2282
+  _DOGMAEFFECTS_DOGMAEFFECT._serialized_start=1555
+  _DOGMAEFFECTS_DOGMAEFFECT._serialized_end=2202
+  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO._serialized_start=1676
+  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO._serialized_end=2202
+  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_DOMAIN._serialized_start=1940
+  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_DOMAIN._serialized_end=2040
+  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_FUNC._serialized_start=2043
+  _DOGMAEFFECTS_DOGMAEFFECT_MODIFIERINFO_FUNC._serialized_end=2202
+  _DOGMAEFFECTS_ENTRIESENTRY._serialized_start=2204
+  _DOGMAEFFECTS_ENTRIESENTRY._serialized_end=2282
+  _BUFFCOLLECTIONS._serialized_start=2285
+  _BUFFCOLLECTIONS._serialized_end=3422
+  _BUFFCOLLECTIONS_BUFF._serialized_start=2358
+  _BUFFCOLLECTIONS_BUFF._serialized_end=3346
+  _BUFFCOLLECTIONS_BUFF_ITEMMODIFIER._serialized_start=2901
+  _BUFFCOLLECTIONS_BUFF_ITEMMODIFIER._serialized_end=2941
+  _BUFFCOLLECTIONS_BUFF_LOCATIONGROUPMODIFIER._serialized_start=2943
+  _BUFFCOLLECTIONS_BUFF_LOCATIONGROUPMODIFIER._serialized_end=3009
+  _BUFFCOLLECTIONS_BUFF_LOCATIONREQUIREDSKILLMODIFIER._serialized_start=3011
+  _BUFFCOLLECTIONS_BUFF_LOCATIONREQUIREDSKILLMODIFIER._serialized_end=3085
+  _BUFFCOLLECTIONS_BUFF_AGGREGATEMODE._serialized_start=3087
+  _BUFFCOLLECTIONS_BUFF_AGGREGATEMODE._serialized_end=3128
+  _BUFFCOLLECTIONS_BUFF_SHOWOUTPUTVALUEINUI._serialized_start=3130
+  _BUFFCOLLECTIONS_BUFF_SHOWOUTPUTVALUEINUI._serialized_end=3197
+  _BUFFCOLLECTIONS_BUFF_OPERATIONNAME._serialized_start=3200
+  _BUFFCOLLECTIONS_BUFF_OPERATIONNAME._serialized_end=3346
+  _BUFFCOLLECTIONS_ENTRIESENTRY._serialized_start=3348
+  _BUFFCOLLECTIONS_ENTRIESENTRY._serialized_end=3422
 # @@protoc_insertion_point(module_scope)

@@ -22,6 +22,7 @@ def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
     pbmi = pb2.DogmaEffect.ModifierInfo()
 
     for id, entry in dogmaEffects.items():
+        pb2.entries[id].name = entry["effectName"]
         pb2.entries[id].effectCategory = entry["effectCategory"]
         if "modifierInfo" in entry:
             for modifier_info in entry["modifierInfo"]:

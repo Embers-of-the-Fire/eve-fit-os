@@ -91,15 +91,15 @@ impl EffectOperator {
 impl From<BuffOperation> for EffectOperator {
     fn from(val: BuffOperation) -> Self {
         match val {
-            Self::PreAssign => EffectOperator::PreAssign,
-            Self::PreMul => EffectOperator::PreMul,
-            Self::PreDiv => EffectOperator::PreDiv,
-            Self::ModAdd => EffectOperator::ModAdd,
-            Self::ModSub => EffectOperator::ModSub,
-            Self::PostMul => EffectOperator::PostMul,
-            Self::PostDiv => EffectOperator::PostDiv,
-            Self::PostPercent => EffectOperator::PostPercent,
-            Self::PostAssign => EffectOperator::PostAssign,
+            BuffOperation::PreAssign => EffectOperator::PreAssign,
+            BuffOperation::PreMul => EffectOperator::PreMul,
+            BuffOperation::PreDiv => EffectOperator::PreDiv,
+            BuffOperation::ModAdd => EffectOperator::ModAdd,
+            BuffOperation::ModSub => EffectOperator::ModSub,
+            BuffOperation::PostMul => EffectOperator::PostMul,
+            BuffOperation::PostDiv => EffectOperator::PostDiv,
+            BuffOperation::PostPercent => EffectOperator::PostPercent,
+            BuffOperation::PostAssign => EffectOperator::PostAssign,
         }
     }
 }

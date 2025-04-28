@@ -68,6 +68,8 @@ message DogmaAttributes {
         required double defaultValue = 2;
         required bool highIsGood = 3;
         required bool stackable = 4;
+
+        required string name = 5;
     }
 
     map<int32, DogmaAttribute> entries = 1;
@@ -106,6 +108,8 @@ message DogmaEffects {
 
         required int32 effectCategory = 1;
         repeated ModifierInfo modifierInfo = 2;
+
+        required string name = 3;
     }
 
     map<int32, DogmaEffect> entries = 1;
