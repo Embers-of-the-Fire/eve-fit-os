@@ -885,6 +885,7 @@
   displayName: 无人机伤害惩罚
   displayNameID: 522792
   itemModifiers:
+  - dogmaAttributeID: 3326
   - dogmaAttributeID: 2580
   locationGroupModifiers: []
   locationModifiers: []
@@ -1312,6 +1313,38 @@
   locationRequiredSkillModifiers: []
   operationName: ModAdd
   showOutputValueInUI: Hide
+2118:
+  aggregateMode: Minimum
+  buffID: 2118
+  developerDescription: 'RogueEVE Buff: Armor Resistance'
+  displayName: 装甲全抗性
+  displayNameID: 582765
+  itemModifiers:
+  - dogmaAttributeID: 267
+  - dogmaAttributeID: 268
+  - dogmaAttributeID: 269
+  - dogmaAttributeID: 270
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2119:
+  aggregateMode: Minimum
+  buffID: 2119
+  developerDescription: 'RogueEVE Buff: Shield Resistance'
+  displayName: 护盾全抗性
+  displayNameID: 582766
+  itemModifiers:
+  - dogmaAttributeID: 271
+  - dogmaAttributeID: 272
+  - dogmaAttributeID: 273
+  - dogmaAttributeID: 274
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
 2140:
   aggregateMode: Maximum
   buffID: 2140
@@ -1900,10 +1933,987 @@
   aggregateMode: Minimum
   buffID: 2201
   developerDescription: Remote Repair Impedance
-  displayName: 远程维修阻抗
+  displayName: 远程维修阻扰
   displayNameID: 662014
   itemModifiers:
   - dogmaAttributeID: 2116
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2202:
+  aggregateMode: Maximum
+  buffID: 2202
+  developerDescription: roguelike talent 1110
+  displayName: 演化：改良型无人机结构,装甲,护盾(百分比)
+  displayNameID: 663128
+  itemModifiers:
+  - dogmaAttributeID: 5433
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2203:
+  aggregateMode: Maximum
+  buffID: 2203
+  developerDescription: roguelike talent 1111_1
+  displayName: 演化：改良型无人机引擎 最大速度(百分比)
+  displayNameID: 663129
+  itemModifiers:
+  - dogmaAttributeID: 5434
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2204:
+  aggregateMode: Maximum
+  buffID: 2204
+  developerDescription: roguelike talent 1111_2
+  displayName: 演化：改良型无人机引擎 操控距离(m)
+  displayNameID: 663130
+  itemModifiers:
+  - dogmaAttributeID: 5435
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2205:
+  aggregateMode: Maximum
+  buffID: 2205
+  developerDescription: roguelike talent 1120
+  displayName: 演化：索敌管理单元 无人机武器跟踪速度(百分比)
+  displayNameID: 663138
+  itemModifiers:
+  - dogmaAttributeID: 5436
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2206:
+  aggregateMode: Maximum
+  buffID: 2206
+  developerDescription: roguelike talent 1121
+  displayName: 演化：射程管理单元 无人机最佳射程(百分比)
+  displayNameID: 663139
+  itemModifiers:
+  - dogmaAttributeID: 5437
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2207:
+  aggregateMode: Maximum
+  buffID: 2207
+  developerDescription: roguelike talent 1130_1
+  displayName: 演化：高级无人机控制 控制数
+  displayNameID: 663140
+  itemModifiers:
+  - dogmaAttributeID: 353
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2208:
+  aggregateMode: Maximum
+  buffID: 2208
+  developerDescription: roguelike talent 1130_2
+  displayName: 演化：高级无人机控制 带宽(bit/秒)
+  displayNameID: 663141
+  itemModifiers:
+  - dogmaAttributeID: 1271
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2209:
+  aggregateMode: Maximum
+  buffID: 2209
+  developerDescription: roguelike talent 1131
+  displayName: 演化：无人机火力升级 伤害(百分比)
+  displayNameID: 663142
+  itemModifiers:
+  - dogmaAttributeID: 5438
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2210:
+  aggregateMode: Maximum
+  buffID: 2210
+  developerDescription: roguelike talent 1152_1
+  displayName: 演化：蜂群战术 控制数
+  displayNameID: 663145
+  itemModifiers:
+  - dogmaAttributeID: 353
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2211:
+  aggregateMode: Maximum
+  buffID: 2211
+  developerDescription: roguelike talent 1152_2
+  displayName: 演化：蜂群战术 带宽
+  displayNameID: 663146
+  itemModifiers:
+  - dogmaAttributeID: 1271
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2212:
+  aggregateMode: Maximum
+  buffID: 2212
+  developerDescription: roguelike talent 1152_3
+  displayName: 演化：蜂群战术 无人机舱容量
+  displayNameID: 663147
+  itemModifiers:
+  - dogmaAttributeID: 283
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2213:
+  aggregateMode: Maximum
+  buffID: 2213
+  developerDescription: roguelike talent 1140
+  displayName: 演化：无人机射速升级 射速(百分比)
+  displayNameID: 663149
+  itemModifiers:
+  - dogmaAttributeID: 5439
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2214:
+  aggregateMode: Maximum
+  buffID: 2214
+  developerDescription: roguelike talent 1210
+  displayName: 演化：电容器升级 电容回充速度(百分比)
+  displayNameID: 663155
+  itemModifiers:
+  - dogmaAttributeID: 55
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2215:
+  aggregateMode: Maximum
+  buffID: 2215
+  developerDescription: roguelike talent 1211
+  displayName: 演化：电容器容量升级 电容容量(GJ)
+  displayNameID: 663156
+  itemModifiers:
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2216:
+  aggregateMode: Maximum
+  buffID: 2216
+  developerDescription: roguelike talent 1220_1
+  displayName: 演化：感应器优化 扫描分辨率(百分比)
+  displayNameID: 663157
+  itemModifiers:
+  - dogmaAttributeID: 564
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2217:
+  aggregateMode: Maximum
+  buffID: 2217
+  developerDescription: roguelike talent 1221_1
+  displayName: 演化：锁定系统升级 锁定距离(m)
+  displayNameID: 663158
+  itemModifiers:
+  - dogmaAttributeID: 76
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2218:
+  aggregateMode: Maximum
+  buffID: 2218
+  developerDescription: roguelike talent 1221_2
+  displayName: 演化：锁定系统升级 锁定目标上限
+  displayNameID: 663159
+  itemModifiers:
+  - dogmaAttributeID: 192
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2219:
+  aggregateMode: Maximum
+  buffID: 2219
+  developerDescription: roguelike talent 1230_1
+  displayName: 演化：高级损伤控制 结构抗性(百分比)
+  displayNameID: 663160
+  itemModifiers:
+  - dogmaAttributeID: 113
+  - dogmaAttributeID: 111
+  - dogmaAttributeID: 109
+  - dogmaAttributeID: 110
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreMul
+  showOutputValueInUI: ShowNormal
+2220:
+  aggregateMode: Maximum
+  buffID: 2220
+  developerDescription: roguelike talent 1230_2
+  displayName: 演化：高级损伤控制 结构值(百分比)
+  displayNameID: 663161
+  itemModifiers:
+  - dogmaAttributeID: 9
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2221:
+  aggregateMode: Maximum
+  buffID: 2221
+  developerDescription: roguelike talent 1231_1
+  displayName: 演化：推进器效能改良 加力燃烧器及微型跃迁引擎效果(百分比)
+  displayNameID: 663162
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 20
+    groupID: 46
+  - dogmaAttributeID: 20
+    groupID: 475
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2222:
+  aggregateMode: Maximum
+  buffID: 2222
+  developerDescription: roguelike talent 1231_2
+  displayName: 演化：推进器效能改良 加力燃烧器及微型跃迁引擎耗电(百分比)
+  displayNameID: 663163
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 6
+    groupID: 46
+  - dogmaAttributeID: 6
+    groupID: 475
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2223:
+  aggregateMode: Maximum
+  buffID: 2223
+  developerDescription: roguelike talent 1240_1
+  displayName: 演化：船体改良 船舱容量(百分比)
+  displayNameID: 663164
+  itemModifiers:
+  - dogmaAttributeID: 38
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2224:
+  aggregateMode: Maximum
+  buffID: 2224
+  developerDescription: roguelike talent 1240_2
+  displayName: 演化：船体改良 最大速度(百分比)
+  displayNameID: 663165
+  itemModifiers:
+  - dogmaAttributeID: 37
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2225:
+  aggregateMode: Maximum
+  buffID: 2225
+  developerDescription: roguelike talent 1241_1
+  displayName: 演化：紧急维修系统 装甲维修器超载效果(百分比)
+  displayNameID: 663166
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1230
+    groupID: 62
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2226:
+  aggregateMode: Maximum
+  buffID: 2226
+  developerDescription: roguelike talent 1241_2
+  displayName: 演化：紧急维修系统 护盾回充增量器超载效果(百分比)
+  displayNameID: 663167
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1231
+    groupID: 40
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2227:
+  aggregateMode: Maximum
+  buffID: 2227
+  developerDescription: roguelike talent 1310_1
+  displayName: 演化：能耗改良 炮台超载效果(百分比)
+  displayNameID: 663168
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 1205
+    skillID: 3300
+  - dogmaAttributeID: 1210
+    skillID: 3300
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2228:
+  aggregateMode: Maximum
+  buffID: 2228
+  developerDescription: roguelike talent 1310_2
+  displayName: 演化：能耗改良 炮台耗电(百分比)
+  displayNameID: 663169
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 6
+    skillID: 3300
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2229:
+  aggregateMode: Maximum
+  buffID: 2229
+  developerDescription: roguelike talent 1311_1
+  displayName: 演化：操作提速 炮台装填时间(百分比)
+  displayNameID: 663170
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 1795
+    skillID: 3300
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2230:
+  aggregateMode: Maximum
+  buffID: 2230
+  developerDescription: roguelike talent 1311_2
+  displayName: 演化：操作提速 锁定速度(百分比)
+  displayNameID: 663171
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 564
+    skillID: 3300
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2231:
+  aggregateMode: Maximum
+  buffID: 2231
+  developerDescription: roguelike talent 1320
+  displayName: 演化：索敌单元升级 炮台跟踪速度(百分比)
+  displayNameID: 663172
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 160
+    groupID: 74
+  - dogmaAttributeID: 160
+    groupID: 53
+  - dogmaAttributeID: 160
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2232:
+  aggregateMode: Maximum
+  buffID: 2232
+  developerDescription: roguelike talent 1321_1
+  displayName: 演化：弹道分析 炮台最佳射程(百分比)
+  displayNameID: 663174
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 54
+    groupID: 74
+  - dogmaAttributeID: 54
+    groupID: 53
+  - dogmaAttributeID: 54
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2233:
+  aggregateMode: Maximum
+  buffID: 2233
+  developerDescription: roguelike talent 1321_2
+  displayName: 演化：弹道分析 炮台失准范围(百分比)
+  displayNameID: 663175
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 158
+    groupID: 74
+  - dogmaAttributeID: 158
+    groupID: 53
+  - dogmaAttributeID: 158
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2234:
+  aggregateMode: Maximum
+  buffID: 2234
+  developerDescription: roguelike talent 1330
+  displayName: 演化：弹头升级 炮台伤害(百分比)
+  displayNameID: 663176
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 64
+    groupID: 74
+  - dogmaAttributeID: 64
+    groupID: 53
+  - dogmaAttributeID: 64
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2235:
+  aggregateMode: Maximum
+  buffID: 2235
+  developerDescription: roguelike talent 1331
+  displayName: 演化：炮台座改良 炮台射速(百分比)
+  displayNameID: 663177
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 51
+    groupID: 74
+  - dogmaAttributeID: 51
+    groupID: 53
+  - dogmaAttributeID: 51
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2236:
+  aggregateMode: Maximum
+  buffID: 2236
+  developerDescription: roguelike talent 1341
+  displayName: 演化：武器升级支持 炮台占用能量栅格(百分比)
+  displayNameID: 663178
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 30
+    groupID: 74
+  - dogmaAttributeID: 30
+    groupID: 53
+  - dogmaAttributeID: 30
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2237:
+  aggregateMode: Maximum
+  buffID: 2237
+  developerDescription: roguelike talent 1410
+  displayName: 演化：引信升级 导弹爆炸速度(百分比)
+  displayNameID: 663179
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 653
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2238:
+  aggregateMode: Maximum
+  buffID: 2238
+  developerDescription: roguelike talent 1411
+  displayName: 演化：精确打击 导弹爆炸半径(百分比)
+  displayNameID: 663180
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 654
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2239:
+  aggregateMode: Maximum
+  buffID: 2239
+  developerDescription: roguelike talent 1420
+  displayName: 演化：额外燃料升级 导弹飞行时间(百分比)
+  displayNameID: 663181
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 281
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2240:
+  aggregateMode: Maximum
+  buffID: 2240
+  developerDescription: roguelike talent 1421
+  displayName: 演化：推进器升级 导弹飞行速度(百分比)
+  displayNameID: 663182
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 37
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2241:
+  aggregateMode: Maximum
+  buffID: 2241
+  developerDescription: roguelike talent 1430
+  displayName: 演化：战斗部升级 导弹伤害(百分比)
+  displayNameID: 663183
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 114
+    skillID: 3319
+  - dogmaAttributeID: 116
+    skillID: 3319
+  - dogmaAttributeID: 117
+    skillID: 3319
+  - dogmaAttributeID: 118
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2242:
+  aggregateMode: Maximum
+  buffID: 2242
+  developerDescription: roguelike talent 1431
+  displayName: 演化：发射器改良 发射器射速(百分比)
+  displayNameID: 663184
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 51
+    groupID: 510
+  - dogmaAttributeID: 51
+    groupID: 771
+  - dogmaAttributeID: 51
+    groupID: 510
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2243:
+  aggregateMode: Maximum
+  buffID: 2243
+  developerDescription: roguelike talent 1440_1
+  displayName: 演化：导弹舱强度升级 发射器装填时间(百分比)
+  displayNameID: 663185
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 1795
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2244:
+  aggregateMode: Maximum
+  buffID: 2244
+  developerDescription: roguelike talent 1440_2
+  displayName: 演化：导弹舱强度升级 发射器超载效果(百分比)
+  displayNameID: 663186
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 1205
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2245:
+  aggregateMode: Maximum
+  buffID: 2245
+  developerDescription: roguelike talent 1441
+  displayName: 演化：能耗改良 发射器占用CPU(百分比)
+  displayNameID: 663187
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 50
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2246:
+  aggregateMode: Maximum
+  buffID: 2246
+  developerDescription: roguelike talent 1452
+  displayName: 演化：齐射火控 发射器射速(百分比)
+  displayNameID: 663188
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 1795
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2247:
+  aggregateMode: Maximum
+  buffID: 2247
+  developerDescription: roguelike talent 1610
+  displayName: 演化：装甲屏蔽层 停滞缠绕抗性(百分比)
+  displayNameID: 663189
+  itemModifiers:
+  - dogmaAttributeID: 2115
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2248:
+  aggregateMode: Maximum
+  buffID: 2248
+  developerDescription: roguelike talent 1611
+  displayName: 演化：轻质装甲合金 灵活性(百分比)
+  displayNameID: 663190
+  itemModifiers:
+  - dogmaAttributeID: 70
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2249:
+  aggregateMode: Maximum
+  buffID: 2249
+  developerDescription: roguelike talent 1620
+  displayName: 演化：装甲抗性改良 装甲抗性(百分比)
+  displayNameID: 663191
+  itemModifiers:
+  - dogmaAttributeID: 267
+  - dogmaAttributeID: 268
+  - dogmaAttributeID: 269
+  - dogmaAttributeID: 270
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2250:
+  aggregateMode: Maximum
+  buffID: 2250
+  developerDescription: roguelike talent 1621
+  displayName: 演化：装甲维修效率 装甲维修器效果(百分比)
+  displayNameID: 663192
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 84
+    groupID: 62
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2251:
+  aggregateMode: Maximum
+  buffID: 2251
+  developerDescription: roguelike talent 1630
+  displayName: 演化：附加板改良 附甲板效果(百分比)
+  displayNameID: 663193
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1159
+    groupID: 329
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2252:
+  aggregateMode: Maximum
+  buffID: 2252
+  developerDescription: roguelike talent 1631
+  displayName: 演化：装甲维修能耗 装甲维修器耗电(百分比)
+  displayNameID: 663194
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 6
+    groupID: 62
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2253:
+  aggregateMode: Maximum
+  buffID: 2253
+  developerDescription: roguelike talent 1640
+  displayName: 演化：附甲板轻质化 附甲板质量惩罚(百分比)
+  displayNameID: 663195
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 796
+    groupID: 329
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2254:
+  aggregateMode: Maximum
+  buffID: 2254
+  developerDescription: roguelike talent 1641
+  displayName: 演化：装甲结构强化 装甲(百分比)
+  displayNameID: 663196
+  itemModifiers:
+  - dogmaAttributeID: 265
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2255:
+  aggregateMode: Maximum
+  buffID: 2255
+  developerDescription: roguelike talent 1652
+  displayName: 演化：装甲抗性终极改良 装甲抗性(百分比)
+  displayNameID: 663197
+  itemModifiers:
+  - dogmaAttributeID: 267
+  - dogmaAttributeID: 268
+  - dogmaAttributeID: 269
+  - dogmaAttributeID: 270
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2256:
+  aggregateMode: Maximum
+  buffID: 2256
+  developerDescription: roguelike talent 1710
+  displayName: 演化：护盾节点分析 护盾回充时间(百分比)
+  displayNameID: 663198
+  itemModifiers:
+  - dogmaAttributeID: 479
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2257:
+  aggregateMode: Maximum
+  buffID: 2257
+  developerDescription: roguelike talent 1711
+  displayName: 演化：电波屏障 能量中和与能量吸取抗性(百分比)
+  displayNameID: 663199
+  itemModifiers:
+  - dogmaAttributeID: 2045
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModSub
+  showOutputValueInUI: ShowNormal
+2258:
+  aggregateMode: Maximum
+  buffID: 2258
+  developerDescription: roguelike talent 1720
+  displayName: 演化：护盾抗性改良 护盾抗性(百分比)
+  displayNameID: 663200
+  itemModifiers:
+  - dogmaAttributeID: 271
+  - dogmaAttributeID: 272
+  - dogmaAttributeID: 273
+  - dogmaAttributeID: 274
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2259:
+  aggregateMode: Maximum
+  buffID: 2259
+  developerDescription: roguelike talent 1721
+  displayName: 演化：护盾回充效果优化 护盾回充增量器效果(百分比)
+  displayNameID: 663201
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 68
+    groupID: 40
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2260:
+  aggregateMode: Maximum
+  buffID: 2260
+  developerDescription: roguelike talent 1730
+  displayName: 演化：扩展装置改良 护盾扩展装置效果(百分比)
+  displayNameID: 663202
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 72
+    groupID: 38
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2261:
+  aggregateMode: Maximum
+  buffID: 2261
+  developerDescription: roguelike talent 1731
+  displayName: 演化：护盾回充能耗优化 护盾回充增量器耗电(百分比)
+  displayNameID: 663203
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 6
+    groupID: 40
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2262:
+  aggregateMode: Maximum
+  buffID: 2262
+  developerDescription: roguelike talent 1740
+  displayName: 演化：扩展装置轻薄化 护盾扩展装置信号半径惩罚(百分比)
+  displayNameID: 663204
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 983
+    groupID: 38
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2263:
+  aggregateMode: Maximum
+  buffID: 2263
+  developerDescription: roguelike talent 1741
+  displayName: 演化：护盾优化 护盾(百分比)
+  displayNameID: 663205
+  itemModifiers:
+  - dogmaAttributeID: 263
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2264:
+  aggregateMode: Maximum
+  buffID: 2264
+  developerDescription: roguelike talent 1752
+  displayName: 演化：护盾抗性终极改良 护盾抗性(百分比)
+  displayNameID: 663206
+  itemModifiers:
+  - dogmaAttributeID: 271
+  - dogmaAttributeID: 272
+  - dogmaAttributeID: 273
+  - dogmaAttributeID: 274
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2265:
+  aggregateMode: Maximum
+  buffID: 2265
+  developerDescription: roguelike researched tech 101-110
+  displayName: 研究：理论积累 炮台与导弹伤害(百分比)
+  displayNameID: 663212
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 64
+    groupID: 74
+  - dogmaAttributeID: 64
+    groupID: 53
+  - dogmaAttributeID: 64
+    groupID: 55
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 114
+    skillID: 3319
+  - dogmaAttributeID: 116
+    skillID: 3319
+  - dogmaAttributeID: 117
+    skillID: 3319
+  - dogmaAttributeID: 118
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2266:
+  aggregateMode: Maximum
+  buffID: 2266
+  developerDescription: roguelike researched tech 201-210
+  displayName: 研究：原型设计 扫描分辨率与电容(百分比)
+  displayNameID: 663213
+  itemModifiers:
+  - dogmaAttributeID: 564
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2267:
+  aggregateMode: Maximum
+  buffID: 2267
+  developerDescription: roguelike researched tech 301-310
+  displayName: 研究：升级演算 护盾,装甲与结构(百分比)
+  displayNameID: 663214
+  itemModifiers:
+  - dogmaAttributeID: 263
+  - dogmaAttributeID: 265
+  - dogmaAttributeID: 9
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2269:
+  aggregateMode: Maximum
+  buffID: 2269
+  developerDescription: roguelike talent 1220_2
+  displayName: 演化：感应器优化 感应强度(百分比)
+  displayNameID: 665337
+  itemModifiers:
+  - dogmaAttributeID: 208
+  - dogmaAttributeID: 209
+  - dogmaAttributeID: 210
+  - dogmaAttributeID: 211
   locationGroupModifiers: []
   locationModifiers: []
   locationRequiredSkillModifiers: []
@@ -1913,7 +2923,7 @@
   aggregateMode: Maximum
   buffID: 2405
   developerDescription: 'Insurgency Suppression Bonus: Interdiction Range'
-  displayName: 反海盗势力的停滞缠绕光束和跃迁扰频器距离加成
+  displayName: 反游寇势力停滞缠绕光束和跃迁扰频器范围加成
   displayNameID: 698669
   itemModifiers: []
   locationGroupModifiers:

@@ -1,22 +1,17 @@
 import json
 from os import PathLike
-import yaml
 
 import efos_pb2
 
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, out: PathLike, data):
+def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
     print("Loading dogmaEffects ...")
 
-    try:
-        with open(f"{path}/dogmaEffects.yaml", encoding="utf-8") as fp:
-            dogmaEffects = yaml.load(fp, Loader=yaml.CSafeLoader)
-    except FileNotFoundError:
-        with open(f"{path}/dogmaeffects.json", encoding="utf-8") as fp:
-            dogmaEffects = json.load(fp)
-            dogmaEffects = {int(k): v for k, v in dogmaEffects.items()}
+    with open(f"{path}/dogmaeffects.json", encoding="utf-8") as fp:
+        dogmaEffects = json.load(fp)
+        dogmaEffects = {int(k): v for k, v in dogmaEffects.items()}
 
     data["dogmaEffects"] = dogmaEffects
     yield
@@ -27,7 +22,6 @@ def convert(path: PathLike, out: PathLike, data):
     pbmi = pb2.DogmaEffect.ModifierInfo()
 
     for id, entry in dogmaEffects.items():
-        pb2.entries[id].name = entry["effectName"]
         pb2.entries[id].effectCategory = entry["effectCategory"]
         if "modifierInfo" in entry:
             for modifier_info in entry["modifierInfo"]:

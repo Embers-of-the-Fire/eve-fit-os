@@ -25,7 +25,6 @@ def convert(path: PathLike, out: PathLike, data):
             "Minimum": efos_pb2.BuffCollections.Buff.AggregateMode.MINIMUM,
         }[entry["aggregateMode"]]
         pb2.entries[id].buffID = id
-        pb2.entries[id].developerDescription = entry["developerDescription"]
 
         for x in entry.get("itemModifiers", []):
             cache = efos_pb2.BuffCollections.Buff.ItemModifier()
@@ -50,19 +49,22 @@ def convert(path: PathLike, out: PathLike, data):
             pb2.entries[id].locationRequiredSkillModifiers.append(cache)
 
         pb2.entries[id].operationName = {
-            "PostMul": efos_pb2.BuffCollections.Buff.OperationName.POST_MUL,
-            "PostPercent": efos_pb2.BuffCollections.Buff.OperationName.POST_PERCENT,
+            "PreAssign": efos_pb2.BuffCollections.Buff.OperationName.PRE_ASSIGN,
+            "PreMul": efos_pb2.BuffCollections.Buff.OperationName.PRE_MUL,
+            "PreDiv": efos_pb2.BuffCollections.Buff.OperationName.PRE_DIV,
             "ModAdd": efos_pb2.BuffCollections.Buff.OperationName.MOD_ADD,
-            "PostAssignment": efos_pb2.BuffCollections.Buff.OperationName.POST_ASSIGNMENT,
+            "ModSub": efos_pb2.BuffCollections.Buff.OperationName.MOD_SUB,
+            "PostMul": efos_pb2.BuffCollections.Buff.OperationName.POST_MUL,
+            "PostDiv": efos_pb2.BuffCollections.Buff.OperationName.POST_DIV,
+            "PostPercent": efos_pb2.BuffCollections.Buff.OperationName.POST_PERCENT,
+            "PostAssign": efos_pb2.BuffCollections.Buff.OperationName.POST_ASSIGN,
+            "PostAssignment": efos_pb2.BuffCollections.Buff.OperationName.POST_ASSIGN,
         }[entry["operationName"]]
         pb2.entries[id].showOutputValueInUI = {
             "ShowNormal": efos_pb2.BuffCollections.Buff.ShowOutputValueInUI.SHOW_NORMAL,
             "ShowInverted": efos_pb2.BuffCollections.Buff.ShowOutputValueInUI.SHOW_INVERTED,
             "Hide": efos_pb2.BuffCollections.Buff.ShowOutputValueInUI.HIDE,
         }[entry["showOutputValueInUI"]]
-
-        if "displayName" in entry.keys():
-            pb2.entries[id].displayName = entry["displayName"]
 
     with open(f"{out}/pb2/dbuffcollections.pb2", "wb") as fp:
         fp.write(pb2.SerializeToString())

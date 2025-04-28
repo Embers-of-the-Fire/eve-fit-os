@@ -127,10 +127,15 @@ pub enum BuffAggregateMode {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum BuffOperation {
-    PostMul,
-    PostPercent,
+    PreAssign,
+    PreMul,
+    PreDiv,
     ModAdd,
-    PostAssignment,
+    ModSub,
+    PostMul,
+    PostDiv,
+    PostPercent,
+    PostAssign,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]

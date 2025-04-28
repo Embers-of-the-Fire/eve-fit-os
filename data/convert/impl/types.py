@@ -1,26 +1,19 @@
 import json
 from os import PathLike
-import yaml
 
 import efos_pb2
 
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, out: PathLike, data):
+def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
     print("Loading types ...")
 
-    try:
-        with open(f"{path}/types.yaml", encoding="utf-8") as fp:
-            types = yaml.load(fp, Loader=yaml.CSafeLoader)
-            for type in types.values():
-                type["name"] = type["name"]["en"]
-    except FileNotFoundError:
-        with open(f"{path}/types.json", encoding="utf-8") as fp:
-            types = json.load(fp)
-            types = {int(k): v for k, v in types.items()}
-            for type in types.values():
-                type["name"] = type["typeNameID"]
+    with open(f"{path}/types.json", encoding="utf-8") as fp:
+        types = json.load(fp)
+        types = {int(k): v for k, v in types.items()}
+        for ty in types.values():
+            ty["name"] = loc[ty["typeNameID"]]
 
     data["types"] = types
     yield

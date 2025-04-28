@@ -38,8 +38,7 @@ message Types {
 
 message Categories {
     message Category {
-        required string name = 1;
-        required bool published = 2;
+        required bool published = 1;
     }
 
     map<int32, Category> entries = 1;
@@ -47,9 +46,8 @@ message Categories {
 
 message Groups {
     message Group {
-        required string name = 1;
-        required int32 categoryID = 2;
-        required bool published = 3;
+        required int32 categoryID = 1;
+        required bool published = 2;
     }
 
     map<int32, Group> entries = 1;
@@ -57,10 +55,8 @@ message Groups {
 
 message MarketGroups {
     message MarketGroup {
-        required string name = 1;
-
-        optional int32 parentGroupID = 2;
-        optional int32 iconID = 3;
+        optional int32 parentGroupID = 1;
+        optional int32 iconID = 2;
     }
 
     map<int32, MarketGroup> entries = 1;
@@ -68,11 +64,10 @@ message MarketGroups {
 
 message DogmaAttributes {
     message DogmaAttribute {
-        required string name = 1;
-        required bool published = 2;
-        required double defaultValue = 3;
-        required bool highIsGood = 4;
-        required bool stackable = 5;
+        required bool published = 1;
+        required double defaultValue = 2;
+        required bool highIsGood = 3;
+        required bool stackable = 4;
     }
 
     map<int32, DogmaAttribute> entries = 1;
@@ -109,9 +104,8 @@ message DogmaEffects {
             optional int32 skillTypeID = 7;
         }
 
-        required string name = 1;
-        required int32 effectCategory = 2;
-        repeated ModifierInfo modifierInfo = 3;
+        required int32 effectCategory = 1;
+        repeated ModifierInfo modifierInfo = 2;
     }
 
     map<int32, DogmaEffect> entries = 1;
@@ -131,10 +125,15 @@ message BuffCollections {
         }
 
         enum OperationName {
-            POST_MUL = 0;
-            POST_PERCENT = 1;
-            MOD_ADD = 2;
-            POST_ASSIGNMENT = 3;
+            PRE_ASSIGN = 0;
+            PRE_MUL = 1;
+            PRE_DIV = 2;
+            MOD_ADD = 3;
+            MOD_SUB = 4;
+            POST_MUL = 5;
+            POST_DIV = 6;
+            POST_PERCENT = 7;
+            POST_ASSIGN = 8;
         }
 
         message ItemModifier {
@@ -153,15 +152,12 @@ message BuffCollections {
 
         required AggregateMode aggregateMode = 1;
         required int32 buffID = 2;
-        required string developerDescription = 3;
-        repeated ItemModifier itemModifiers = 4;
-        repeated LocationGroupModifier locationGroupModifiers = 5;
-        repeated ItemModifier locationModifiers = 6;
-        repeated LocationRequiredSkillModifier locationRequiredSkillModifiers = 7;
-        required OperationName operationName = 8;
-        required ShowOutputValueInUI showOutputValueInUI = 9;
-
-        optional string displayName = 10;
+        repeated ItemModifier itemModifiers = 3;
+        repeated LocationGroupModifier locationGroupModifiers = 4;
+        repeated ItemModifier locationModifiers = 5;
+        repeated LocationRequiredSkillModifier locationRequiredSkillModifiers = 6;
+        required OperationName operationName = 7;
+        required ShowOutputValueInUI showOutputValueInUI = 8;
     }
 
     map<int32, Buff> entries = 1;

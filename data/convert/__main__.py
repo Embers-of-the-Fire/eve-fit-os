@@ -1,4 +1,5 @@
 import os
+import pickle
 import sys
 
 from .impl import (
@@ -19,16 +20,22 @@ from .patches import (
 from .patches.loader import load_patches
 
 
-if len(sys.argv) != 5:
+if len(sys.argv) != 6:
     print(
-        "Usage: python3 convert.py <path/to/eve-sde/fsd> <path/to/eve-sde/fsd-patches> <path/to/patches> <path/to/output>"
+        "Usage: python3 convert.py"
+        " <path/to/eve-sde/fsdbinary>"
+        " <path/to/localization-en-us>"
+        " <path/to/eve-sde/fsd-patches>"
+        " <path/to/patches>"
+        " <path/to/output>"
     )
     exit(1)
 
-fsd_dir = sys.argv[1]
-fsd_patch_dir = sys.argv[2]
-patch_dir = sys.argv[3]
-out_dir = sys.argv[4]
+fsd_bin_dir = sys.argv[1]
+loc_file = sys.argv[2]
+fsd_patch_dir = sys.argv[3]
+patch_dir = sys.argv[4]
+out_dir = sys.argv[5]
 
 os.makedirs(f"{out_dir}/pb2", exist_ok=True)
 os.makedirs(f"{out_dir}/json", exist_ok=True)
@@ -36,13 +43,17 @@ os.makedirs(f"{out_dir}/json", exist_ok=True)
 data = {}
 gens = []
 
-gens.append(categories.convert(fsd_dir, out_dir, data))
-gens.append(groups.convert(fsd_dir, out_dir, data))
-gens.append(types.convert(fsd_dir, out_dir, data))
-gens.append(market_groups.convert(fsd_dir, out_dir, data))
-gens.append(dogma_attributes.convert(fsd_dir, out_dir, data))
-gens.append(dogma_effects.convert(fsd_dir, out_dir, data))
-gens.append(type_dogma.convert(fsd_dir, out_dir, data))
+with open(loc_file, 'rb') as f:
+    raw_loc = pickle.load(f)
+    loc = {k: v[0] for k, v in raw_loc[1].items()}
+
+gens.append(categories.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(groups.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(types.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(market_groups.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(dogma_attributes.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(dogma_effects.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(type_dogma.convert(fsd_bin_dir, loc, out_dir, data))
 gens.append(dbuffcollections.convert(fsd_patch_dir, out_dir, data))
 
 # First iteration updates "data" with all the name -> ID mappings.

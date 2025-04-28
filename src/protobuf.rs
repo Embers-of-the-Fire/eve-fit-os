@@ -174,10 +174,15 @@ impl Database {
                             }
                         },
                         operation: match v.operation_name {
-                            0 => fit::BuffOperation::PostMul,
-                            1 => fit::BuffOperation::PostPercent,
-                            2 => fit::BuffOperation::ModAdd,
-                            3 => fit::BuffOperation::PostAssignment,
+                            0 => PreAssign,
+                            1 => PreMul,
+                            2 => PreDiv,
+                            3 => ModAdd,
+                            4 => ModSub,
+                            5 => PostMul,
+                            6 => PostDiv,
+                            7 => PostPercent,
+                            8 => PostAssign,
                             _ => {
                                 panic!("Unknown buff operation: {:?}", v.operation_name)
                             }
