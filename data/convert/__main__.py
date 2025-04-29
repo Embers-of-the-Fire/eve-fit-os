@@ -53,7 +53,7 @@ gens.append(types.convert(fsd_bin_dir, loc, out_dir, data))
 gens.append(market_groups.convert(fsd_bin_dir, loc, out_dir, data))
 gens.append(dogma_attributes.convert(fsd_bin_dir, loc, out_dir, data))
 gens.append(dogma_effects.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(type_dogma.convert(fsd_bin_dir, loc, out_dir, data))
+gens.append(type_dogma.convert(fsd_bin_dir, fsd_patch_dir, loc, out_dir, data))
 gens.append(dbuffcollections.convert(fsd_patch_dir, out_dir, data))
 
 # First iteration updates "data" with all the name -> ID mappings.
