@@ -323,6 +323,18 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                         }
                     }
                 }
+
+                for item in &mut ship.implants {
+                    let ty = info.get_type(item.item_id.as_type_id(fit));
+                    if ty.group_id == group_id {
+                        item.add_effect(
+                            info,
+                            effect.target_attribute_id,
+                            category_id,
+                            &effect,
+                        );
+                    }
+                }
             }
             Modifier::OwnerRequiredSkillModifier(skill_type_id)
             | Modifier::LocationRequiredSkillModifier(skill_type_id) => {
