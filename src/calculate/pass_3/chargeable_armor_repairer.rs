@@ -19,7 +19,7 @@ pub fn attribute_chargeable_armor_repairer(fit: &impl FitProvider, ship: &mut Sh
             };
             module.set_attribute(
                 ATTR_ARMOR_AMO,
-                amo.value.unwrap_or(0.0) * mult.value.unwrap_or(0.0),
+                amo.base_value * mult.base_value,
             );
         }
     }

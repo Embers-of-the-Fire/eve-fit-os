@@ -1,5 +1,5 @@
 use item::Item;
-use pass_4::Cache;
+use pass_5::Cache;
 
 use crate::constant::CHARACTER_TYPE_ID;
 use crate::provider::{FitProvider, InfoProvider};
@@ -10,6 +10,7 @@ mod pass_2;
 mod pass_3;
 mod pass_4;
 mod pass_5;
+mod pass_6;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct DamageProfile {
@@ -85,10 +86,17 @@ pub fn calculate(fit: &impl FitProvider, info: &impl InfoProvider) -> Ship {
 
     let mut cache = Cache::default();
 
+    // init attrs
     pass_1::pass(fit, info, &mut ship);
+    // collect effects
     pass_2::pass(fit, info, &mut ship);
-    pass_3::pass(fit, info, &mut ship, &mut cache);
+    // patch in attributes that should act before any other effects
+    pass_3::pass(fit, info, &mut ship);
+    // calculate warfare buffs
     pass_4::pass(fit, info, &mut ship, &mut cache);
-    pass_5::pass(fit, info, &mut ship);
+    // calculate effects
+    pass_5::pass(fit, info, &mut ship, &mut cache);
+    // patch in attributes that should act  after all routines.
+    pass_6::pass(fit, info, &mut ship);
     ship
 }
