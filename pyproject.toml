@@ -4,7 +4,4 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "protobuf>=5.29.3",
-    "pyyaml>=6.0.2",
-]
+dependencies = ["protobuf>=6.32.1", "pyyaml>=6.0.3"]
