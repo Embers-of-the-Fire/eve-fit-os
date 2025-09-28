@@ -9,6 +9,14 @@
 - UV: >= 0.5.24
 - Rust: >= 1.83.0
 
+### Resources
+
+The project requires exported FSD binaries and some extra files to generate the data.
+All data files are configured in a `.env` file (see [`.env.example`](.env.example) for more information).
+
+You can get the data with [this project](https://github.com/Embers-of-the-Fire/EVE-FSD-Dumper.git)
+or from [this archive storage](https://github.com/Embers-of-the-Fire/eve-multitools-archive.git).
+
 ### Setup
 
 1.  Compile protobuf for python (optional)
@@ -32,12 +40,7 @@
     2.  Run converter
         
         ```bash
-        uv run -m data.convert <path/to/fsd> <path/to/patches> <path/to/output>
-        ```
-
-        Example:
-        ```bash
-        uv run -m data.convert data/fsd data/patches data/out
+        uv run -m data.convert
         ```
     
     3.  Wait until the command exits.

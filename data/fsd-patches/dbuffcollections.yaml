@@ -48,7 +48,7 @@
   aggregateMode: Maximum
   buffID: 4
   developerDescription: Warp penalty
-  displayName: 跃迁惩罚
+  displayName: Warp penalty
   displayNameID: 517444
   itemModifiers:
   - dogmaAttributeID: 104
@@ -61,7 +61,7 @@
   aggregateMode: Maximum
   buffID: 5
   developerDescription: Disallow Cloak
-  displayName: 不允许隐形
+  displayName: Disallow Cloak
   displayNameID: 517760
   itemModifiers:
   - dogmaAttributeID: 2454
@@ -74,7 +74,7 @@
   aggregateMode: Maximum
   buffID: 6
   developerDescription: Disallow jump/dock
-  displayName: 不允许跳跃/停靠
+  displayName: Disallow jump/dock
   displayNameID: 517825
   itemModifiers:
   - dogmaAttributeID: 2354
@@ -101,7 +101,7 @@
   aggregateMode: Minimum
   buffID: 8
   developerDescription: 'PANIC: Shield Resistance'
-  displayName: 护盾抗性
+  displayName: Shield Resistance
   displayNameID: 518605
   itemModifiers:
   - dogmaAttributeID: 271
@@ -117,7 +117,7 @@
   aggregateMode: Minimum
   buffID: 9
   developerDescription: 'PANIC: Shield Recharge time'
-  displayName: 护盾回充时间加成
+  displayName: Shield recharge time bonus
   displayNameID: 518606
   itemModifiers:
   - dogmaAttributeID: 479
@@ -130,7 +130,7 @@
   aggregateMode: Minimum
   buffID: 10
   developerDescription: 'Shield Burst: Shield Harmonizing: Shield Resistance'
-  displayName: 护盾抗性加成
+  displayName: Shield Resistance Bonus
   displayNameID: 518688
   itemModifiers:
   - dogmaAttributeID: 271
@@ -146,7 +146,7 @@
   aggregateMode: Minimum
   buffID: 11
   developerDescription: 'Shield Burst: Active Shielding: Repair Duration/Capacitor'
-  displayName: 护盾维修装备：持续时间和电容消耗加成
+  displayName: 'Shield Repair Modules: Duration & Capacitor-use bonus'
   displayNameID: 518698
   itemModifiers: []
   locationGroupModifiers: []
@@ -170,7 +170,7 @@
   aggregateMode: Maximum
   buffID: 12
   developerDescription: 'Shield Burst: Shield Extension: Shield HP'
-  displayName: 护盾值加成
+  displayName: Shield HP Bonus
   displayNameID: 518699
   itemModifiers:
   - dogmaAttributeID: 263
@@ -183,7 +183,7 @@
   aggregateMode: Minimum
   buffID: 13
   developerDescription: 'Armor Burst: Armor Energizing: Armor Resistance'
-  displayName: 装甲抗性加成
+  displayName: Armor Resistance Bonus
   displayNameID: 518709
   itemModifiers:
   - dogmaAttributeID: 267
@@ -199,7 +199,7 @@
   aggregateMode: Minimum
   buffID: 14
   developerDescription: 'Armor Burst: Rapid Repair: Repair Duration/Capacitor'
-  displayName: 装甲维修装备：持续时间和电容消耗加成
+  displayName: 'Armor Repair Modules: Duration & Capacitor-use bonus'
   displayNameID: 518710
   itemModifiers: []
   locationGroupModifiers: []
@@ -223,7 +223,7 @@
   aggregateMode: Maximum
   buffID: 15
   developerDescription: 'Armor Burst: Armor Reinforcement: Armor HP'
-  displayName: 装甲值加成
+  displayName: Armor HP Bonus
   displayNameID: 518711
   itemModifiers:
   - dogmaAttributeID: 265
@@ -236,7 +236,7 @@
   aggregateMode: Maximum
   buffID: 16
   developerDescription: 'Information Burst: Sensor Optimization: Scan Resolution'
-  displayName: 扫描分辨率加成
+  displayName: Scan Resolution bonus
   displayNameID: 518713
   itemModifiers:
   - dogmaAttributeID: 564
@@ -250,7 +250,7 @@
   buffID: 17
   developerDescription: 'Information Burst: Electronic Superiority: EWAR Range and
     Strength'
-  displayName: 电子战装备：范围和强度加成
+  displayName: 'Electronic Warfare modules: Range and Strength bonus'
   displayNameID: 518714
   itemModifiers: []
   locationGroupModifiers:
@@ -306,7 +306,7 @@
   aggregateMode: Maximum
   buffID: 18
   developerDescription: 'Information Burst: Electronic Hardening: Sensor Strength'
-  displayName: 感应强度加成
+  displayName: Sensor Strength bonus
   displayNameID: 518715
   itemModifiers:
   - dogmaAttributeID: 208
@@ -322,7 +322,7 @@
   aggregateMode: Minimum
   buffID: 19
   developerDescription: 'Information Burst: Electronic Hardening: RSD/RWD Resistance'
-  displayName: 远程感应抑阻器/远程武器扰断器抗性加成
+  displayName: Remote Sensor Dampener / Remote Weapon Disruption Resistance bonus
   displayNameID: 518900
   itemModifiers:
   - dogmaAttributeID: 2112
@@ -336,7 +336,7 @@
   aggregateMode: Minimum
   buffID: 20
   developerDescription: 'Skirmish Burst: Evasive Maneuvers: Signature Radius'
-  displayName: 信号半径加成
+  displayName: Signature Radius bonus
   displayNameID: 518716
   itemModifiers:
   - dogmaAttributeID: 552
@@ -349,7 +349,7 @@
   aggregateMode: Maximum
   buffID: 21
   developerDescription: 'Skirmish Burst: Interdiction Maneuvers: Tackle Range'
-  displayName: 推进阻扰装备范围加成
+  displayName: Propulsion disruption module range bonus
   displayNameID: 518717
   itemModifiers: []
   locationGroupModifiers: []
@@ -363,7 +363,7 @@
   aggregateMode: Maximum
   buffID: 22
   developerDescription: 'Skirmish Burst: Rapid Deployment: AB/MWD Speed Increase'
-  displayName: 加力燃烧器/微型跃迁推进器速度增量加成
+  displayName: AB/MWD module speed increase bonus
   displayNameID: 518718
   itemModifiers: []
   locationGroupModifiers: []
@@ -380,7 +380,7 @@
   buffID: 23
   developerDescription: 'Mining Burst: Mining Laser Field Enhancement: Mining/Survey
     Range'
-  displayName: 采矿/测量装备距离加成
+  displayName: Mining/Survey module range bonus
   displayNameID: 518720
   itemModifiers: []
   locationGroupModifiers: []
@@ -400,7 +400,7 @@
   aggregateMode: Minimum
   buffID: 24
   developerDescription: 'Mining Burst: Mining Laser Optimization: Mining Capacitor/Duration'
-  displayName: 采矿装备：持续时间和电容消耗加成
+  displayName: 'Mining Modules: Duration & Capacitor-use bonus'
   displayNameID: 518721
   itemModifiers: []
   locationGroupModifiers: []
@@ -424,7 +424,7 @@
   aggregateMode: Minimum
   buffID: 25
   developerDescription: 'Mining Burst: Mining Equipment Preservation: Crystal Volatility'
-  displayName: 采矿晶体耐久度加成
+  displayName: Mining crystal volatility bonus
   displayNameID: 518722
   itemModifiers: []
   locationGroupModifiers: []
@@ -438,7 +438,7 @@
   aggregateMode: Maximum
   buffID: 26
   developerDescription: 'Information Burst: Sensor Optimization: Targeting Range'
-  displayName: 锁定距离加成
+  displayName: Targeting Range bonus
   displayNameID: 519020
   itemModifiers:
   - dogmaAttributeID: 76
@@ -451,7 +451,7 @@
   aggregateMode: Minimum
   buffID: 27
   developerDescription: Stasis Webification Burst
-  displayName: 停滞缠绕光束速度惩罚
+  displayName: Stasis Webification speed penalty
   displayNameID: 519288
   itemModifiers:
   - dogmaAttributeID: 37
@@ -464,7 +464,7 @@
   aggregateMode: Minimum
   buffID: 28
   developerDescription: 'Weapon Disruption Burst: Turret Max Range'
-  displayName: 炮台最大距离惩罚
+  displayName: Turret maximum range penalty
   displayNameID: 519290
   itemModifiers: []
   locationGroupModifiers: []
@@ -478,7 +478,7 @@
   aggregateMode: Minimum
   buffID: 29
   developerDescription: 'Weapon Disruption Burst: Turret Falloff Range'
-  displayName: 炮塔失准范围惩罚
+  displayName: Turret falloff range penalty
   displayNameID: 519294
   itemModifiers: []
   locationGroupModifiers: []
@@ -492,7 +492,7 @@
   aggregateMode: Minimum
   buffID: 30
   developerDescription: 'Weapon Disruption Burst: Turret Tracking'
-  displayName: 炮塔跟踪速度惩罚
+  displayName: Turret tracking speed penalty
   displayNameID: 519291
   itemModifiers: []
   locationGroupModifiers: []
@@ -506,7 +506,7 @@
   aggregateMode: Minimum
   buffID: 31
   developerDescription: 'Weapon Disruption Burst: Missile Velocity'
-  displayName: 导弹飞行速度惩罚
+  displayName: Missile velocity penalty
   displayNameID: 519295
   itemModifiers: []
   locationGroupModifiers: []
@@ -520,7 +520,7 @@
   aggregateMode: Minimum
   buffID: 32
   developerDescription: 'Weapon Disruption Burst: Missile Duration'
-  displayName: 导弹飞行持续时间惩罚
+  displayName: Missile duration penalty
   displayNameID: 519298
   itemModifiers: []
   locationGroupModifiers: []
@@ -534,7 +534,7 @@
   aggregateMode: Minimum
   buffID: 33
   developerDescription: 'Weapon Disruption Burst: Missile Explosion Velocity'
-  displayName: 导弹爆炸速度惩罚
+  displayName: Missile Explosion Velocity penalty
   displayNameID: 519292
   itemModifiers: []
   locationGroupModifiers: []
@@ -548,7 +548,7 @@
   aggregateMode: Maximum
   buffID: 34
   developerDescription: 'Weapon Disruption Burst: Missile Explosion Radius'
-  displayName: 导弹爆炸半径惩罚
+  displayName: Missile Explosion Radius penalty
   displayNameID: 519293
   itemModifiers: []
   locationGroupModifiers: []
@@ -562,7 +562,7 @@
   aggregateMode: Minimum
   buffID: 35
   developerDescription: 'Sensor Dampening Burst: Scan Resolution penalty'
-  displayName: 扫描分辨率惩罚
+  displayName: Scan Resolution penalty
   displayNameID: 519296
   itemModifiers:
   - dogmaAttributeID: 564
@@ -575,7 +575,7 @@
   aggregateMode: Minimum
   buffID: 36
   developerDescription: 'Sensor Dampening Burst: Max Target Range'
-  displayName: 锁定距离惩罚
+  displayName: Targeting Range penalty
   displayNameID: 519297
   itemModifiers:
   - dogmaAttributeID: 76
@@ -588,7 +588,7 @@
   aggregateMode: Maximum
   buffID: 37
   developerDescription: Target Illumination Burst
-  displayName: 信号半径惩罚
+  displayName: Signature radius penalty
   displayNameID: 519299
   itemModifiers:
   - dogmaAttributeID: 552
@@ -601,7 +601,7 @@
   aggregateMode: Minimum
   buffID: 38
   developerDescription: ECM Burst
-  displayName: 最大锁定数惩罚
+  displayName: Maximum target penalty
   displayNameID: 519329
   itemModifiers:
   - dogmaAttributeID: 192
@@ -614,7 +614,7 @@
   aggregateMode: Minimum
   buffID: 39
   developerDescription: 'Avatar Effect Generator : Capacitor Recharge bonus'
-  displayName: 电容回充量加成
+  displayName: Capacitor Recharge bonus
   displayNameID: 521911
   itemModifiers:
   - dogmaAttributeID: 55
@@ -627,7 +627,7 @@
   aggregateMode: Minimum
   buffID: 40
   developerDescription: 'Avatar Effect Generator : Kinetic resistance bonus'
-  displayName: 动能抗性加成
+  displayName: Kinetic Resistance bonus
   displayNameID: 521912
   itemModifiers:
   - dogmaAttributeID: 109
@@ -642,7 +642,7 @@
   aggregateMode: Maximum
   buffID: 41
   developerDescription: 'Avatar Effect Generator : EM resistance penalty'
-  displayName: 电磁抗性惩罚
+  displayName: EM Resistance penalty
   displayNameID: 521913
   itemModifiers:
   - dogmaAttributeID: 113
@@ -657,7 +657,7 @@
   aggregateMode: Maximum
   buffID: 42
   developerDescription: 'Erebus Effect Generator : Armor HP bonus'
-  displayName: 装甲值加成
+  displayName: Armor HP bonus
   displayNameID: 521916
   itemModifiers:
   - dogmaAttributeID: 265
@@ -670,7 +670,7 @@
   aggregateMode: Minimum
   buffID: 43
   developerDescription: 'Erebus Effect Generator : Explosive resistance bonus'
-  displayName: 爆炸抗性加成
+  displayName: Explosive Resistance bonus
   displayNameID: 521917
   itemModifiers:
   - dogmaAttributeID: 111
@@ -685,7 +685,7 @@
   aggregateMode: Maximum
   buffID: 44
   developerDescription: 'Erebus Effect Generator : Thermal resistance penalty'
-  displayName: 热能抗性惩罚
+  displayName: Thermal Resistance penalty
   displayNameID: 521918
   itemModifiers:
   - dogmaAttributeID: 110
@@ -700,7 +700,7 @@
   aggregateMode: Minimum
   buffID: 45
   developerDescription: 'Ragnarok Effect Generator : Signature Radius bonus'
-  displayName: 信号半径加成
+  displayName: Signature Radius bonus
   displayNameID: 521921
   itemModifiers:
   - dogmaAttributeID: 552
@@ -713,7 +713,7 @@
   aggregateMode: Minimum
   buffID: 46
   developerDescription: 'Ragnarok Effect Generator : Thermal resistance bonus'
-  displayName: 热能抗性加成
+  displayName: Thermal Resistance bonus
   displayNameID: 521919
   itemModifiers:
   - dogmaAttributeID: 110
@@ -728,7 +728,7 @@
   aggregateMode: Maximum
   buffID: 47
   developerDescription: 'Ragnarok Effect Generator : Explosive resistance penaly'
-  displayName: 爆炸抗性惩罚
+  displayName: Explosive Resistance penalty
   displayNameID: 521920
   itemModifiers:
   - dogmaAttributeID: 111
@@ -743,7 +743,7 @@
   aggregateMode: Maximum
   buffID: 48
   developerDescription: 'Leviathan Effect Generator : Shield HP bonus'
-  displayName: 护盾值加成
+  displayName: Shield HP bonus
   displayNameID: 521924
   itemModifiers:
   - dogmaAttributeID: 263
@@ -756,7 +756,7 @@
   aggregateMode: Minimum
   buffID: 49
   developerDescription: 'Leviathan Effect Generator : EM resistance bonus'
-  displayName: 电磁抗性加成
+  displayName: EM Resistance bonus
   displayNameID: 521922
   itemModifiers:
   - dogmaAttributeID: 113
@@ -771,7 +771,7 @@
   aggregateMode: Maximum
   buffID: 50
   developerDescription: 'Leviathan Effect Generator : Kinetic resistance penalty'
-  displayName: 动能抗性惩罚
+  displayName: Kinetic Resistance penalty
   displayNameID: 521923
   itemModifiers:
   - dogmaAttributeID: 109
@@ -786,7 +786,7 @@
   aggregateMode: Minimum
   buffID: 51
   developerDescription: 'Avatar Effect Generator : Velocity penalty'
-  displayName: 速度惩罚
+  displayName: Velocity Penalty
   displayNameID: 522403
   itemModifiers:
   - dogmaAttributeID: 37
@@ -799,7 +799,7 @@
   aggregateMode: Minimum
   buffID: 52
   developerDescription: 'Erebus Effect Generator : Shield RR penalty'
-  displayName: 远程护盾回充增量器强度惩罚
+  displayName: Remote Shield Booster Strength Penalty
   displayNameID: 522404
   itemModifiers: []
   locationGroupModifiers: []
@@ -813,7 +813,7 @@
   aggregateMode: Minimum
   buffID: 53
   developerDescription: 'Leviathan Effect Generator : Armor RR penalty'
-  displayName: 远程装甲维修器强度惩罚
+  displayName: Remote Armor Repairer Strength Penalty
   displayNameID: 522405
   itemModifiers: []
   locationGroupModifiers: []
@@ -827,7 +827,7 @@
   aggregateMode: Minimum
   buffID: 54
   developerDescription: 'Ragnarok Effect Generator : Laser and Hybrid Optimal penalty'
-  displayName: 能量和混合炮台最佳射程惩罚
+  displayName: Energy and Hybrid Turret Optimal Penalty
   displayNameID: 522406
   itemModifiers: []
   locationGroupModifiers:
@@ -843,7 +843,7 @@
   aggregateMode: Minimum
   buffID: 55
   developerDescription: 'PANIC: Scan Resolution penalty'
-  displayName: 扫描分辨率惩罚
+  displayName: Scan Resolution penalty
   displayNameID: 522786
   itemModifiers:
   - dogmaAttributeID: 564
@@ -856,7 +856,7 @@
   aggregateMode: Maximum
   buffID: 56
   developerDescription: 'PANIC: Mass increase'
-  displayName: 质量增加
+  displayName: Mass increase
   displayNameID: 522787
   itemModifiers:
   - dogmaAttributeID: 4
@@ -869,7 +869,7 @@
   aggregateMode: Maximum
   buffID: 57
   developerDescription: Disallow tether
-  displayName: 驻留被阻止
+  displayName: Tether blocked
   displayNameID: 522788
   itemModifiers:
   - dogmaAttributeID: 2343
@@ -882,10 +882,9 @@
   aggregateMode: Minimum
   buffID: 58
   developerDescription: 'PANIC: Drone damage penalty'
-  displayName: 无人机伤害惩罚
+  displayName: Drone damage penalty
   displayNameID: 522792
   itemModifiers:
-  - dogmaAttributeID: 3326
   - dogmaAttributeID: 2580
   locationGroupModifiers: []
   locationModifiers: []
@@ -896,7 +895,7 @@
   aggregateMode: Maximum
   buffID: 59
   developerDescription: 'PANIC: Disallow weapons'
-  displayName: 禁用武器
+  displayName: Disallow weapons
   displayNameID: 522815
   itemModifiers: []
   locationGroupModifiers: []
@@ -914,7 +913,7 @@
   aggregateMode: Minimum
   buffID: 60
   developerDescription: 'Skirmish Burst: Evasive Maneuvers: Agility'
-  displayName: 灵活性加成
+  displayName: Agility bonus
   displayNameID: 522819
   itemModifiers:
   - dogmaAttributeID: 70
@@ -927,7 +926,7 @@
   aggregateMode: Maximum
   buffID: 61
   developerDescription: 'PANIC: Disallow entosis'
-  displayName: 禁用侵噬链接
+  displayName: Disallow entosis
   displayNameID: 522901
   itemModifiers: []
   locationGroupModifiers: []
@@ -941,7 +940,7 @@
   aggregateMode: Maximum
   buffID: 79
   developerDescription: AOE_Beacon_bioluminescence_cloud
-  displayName: 信号半径惩罚
+  displayName: Signature Radius penalty
   displayNameID: 532898
   itemModifiers:
   - dogmaAttributeID: 552
@@ -954,7 +953,7 @@
   aggregateMode: Minimum
   buffID: 80
   developerDescription: AOE_Beacon_caustic_cloud_inertia
-  displayName: 惯性加成
+  displayName: Inertia Bonus
   displayNameID: 532902
   itemModifiers:
   - dogmaAttributeID: 70
@@ -967,7 +966,7 @@
   aggregateMode: Minimum
   buffID: 81
   developerDescription: AOE_Beacon_caustic_cloud_velocity
-  displayName: 最大速度加成
+  displayName: Max Velocity Bonus
   displayNameID: 532901
   itemModifiers:
   - dogmaAttributeID: 37
@@ -980,7 +979,7 @@
   aggregateMode: Maximum
   buffID: 84
   developerDescription: AOE_Beacon_trig_platform_tracking_speed
-  displayName: 炮台跟踪速度加成
+  displayName: Turret Tracking Speed bonus
   displayNameID: 532937
   itemModifiers:
   - dogmaAttributeID: 160
@@ -995,7 +994,7 @@
   aggregateMode: Maximum
   buffID: 88
   developerDescription: AOE_Beacon_filament_cloud_shield_booster_shield_bonus
-  displayName: 护盾回充增量器护盾值惩罚
+  displayName: Penalty to Shield Booster shield bonus
   displayNameID: 533827
   itemModifiers:
   - dogmaAttributeID: 2498
@@ -1010,7 +1009,7 @@
   aggregateMode: Maximum
   buffID: 89
   developerDescription: AOE_Beacon_filament_cloud_shield_booster_duration
-  displayName: 护盾回充增量器持续时间加成
+  displayName: Bonus to Shield Booster duration
   displayNameID: 533828
   itemModifiers:
   - dogmaAttributeID: 2495
@@ -1025,7 +1024,7 @@
   aggregateMode: Maximum
   buffID: 90
   developerDescription: Weather_electric_storm_EM_resistance_penalty
-  displayName: 电磁抗性惩罚
+  displayName: EM Resistance penalty
   displayNameID: 534977
   itemModifiers:
   - dogmaAttributeID: 113
@@ -1040,7 +1039,7 @@
   aggregateMode: Minimum
   buffID: 92
   developerDescription: Weather_electric_storm_capacitor_recharge_bonus
-  displayName: 电容回充量加成
+  displayName: Capacitor Recharge bonus
   displayNameID: 534976
   itemModifiers:
   - dogmaAttributeID: 55
@@ -1053,7 +1052,7 @@
   aggregateMode: Maximum
   buffID: 93
   developerDescription: Weather_xenon_gas_explosive_resistance_penalty
-  displayName: 爆炸抗性惩罚
+  displayName: Explosive Resistance penalty
   displayNameID: 534979
   itemModifiers:
   - dogmaAttributeID: 111
@@ -1068,7 +1067,7 @@
   aggregateMode: Maximum
   buffID: 94
   developerDescription: Weather_xenon_gas_shield_hp_bonus
-  displayName: 护盾值加成
+  displayName: Shield HP bonus
   displayNameID: 534980
   itemModifiers:
   - dogmaAttributeID: 263
@@ -1081,7 +1080,7 @@
   aggregateMode: Maximum
   buffID: 95
   developerDescription: Weather_infernal_thermal_resistance_penalty
-  displayName: 热能抗性惩罚
+  displayName: Thermal Resistance penalty
   displayNameID: 534983
   itemModifiers:
   - dogmaAttributeID: 110
@@ -1096,7 +1095,7 @@
   aggregateMode: Maximum
   buffID: 96
   developerDescription: Weather_infernal_armor_hp_bonus
-  displayName: 装甲值加成
+  displayName: Armor HP bonus
   displayNameID: 534982
   itemModifiers:
   - dogmaAttributeID: 265
@@ -1109,7 +1108,7 @@
   aggregateMode: Minimum
   buffID: 97
   developerDescription: Weather_darkness_turret_range_penalty
-  displayName: 炮台最佳射程和失准范围惩罚
+  displayName: Turret Optimal and Falloff Range penalty
   displayNameID: 534987
   itemModifiers:
   - dogmaAttributeID: 54
@@ -1127,7 +1126,7 @@
   aggregateMode: Maximum
   buffID: 98
   developerDescription: Weather_darkness_velocity_bonus
-  displayName: 速度加成
+  displayName: Velocity bonus
   displayNameID: 534988
   itemModifiers:
   - dogmaAttributeID: 37
@@ -1140,7 +1139,7 @@
   aggregateMode: Maximum
   buffID: 99
   developerDescription: Weather_caustic_toxin_kinetic_resistance_penalty
-  displayName: 动能抗性惩罚
+  displayName: Kinetic Resistance penalty
   displayNameID: 535078
   itemModifiers:
   - dogmaAttributeID: 109
@@ -1155,7 +1154,7 @@
   aggregateMode: Maximum
   buffID: 100
   developerDescription: Weather_caustic_toxin_scan_resolution_bonus
-  displayName: 扫描分辨率加成
+  displayName: Scan Resolution bonus
   displayNameID: 535079
   itemModifiers:
   - dogmaAttributeID: 564
@@ -1168,7 +1167,7 @@
   aggregateMode: Minimum
   buffID: 101
   developerDescription: Industrial Core Mining Drone Signal Interference
-  displayName: 降低的工业核心采矿无人机加成
+  displayName: Reduced Industrial Core Mining Drone Bonus
   displayNameID: 546343
   itemModifiers: []
   locationGroupModifiers: []
@@ -1184,7 +1183,7 @@
   aggregateMode: Maximum
   buffID: 2103
   developerDescription: Damage Bonus
-  displayName: 伤害加成
+  displayName: Damage bonus
   displayNameID: 551552
   itemModifiers: []
   locationGroupModifiers: []
@@ -1208,7 +1207,7 @@
   aggregateMode: Maximum
   buffID: 2104
   developerDescription: Wreck Warp Scramble
-  displayName: 残骸近距干扰跃迁引擎
+  displayName: Wreck Proximity Disrupting Warp Drives
   displayNameID: 553815
   itemModifiers:
   - dogmaAttributeID: 104
@@ -1235,7 +1234,7 @@
   aggregateMode: Maximum
   buffID: 2108
   developerDescription: Webifier Range Bonus
-  displayName: 停滞缠绕光束范围加成
+  displayName: Stasis Webifier Range Bonus
   displayNameID: 571849
   itemModifiers: []
   locationGroupModifiers:
@@ -1249,7 +1248,7 @@
   aggregateMode: Maximum
   buffID: 2109
   developerDescription: Module Heat Damage Reduction
-  displayName: 装备超载伤害降低
+  displayName: Module Heat Damage Reduction
   displayNameID: 573512
   itemModifiers: []
   locationGroupModifiers: []
@@ -1262,7 +1261,7 @@
   aggregateMode: Maximum
   buffID: 2110
   developerDescription: Webifier Strength Bonus
-  displayName: 停滞缠绕光束强度加成
+  displayName: Stasis Webifier Strength Bonus
   displayNameID: 574787
   itemModifiers: []
   locationGroupModifiers:
@@ -1276,7 +1275,7 @@
   aggregateMode: Maximum
   buffID: 2111
   developerDescription: Proving Thermal and Kinetic Missile Damage Bonuus
-  displayName: 热能/动能导弹伤害加成
+  displayName: Thermal/Kinetic Missile Damage Bonus
   displayNameID: 576030
   itemModifiers: []
   locationGroupModifiers: []
@@ -1304,7 +1303,7 @@
   aggregateMode: Maximum
   buffID: 2113
   developerDescription: Stabilized cloak to prevent decloak bursts
-  displayName: 隐形稳定
+  displayName: Cloak stabilization
   displayNameID: 580046
   itemModifiers:
   - dogmaAttributeID: 3117
@@ -1313,43 +1312,11 @@
   locationRequiredSkillModifiers: []
   operationName: ModAdd
   showOutputValueInUI: Hide
-2118:
-  aggregateMode: Minimum
-  buffID: 2118
-  developerDescription: 'RogueEVE Buff: Armor Resistance'
-  displayName: 装甲全抗性
-  displayNameID: 582765
-  itemModifiers:
-  - dogmaAttributeID: 267
-  - dogmaAttributeID: 268
-  - dogmaAttributeID: 269
-  - dogmaAttributeID: 270
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowInverted
-2119:
-  aggregateMode: Minimum
-  buffID: 2119
-  developerDescription: 'RogueEVE Buff: Shield Resistance'
-  displayName: 护盾全抗性
-  displayNameID: 582766
-  itemModifiers:
-  - dogmaAttributeID: 271
-  - dogmaAttributeID: 272
-  - dogmaAttributeID: 273
-  - dogmaAttributeID: 274
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowInverted
 2140:
   aggregateMode: Maximum
   buffID: 2140
   developerDescription: Proving Overheat Bonus - No EWAR
-  displayName: 装备超载加成
+  displayName: Module Overload Bonus
   displayNameID: 583780
   itemModifiers: []
   locationGroupModifiers: []
@@ -1370,7 +1337,7 @@
   aggregateMode: Minimum
   buffID: 2141
   developerDescription: Link-with-ship damage resistance bonus
-  displayName: 伤害抗性加成
+  displayName: Damage Resistance Bonus
   displayNameID: 587608
   itemModifiers:
   - dogmaAttributeID: 109
@@ -1394,7 +1361,7 @@
   aggregateMode: Maximum
   buffID: 2142
   developerDescription: Small Energy Turret Damage Bonus
-  displayName: 小型能量炮台伤害加成
+  displayName: Small Energy Turret Damage Bonus
   displayNameID: 588970
   itemModifiers: []
   locationGroupModifiers: []
@@ -1408,7 +1375,7 @@
   aggregateMode: Maximum
   buffID: 2143
   developerDescription: Nos and Neut Drain Bonus
-  displayName: 能量战强度加成
+  displayName: Energy Warfare Strength Bonus
   displayNameID: 588971
   itemModifiers: []
   locationGroupModifiers:
@@ -1424,7 +1391,7 @@
   aggregateMode: Maximum
   buffID: 2144
   developerDescription: Proving Turret Damage Bonus
-  displayName: 炮台伤害加成
+  displayName: Turret Damage Bonus
   displayNameID: 589384
   itemModifiers: []
   locationGroupModifiers: []
@@ -1438,7 +1405,7 @@
   aggregateMode: Maximum
   buffID: 2145
   developerDescription: Proving Missile Damage Bonus
-  displayName: 导弹伤害加成
+  displayName: Missile Damage Bonuus
   displayNameID: 589393
   itemModifiers: []
   locationGroupModifiers: []
@@ -1458,7 +1425,7 @@
   aggregateMode: Maximum
   buffID: 2146
   developerDescription: Proving Afterburner Speed Bonus
-  displayName: 加力燃烧器速度增量加成
+  displayName: AB speed increase bonus
   displayNameID: 591759
   itemModifiers: []
   locationGroupModifiers: []
@@ -1472,7 +1439,7 @@
   aggregateMode: Minimum
   buffID: 2147
   developerDescription: SpacetimeNexusVelocity
-  displayName: 舰船最大速度
+  displayName: Ship Velocity
   displayNameID: 592692
   itemModifiers:
   - dogmaAttributeID: 37
@@ -1485,7 +1452,7 @@
   aggregateMode: Maximum
   buffID: 2148
   developerDescription: SpacetimeNexusInertia
-  displayName: 舰船惯性调整系数
+  displayName: Ship Inertia
   displayNameID: 592693
   itemModifiers:
   - dogmaAttributeID: 70
@@ -1498,7 +1465,7 @@
   aggregateMode: Maximum
   buffID: 2149
   developerDescription: SpacetimeNexusCapShieldRecharge
-  displayName: 护盾和电容回充速率
+  displayName: Shield and Capacitor Recharge Rate
   displayNameID: 592694
   itemModifiers:
   - dogmaAttributeID: 55
@@ -1512,7 +1479,7 @@
   aggregateMode: Maximum
   buffID: 2150
   developerDescription: SpacetimeNexusModuleCycle
-  displayName: 装备循环时间和装填速度
+  displayName: Module Cycle and Reload Speed
   displayNameID: 592695
   itemModifiers: []
   locationGroupModifiers: []
@@ -1527,7 +1494,7 @@
   aggregateMode: Minimum
   buffID: 2151
   developerDescription: SpacetimeNexusTracking
-  displayName: 炮台跟踪速度和导弹爆炸速度
+  displayName: Turret Tracking and Missile Explosion Velocity
   displayNameID: 593084
   itemModifiers: []
   locationGroupModifiers: []
@@ -1543,7 +1510,7 @@
   aggregateMode: Maximum
   buffID: 2152
   developerDescription: Proving HP Addition
-  displayName: 额外的基础结构值
+  displayName: Additional Base Hull Hitpoints
   displayNameID: 594653
   itemModifiers:
   - dogmaAttributeID: 9
@@ -1556,7 +1523,7 @@
   aggregateMode: Maximum
   buffID: 2153
   developerDescription: Proving Turret Tracking
-  displayName: 炮台跟踪速度
+  displayName: Turret Tracking
   displayNameID: 594691
   itemModifiers: []
   locationGroupModifiers: []
@@ -1570,7 +1537,7 @@
   aggregateMode: Maximum
   buffID: 2154
   developerDescription: Proving Turret Falloff
-  displayName: 炮台失准范围加成
+  displayName: Turret Falloff Bonus
   displayNameID: 594692
   itemModifiers: []
   locationGroupModifiers: []
@@ -1596,7 +1563,7 @@
   aggregateMode: Maximum
   buffID: 2158
   developerDescription: Proving Turret Optimal
-  displayName: 炮台最佳射程加成
+  displayName: Turret Optimal Bonus
   displayNameID: 596685
   itemModifiers: []
   locationGroupModifiers: []
@@ -1610,7 +1577,7 @@
   aggregateMode: Minimum
   buffID: 2159
   developerDescription: Proving Turret Cap Use
-  displayName: 炮台电容消耗
+  displayName: Turret Cap Consumption
   displayNameID: 596686
   itemModifiers: []
   locationGroupModifiers: []
@@ -1624,7 +1591,7 @@
   aggregateMode: Maximum
   buffID: 2160
   developerDescription: Proving HP All
-  displayName: HP加成
+  displayName: Hitpoint Bonus
   displayNameID: 597492
   itemModifiers:
   - dogmaAttributeID: 9
@@ -1639,7 +1606,7 @@
   aggregateMode: Maximum
   buffID: 2161
   developerDescription: Proving Velocity Bonus
-  displayName: 速度加成
+  displayName: Velocity Bonus
   displayNameID: 597614
   itemModifiers:
   - dogmaAttributeID: 37
@@ -1652,7 +1619,7 @@
   aggregateMode: Maximum
   buffID: 2162
   developerDescription: Proving Inertia Penalty
-  displayName: 惯性系数惩罚
+  displayName: Inertia Penalty
   displayNameID: 597615
   itemModifiers:
   - dogmaAttributeID: 70
@@ -1665,7 +1632,7 @@
   aggregateMode: Maximum
   buffID: 2163
   developerDescription: Proving Capacitor Bonus
-  displayName: 电容加成
+  displayName: Capacitor Bonus
   displayNameID: 597616
   itemModifiers:
   - dogmaAttributeID: 482
@@ -1678,7 +1645,7 @@
   aggregateMode: Maximum
   buffID: 2164
   developerDescription: Proving Armor/Shield HP Bonus
-  displayName: 装甲值和护盾值加成
+  displayName: Armor and Shield HP Bonus
   displayNameID: 597617
   itemModifiers:
   - dogmaAttributeID: 263
@@ -1692,7 +1659,7 @@
   aggregateMode: Maximum
   buffID: 2165
   developerDescription: Proving Missile Flight Time Bonus
-  displayName: 导弹飞行时间加成
+  displayName: Missile Flight Time Bonus
   displayNameID: 597618
   itemModifiers: []
   locationGroupModifiers: []
@@ -1706,7 +1673,7 @@
   aggregateMode: Maximum
   buffID: 2166
   developerDescription: Proving Mass Increase
-  displayName: 质量增加
+  displayName: Mass Increase
   displayNameID: 597619
   itemModifiers:
   - dogmaAttributeID: 4
@@ -1719,7 +1686,7 @@
   aggregateMode: Maximum
   buffID: 2167
   developerDescription: SpacetimeNexusCapRecharge
-  displayName: 电容回充速率
+  displayName: Capacitor Recharge Rate
   displayNameID: 597771
   itemModifiers:
   - dogmaAttributeID: 55
@@ -1732,7 +1699,7 @@
   aggregateMode: Maximum
   buffID: 2168
   developerDescription: SpacetimeNexusSigRadius
-  displayName: 信号半径
+  displayName: Signature Radius
   displayNameID: 597772
   itemModifiers:
   - dogmaAttributeID: 552
@@ -1745,7 +1712,7 @@
   aggregateMode: Minimum
   buffID: 2169
   developerDescription: SpacetimeNexusTurretMissileDamage
-  displayName: 炮台和导弹伤害
+  displayName: Turret and Missile Damage
   displayNameID: 597773
   itemModifiers: []
   locationGroupModifiers: []
@@ -1767,7 +1734,7 @@
   aggregateMode: Maximum
   buffID: 2171
   developerDescription: Proving Sensor Strength Bonus
-  displayName: 感应强度加成
+  displayName: Sensor Strength bonus
   displayNameID: 600979
   itemModifiers:
   - dogmaAttributeID: 208
@@ -1783,7 +1750,7 @@
   aggregateMode: Minimum
   buffID: 2172
   developerDescription: Proving Signature Radius Bonus
-  displayName: 信号半径加成
+  displayName: Signature Radius bonus
   displayNameID: 600983
   itemModifiers:
   - dogmaAttributeID: 552
@@ -1796,7 +1763,7 @@
   aggregateMode: Maximum
   buffID: 2174
   developerDescription: AOE_Beacon_proving_tachyon_signatureradius_cloud
-  displayName: 信号半径惩罚
+  displayName: Signature Radius penalty
   displayNameID: 532898
   itemModifiers:
   - dogmaAttributeID: 552
@@ -1809,7 +1776,7 @@
   aggregateMode: Maximum
   buffID: 2176
   developerDescription: Proving Armor HP Addition
-  displayName: 额外的基础装甲值
+  displayName: Additional Base Armor Hitpoints
   displayNameID: 629466
   itemModifiers:
   - dogmaAttributeID: 265
@@ -1822,7 +1789,7 @@
   aggregateMode: Maximum
   buffID: 2177
   developerDescription: Proving Shield HP Addition
-  displayName: 额外的基础护盾值
+  displayName: Additional Base Shield Hitpoints
   displayNameID: 629467
   itemModifiers:
   - dogmaAttributeID: 263
@@ -1835,7 +1802,7 @@
   aggregateMode: Maximum
   buffID: 2178
   developerDescription: Proving Kinetic Missile Damage Bonuus
-  displayName: 动能导弹伤害加成
+  displayName: Kinetic Missile Damage Bonus
   displayNameID: 631461
   itemModifiers: []
   locationGroupModifiers: []
@@ -1849,7 +1816,7 @@
   aggregateMode: Maximum
   buffID: 2179
   developerDescription: Proving Small Hybrid Turret Damage Bonus
-  displayName: 小型混合炮台伤害加成
+  displayName: Small Hybrid Turret Damage Bonus
   displayNameID: 631462
   itemModifiers: []
   locationGroupModifiers: []
@@ -1863,7 +1830,7 @@
   aggregateMode: Maximum
   buffID: 2180
   developerDescription: Proving Small Hybrid Turret Optimal Bonus
-  displayName: 小型混合炮台最佳射程加成
+  displayName: Small Hybrid Turret Optimal Range Bonus
   displayNameID: 631463
   itemModifiers: []
   locationGroupModifiers: []
@@ -1888,7 +1855,7 @@
   aggregateMode: Maximum
   buffID: 2185
   developerDescription: Tethering Restricted By Security
-  displayName: 驻留被阻止
+  displayName: Tether blocked
   displayNameID: 639276
   itemModifiers:
   - dogmaAttributeID: 2343
@@ -1901,7 +1868,7 @@
   aggregateMode: Maximum
   buffID: 2186
   developerDescription: Proving AB/MWD Speed Increase
-  displayName: 加力燃烧器/微型跃迁推进器速度增量加成
+  displayName: AB/MWD module speed increase bonus
   displayNameID: 639612
   itemModifiers: []
   locationGroupModifiers: []
@@ -1917,7 +1884,7 @@
   aggregateMode: Minimum
   buffID: 2187
   developerDescription: Proving AB/MWD Cap Need Reduction
-  displayName: 加力燃烧器/微型跃迁推进器电容消耗加成
+  displayName: AB/MWD capacitor consumption bonus
   displayNameID: 639613
   itemModifiers: []
   locationGroupModifiers: []
@@ -1933,987 +1900,10 @@
   aggregateMode: Minimum
   buffID: 2201
   developerDescription: Remote Repair Impedance
-  displayName: 远程维修阻扰
+  displayName: Remote Repair Impedance
   displayNameID: 662014
   itemModifiers:
   - dogmaAttributeID: 2116
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2202:
-  aggregateMode: Maximum
-  buffID: 2202
-  developerDescription: roguelike talent 1110
-  displayName: 演化：改良型无人机结构,装甲,护盾(百分比)
-  displayNameID: 663128
-  itemModifiers:
-  - dogmaAttributeID: 5433
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2203:
-  aggregateMode: Maximum
-  buffID: 2203
-  developerDescription: roguelike talent 1111_1
-  displayName: 演化：改良型无人机引擎 最大速度(百分比)
-  displayNameID: 663129
-  itemModifiers:
-  - dogmaAttributeID: 5434
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2204:
-  aggregateMode: Maximum
-  buffID: 2204
-  developerDescription: roguelike talent 1111_2
-  displayName: 演化：改良型无人机引擎 操控距离(m)
-  displayNameID: 663130
-  itemModifiers:
-  - dogmaAttributeID: 5435
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2205:
-  aggregateMode: Maximum
-  buffID: 2205
-  developerDescription: roguelike talent 1120
-  displayName: 演化：索敌管理单元 无人机武器跟踪速度(百分比)
-  displayNameID: 663138
-  itemModifiers:
-  - dogmaAttributeID: 5436
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2206:
-  aggregateMode: Maximum
-  buffID: 2206
-  developerDescription: roguelike talent 1121
-  displayName: 演化：射程管理单元 无人机最佳射程(百分比)
-  displayNameID: 663139
-  itemModifiers:
-  - dogmaAttributeID: 5437
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2207:
-  aggregateMode: Maximum
-  buffID: 2207
-  developerDescription: roguelike talent 1130_1
-  displayName: 演化：高级无人机控制 控制数
-  displayNameID: 663140
-  itemModifiers:
-  - dogmaAttributeID: 353
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2208:
-  aggregateMode: Maximum
-  buffID: 2208
-  developerDescription: roguelike talent 1130_2
-  displayName: 演化：高级无人机控制 带宽(bit/秒)
-  displayNameID: 663141
-  itemModifiers:
-  - dogmaAttributeID: 1271
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2209:
-  aggregateMode: Maximum
-  buffID: 2209
-  developerDescription: roguelike talent 1131
-  displayName: 演化：无人机火力升级 伤害(百分比)
-  displayNameID: 663142
-  itemModifiers:
-  - dogmaAttributeID: 5438
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2210:
-  aggregateMode: Maximum
-  buffID: 2210
-  developerDescription: roguelike talent 1152_1
-  displayName: 演化：蜂群战术 控制数
-  displayNameID: 663145
-  itemModifiers:
-  - dogmaAttributeID: 353
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2211:
-  aggregateMode: Maximum
-  buffID: 2211
-  developerDescription: roguelike talent 1152_2
-  displayName: 演化：蜂群战术 带宽
-  displayNameID: 663146
-  itemModifiers:
-  - dogmaAttributeID: 1271
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2212:
-  aggregateMode: Maximum
-  buffID: 2212
-  developerDescription: roguelike talent 1152_3
-  displayName: 演化：蜂群战术 无人机舱容量
-  displayNameID: 663147
-  itemModifiers:
-  - dogmaAttributeID: 283
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2213:
-  aggregateMode: Maximum
-  buffID: 2213
-  developerDescription: roguelike talent 1140
-  displayName: 演化：无人机射速升级 射速(百分比)
-  displayNameID: 663149
-  itemModifiers:
-  - dogmaAttributeID: 5439
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2214:
-  aggregateMode: Maximum
-  buffID: 2214
-  developerDescription: roguelike talent 1210
-  displayName: 演化：电容器升级 电容回充速度(百分比)
-  displayNameID: 663155
-  itemModifiers:
-  - dogmaAttributeID: 55
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2215:
-  aggregateMode: Maximum
-  buffID: 2215
-  developerDescription: roguelike talent 1211
-  displayName: 演化：电容器容量升级 电容容量(GJ)
-  displayNameID: 663156
-  itemModifiers:
-  - dogmaAttributeID: 482
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2216:
-  aggregateMode: Maximum
-  buffID: 2216
-  developerDescription: roguelike talent 1220_1
-  displayName: 演化：感应器优化 扫描分辨率(百分比)
-  displayNameID: 663157
-  itemModifiers:
-  - dogmaAttributeID: 564
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2217:
-  aggregateMode: Maximum
-  buffID: 2217
-  developerDescription: roguelike talent 1221_1
-  displayName: 演化：锁定系统升级 锁定距离(m)
-  displayNameID: 663158
-  itemModifiers:
-  - dogmaAttributeID: 76
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2218:
-  aggregateMode: Maximum
-  buffID: 2218
-  developerDescription: roguelike talent 1221_2
-  displayName: 演化：锁定系统升级 锁定目标上限
-  displayNameID: 663159
-  itemModifiers:
-  - dogmaAttributeID: 192
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2219:
-  aggregateMode: Maximum
-  buffID: 2219
-  developerDescription: roguelike talent 1230_1
-  displayName: 演化：高级损伤控制 结构抗性(百分比)
-  displayNameID: 663160
-  itemModifiers:
-  - dogmaAttributeID: 113
-  - dogmaAttributeID: 111
-  - dogmaAttributeID: 109
-  - dogmaAttributeID: 110
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PreMul
-  showOutputValueInUI: ShowNormal
-2220:
-  aggregateMode: Maximum
-  buffID: 2220
-  developerDescription: roguelike talent 1230_2
-  displayName: 演化：高级损伤控制 结构值(百分比)
-  displayNameID: 663161
-  itemModifiers:
-  - dogmaAttributeID: 9
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2221:
-  aggregateMode: Maximum
-  buffID: 2221
-  developerDescription: roguelike talent 1231_1
-  displayName: 演化：推进器效能改良 加力燃烧器及微型跃迁引擎效果(百分比)
-  displayNameID: 663162
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 20
-    groupID: 46
-  - dogmaAttributeID: 20
-    groupID: 475
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2222:
-  aggregateMode: Maximum
-  buffID: 2222
-  developerDescription: roguelike talent 1231_2
-  displayName: 演化：推进器效能改良 加力燃烧器及微型跃迁引擎耗电(百分比)
-  displayNameID: 663163
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 6
-    groupID: 46
-  - dogmaAttributeID: 6
-    groupID: 475
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2223:
-  aggregateMode: Maximum
-  buffID: 2223
-  developerDescription: roguelike talent 1240_1
-  displayName: 演化：船体改良 船舱容量(百分比)
-  displayNameID: 663164
-  itemModifiers:
-  - dogmaAttributeID: 38
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2224:
-  aggregateMode: Maximum
-  buffID: 2224
-  developerDescription: roguelike talent 1240_2
-  displayName: 演化：船体改良 最大速度(百分比)
-  displayNameID: 663165
-  itemModifiers:
-  - dogmaAttributeID: 37
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2225:
-  aggregateMode: Maximum
-  buffID: 2225
-  developerDescription: roguelike talent 1241_1
-  displayName: 演化：紧急维修系统 装甲维修器超载效果(百分比)
-  displayNameID: 663166
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 1230
-    groupID: 62
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2226:
-  aggregateMode: Maximum
-  buffID: 2226
-  developerDescription: roguelike talent 1241_2
-  displayName: 演化：紧急维修系统 护盾回充增量器超载效果(百分比)
-  displayNameID: 663167
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 1231
-    groupID: 40
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2227:
-  aggregateMode: Maximum
-  buffID: 2227
-  developerDescription: roguelike talent 1310_1
-  displayName: 演化：能耗改良 炮台超载效果(百分比)
-  displayNameID: 663168
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 1205
-    skillID: 3300
-  - dogmaAttributeID: 1210
-    skillID: 3300
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2228:
-  aggregateMode: Maximum
-  buffID: 2228
-  developerDescription: roguelike talent 1310_2
-  displayName: 演化：能耗改良 炮台耗电(百分比)
-  displayNameID: 663169
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 6
-    skillID: 3300
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2229:
-  aggregateMode: Maximum
-  buffID: 2229
-  developerDescription: roguelike talent 1311_1
-  displayName: 演化：操作提速 炮台装填时间(百分比)
-  displayNameID: 663170
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 1795
-    skillID: 3300
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2230:
-  aggregateMode: Maximum
-  buffID: 2230
-  developerDescription: roguelike talent 1311_2
-  displayName: 演化：操作提速 锁定速度(百分比)
-  displayNameID: 663171
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 564
-    skillID: 3300
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2231:
-  aggregateMode: Maximum
-  buffID: 2231
-  developerDescription: roguelike talent 1320
-  displayName: 演化：索敌单元升级 炮台跟踪速度(百分比)
-  displayNameID: 663172
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 160
-    groupID: 74
-  - dogmaAttributeID: 160
-    groupID: 53
-  - dogmaAttributeID: 160
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2232:
-  aggregateMode: Maximum
-  buffID: 2232
-  developerDescription: roguelike talent 1321_1
-  displayName: 演化：弹道分析 炮台最佳射程(百分比)
-  displayNameID: 663174
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 54
-    groupID: 74
-  - dogmaAttributeID: 54
-    groupID: 53
-  - dogmaAttributeID: 54
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2233:
-  aggregateMode: Maximum
-  buffID: 2233
-  developerDescription: roguelike talent 1321_2
-  displayName: 演化：弹道分析 炮台失准范围(百分比)
-  displayNameID: 663175
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 158
-    groupID: 74
-  - dogmaAttributeID: 158
-    groupID: 53
-  - dogmaAttributeID: 158
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2234:
-  aggregateMode: Maximum
-  buffID: 2234
-  developerDescription: roguelike talent 1330
-  displayName: 演化：弹头升级 炮台伤害(百分比)
-  displayNameID: 663176
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 64
-    groupID: 74
-  - dogmaAttributeID: 64
-    groupID: 53
-  - dogmaAttributeID: 64
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2235:
-  aggregateMode: Maximum
-  buffID: 2235
-  developerDescription: roguelike talent 1331
-  displayName: 演化：炮台座改良 炮台射速(百分比)
-  displayNameID: 663177
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 51
-    groupID: 74
-  - dogmaAttributeID: 51
-    groupID: 53
-  - dogmaAttributeID: 51
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2236:
-  aggregateMode: Maximum
-  buffID: 2236
-  developerDescription: roguelike talent 1341
-  displayName: 演化：武器升级支持 炮台占用能量栅格(百分比)
-  displayNameID: 663178
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 30
-    groupID: 74
-  - dogmaAttributeID: 30
-    groupID: 53
-  - dogmaAttributeID: 30
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2237:
-  aggregateMode: Maximum
-  buffID: 2237
-  developerDescription: roguelike talent 1410
-  displayName: 演化：引信升级 导弹爆炸速度(百分比)
-  displayNameID: 663179
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 653
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2238:
-  aggregateMode: Maximum
-  buffID: 2238
-  developerDescription: roguelike talent 1411
-  displayName: 演化：精确打击 导弹爆炸半径(百分比)
-  displayNameID: 663180
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 654
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2239:
-  aggregateMode: Maximum
-  buffID: 2239
-  developerDescription: roguelike talent 1420
-  displayName: 演化：额外燃料升级 导弹飞行时间(百分比)
-  displayNameID: 663181
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 281
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2240:
-  aggregateMode: Maximum
-  buffID: 2240
-  developerDescription: roguelike talent 1421
-  displayName: 演化：推进器升级 导弹飞行速度(百分比)
-  displayNameID: 663182
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 37
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2241:
-  aggregateMode: Maximum
-  buffID: 2241
-  developerDescription: roguelike talent 1430
-  displayName: 演化：战斗部升级 导弹伤害(百分比)
-  displayNameID: 663183
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 114
-    skillID: 3319
-  - dogmaAttributeID: 116
-    skillID: 3319
-  - dogmaAttributeID: 117
-    skillID: 3319
-  - dogmaAttributeID: 118
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2242:
-  aggregateMode: Maximum
-  buffID: 2242
-  developerDescription: roguelike talent 1431
-  displayName: 演化：发射器改良 发射器射速(百分比)
-  displayNameID: 663184
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 51
-    groupID: 510
-  - dogmaAttributeID: 51
-    groupID: 771
-  - dogmaAttributeID: 51
-    groupID: 510
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2243:
-  aggregateMode: Maximum
-  buffID: 2243
-  developerDescription: roguelike talent 1440_1
-  displayName: 演化：导弹舱强度升级 发射器装填时间(百分比)
-  displayNameID: 663185
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 1795
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2244:
-  aggregateMode: Maximum
-  buffID: 2244
-  developerDescription: roguelike talent 1440_2
-  displayName: 演化：导弹舱强度升级 发射器超载效果(百分比)
-  displayNameID: 663186
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 1205
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2245:
-  aggregateMode: Maximum
-  buffID: 2245
-  developerDescription: roguelike talent 1441
-  displayName: 演化：能耗改良 发射器占用CPU(百分比)
-  displayNameID: 663187
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 50
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2246:
-  aggregateMode: Maximum
-  buffID: 2246
-  developerDescription: roguelike talent 1452
-  displayName: 演化：齐射火控 发射器射速(百分比)
-  displayNameID: 663188
-  itemModifiers: []
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 1795
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2247:
-  aggregateMode: Maximum
-  buffID: 2247
-  developerDescription: roguelike talent 1610
-  displayName: 演化：装甲屏蔽层 停滞缠绕抗性(百分比)
-  displayNameID: 663189
-  itemModifiers:
-  - dogmaAttributeID: 2115
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModAdd
-  showOutputValueInUI: ShowNormal
-2248:
-  aggregateMode: Maximum
-  buffID: 2248
-  developerDescription: roguelike talent 1611
-  displayName: 演化：轻质装甲合金 灵活性(百分比)
-  displayNameID: 663190
-  itemModifiers:
-  - dogmaAttributeID: 70
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2249:
-  aggregateMode: Maximum
-  buffID: 2249
-  developerDescription: roguelike talent 1620
-  displayName: 演化：装甲抗性改良 装甲抗性(百分比)
-  displayNameID: 663191
-  itemModifiers:
-  - dogmaAttributeID: 267
-  - dogmaAttributeID: 268
-  - dogmaAttributeID: 269
-  - dogmaAttributeID: 270
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2250:
-  aggregateMode: Maximum
-  buffID: 2250
-  developerDescription: roguelike talent 1621
-  displayName: 演化：装甲维修效率 装甲维修器效果(百分比)
-  displayNameID: 663192
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 84
-    groupID: 62
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2251:
-  aggregateMode: Maximum
-  buffID: 2251
-  developerDescription: roguelike talent 1630
-  displayName: 演化：附加板改良 附甲板效果(百分比)
-  displayNameID: 663193
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 1159
-    groupID: 329
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2252:
-  aggregateMode: Maximum
-  buffID: 2252
-  developerDescription: roguelike talent 1631
-  displayName: 演化：装甲维修能耗 装甲维修器耗电(百分比)
-  displayNameID: 663194
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 6
-    groupID: 62
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2253:
-  aggregateMode: Maximum
-  buffID: 2253
-  developerDescription: roguelike talent 1640
-  displayName: 演化：附甲板轻质化 附甲板质量惩罚(百分比)
-  displayNameID: 663195
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 796
-    groupID: 329
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2254:
-  aggregateMode: Maximum
-  buffID: 2254
-  developerDescription: roguelike talent 1641
-  displayName: 演化：装甲结构强化 装甲(百分比)
-  displayNameID: 663196
-  itemModifiers:
-  - dogmaAttributeID: 265
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2255:
-  aggregateMode: Maximum
-  buffID: 2255
-  developerDescription: roguelike talent 1652
-  displayName: 演化：装甲抗性终极改良 装甲抗性(百分比)
-  displayNameID: 663197
-  itemModifiers:
-  - dogmaAttributeID: 267
-  - dogmaAttributeID: 268
-  - dogmaAttributeID: 269
-  - dogmaAttributeID: 270
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2256:
-  aggregateMode: Maximum
-  buffID: 2256
-  developerDescription: roguelike talent 1710
-  displayName: 演化：护盾节点分析 护盾回充时间(百分比)
-  displayNameID: 663198
-  itemModifiers:
-  - dogmaAttributeID: 479
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2257:
-  aggregateMode: Maximum
-  buffID: 2257
-  developerDescription: roguelike talent 1711
-  displayName: 演化：电波屏障 能量中和与能量吸取抗性(百分比)
-  displayNameID: 663199
-  itemModifiers:
-  - dogmaAttributeID: 2045
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: ModSub
-  showOutputValueInUI: ShowNormal
-2258:
-  aggregateMode: Maximum
-  buffID: 2258
-  developerDescription: roguelike talent 1720
-  displayName: 演化：护盾抗性改良 护盾抗性(百分比)
-  displayNameID: 663200
-  itemModifiers:
-  - dogmaAttributeID: 271
-  - dogmaAttributeID: 272
-  - dogmaAttributeID: 273
-  - dogmaAttributeID: 274
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2259:
-  aggregateMode: Maximum
-  buffID: 2259
-  developerDescription: roguelike talent 1721
-  displayName: 演化：护盾回充效果优化 护盾回充增量器效果(百分比)
-  displayNameID: 663201
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 68
-    groupID: 40
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2260:
-  aggregateMode: Maximum
-  buffID: 2260
-  developerDescription: roguelike talent 1730
-  displayName: 演化：扩展装置改良 护盾扩展装置效果(百分比)
-  displayNameID: 663202
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 72
-    groupID: 38
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2261:
-  aggregateMode: Maximum
-  buffID: 2261
-  developerDescription: roguelike talent 1731
-  displayName: 演化：护盾回充能耗优化 护盾回充增量器耗电(百分比)
-  displayNameID: 663203
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 6
-    groupID: 40
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2262:
-  aggregateMode: Maximum
-  buffID: 2262
-  developerDescription: roguelike talent 1740
-  displayName: 演化：扩展装置轻薄化 护盾扩展装置信号半径惩罚(百分比)
-  displayNameID: 663204
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 983
-    groupID: 38
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2263:
-  aggregateMode: Maximum
-  buffID: 2263
-  developerDescription: roguelike talent 1741
-  displayName: 演化：护盾优化 护盾(百分比)
-  displayNameID: 663205
-  itemModifiers:
-  - dogmaAttributeID: 263
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2264:
-  aggregateMode: Maximum
-  buffID: 2264
-  developerDescription: roguelike talent 1752
-  displayName: 演化：护盾抗性终极改良 护盾抗性(百分比)
-  displayNameID: 663206
-  itemModifiers:
-  - dogmaAttributeID: 271
-  - dogmaAttributeID: 272
-  - dogmaAttributeID: 273
-  - dogmaAttributeID: 274
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2265:
-  aggregateMode: Maximum
-  buffID: 2265
-  developerDescription: roguelike researched tech 101-110
-  displayName: 研究：理论积累 炮台与导弹伤害(百分比)
-  displayNameID: 663212
-  itemModifiers: []
-  locationGroupModifiers:
-  - dogmaAttributeID: 64
-    groupID: 74
-  - dogmaAttributeID: 64
-    groupID: 53
-  - dogmaAttributeID: 64
-    groupID: 55
-  locationModifiers: []
-  locationRequiredSkillModifiers:
-  - dogmaAttributeID: 114
-    skillID: 3319
-  - dogmaAttributeID: 116
-    skillID: 3319
-  - dogmaAttributeID: 117
-    skillID: 3319
-  - dogmaAttributeID: 118
-    skillID: 3319
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2266:
-  aggregateMode: Maximum
-  buffID: 2266
-  developerDescription: roguelike researched tech 201-210
-  displayName: 研究：原型设计 扫描分辨率与电容(百分比)
-  displayNameID: 663213
-  itemModifiers:
-  - dogmaAttributeID: 564
-  - dogmaAttributeID: 482
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2267:
-  aggregateMode: Maximum
-  buffID: 2267
-  developerDescription: roguelike researched tech 301-310
-  displayName: 研究：升级演算 护盾,装甲与结构(百分比)
-  displayNameID: 663214
-  itemModifiers:
-  - dogmaAttributeID: 263
-  - dogmaAttributeID: 265
-  - dogmaAttributeID: 9
-  locationGroupModifiers: []
-  locationModifiers: []
-  locationRequiredSkillModifiers: []
-  operationName: PostPercent
-  showOutputValueInUI: ShowNormal
-2269:
-  aggregateMode: Maximum
-  buffID: 2269
-  developerDescription: roguelike talent 1220_2
-  displayName: 演化：感应器优化 感应强度(百分比)
-  displayNameID: 665337
-  itemModifiers:
-  - dogmaAttributeID: 208
-  - dogmaAttributeID: 209
-  - dogmaAttributeID: 210
-  - dogmaAttributeID: 211
   locationGroupModifiers: []
   locationModifiers: []
   locationRequiredSkillModifiers: []
@@ -2923,7 +1913,7 @@
   aggregateMode: Maximum
   buffID: 2405
   developerDescription: 'Insurgency Suppression Bonus: Interdiction Range'
-  displayName: 反游寇势力停滞缠绕光束和跃迁扰频器范围加成
+  displayName: Webifier and scrambler range bonus for anti-pirates
   displayNameID: 698669
   itemModifiers: []
   locationGroupModifiers:
@@ -2939,7 +1929,7 @@
   aggregateMode: Minimum
   buffID: 2414
   developerDescription: CDCloudVelocity
-  displayName: 舰船最大速度
+  displayName: Ship Velocity
   displayNameID: 708733
   itemModifiers:
   - dogmaAttributeID: 37
@@ -2952,7 +1942,7 @@
   aggregateMode: Maximum
   buffID: 2415
   developerDescription: CDCloudInertia
-  displayName: 舰船惯性调整系数
+  displayName: Ship Inertia
   displayNameID: 708734
   itemModifiers:
   - dogmaAttributeID: 70
@@ -2965,7 +1955,7 @@
   aggregateMode: Maximum
   buffID: 2416
   developerDescription: CDCloudCapShieldRecharge
-  displayName: 护盾和电容回充速率
+  displayName: Shield and Capacitor Recharge Rate
   displayNameID: 708735
   itemModifiers:
   - dogmaAttributeID: 55
@@ -2979,7 +1969,7 @@
   aggregateMode: Maximum
   buffID: 2417
   developerDescription: CDCloudModuleCycle
-  displayName: 装备循环时间和装填速度
+  displayName: Module Cycle and Reload Speed
   displayNameID: 708736
   itemModifiers:
   - dogmaAttributeID: 51
@@ -2994,7 +1984,7 @@
   aggregateMode: Minimum
   buffID: 2418
   developerDescription: CDCloudTracking
-  displayName: 炮台跟踪速度和导弹爆炸速度
+  displayName: Turret Tracking and Missile Explosion Velocity
   displayNameID: 708737
   itemModifiers: []
   locationGroupModifiers: []
@@ -3010,7 +2000,7 @@
   aggregateMode: Minimum
   buffID: 2419
   developerDescription: Anti-Tachyon Cloud Velocity Penalty
-  displayName: 舰船最大速度
+  displayName: Ship Velocity
   displayNameID: 709266
   itemModifiers:
   - dogmaAttributeID: 37
@@ -3023,7 +2013,7 @@
   aggregateMode: Minimum
   buffID: 2420
   developerDescription: Anti-Tachyon Cloud Inertia Penalty
-  displayName: 舰船惯性调整系数
+  displayName: Ship Inertia
   displayNameID: 709267
   itemModifiers:
   - dogmaAttributeID: 70
@@ -3036,7 +2026,7 @@
   aggregateMode: Maximum
   buffID: 2421
   developerDescription: Anti-Tachyon Cloud Signature Radius  Bonus
-  displayName: 信号半径
+  displayName: Signature Radius
   displayNameID: 709278
   itemModifiers:
   - dogmaAttributeID: 552
@@ -3049,7 +2039,7 @@
   aggregateMode: Maximum
   buffID: 2426
   developerDescription: Disable MJDs
-  displayName: 已阻止微型跳跃引擎
+  displayName: Micro Jump Drive Blocked
   displayNameID: 722294
   itemModifiers: []
   locationGroupModifiers: []
@@ -3063,7 +2053,7 @@
   aggregateMode: Minimum
   buffID: 2427
   developerDescription: Set Speed Limit
-  displayName: 已应用速度限制
+  displayName: Speed Limit Applied
   displayNameID: 722295
   itemModifiers:
   - dogmaAttributeID: 2033
@@ -3076,7 +2066,7 @@
   aggregateMode: Maximum
   buffID: 2428
   developerDescription: MJFG Blocked
-  displayName: 已阻止微型跳跃力场发生器
+  displayName: Micro Jump Field Generator Blocked
   displayNameID: 721861
   itemModifiers:
   - dogmaAttributeID: 5694
@@ -3097,3 +2087,153 @@
   locationRequiredSkillModifiers: []
   operationName: ModAdd
   showOutputValueInUI: Hide
+2433:
+  aggregateMode: Maximum
+  buffID: 2433
+  developerDescription: Sov System Modifier Shield HP Bonus
+  displayName: Shield Hitpoint Bonus
+  displayNameID: 1011194
+  itemModifiers:
+  - dogmaAttributeID: 263
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2434:
+  aggregateMode: Maximum
+  buffID: 2434
+  developerDescription: Sov System Modifier Capacitor Capacity Bonus
+  displayName: Capacitor Capacity Bonus
+  displayNameID: 1011195
+  itemModifiers:
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2435:
+  aggregateMode: Maximum
+  buffID: 2435
+  developerDescription: Sov System Modifier Armor HP Bonus
+  displayName: Armor Hitpoint Bonus
+  displayNameID: 1011201
+  itemModifiers:
+  - dogmaAttributeID: 265
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2436:
+  aggregateMode: Maximum
+  buffID: 2436
+  developerDescription: Sov System Modifier Overheating Bonus - Includes Ewar
+  displayName: Module Overload Bonus
+  displayNameID: 1011202
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1181
+  - dogmaAttributeID: 1205
+  - dogmaAttributeID: 1206
+  - dogmaAttributeID: 1208
+  - dogmaAttributeID: 1210
+  - dogmaAttributeID: 1222
+  - dogmaAttributeID: 1223
+  - dogmaAttributeID: 1225
+  - dogmaAttributeID: 1226
+  - dogmaAttributeID: 1230
+  - dogmaAttributeID: 1231
+  - dogmaAttributeID: 1935
+  - dogmaAttributeID: 1936
+  - dogmaAttributeID: 1937
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2437:
+  aggregateMode: Minimum
+  buffID: 2437
+  developerDescription: Sov System Modifier Capacitor Recharge Bonus
+  displayName: Capacitor Recharge Bonus
+  displayNameID: 1011203
+  itemModifiers:
+  - dogmaAttributeID: 55
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2438:
+  aggregateMode: Maximum
+  buffID: 2438
+  developerDescription: Sov System Modifier Targeting and DScan Range Bonus
+  displayName: Targeting and Directional Scanner Range Bonus
+  displayNameID: 1011204
+  itemModifiers:
+  - dogmaAttributeID: 76
+  - dogmaAttributeID: 5796
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2439:
+  aggregateMode: Maximum
+  buffID: 2439
+  developerDescription: Sov System Modifier Scan Resolution Bonus
+  displayName: Scan Resolution Bonus
+  displayNameID: 1011205
+  itemModifiers:
+  - dogmaAttributeID: 564
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2440:
+  aggregateMode: Maximum
+  buffID: 2440
+  developerDescription: Sov System Modifier Warp Speed Addition
+  displayName: AU/s Additional Base Warp Speed
+  displayNameID: 1011206
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2441:
+  aggregateMode: Maximum
+  buffID: 2441
+  developerDescription: Sov System Modifier Shield Booster Bonus
+  displayName: Local Shield Booster Bonus
+  displayNameID: 1015276
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3416
+  - dogmaAttributeID: 68
+    skillID: 21802
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2442:
+  aggregateMode: Maximum
+  buffID: 2442
+  developerDescription: Sov System Modifier Armor Repairer Bonus
+  displayName: Local Armor Repairer Bonus
+  displayNameID: 1015333
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 3393
+  - dogmaAttributeID: 84
+    skillID: 21803
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal

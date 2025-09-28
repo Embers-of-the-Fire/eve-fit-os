@@ -25,7 +25,6 @@ message Types {
     message Type {
         required int32 groupID = 1;
         required int32 categoryID = 2;
-        required bool published = 3;
 
         optional double capacity = 4;
         optional double mass = 5;
@@ -34,32 +33,6 @@ message Types {
     }
 
     map<int32, Type> entries = 1;
-}
-
-message Categories {
-    message Category {
-        required bool published = 1;
-    }
-
-    map<int32, Category> entries = 1;
-}
-
-message Groups {
-    message Group {
-        required int32 categoryID = 1;
-        required bool published = 2;
-    }
-
-    map<int32, Group> entries = 1;
-}
-
-message MarketGroups {
-    message MarketGroup {
-        optional int32 parentGroupID = 1;
-        optional int32 iconID = 2;
-    }
-
-    map<int32, MarketGroup> entries = 1;
 }
 
 message DogmaAttributes {

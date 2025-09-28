@@ -12,8 +12,8 @@ def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
     with open(f"{path}/types.json", encoding="utf-8") as fp:
         types = json.load(fp)
         types = {int(k): v for k, v in types.items()}
-        for ty in types.values():
-            ty["name"] = loc[ty["typeNameID"]]
+        for v in types.values():
+            v["name"] = loc.get(v.get("typeNameID"))
 
     data["types"] = types
     yield
@@ -25,7 +25,6 @@ def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
     for id, entry in types.items():
         pb2.entries[id].groupID = entry["groupID"]
         pb2.entries[id].categoryID = data["groups"][entry["groupID"]]["categoryID"]
-        pb2.entries[id].published = entry["published"]
 
         if "capacity" in entry and entry["capacity"] != 0.0:
             pb2.entries[id].capacity = entry["capacity"]

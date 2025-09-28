@@ -51,7 +51,9 @@ def _fixup_modifier_info(modifier, data):
         else:
             try:
                 modifier["skillTypeID"] = [
-                    id for id, skill in data["types"].items() if skill["name"] == modifier["skillType"]
+                    id
+                    for id, skill in data["types"].items()
+                    if skill["name"] == modifier["skillType"]
                 ][0]
             except IndexError:
                 raise ValueError(f"Unknown skill: {modifier['skillType']}")
@@ -59,7 +61,9 @@ def _fixup_modifier_info(modifier, data):
     if "group" in modifier:
         try:
             modifier["groupID"] = [
-                id for id, group in data["groups"].items() if group["name"] == modifier["skillType"]
+                id
+                for id, group in data["groups"].items()
+                if group["name"] == modifier["skillType"]
             ][0]
         except IndexError:
             raise ValueError(f"Unknown group: {modifier['group']}")
@@ -85,7 +89,9 @@ def patch(entries, patches, data):
             # Check if the name is unique.
             for entry in entries.values():
                 if entry["effectName"] == patch["effectName"]:
-                    raise ValueError(f"Effect name '{patch['effectName']}' is not unique.")
+                    raise ValueError(
+                        f"Effect name '{patch['effectName']}' is not unique."
+                    )
 
             entries[nextEffectID] = patch
             nextEffectID -= 1
@@ -93,7 +99,9 @@ def patch(entries, patches, data):
         # Fixup patch entries.
         if patch.get("patch"):
             names = [patchTarget["name"] for patchTarget in patch["patch"]]
-            effectIDs = [id for id, entry in entries.items() if entry["effectName"] in names]
+            effectIDs = [
+                id for id, entry in entries.items() if entry["effectName"] in names
+            ]
 
             # Append the modifierInfo.
             for modifier in patch.get("modifierInfo", []):

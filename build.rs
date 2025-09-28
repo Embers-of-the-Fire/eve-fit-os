@@ -40,8 +40,8 @@ struct NameObj {
 }
 
 fn load_patch_id() -> Result<()> {
-    let dir = env::var("FSD_JSON_OUT_DIR")?;
-    let dir = PathBuf::from(dir);
+    let dir = env::var("OUTPUT_DIR")?;
+    let dir = PathBuf::from(dir).join("json");
 
     let out = env::var("OUT_DIR")?;
     let out = PathBuf::from(out);

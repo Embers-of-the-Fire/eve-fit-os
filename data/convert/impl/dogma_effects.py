@@ -6,7 +6,7 @@ import efos_pb2
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
+def convert(path: PathLike, out: PathLike, data):
     print("Loading dogmaEffects ...")
 
     with open(f"{path}/dogmaeffects.json", encoding="utf-8") as fp:

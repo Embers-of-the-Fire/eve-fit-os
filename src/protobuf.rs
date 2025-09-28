@@ -94,130 +94,151 @@ impl Database {
                 .entries
                 .into_iter()
                 .map(|(k, v)| {
-                    (k, fit::Type {
-                        group_id: v.group_id,
-                        category_id: v.category_id,
-                        capacity: v.capacity,
-                        mass: v.mass,
-                        radius: v.radius,
-                        volume: v.volume,
-                    })
+                    (
+                        k,
+                        fit::Type {
+                            group_id: v.group_id,
+                            category_id: v.category_id,
+                            capacity: v.capacity,
+                            mass: v.mass,
+                            radius: v.radius,
+                            volume: v.volume,
+                        },
+                    )
                 })
                 .collect(),
             type_dogma: type_dogma
                 .entries
                 .into_iter()
                 .map(|(k, v)| {
-                    (k, TypeDogmaItem {
-                        attributes: v
-                            .dogma_attributes
-                            .into_iter()
-                            .map(|a| fit::TypeDogmaAttribute {
-                                attribute_id: a.attribute_id,
-                                value: a.value,
-                            })
-                            .collect(),
-                        effects: v
-                            .dogma_effects
-                            .into_iter()
-                            .map(|e| fit::TypeDogmaEffect {
-                                effect_id: e.effect_id,
-                                is_default: e.is_default,
-                            })
-                            .collect(),
-                    })
+                    (
+                        k,
+                        TypeDogmaItem {
+                            attributes: v
+                                .dogma_attributes
+                                .into_iter()
+                                .map(|a| fit::TypeDogmaAttribute {
+                                    attribute_id: a.attribute_id,
+                                    value: a.value,
+                                })
+                                .collect(),
+                            effects: v
+                                .dogma_effects
+                                .into_iter()
+                                .map(|e| fit::TypeDogmaEffect {
+                                    effect_id: e.effect_id,
+                                    is_default: e.is_default,
+                                })
+                                .collect(),
+                        },
+                    )
                 })
                 .collect(),
             dogma_attributes: dogma_attr
                 .entries
                 .into_iter()
                 .map(|(k, v)| {
-                    (k, fit::DogmaAttribute {
-                        default_value: v.default_value,
-                        high_is_good: v.high_is_good,
-                        stackable: v.stackable,
-                    })
+                    (
+                        k,
+                        fit::DogmaAttribute {
+                            default_value: v.default_value,
+                            high_is_good: v.high_is_good,
+                            stackable: v.stackable,
+                        },
+                    )
                 })
                 .collect(),
             dogma_effects: dogma_effect
                 .entries
                 .into_iter()
                 .map(|(k, v)| {
-                    (k, fit::DogmaEffect {
-                        effect_category: v.effect_category,
-                        modifier_info: v
-                            .modifier_info
-                            .into_iter()
-                            .map(|m| fit::DogmaEffectModifierInfo {
-                                domain: m.domain.into(),
-                                func: m.func.into(),
-                                modified_attribute_id: m.modified_attribute_id,
-                                modifying_attribute_id: m.modifying_attribute_id,
-                                operation: m.operation,
-                                group_id: m.group_id,
-                                skill_type_id: m.skill_type_id,
-                            })
-                            .collect(),
-                    })
+                    (
+                        k,
+                        fit::DogmaEffect {
+                            effect_category: v.effect_category,
+                            modifier_info: v
+                                .modifier_info
+                                .into_iter()
+                                .map(|m| fit::DogmaEffectModifierInfo {
+                                    domain: m.domain.into(),
+                                    func: m.func.into(),
+                                    modified_attribute_id: m.modified_attribute_id,
+                                    modifying_attribute_id: m.modifying_attribute_id,
+                                    operation: m.operation,
+                                    group_id: m.group_id,
+                                    skill_type_id: m.skill_type_id,
+                                })
+                                .collect(),
+                        },
+                    )
                 })
                 .collect(),
             buff_collections: buff_collections
                 .entries
                 .into_iter()
                 .map(|(k, v)| {
-                    (k, fit::Buff {
-                        aggregate_mode: match v.aggregate_mode {
-                            0 => fit::BuffAggregateMode::Maximum,
-                            1 => fit::BuffAggregateMode::Minimum,
-                            _ => {
-                                panic!("Unknown aggregate mode: {:?}", v.aggregate_mode)
-                            }
+                    (
+                        k,
+                        fit::Buff {
+                            aggregate_mode: match v.aggregate_mode {
+                                0 => fit::BuffAggregateMode::Maximum,
+                                1 => fit::BuffAggregateMode::Minimum,
+                                _ => {
+                                    panic!(
+                                        "Unknown aggregate mode: {:?}",
+                                        v.aggregate_mode
+                                    )
+                                }
+                            },
+                            operation: match v.operation_name {
+                                0 => fit::BuffOperation::PreAssign,
+                                1 => fit::BuffOperation::PreMul,
+                                2 => fit::BuffOperation::PreDiv,
+                                3 => fit::BuffOperation::ModAdd,
+                                4 => fit::BuffOperation::ModSub,
+                                5 => fit::BuffOperation::PostMul,
+                                6 => fit::BuffOperation::PostDiv,
+                                7 => fit::BuffOperation::PostPercent,
+                                8 => fit::BuffOperation::PostAssign,
+                                _ => {
+                                    panic!(
+                                        "Unknown buff operation: {:?}",
+                                        v.operation_name
+                                    )
+                                }
+                            },
+                            item_modifiers: v
+                                .item_modifiers
+                                .into_iter()
+                                .map(|m| fit::BuffItemModifier {
+                                    dogma_attribute_id: m.dogma_attribute_id,
+                                })
+                                .collect(),
+                            location_modifiers: v
+                                .location_modifiers
+                                .into_iter()
+                                .map(|m| fit::BuffItemModifier {
+                                    dogma_attribute_id: m.dogma_attribute_id,
+                                })
+                                .collect(),
+                            location_group_modifiers: v
+                                .location_group_modifiers
+                                .into_iter()
+                                .map(|m| fit::BuffGroupModifier {
+                                    dogma_attribute_id: m.dogma_attribute_id,
+                                    group_id: m.group_id,
+                                })
+                                .collect(),
+                            location_required_skill_modifiers: v
+                                .location_required_skill_modifiers
+                                .into_iter()
+                                .map(|m| fit::BuffSkillModifier {
+                                    dogma_attribute_id: m.dogma_attribute_id,
+                                    skill_id: m.skill_id,
+                                })
+                                .collect(),
                         },
-                        operation: match v.operation_name {
-                            0 => fit::BuffOperation::PreAssign,
-                            1 => fit::BuffOperation::PreMul,
-                            2 => fit::BuffOperation::PreDiv,
-                            3 => fit::BuffOperation::ModAdd,
-                            4 => fit::BuffOperation::ModSub,
-                            5 => fit::BuffOperation::PostMul,
-                            6 => fit::BuffOperation::PostDiv,
-                            7 => fit::BuffOperation::PostPercent,
-                            8 => fit::BuffOperation::PostAssign,
-                            _ => {
-                                panic!("Unknown buff operation: {:?}", v.operation_name)
-                            }
-                        },
-                        item_modifiers: v
-                            .item_modifiers
-                            .into_iter()
-                            .map(|m| fit::BuffItemModifier {
-                                dogma_attribute_id: m.dogma_attribute_id,
-                            })
-                            .collect(),
-                        location_modifiers: v
-                            .location_modifiers
-                            .into_iter()
-                            .map(|m| fit::BuffItemModifier {
-                                dogma_attribute_id: m.dogma_attribute_id,
-                            })
-                            .collect(),
-                        location_group_modifiers: v
-                            .location_group_modifiers
-                            .into_iter()
-                            .map(|m| fit::BuffGroupModifier {
-                                dogma_attribute_id: m.dogma_attribute_id,
-                                group_id: m.group_id,
-                            })
-                            .collect(),
-                        location_required_skill_modifiers: v
-                            .location_required_skill_modifiers
-                            .into_iter()
-                            .map(|m| fit::BuffSkillModifier {
-                                dogma_attribute_id: m.dogma_attribute_id,
-                                skill_id: m.skill_id,
-                            })
-                            .collect(),
-                    })
+                    )
                 })
                 .collect(),
         }

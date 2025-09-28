@@ -1,66 +1,58 @@
 import os
 import pickle
-import sys
 
-from .impl import (
-    categories,
+from dotenv import load_dotenv
+
+from data.convert.impl import categories, groups, market_groups
+
+load_dotenv()
+
+from .paths import FSD_BINARY_DIR, FSD_LOC_EN_DIR, FSD_PATCH_DIR, OUTPUT_DIR, PATCH_DIR  # noqa: E402
+from .impl import (  # noqa: E402
     dogma_attributes,
     dogma_effects,
-    groups,
-    market_groups,
     types,
     type_dogma,
     dbuffcollections,
 )
-from .patches import (
+from .patches import (  # noqa: E402
     dogma_attributes as patch_dogma_attributes,
     dogma_effects as patch_dogma_effects,
     type_dogma as patch_type_dogma,
 )
-from .patches.loader import load_patches
+from .patches.loader import load_patches  # noqa: E402
 
-
-if len(sys.argv) != 6:
-    print(
-        "Usage: python3 convert.py"
-        " <path/to/eve-sde/fsdbinary>"
-        " <path/to/localization-en-us>"
-        " <path/to/eve-sde/fsd-patches>"
-        " <path/to/patches>"
-        " <path/to/output>"
-    )
+if FSD_BINARY_DIR is None or not FSD_BINARY_DIR.exists():
+    print("No `FSD_BINARY_DIR` set, or it does not exist.")
+    exit(1)
+if FSD_LOC_EN_DIR is None or not FSD_LOC_EN_DIR.exists():
+    print("No `FSD_LOC_EN_DIR` set, or it does not exist.")
     exit(1)
 
-fsd_bin_dir = sys.argv[1]
-loc_file = sys.argv[2]
-fsd_patch_dir = sys.argv[3]
-patch_dir = sys.argv[4]
-out_dir = sys.argv[5]
+os.makedirs(f"{OUTPUT_DIR}/pb2", exist_ok=True)
+os.makedirs(f"{OUTPUT_DIR}/json", exist_ok=True)
 
-os.makedirs(f"{out_dir}/pb2", exist_ok=True)
-os.makedirs(f"{out_dir}/json", exist_ok=True)
+with open(FSD_LOC_EN_DIR, "rb") as fp:
+    _, en = pickle.load(fp)
+    loc = {key: value[0] for key, value in en.items()}
 
 data = {}
 gens = []
 
-with open(loc_file, 'rb') as f:
-    raw_loc = pickle.load(f)
-    loc = {k: v[0] for k, v in raw_loc[1].items()}
-
-gens.append(categories.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(groups.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(types.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(market_groups.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(dogma_attributes.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(dogma_effects.convert(fsd_bin_dir, loc, out_dir, data))
-gens.append(type_dogma.convert(fsd_bin_dir, fsd_patch_dir, loc, out_dir, data))
-gens.append(dbuffcollections.convert(fsd_patch_dir, out_dir, data))
+gens.append(types.convert(FSD_BINARY_DIR, loc, OUTPUT_DIR, data))
+gens.append(dogma_attributes.convert(FSD_BINARY_DIR, OUTPUT_DIR, data))
+gens.append(dogma_effects.convert(FSD_BINARY_DIR, OUTPUT_DIR, data))
+gens.append(type_dogma.convert(FSD_BINARY_DIR, FSD_PATCH_DIR, OUTPUT_DIR, data))
+gens.append(dbuffcollections.convert(FSD_PATCH_DIR, OUTPUT_DIR, data))
+gens.append(groups.convert(FSD_BINARY_DIR, loc, OUTPUT_DIR, data))
+gens.append(categories.convert(FSD_BINARY_DIR, loc, OUTPUT_DIR, data))
+gens.append(market_groups.convert(FSD_BINARY_DIR, loc, OUTPUT_DIR, data))
 
 # First iteration updates "data" with all the name -> ID mappings.
 for gen in gens:
     next(gen)
 
-patches = load_patches(patch_dir)
+patches = load_patches(PATCH_DIR)
 
 # Patch all data.
 patch_dogma_attributes.patch(data["dogmaAttributes"], patches["attributes"], data)
