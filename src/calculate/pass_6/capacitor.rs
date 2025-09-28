@@ -109,7 +109,7 @@ pub fn attribute_capacitor_depletes_in(ship: &mut Ship) {
                     time_next = f64::min(time_next, module.time_next);
                 }
 
-                if time_last > 86400.0 {
+                if time_last > 86400000.0 {
                     break;
                 }
             }
