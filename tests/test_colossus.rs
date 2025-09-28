@@ -9,6 +9,7 @@ use eve_fit_os::fit::{
 use eve_fit_os::protobuf::Database;
 
 #[test]
+#[ignore = "requires serenity-based data. Test only if you are targeting serenity."]
 fn test_colossus() {
     let mut skill_all_5: HashMap<i32, u8> = {
         let rdr =
