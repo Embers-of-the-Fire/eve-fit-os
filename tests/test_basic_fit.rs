@@ -154,4 +154,18 @@ fn test_basic_fit() {
             .unwrap()
             .value,
     );
+
+    println!(
+        "Implant tracker: {:#?}",
+        out.implants
+            .iter()
+            .find(|u| u.item_id == ItemID::Item(57123))
+            .unwrap()
+            .attributes
+            .get(&314)
+            .unwrap()
+            .tracked_modifiers
+            .borrow()
+            .as_slice()
+    )
 }

@@ -2,6 +2,7 @@ use std::collections::HashMap;
 
 use super::Ship;
 use super::item::{Attribute, EffectOperator, Item, Object};
+use crate::calculate::item::{ModifierSource, ModifierTracker};
 use crate::constant::PENALTY_FACTOR;
 use crate::provider::{FitProvider, InfoProvider};
 
@@ -115,16 +116,22 @@ impl Attribute {
                     info.get_dogma_attribute(effect.source_attribute_id)
                         .default_value
                 };
-                let source_value = operator.into_func()(source_value);
+                let normalized_value = operator.into_func()(source_value);
+
+                let value_group = (
+                    normalized_value,
+                    source_value,
+                    ModifierSource::Effect(*effect),
+                );
 
                 if effect.penalty && OPERATOR_HAS_PENALTY.contains(&effect.operator) {
-                    if source_value.is_sign_negative() {
-                        penalty_negative.push(source_value);
+                    if normalized_value.is_sign_negative() {
+                        penalty_negative.push(value_group);
                     } else {
-                        penalty_positive.push(source_value);
+                        penalty_positive.push(value_group);
                     }
                 } else {
-                    no_penalty.push(source_value);
+                    no_penalty.push(value_group);
                 }
             }
 
@@ -133,16 +140,24 @@ impl Attribute {
                 if operator != buff.operation.into() {
                     continue;
                 }
-                let value = cache.buffs.get(buff_id).copied().unwrap_or_default();
-                let value = operator.into_func()(value);
+
+                let source_value =
+                    cache.buffs.get(buff_id).copied().unwrap_or_default();
+                let normalized_value = operator.into_func()(source_value);
+
+                let value_group = (
+                    normalized_value,
+                    source_value,
+                    ModifierSource::Buff { buff_id: *buff_id },
+                );
                 if OPERATOR_HAS_PENALTY.contains(&buff.operation.into()) {
-                    if value.is_sign_negative() {
-                        penalty_negative.push(value);
+                    if normalized_value.is_sign_negative() {
+                        penalty_negative.push(value_group);
                     } else {
-                        penalty_positive.push(value);
+                        penalty_positive.push(value_group);
                     }
                 } else {
-                    no_penalty.push(value);
+                    no_penalty.push(value_group);
                 }
             }
 
@@ -157,22 +172,31 @@ impl Attribute {
                 EffectOperator::PreAssign | EffectOperator::PostAssign => {
                     let dogma_attribute = info.get_dogma_attribute(attribute_id);
 
-                    current_value = if dogma_attribute.high_is_good {
+                    let current_group = if dogma_attribute.high_is_good {
                         no_penalty
                             .iter()
-                            .max_by(|x, y| x.abs().total_cmp(&y.abs()))
+                            .max_by(|(x, _, _), (y, _, _)| x.abs().total_cmp(&y.abs()))
                             .copied()
-                            .unwrap_or_default()
                     } else {
                         no_penalty
                             .iter()
-                            .min_by(|x, y| x.abs().total_cmp(&y.abs()))
+                            .min_by(|(x, _, _), (y, _, _)| x.abs().total_cmp(&y.abs()))
                             .copied()
-                            .unwrap_or_default()
                     };
 
-                    assert!(penalty_positive.is_empty());
-                    assert!(penalty_negative.is_empty());
+                    if let Some(group) = current_group {
+                        debug_assert!(penalty_positive.is_empty());
+                        debug_assert!(penalty_negative.is_empty());
+
+                        current_value = group.0;
+                        let tracker = ModifierTracker {
+                            source: group.2,
+                            original_value: group.1,
+                            normalized_value: group.0,
+                            penalized_value: group.0,
+                        };
+                        self.tracked_modifiers.borrow_mut().push(tracker);
+                    }
                 }
 
                 EffectOperator::PreMul
@@ -181,34 +205,65 @@ impl Attribute {
                 | EffectOperator::PostDiv
                 | EffectOperator::PostPercent => {
                     // no_penalty are non-stacking.
-                    for value in no_penalty {
-                        current_value *= 1.0 + value;
+                    for group in no_penalty {
+                        current_value *= 1.0 + group.0;
+                        let tracker = ModifierTracker {
+                            source: group.2,
+                            original_value: group.1,
+                            normalized_value: group.0,
+                            penalized_value: group.0,
+                        };
+                        self.tracked_modifiers.borrow_mut().push(tracker);
                     }
 
                     // For positive values, the highest number goes first. For negative values, the lowest number.
-                    let sort_func = |x: &f64, y: &f64| y.abs().total_cmp(&x.abs());
-                    penalty_positive.sort_by(sort_func);
-                    penalty_negative.sort_by(sort_func);
+                    penalty_positive
+                        .sort_by(|(x, _, _), (y, _, _)| y.abs().total_cmp(&x.abs()));
+                    penalty_negative
+                        .sort_by(|(x, _, _), (y, _, _)| y.abs().total_cmp(&x.abs()));
 
                     // Apply positive stacking penalty.
-                    for (index, value) in penalty_positive.iter().enumerate() {
-                        current_value *=
-                            1.0 + value * PENALTY_FACTOR.powi(index.pow(2) as i32);
+                    for (index, group) in penalty_positive.iter().enumerate() {
+                        let penalized_value =
+                            group.0 * PENALTY_FACTOR.powi(index.pow(2) as i32);
+                        current_value *= 1.0 + penalized_value;
+                        let tracker = ModifierTracker {
+                            source: group.2,
+                            original_value: group.1,
+                            normalized_value: group.0,
+                            penalized_value,
+                        };
+                        self.tracked_modifiers.borrow_mut().push(tracker);
                     }
                     // Apply negative stacking penalty.
                     for (index, value) in penalty_negative.iter().enumerate() {
-                        current_value *=
-                            1.0 + value * PENALTY_FACTOR.powi(index.pow(2) as i32);
+                        let penalized_value =
+                            value.0 * PENALTY_FACTOR.powi(index.pow(2) as i32);
+                        current_value *= 1.0 + penalized_value;
+                        let tracker = ModifierTracker {
+                            source: value.2,
+                            original_value: value.1,
+                            normalized_value: value.0,
+                            penalized_value,
+                        };
+                        self.tracked_modifiers.borrow_mut().push(tracker);
                     }
                 }
 
                 EffectOperator::ModAdd | EffectOperator::ModSub => {
-                    for value in no_penalty {
-                        current_value += value;
-                    }
+                    debug_assert!(penalty_positive.is_empty());
+                    debug_assert!(penalty_negative.is_empty());
 
-                    assert!(penalty_positive.is_empty());
-                    assert!(penalty_negative.is_empty());
+                    for value in no_penalty {
+                        current_value += value.0;
+                        let tracker = ModifierTracker {
+                            source: value.2,
+                            original_value: value.1,
+                            normalized_value: value.0,
+                            penalized_value: value.0,
+                        };
+                        self.tracked_modifiers.borrow_mut().push(tracker);
+                    }
                 }
             }
         }

@@ -2,13 +2,7 @@
 name = "eve-fit-os"
 version = "0.1.0"
 edition = "2021"
-include = [
-    "src/**/*",
-    "Cargo.toml",
-    "Cargo.lock",
-    "build.rs",
-    "efos.proto",
-]
+include = ["src/**/*", "Cargo.toml", "Cargo.lock", "build.rs", "efos.proto"]
 
 [dependencies]
 anyhow = "1.0.95"

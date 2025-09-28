@@ -1,3 +1,4 @@
+use std::cell::RefCell;
 use std::collections::HashMap;
 
 use bitflags::bitflags;
@@ -132,6 +133,32 @@ pub struct Attribute {
     pub value: Option<f64>,
     pub effects: Vec<Effect>,
     pub buffs: Vec<i32>, // only valid buffs, added in pass 3
+
+    // SAFETY:
+    // We will never read from this list when processing
+    // and we do not hold such mut refs across calls.
+    // So the use of RefCell is safe here and wont introduce
+    // panics.
+    //
+    // FUTURE USAGE:
+    // It's not allowed to read from this or create dynamically
+    // integrated insertions. This field is only used
+    // to track modifier trees.
+    pub tracked_modifiers: RefCell<Vec<ModifierTracker>>,
+}
+
+#[derive(Debug, Clone, Copy)]
+pub enum ModifierSource {
+    Effect(Effect),
+    Buff { buff_id: i32 },
+}
+
+#[derive(Debug, Clone, Copy)]
+pub struct ModifierTracker {
+    pub source: ModifierSource,
+    pub original_value: f64,
+    pub normalized_value: f64,
+    pub penalized_value: f64,
 }
 
 impl Attribute {
@@ -141,6 +168,7 @@ impl Attribute {
             value: None,
             effects: Vec::new(),
             buffs: Vec::new(),
+            tracked_modifiers: RefCell::new(Vec::new()),
         }
     }
 }
