@@ -1,15 +1,14 @@
-import json
-from os import PathLike
+from pathlib import Path
+
+from data.convert.loader import loader
 
 
-def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
+def convert(path: Path, loc: dict[int, str], out: Path, data):
     print("Loading categories ...")
 
-    with open(f"{path}/categories.json", encoding="utf-8") as fp:
-        categories = json.load(fp)
-        categories = {int(k): v for k, v in categories.items()}
-        for c in categories.values():
-            c["name"] = loc[c["categoryNameID"]]
+    categories = loader(path / "categories")
+    for c in categories.values():
+        c["name"] = loc[c["categoryNameID"]]
 
     data["categories"] = categories
     yield

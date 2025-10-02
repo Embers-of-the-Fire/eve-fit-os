@@ -1,17 +1,15 @@
-import json
-from os import PathLike
+from pathlib import Path
 
+from data.convert.loader import loader
 import efos_pb2
 
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, out: PathLike, data):
+def convert(path: Path, out: Path, data):
     print("Loading dogmaEffects ...")
 
-    with open(f"{path}/dogmaeffects.json", encoding="utf-8") as fp:
-        dogmaEffects = json.load(fp)
-        dogmaEffects = {int(k): v for k, v in dogmaEffects.items()}
+    dogmaEffects = loader(path / "dogmaeffects")
 
     data["dogmaEffects"] = dogmaEffects
     yield

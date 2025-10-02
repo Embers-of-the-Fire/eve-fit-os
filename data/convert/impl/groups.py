@@ -1,15 +1,14 @@
-import json
-from os import PathLike
+from pathlib import Path
+
+from data.convert.loader import loader
 
 
-def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
+def convert(path: Path, loc: dict[int, str], out: Path, data):
     print("Loading groups ...")
 
-    with open(f"{path}/groups.json", encoding="utf-8") as fp:
-        groups = json.load(fp)
-        groups = {int(k): v for k, v in groups.items()}
-        for g in groups.values():
-            g["name"] = loc[g["groupNameID"]]
+    groups = loader(path / "groups")
+    for g in groups.values():
+        g["name"] = loc[g["groupNameID"]]
 
     data["groups"] = groups
     yield

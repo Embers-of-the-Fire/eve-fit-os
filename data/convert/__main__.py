@@ -3,7 +3,6 @@ import pickle
 
 from dotenv import load_dotenv
 
-from data.convert.impl import categories, groups, market_groups
 
 load_dotenv()
 
@@ -14,6 +13,9 @@ from .impl import (  # noqa: E402
     types,
     type_dogma,
     dbuffcollections,
+    categories,
+    groups,
+    market_groups,
 )
 from .patches import (  # noqa: E402
     dogma_attributes as patch_dogma_attributes,

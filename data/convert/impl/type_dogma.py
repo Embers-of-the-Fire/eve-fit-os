@@ -1,19 +1,16 @@
-import json
-from os import PathLike
-
+from pathlib import Path
 import yaml
 
+from data.convert.loader import loader
 import efos_pb2
 
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, patch: PathLike, out: PathLike, data):
+def convert(path: Path, patch: Path, out: Path, data):
     print("Loading typeDogma ...")
 
-    with open(f"{path}/typedogma.json", encoding="utf-8") as fp:
-        typeDogma = json.load(fp)
-        typeDogma = {int(k): v for k, v in typeDogma.items()}
+    typeDogma = loader(path / "typedogma")
 
     with open(f"{patch}/ignoredDogma.yaml", encoding="utf-8") as f:
         ignored_types = yaml.load(f, yaml.CLoader)

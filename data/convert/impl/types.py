@@ -1,19 +1,17 @@
-import json
-from os import PathLike
+from pathlib import Path
 
+from data.convert.loader import loader
 import efos_pb2
 
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
+def convert(path: Path, loc: dict[int, str], out: Path, data):
     print("Loading types ...")
 
-    with open(f"{path}/types.json", encoding="utf-8") as fp:
-        types = json.load(fp)
-        types = {int(k): v for k, v in types.items()}
-        for v in types.values():
-            v["name"] = loc.get(v.get("typeNameID"))
+    types = loader(path / "types")
+    for v in types.values():
+        v["name"] = loc.get(v.get("typeNameID"))
 
     data["types"] = types
     yield

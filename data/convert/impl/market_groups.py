@@ -1,13 +1,12 @@
-import json
-from os import PathLike
+from pathlib import Path
+
+from data.convert.loader import loader
 
 
-def convert(path: PathLike, loc: dict[int, str], out: PathLike, data):
+def convert(path: Path, loc: dict[int, str], out: Path, data):
     print("Loading marketGroups ...")
 
-    with open(f"{path}/marketgroups.json", encoding="utf-8") as fp:
-        marketGroups = json.load(fp)
-        marketGroups = {int(k): v for k, v in marketGroups.items()}
+    marketGroups = loader(path / "marketgroups")
 
     data["marketGroups"] = marketGroups
     yield

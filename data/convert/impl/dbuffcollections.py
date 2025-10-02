@@ -1,4 +1,4 @@
-from os import PathLike
+from pathlib import Path
 import yaml
 
 import efos_pb2
@@ -6,7 +6,7 @@ import efos_pb2
 from google.protobuf.json_format import MessageToJson
 
 
-def convert(path: PathLike, out: PathLike, data):
+def convert(path: Path, out: Path, data):
     print("Loading DBuffCollections ...")
 
     with open(f"{path}/dbuffcollections.yaml", encoding="utf-8") as fp:
