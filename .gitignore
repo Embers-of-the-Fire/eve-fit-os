@@ -6,3 +6,5 @@
 *.code-workspace
 .vscode
 .idea
+
+/src/*.egg-info
