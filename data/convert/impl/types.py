@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from data.convert.loader import loader
+from ..loader import loader
 import efos_pb2
 
 from google.protobuf.json_format import MessageToJson

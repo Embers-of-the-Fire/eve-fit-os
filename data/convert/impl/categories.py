@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from data.convert.loader import loader
+from ..loader import loader
 
 
 def convert(path: Path, loc: dict[int, str], out: Path, data):
