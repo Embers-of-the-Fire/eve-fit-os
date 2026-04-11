@@ -27,8 +27,6 @@ impl Item {
         info: &impl InfoProvider,
         dynamic: &impl FitProvider,
     ) {
-        // TODO: Set dynamic item attributes.
-
         let type_id = self.item_id.as_type_id(dynamic);
 
         for dogma_attribute in info.get_dogma_attributes(type_id) {
