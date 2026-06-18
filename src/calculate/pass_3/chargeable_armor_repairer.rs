@@ -17,10 +17,7 @@ pub fn attribute_chargeable_armor_repairer(fit: &impl FitProvider, ship: &mut Sh
             let Some(amo) = module.attributes.get(&ATTR_ARMOR_AMO) else {
                 continue;
             };
-            module.set_attribute(
-                ATTR_ARMOR_AMO,
-                amo.base_value * mult.base_value,
-            );
+            module.set_attribute(ATTR_ARMOR_AMO, amo.base_value * mult.base_value);
         }
     }
 }

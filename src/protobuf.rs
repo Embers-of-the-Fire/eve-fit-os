@@ -12,16 +12,16 @@ pub mod efos {
     include!(concat!(env!("OUT_DIR"), "/efos.rs"));
 }
 
-fn load_protobuf<T: Message + std::default::Default>(
-    path: &Path,
-    name: &str,
+/// Load and decode a single protobuf message file at the given full path.
+///
+/// Opens the file, reads it into memory, and decodes it as `T`.
+fn load_protobuf_file<T: Message + Default>(
+    path: impl AsRef<Path>,
 ) -> anyhow::Result<T> {
-    let mut file = File::open(path.join(name).with_extension("pb2"))?;
+    let mut file = File::open(path.as_ref())?;
     let mut buf = vec![];
     file.read_to_end(&mut buf)?;
-
-    let obj = T::decode(buf.as_slice())?;
-    Ok(obj)
+    Ok(T::decode(buf.as_slice())?)
 }
 
 #[derive(Debug, Clone)]
@@ -39,14 +39,43 @@ pub struct Database {
 }
 
 impl Database {
-    pub fn init(path: impl AsRef<Path>) -> anyhow::Result<Self> {
-        let path = path.as_ref();
-        let dogma_attr: efos::DogmaAttributes = load_protobuf(path, "dogmaAttributes")?;
-        let dogma_effect: efos::DogmaEffects = load_protobuf(path, "dogmaEffects")?;
-        let type_dogma: efos::TypeDogma = load_protobuf(path, "typeDogma")?;
-        let types: efos::Types = load_protobuf(path, "types")?;
+    /// Initialize the database from a root directory.
+    ///
+    /// Expects files at `{root}/types.pb2`, `{root}/dogmaAttributes.pb2`,
+    /// `{root}/dogmaEffects.pb2`, `{root}/typeDogma.pb2`, and
+    /// `{root}/dbuffcollections.pb2`. Delegates to [`init_from_files`] after
+    /// computing the five canonical file paths.
+    pub fn init_from_root(root_path: impl AsRef<Path>) -> anyhow::Result<Self> {
+        let root = root_path.as_ref();
+        Self::init_from_files(
+            root.join("types").with_extension("pb2"),
+            root.join("dogmaAttributes").with_extension("pb2"),
+            root.join("dogmaEffects").with_extension("pb2"),
+            root.join("typeDogma").with_extension("pb2"),
+            root.join("dbuffcollections").with_extension("pb2"),
+        )
+    }
+
+    /// Initialize the database from explicitly specified file paths.
+    ///
+    /// Each argument is the **full** path to the corresponding `.pb2` file on
+    /// disk. No path joining is performed — the paths are used as-is. This is
+    /// useful when the data files are scattered across directories or when the
+    /// caller manages file resolution independently (e.g. via a content-addressed
+    /// store).
+    pub fn init_from_files(
+        types: impl AsRef<Path>,
+        dogma_attributes: impl AsRef<Path>,
+        dogma_effects: impl AsRef<Path>,
+        type_dogma: impl AsRef<Path>,
+        buff_collections: impl AsRef<Path>,
+    ) -> anyhow::Result<Self> {
+        let dogma_attr: efos::DogmaAttributes = load_protobuf_file(dogma_attributes)?;
+        let dogma_effect: efos::DogmaEffects = load_protobuf_file(dogma_effects)?;
+        let type_dogma: efos::TypeDogma = load_protobuf_file(type_dogma)?;
+        let types: efos::Types = load_protobuf_file(types)?;
         let buff_collections: efos::BuffCollections =
-            load_protobuf(path, "dbuffcollections")?;
+            load_protobuf_file(buff_collections)?;
 
         Ok(Self::init_from_protobuf(
             dogma_attr,

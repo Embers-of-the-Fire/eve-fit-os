@@ -37,25 +37,29 @@ fn test_dyn() {
 
     let dyn_container = {
         let mut map = HashMap::new();
-        map.insert(1, DynamicItem {
-            base_type: 400,
-            dynamic_attributes: [
-                (73, 0.949999988079071),
-                (50, 1.0),
-                (68, 1.100000023841858),
-                (6, 1.0),
-                (30, 1.0),
-            ]
-            .into_iter()
-            .collect(),
-        });
+        map.insert(
+            1,
+            DynamicItem {
+                base_type: 400,
+                dynamic_attributes: [
+                    (73, 0.949999988079071),
+                    (50, 1.0),
+                    (68, 1.100000023841858),
+                    (6, 1.0),
+                    (30, 1.0),
+                ]
+                .into_iter()
+                .collect(),
+            },
+        );
         map
     };
 
     let container = FitContainer::new(fit, skill_all_5, dyn_container);
 
     let info =
-        Database::init(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();
+        Database::init_from_root(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2"))
+            .unwrap();
 
     let out = calculate(&container, &info);
 

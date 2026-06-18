@@ -78,7 +78,8 @@ fn test_basic_fit() {
     let container = FitContainer::new(fit, skill_all_5, Default::default());
 
     let info =
-        Database::init(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();
+        Database::init_from_root(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2"))
+            .unwrap();
 
     let out = calculate(&container, &info);
 
