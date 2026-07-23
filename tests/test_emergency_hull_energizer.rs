@@ -39,7 +39,11 @@ fn calculate_with_cehe(state: ItemState) -> HashMap<i32, f64> {
     let container = FitContainer::new(fit, skill_all_5, Default::default());
 
     let info =
+<<<<<<< Updated upstream
         Database::init(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();
+=======
+        Database::init_from_root(concat!(env!("CARGO_MANIFEST_DIR"), "/data/out/pb2")).unwrap();
+>>>>>>> Stashed changes
 
     let out = calculate(&container, &info);
 
