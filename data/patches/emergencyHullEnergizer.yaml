@@ -1,0 +1,27 @@
+description: |
+  Patch in hull resistance modifiers for the emergency hull energizers.
+
+effects:
+- patch:
+  - name: emergencyHullEnergizer
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: emDamageResonance
+    modifyingAttribute: hullEmDamageResonance
+    operation: postMul
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: explosiveDamageResonance
+    modifyingAttribute: hullExplosiveDamageResonance
+    operation: postMul
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: kineticDamageResonance
+    modifyingAttribute: hullKineticDamageResonance
+    operation: postMul
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: thermalDamageResonance
+    modifyingAttribute: hullThermalDamageResonance
+    operation: postMul
