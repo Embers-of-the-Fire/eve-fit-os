@@ -306,7 +306,7 @@ impl Item {
             item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::DroneBay { group_id },
-                index: None,
+                index: Some(group_id as i32),
             },
             charge: None,
             state,
@@ -321,12 +321,13 @@ impl Item {
         group_id: u8,
         state: EffectCategory,
         ability: FighterAbility,
+        index: i32,
     ) -> Self {
         let mut item = Self {
             item_id: ItemID::Item(type_id),
             slot: Slot {
                 slot_type: SlotType::Fighter { group_id, ability },
-                index: None,
+                index: Some(index),
             },
             charge: None,
             state,

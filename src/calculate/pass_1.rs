@@ -108,12 +108,13 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
         ship.modules.push(item);
     }
 
-    for fighter in &fit.fit().fighters {
+    for (index, fighter) in fit.fit().fighters.iter().enumerate() {
         let mut item = Item::new_fighter(
             fighter.type_id,
             fighter.group_id,
             EffectCategory::Active,
             fighter.ability,
+            index as i32,
         );
         item.update_attributes(info, fit);
         ship.modules.push(item);
