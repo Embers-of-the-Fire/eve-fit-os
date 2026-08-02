@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from os import environ
 from pathlib import Path
 
@@ -8,6 +10,6 @@ FSD_BINARY_DIR = Path(environ.get("FSD_BINARY_DIR"))
 FSD_LOC_EN_DIR = Path(environ.get("FSD_LOC_EN_DIR"))
 
 DATA_ROOT = CONVERT_ROOT.parent
-FSD_PATCH_DIR = DATA_ROOT / "fsd-patches"
+FSD_PATCH_DIR = Path(environ.get("FSD_PATCH_DIR", DATA_ROOT / "fsd-patches"))
 PATCH_DIR = DATA_ROOT / "patches"
 OUTPUT_DIR = environ.get("OUTPUT_DIR", DATA_ROOT / "out")

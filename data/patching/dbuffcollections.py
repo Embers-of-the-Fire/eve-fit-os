@@ -1,14 +1,21 @@
+from __future__ import annotations
+
 import json
+import os
 import pickle
 import sqlite3
+
 from pathlib import Path
 
 import yaml
 
+
 PATCHING_ROOT = Path(__file__).parent
 DATA_ROOT = PATCHING_ROOT.parent
 
-DEFAULT_OUTPUT = DATA_ROOT / "fsd-patches" / "dbuffcollections.yaml"
+DEFAULT_OUTPUT = (
+    Path(os.environ.get("FSD_PATCH_DIR", DATA_ROOT / "fsd-patches")) / "dbuffcollections.yaml"
+)
 
 
 def load_localization(path: Path) -> dict:
