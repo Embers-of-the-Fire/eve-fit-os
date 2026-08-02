@@ -50,6 +50,7 @@ def convert(path: Path, out: Path, data):
 
         pb2.entries[id].operationName = {
             "PreAssign": efos_pb2.BuffCollections.Buff.OperationName.PRE_ASSIGN,
+            "PreAssignment": efos_pb2.BuffCollections.Buff.OperationName.PRE_ASSIGN,
             "PreMul": efos_pb2.BuffCollections.Buff.OperationName.PRE_MUL,
             "PreDiv": efos_pb2.BuffCollections.Buff.OperationName.PRE_DIV,
             "ModAdd": efos_pb2.BuffCollections.Buff.OperationName.MOD_ADD,
