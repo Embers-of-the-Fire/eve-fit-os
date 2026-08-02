@@ -38,7 +38,7 @@
   displayName: Velocity penalty
   displayNameID: 517442
   itemModifiers:
-  - dogmaAttributeID: 37
+  - dogmaAttributeID: 3171
   locationGroupModifiers: []
   locationModifiers: []
   locationRequiredSkillModifiers: []
@@ -378,9 +378,8 @@
 23:
   aggregateMode: Maximum
   buffID: 23
-  developerDescription: 'Mining Burst: Mining Laser Field Enhancement: Mining/Survey
-    Range'
-  displayName: Mining/Survey module range bonus
+  developerDescription: 'Mining Burst: Mining Laser Field Enhancement: Mining Range'
+  displayName: Mining module range bonus
   displayNameID: 518720
   itemModifiers: []
   locationGroupModifiers: []
@@ -392,8 +391,6 @@
     skillID: 16281
   - dogmaAttributeID: 54
     skillID: 25544
-  - dogmaAttributeID: 197
-    skillID: 3426
   operationName: PostPercent
   showOutputValueInUI: ShowNormal
 24:
@@ -2237,3 +2234,1792 @@
     skillID: 21803
   operationName: PostPercent
   showOutputValueInUI: ShowNormal
+2464:
+  aggregateMode: Maximum
+  buffID: 2464
+  developerDescription: 'Expedition Burst: Probe Strength '
+  displayName: Scan Probe Strength Bonus
+  displayNameID: 1017848
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 6118
+    skillID: 3412
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2465:
+  aggregateMode: Maximum
+  buffID: 2465
+  developerDescription: 'Expedition Burst: Directional Scanner, Hacking and Salvager
+    Range'
+  displayName: Directional scanner, hacking and salvager module range bonus
+  displayNameID: 1017853
+  itemModifiers:
+  - dogmaAttributeID: 5796
+  locationGroupModifiers:
+  - dogmaAttributeID: 54
+    groupID: 538
+  - dogmaAttributeID: 54
+    groupID: 1122
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2466:
+  aggregateMode: Minimum
+  buffID: 2466
+  developerDescription: 'Expedition Burst: Maximum Scan Deviation Modifier'
+  displayName: Scan Probe Deviation Bonus
+  displayNameID: 1017854
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 6119
+    skillID: 3412
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2468:
+  aggregateMode: Maximum
+  buffID: 2468
+  developerDescription: 'Expedition Burst: Virus Coherence'
+  displayName: Analyzer Coherence Bonus
+  displayNameID: 1017921
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1909
+    groupID: 538
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2473:
+  aggregateMode: Maximum
+  buffID: 2473
+  developerDescription: Disable Smart Bomb Activation
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1349
+    groupID: 72
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2474:
+  aggregateMode: Maximum
+  buffID: 2474
+  developerDescription: 'Mining Burst: Enhanced Mining Scanner'
+  displayName: Enhanced Mining Surveyor
+  displayNameID: 1021435
+  itemModifiers:
+  - dogmaAttributeID: 5979
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostAssignment
+  showOutputValueInUI: Hide
+2480:
+  aggregateMode: Maximum
+  buffID: 2480
+  developerDescription: Connected to PhaseStabilizer
+  displayName: Connected
+  displayNameID: 1022189
+  itemModifiers:
+  - dogmaAttributeID: 6042
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2481:
+  aggregateMode: Minimum
+  buffID: 2481
+  developerDescription: 'Expedition Burst: Salvager duration bonus'
+  displayName: Salvager Module Duration Bonus
+  displayNameID: 1022798
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2482:
+  aggregateMode: Maximum
+  buffID: 2482
+  developerDescription: Sisters of EVE Landmark Bonus 1 - Warp Speed
+  displayName: Warp Speed Bonus (Thera)
+  displayNameID: 1025503
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2483:
+  aggregateMode: Minimum
+  buffID: 2483
+  developerDescription: Sisters of EVE Landmark Bonus 2 - Heat Damage Reduction
+  displayName: Module Heat Damage Reduction (Turnur Aftermath)
+  displayNameID: 1025518
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1211
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2484:
+  aggregateMode: Maximum
+  buffID: 2484
+  developerDescription: Sisters of EVE Landmark Bonus 3 - Structure Hitpoint Bonus
+  displayName: Hull Hitpoint Bonus (Zarzakh Gravity Hazard)
+  displayNameID: 1025519
+  itemModifiers:
+  - dogmaAttributeID: 9
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2485:
+  aggregateMode: Minimum
+  buffID: 2485
+  developerDescription: Sisters of EVE Landmark Bonus 4 - Web Resistance
+  displayName: Web Resistance (Trace Cosmos)
+  displayNameID: 1025520
+  itemModifiers:
+  - dogmaAttributeID: 2115
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2486:
+  aggregateMode: Maximum
+  buffID: 2486
+  developerDescription: Sisters of EVE Landmark Bonus 5 - Max Velocity
+  displayName: Max Velocity (EVE Gate)
+  displayNameID: 1025521
+  itemModifiers:
+  - dogmaAttributeID: 37
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2487:
+  aggregateMode: Maximum
+  buffID: 2487
+  developerDescription: Sisters of EVE Landmark Bonus 6 - Warp Speed
+  displayName: Warp Speed Bonus (Pool of Radiance)
+  displayNameID: 1025532
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2488:
+  aggregateMode: Maximum
+  buffID: 2488
+  developerDescription: Sisters of EVE Landmark Bonus 7 - Probe Strength
+  displayName: Probe Scan Strength Bonus (Katia Sae Memorial)
+  displayNameID: 1025522
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 6118
+    skillID: 3412
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2489:
+  aggregateMode: Maximum
+  buffID: 2489
+  developerDescription: Sisters of EVE Landmark Bonus 8 - Warp Speed
+  displayName: Warp Speed Bonus (Cord of the Elements)
+  displayNameID: 1025523
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2490:
+  aggregateMode: Minimum
+  buffID: 2490
+  developerDescription: Sisters of EVE Landmark Bonus 9 - Salvager Cycle Time
+  displayName: Salvager Module Duration Bonus (Battle of Vak'Atioth)
+  displayNameID: 1025524
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2491:
+  aggregateMode: Minimum
+  buffID: 2491
+  developerDescription: Sisters of EVE Landmark Bonus 10 - Salvager Cycle Time
+  displayName: Salvager Module Duration Bonus (M2-XFE Massacre)
+  displayNameID: 1025525
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2492:
+  aggregateMode: Minimum
+  buffID: 2492
+  developerDescription: Sisters of EVE Landmark Bonus 11 - Salvager Cycle Time
+  displayName: Salvager Module Duration Bonus (Titanomachy)
+  displayNameID: 1025526
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2493:
+  aggregateMode: Minimum
+  buffID: 2493
+  developerDescription: Sisters of EVE Landmark Bonus 12 - Salvager Cycle Time
+  displayName: Salvager Module Duration Bonus (Golgothan Fields)
+  displayNameID: 1025527
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2494:
+  aggregateMode: Minimum
+  buffID: 2494
+  developerDescription: Sisters of EVE Landmark Bonus 13 - Salvager Cycle Time
+  displayName: Salvager Module Duration Bonus (Birthday Bash)
+  displayNameID: 1025528
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2495:
+  aggregateMode: Minimum
+  buffID: 2495
+  developerDescription: Sisters of EVE Landmark Bonus 14 - Salvager Cycle Time
+  displayName: Salvager Module Duration Bonus (Siege of C-J6MT)
+  displayNameID: 1025529
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 25863
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2496:
+  aggregateMode: Maximum
+  buffID: 2496
+  developerDescription: Sisters of EVE Landmark Bonus 15 - Warp Speed Bonus
+  displayName: Warp Speed Bonus (EVE Travel Agency)
+  displayNameID: 1025530
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2497:
+  aggregateMode: Maximum
+  buffID: 2497
+  developerDescription: Sisters of EVE Landmark Bonus 16 - Shield and Armor Hitpoint
+    Bonus
+  displayName: Shield and Armor Hitpoint Bonus (Alliance Tournament Monument)
+  displayNameID: 1025531
+  itemModifiers:
+  - dogmaAttributeID: 263
+  - dogmaAttributeID: 265
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2498:
+  aggregateMode: Maximum
+  buffID: 2498
+  developerDescription: Sisters of EVE Landmark Bonus 17 - Molea Cemetery
+  displayName: Command Burst Duration Bonus (Molea Cemetery)
+  displayNameID: 1025533
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 2535
+    skillID: 3348
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2499:
+  aggregateMode: Maximum
+  buffID: 2499
+  developerDescription: Sisters of EVE Landmark Bonus 18 - Probe Strength
+  displayName: Probe Scan Strength Bonus (Site One)
+  displayNameID: 1025534
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 6118
+    skillID: 3412
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2500:
+  aggregateMode: Maximum
+  buffID: 2500
+  developerDescription: Sisters of EVE Landmark Bonus 19 - Maximum Velocity
+  displayName: Maximum Velocity Bonus (Drifter Wormhole)
+  displayNameID: 1025535
+  itemModifiers:
+  - dogmaAttributeID: 37
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2501:
+  aggregateMode: Maximum
+  buffID: 2501
+  developerDescription: Sisters of EVE Landmark Bonus 20 - Probe Strength Bonus
+  displayName: Probe Scan Strength Bonus (Final Liminality)
+  displayNameID: 1025536
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 6118
+    skillID: 3412
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2502:
+  aggregateMode: Minimum
+  buffID: 2502
+  developerDescription: Sisters of EVE Metaliminal Storm Bonus 1 - Gamma
+  displayName: Energy Warfare Resistance Bonus (Metaliminal Gamma Storm)
+  displayNameID: 1025540
+  itemModifiers:
+  - dogmaAttributeID: 2045
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2503:
+  aggregateMode: Minimum
+  buffID: 2503
+  developerDescription: Sisters of EVE Metaliminal Storm Bonus 2 - Plasma
+  displayName: Module Heat Damage Reduction (Metaliminal Plasma Storm)
+  displayNameID: 1025539
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1211
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2504:
+  aggregateMode: Maximum
+  buffID: 2504
+  developerDescription: Sisters of EVE Metaliminal Storm Bonus 3 - Exotic
+  displayName: Scan Resolution Bonus (Metaliminal Exotic Storm)
+  displayNameID: 1025538
+  itemModifiers:
+  - dogmaAttributeID: 564
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2505:
+  aggregateMode: Maximum
+  buffID: 2505
+  developerDescription: Sisters of EVE Metaliminal Storm Bonus 4 - Electric
+  displayName: Capacitor Amount Bonus (Metaliminal Electric Storm)
+  displayNameID: 1025537
+  itemModifiers:
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2506:
+  aggregateMode: Minimum
+  buffID: 2506
+  developerDescription: Sisters of EVE Sov Modifier Bonus 1 - Gamma Neut Resistances
+  displayName: Energy Warfare Resistance Bonus (Gamma Stability Generator)
+  displayNameID: 1025541
+  itemModifiers:
+  - dogmaAttributeID: 2045
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2507:
+  aggregateMode: Minimum
+  buffID: 2507
+  developerDescription: Sisters of EVE Sov Modifier Bonus 2 - Plasma
+  displayName: Module Heat Reduction Bonus (Plasma Stability Generator)
+  displayNameID: 1025542
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1211
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2508:
+  aggregateMode: Maximum
+  buffID: 2508
+  developerDescription: Sisters of EVE Sov Modifier Bonus 3 - exotic
+  displayName: Scan Resolution Bonus (Exotic Stability Generator)
+  displayNameID: 1025543
+  itemModifiers:
+  - dogmaAttributeID: 564
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2509:
+  aggregateMode: Maximum
+  buffID: 2509
+  developerDescription: Sisters of EVE Sov Modifier Bonus 4 - Electric
+  displayName: Capacitor Capacity Bonus (Electric Stability Generator)
+  displayNameID: 1025544
+  itemModifiers:
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2510:
+  aggregateMode: Minimum
+  buffID: 2510
+  developerDescription: Sisters of EVE Wormhole Bonus 1 - Black Hole
+  displayName: Web Resistance Bonus (Black Hole)
+  displayNameID: 1025545
+  itemModifiers:
+  - dogmaAttributeID: 2115
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2511:
+  aggregateMode: Minimum
+  buffID: 2511
+  developerDescription: Sisters of EVE Wormhole Bonus 2 - Red Giant
+  displayName: Module Heat Damage Reduction Bonus (Red Giant)
+  displayNameID: 1025546
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1211
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2512:
+  aggregateMode: Maximum
+  buffID: 2512
+  developerDescription: Sisters of EVE Wormhole Bonus 3 - Wolf Rayet
+  displayName: Medium Energy Turret Tracking Bonus (Wolf Rayet)
+  displayNameID: 1025547
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 160
+    skillID: 3306
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2513:
+  aggregateMode: Minimum
+  buffID: 2513
+  developerDescription: Sisters of EVE Wormhole Bonus 4 - Pulsar
+  displayName: Energy Warfare Resistance Bonus (Pulsar)
+  displayNameID: 1025548
+  itemModifiers:
+  - dogmaAttributeID: 2045
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2514:
+  aggregateMode: Maximum
+  buffID: 2514
+  developerDescription: Sisters of EVE Wormhole Bonus 5 - Cataclysmic
+  displayName: Capacitor Capacity Bonus (Cataclysmic Variable)
+  displayNameID: 1025549
+  itemModifiers:
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2515:
+  aggregateMode: Minimum
+  buffID: 2515
+  developerDescription: Sisters of EVE Wormhole Bonus 6 - Magnetar
+  displayName: Sensor Dampener and Weapon Disruptor resistance bonus (Magnetar)
+  displayNameID: 1025550
+  itemModifiers:
+  - dogmaAttributeID: 2112
+  - dogmaAttributeID: 2113
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2516:
+  aggregateMode: Maximum
+  buffID: 2516
+  developerDescription: 'Mining Burst: Mining Crit Chance'
+  displayName: Mining critical success chance bonus
+  displayNameID: 1028422
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 5967
+    skillID: 3386
+  - dogmaAttributeID: 5967
+    skillID: 16281
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2517:
+  aggregateMode: Minimum
+  buffID: 2517
+  developerDescription: 'Mining Burst: Mining Residue Chance Reduction'
+  displayName: Residue Probability Reduction
+  displayNameID: 1028423
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 3154
+    skillID: 3386
+  - dogmaAttributeID: 3154
+    skillID: 16281
+  - dogmaAttributeID: 3154
+    skillID: 25544
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2518:
+  aggregateMode: Minimum
+  buffID: 2518
+  developerDescription: Sisters of EVE Metaliminal Storm Bonus 5 - Winter Nexus Storm
+  displayName: Thermal Resistance Bonus (Volatile Ice Storm)
+  displayNameID: 1030721
+  itemModifiers:
+  - dogmaAttributeID: 110
+  - dogmaAttributeID: 270
+  - dogmaAttributeID: 274
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2519:
+  aggregateMode: Maximum
+  buffID: 2519
+  developerDescription: Sisters of EVE Landmark Bonus 21
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2520:
+  aggregateMode: Maximum
+  buffID: 2520
+  developerDescription: Sisters of EVE Landmark Bonus 22
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2521:
+  aggregateMode: Maximum
+  buffID: 2521
+  developerDescription: Sisters of EVE Landmark Bonus 23
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2522:
+  aggregateMode: Maximum
+  buffID: 2522
+  developerDescription: Sisters of EVE Landmark Bonus 24
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2523:
+  aggregateMode: Maximum
+  buffID: 2523
+  developerDescription: Sisters of EVE Landmark Bonus 25
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2524:
+  aggregateMode: Maximum
+  buffID: 2524
+  developerDescription: Sisters of EVE Landmark Bonus 27
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2525:
+  aggregateMode: Maximum
+  buffID: 2525
+  developerDescription: Sisters of EVE Landmark Bonus 28
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2526:
+  aggregateMode: Maximum
+  buffID: 2526
+  developerDescription: Sisters of EVE Landmark Bonus 26
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2527:
+  aggregateMode: Maximum
+  buffID: 2527
+  developerDescription: Sisters of EVE Landmark Bonus 29
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2528:
+  aggregateMode: Maximum
+  buffID: 2528
+  developerDescription: Sisters of EVE Landmark Bonus 30
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2529:
+  aggregateMode: Maximum
+  buffID: 2529
+  developerDescription: Gallente Elections Warp Speed Bonus
+  displayName: Warp Speed Bonus
+  displayNameID: 1035896
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2530:
+  aggregateMode: Maximum
+  buffID: 2530
+  developerDescription: Hybrid Turret Tracking
+  displayName: Hybrid Turret Tracking Speed Bonus
+  displayNameID: 1035899
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 160
+    skillID: 3301
+  - dogmaAttributeID: 160
+    skillID: 3304
+  - dogmaAttributeID: 160
+    skillID: 3307
+  - dogmaAttributeID: 160
+    skillID: 21666
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2533:
+  aggregateMode: Maximum
+  buffID: 2533
+  developerDescription: Gallente Elections Local Armor Repair
+  displayName: Local Armor Repairer Bonus
+  displayNameID: 1035904
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 3393
+  - dogmaAttributeID: 84
+    skillID: 21803
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2534:
+  aggregateMode: Maximum
+  buffID: 2534
+  developerDescription: Triglavian System Effect - Maximum Locked Targets Percentage
+  displayName: Maximum Targets Penalty
+  displayNameID: 1036727
+  itemModifiers:
+  - dogmaAttributeID: 192
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2535:
+  aggregateMode: Maximum
+  buffID: 2535
+  developerDescription: Triglavian System Effect - Warp Speed Multiplier Percentage
+  displayName: Warp Speed Penalty
+  displayNameID: 1036726
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2536:
+  aggregateMode: Maximum
+  buffID: 2536
+  developerDescription: Horde Mode - Smart Bomb Blocker
+  displayName: <color="#FFFF454B">Activation Blocked:</color> Smart Bombs
+  displayNameID: 1036280
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1349
+    groupID: 72
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2537:
+  aggregateMode: Maximum
+  buffID: 2537
+  developerDescription: Horde Mode - Micro Jump Field Generator Blocker
+  displayName: <color="#FFFF454B">Activation Blocked:</color> Micro Jump Field Generators
+  displayNameID: 1036279
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1349
+    groupID: 1533
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2538:
+  aggregateMode: Maximum
+  buffID: 2538
+  developerDescription: Triglavian System Effect - Remote Armor Repair Percentage
+  displayName: Remote Armor Repair Bonus
+  displayNameID: 1036730
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 16069
+  - dogmaAttributeID: 84
+    skillID: 24568
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2539:
+  aggregateMode: Maximum
+  buffID: 2539
+  developerDescription: Triglavian System Effect - Remote Shield Boost Percentage
+  displayName: Remote Shield Boost Bonus
+  displayNameID: 1036729
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3422
+  - dogmaAttributeID: 68
+    skillID: 24571
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2540:
+  aggregateMode: Maximum
+  buffID: 2540
+  developerDescription: Amarr Navy Ships Dbuff effect from FW Relay Site
+  displayName: All Amarr Navy ship bonuses per skill level enhanced (Amarr Tactical
+    Relay)
+  displayNameID: 1037249
+  itemModifiers:
+  - dogmaAttributeID: 478
+  - dogmaAttributeID: 485
+  - dogmaAttributeID: 492
+  - dogmaAttributeID: 585
+  - dogmaAttributeID: 656
+  - dogmaAttributeID: 795
+  - dogmaAttributeID: 1623
+  - dogmaAttributeID: 1887
+  - dogmaAttributeID: 1888
+  - dogmaAttributeID: 1889
+  - dogmaAttributeID: 2070
+  - dogmaAttributeID: 5205
+  - dogmaAttributeID: 5218
+  - dogmaAttributeID: 5219
+  - dogmaAttributeID: 5220
+  - dogmaAttributeID: 5221
+  - dogmaAttributeID: 5222
+  - dogmaAttributeID: 5223
+  - dogmaAttributeID: 5224
+  - dogmaAttributeID: 5960
+  - dogmaAttributeID: 6067
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostMul
+  showOutputValueInUI: Hide
+2541:
+  aggregateMode: Maximum
+  buffID: 2541
+  developerDescription: Caldari Navy Ships Dbuff effect from FW Relay Site
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2542:
+  aggregateMode: Maximum
+  buffID: 2542
+  developerDescription: Minmatar Navy Ships Dbuff effect from FW Relay Site
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2543:
+  aggregateMode: Maximum
+  buffID: 2543
+  developerDescription: Gallente Navy Ships Dbuff effect from FW Relay Site
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2544:
+  aggregateMode: Maximum
+  buffID: 2544
+  developerDescription: FW Dungeon Effect 1
+  displayName: bonus to battlecruiser ship bonuses per skill level
+  displayNameID: 1037517
+  itemModifiers:
+  - dogmaAttributeID: 743
+  - dogmaAttributeID: 745
+  - dogmaAttributeID: 746
+  - dogmaAttributeID: 747
+  - dogmaAttributeID: 748
+  - dogmaAttributeID: 749
+  - dogmaAttributeID: 795
+  - dogmaAttributeID: 1889
+  - dogmaAttributeID: 5044
+  - dogmaAttributeID: 5046
+  - dogmaAttributeID: 5205
+  - dogmaAttributeID: 5207
+  - dogmaAttributeID: 5956
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2545:
+  aggregateMode: Maximum
+  buffID: 2545
+  developerDescription: FW Dungeon Effect 2 - Tactical Destroyer Hitpoints
+  displayName: Additional base <b>Shield</b>, <b>Armor</b> and <b>Structure</b> hitpoints
+    for <b>Tactical Destroyers</b>
+  displayNameID: 1047960
+  itemModifiers:
+  - dogmaAttributeID: 6270
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2546:
+  aggregateMode: Maximum
+  buffID: 2546
+  developerDescription: FW Dungeon Effect 3
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2547:
+  aggregateMode: Maximum
+  buffID: 2547
+  developerDescription: FW Dungeon Effect 4
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PreAssignment
+  showOutputValueInUI: ShowNormal
+2548:
+  aggregateMode: Maximum
+  buffID: 2548
+  developerDescription: Horde Mode - Heat Damage Reduction
+  displayName: Heat Damage Reduction
+  displayNameID: 1037571
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1211
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2549:
+  aggregateMode: Maximum
+  buffID: 2549
+  developerDescription: Horde Mode - Overload Bonus
+  displayName: Overload Bonus Increase
+  displayNameID: 1037573
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1181
+  - dogmaAttributeID: 1205
+  - dogmaAttributeID: 1206
+  - dogmaAttributeID: 1208
+  - dogmaAttributeID: 1210
+  - dogmaAttributeID: 1222
+  - dogmaAttributeID: 1223
+  - dogmaAttributeID: 1225
+  - dogmaAttributeID: 1226
+  - dogmaAttributeID: 1230
+  - dogmaAttributeID: 1231
+  - dogmaAttributeID: 1935
+  - dogmaAttributeID: 1936
+  - dogmaAttributeID: 1937
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2550:
+  aggregateMode: Maximum
+  buffID: 2550
+  developerDescription: Horde Mode - Signature Radius Reduction
+  displayName: Signature Radius Reduction
+  displayNameID: 1037574
+  itemModifiers:
+  - dogmaAttributeID: 552
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2551:
+  aggregateMode: Maximum
+  buffID: 2551
+  developerDescription: Horde Mode - Capacitor Capacity Bonus
+  displayName: Capacitor Capacity Bonus
+  displayNameID: 1037575
+  itemModifiers:
+  - dogmaAttributeID: 482
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2552:
+  aggregateMode: Maximum
+  buffID: 2552
+  developerDescription: Horde Mode - Ship Velocity Bonus
+  displayName: Ship Velocity Bonus
+  displayNameID: 1037576
+  itemModifiers:
+  - dogmaAttributeID: 37
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2553:
+  aggregateMode: Maximum
+  buffID: 2553
+  developerDescription: Horde Mode - Tracking Speed Bonus
+  displayName: Tracking Speed Bonus
+  displayNameID: 1037577
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 160
+    skillID: 3300
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2554:
+  aggregateMode: Maximum
+  buffID: 2554
+  developerDescription: Horde Mode - Missile Explosion Radius Reduction
+  displayName: Missile Explosion Radius Reduction
+  displayNameID: 1037578
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 654
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2555:
+  aggregateMode: Maximum
+  buffID: 2555
+  developerDescription: Horde Mode - Scan Resolution Bonus
+  displayName: Scan Resolution Bonus
+  displayNameID: 1037579
+  itemModifiers:
+  - dogmaAttributeID: 564
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2556:
+  aggregateMode: Maximum
+  buffID: 2556
+  developerDescription: Horde Mode - Local Armor Repair Amount Bonus
+  displayName: Local Armor Repair Amount Bonus
+  displayNameID: 1037580
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 3393
+  - dogmaAttributeID: 84
+    skillID: 21803
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2557:
+  aggregateMode: Maximum
+  buffID: 2557
+  developerDescription: Horde Mode - Local Shield Boost Amount Bonus
+  displayName: Local Shield Boost Amount Bonus
+  displayNameID: 1037581
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3416
+  - dogmaAttributeID: 68
+    skillID: 21802
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2558:
+  aggregateMode: Maximum
+  buffID: 2558
+  developerDescription: Horde Mode - Remote Armor Repair Amount Bonus
+  displayName: Remote Armor Repair Amount Bonus
+  displayNameID: 1037874
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 16069
+  - dogmaAttributeID: 84
+    skillID: 24568
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2559:
+  aggregateMode: Maximum
+  buffID: 2559
+  developerDescription: Horde Mode - Remote Shield Boost Amount Bonus
+  displayName: Remote Shield Boost Amount Bonus
+  displayNameID: 1037875
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3422
+  - dogmaAttributeID: 68
+    skillID: 24571
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2560:
+  aggregateMode: Maximum
+  buffID: 2560
+  developerDescription: Horde Mode - Warp Drive Blocker
+  displayName: <color="#FFFF454B">Activation Blocked:</color> Warp Drives
+  displayNameID: 1038311
+  itemModifiers:
+  - dogmaAttributeID: 104
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2561:
+  aggregateMode: Maximum
+  buffID: 2561
+  developerDescription: Horde Mode - Cloaking Devices Blocker
+  displayName: <color="#FFFF454B">Activation Blocked:</color> Cloaking Devices
+  displayNameID: 1038313
+  itemModifiers:
+  - dogmaAttributeID: 2454
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2562:
+  aggregateMode: Maximum
+  buffID: 2562
+  developerDescription: ChaosDungeon1 - Prefix Hybrid Damage Bonus
+  displayName: bonus to hybrid turret damage
+  displayNameID: 1038948
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 3301
+  - dogmaAttributeID: 64
+    skillID: 3304
+  - dogmaAttributeID: 64
+    skillID: 3307
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2563:
+  aggregateMode: Maximum
+  buffID: 2563
+  developerDescription: ChaosDungeon2 - Prefix Energy Turret Damage
+  displayName: bonus to energy turret damage
+  displayNameID: 1038952
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 3303
+  - dogmaAttributeID: 64
+    skillID: 3306
+  - dogmaAttributeID: 64
+    skillID: 3309
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2564:
+  aggregateMode: Maximum
+  buffID: 2564
+  developerDescription: ChaosDungeon3 - Prefix Projectile Turret Damage
+  displayName: bonus to projectile turret damage
+  displayNameID: 1038955
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 3302
+  - dogmaAttributeID: 64
+    skillID: 3305
+  - dogmaAttributeID: 64
+    skillID: 3308
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2565:
+  aggregateMode: Maximum
+  buffID: 2565
+  developerDescription: ChaosDungeon4 - Prefix Disintegrator Damage
+  displayName: bonus to precursor weapon damage
+  displayNameID: 1038958
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 47870
+  - dogmaAttributeID: 64
+    skillID: 47871
+  - dogmaAttributeID: 64
+    skillID: 47872
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2566:
+  aggregateMode: Maximum
+  buffID: 2566
+  developerDescription: ChaosDungeon5 - Prefix Vorton Projector Damage
+  displayName: bonus to vorton projector damage
+  displayNameID: 1038961
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 54826
+  - dogmaAttributeID: 64
+    skillID: 55034
+  - dogmaAttributeID: 64
+    skillID: 55035
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2567:
+  aggregateMode: Maximum
+  buffID: 2567
+  developerDescription: 'ChaosDungeon6 - prefix Rocket + HAM + torpedo only '
+  displayName: bonus to rocket, heavy assault and torpedo missile launcher rate of
+    fire
+  displayNameID: 1038964
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 51
+    groupID: 507
+  - dogmaAttributeID: 51
+    groupID: 508
+  - dogmaAttributeID: 51
+    groupID: 771
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2568:
+  aggregateMode: Maximum
+  buffID: 2568
+  developerDescription: ChaosDungeon7 - suffix local armor repair amount
+  displayName: bonus to armor repair amount
+  displayNameID: 1038965
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 3393
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2569:
+  aggregateMode: Maximum
+  buffID: 2569
+  developerDescription: ChaosDungeon8 - suffix local shield boost amount
+  displayName: bonus to shield boost amount
+  displayNameID: 1038966
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3416
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2570:
+  aggregateMode: Maximum
+  buffID: 2570
+  developerDescription: ChaosDungeon9 - Suffix Remote Repair Effectiveness
+  displayName: bonus to remote repair amount
+  displayNameID: 1038967
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 68
+    groupID: 41
+  - dogmaAttributeID: 68
+    groupID: 1697
+  - dogmaAttributeID: 84
+    groupID: 325
+  - dogmaAttributeID: 84
+    groupID: 1698
+  - dogmaAttributeID: 84
+    groupID: 2018
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2571:
+  aggregateMode: Maximum
+  buffID: 2571
+  developerDescription: ChaosDungeon10 - Suffix Signature Radius Reduction
+  displayName: reduction in ship signature radius
+  displayNameID: 1038968
+  itemModifiers:
+  - dogmaAttributeID: 552
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
+2572:
+  aggregateMode: Maximum
+  buffID: 2572
+  developerDescription: ChaosDungeon11 - Suffix Polarization Effect
+  displayName: All resistances set to 0
+  displayNameID: 1038969
+  itemModifiers:
+  - dogmaAttributeID: 109
+  - dogmaAttributeID: 110
+  - dogmaAttributeID: 111
+  - dogmaAttributeID: 113
+  - dogmaAttributeID: 267
+  - dogmaAttributeID: 268
+  - dogmaAttributeID: 269
+  - dogmaAttributeID: 270
+  - dogmaAttributeID: 271
+  - dogmaAttributeID: 272
+  - dogmaAttributeID: 273
+  - dogmaAttributeID: 274
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostAssignment
+  showOutputValueInUI: Hide
+2573:
+  aggregateMode: Maximum
+  buffID: 2573
+  developerDescription: ChaosDungeon12 - Energy Nosferatu and Energy Neutralizer drain
+    amount.
+  displayName: bonus to energy nosferatu and energy neutralizer drain amount
+  displayNameID: 1038970
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 90
+    groupID: 68
+  - dogmaAttributeID: 97
+    groupID: 71
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2574:
+  aggregateMode: Maximum
+  buffID: 2574
+  developerDescription: ChaosDungeon13 - Suffix Ancillary Remote Repair Effect
+  displayName: bonus to ancillary remote shield and ancillary remote armor repairer
+    module amount
+  displayNameID: 1038971
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 68
+    groupID: 1697
+  - dogmaAttributeID: 84
+    groupID: 1698
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2575:
+  aggregateMode: Maximum
+  buffID: 2575
+  developerDescription: ChaosDungeon14 - ECM Module Strength Increase
+  displayName: bonus to ECM module strength
+  displayNameID: 1038972
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 238
+    groupID: 201
+  - dogmaAttributeID: 239
+    groupID: 201
+  - dogmaAttributeID: 240
+    groupID: 201
+  - dogmaAttributeID: 241
+    groupID: 201
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2576:
+  aggregateMode: Maximum
+  buffID: 2576
+  developerDescription: ChaosDungeon15 - Implicit max target range chad mode forced
+  displayName: lock range limited to and is always 30km
+  displayNameID: 1038973
+  itemModifiers:
+  - dogmaAttributeID: 76
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostAssignment
+  showOutputValueInUI: Hide
+2577:
+  aggregateMode: Maximum
+  buffID: 2577
+  developerDescription: ChaosDungeon16 - Implicit longer range webs but reduced strength
+  displayName: stasis webifiers have increased range but reduced strength
+  displayNameID: 1038974
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 54
+    groupID: 65
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2578:
+  aggregateMode: Maximum
+  buffID: 2578
+  developerDescription: ChaosDungeon17 - Implicit Afterburner speed bonus for everyone
+  displayName: afterburner speed bonus
+  displayNameID: 1038975
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 20
+    skillID: 3450
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2579:
+  aggregateMode: Maximum
+  buffID: 2579
+  developerDescription: ChaosDungeon18 - Implicit all ships have increased top speed
+    but reduced agility
+  displayName: increased top speed but reduced agility
+  displayNameID: 1038978
+  itemModifiers:
+  - dogmaAttributeID: 37
+  - dogmaAttributeID: 70
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2580:
+  aggregateMode: Minimum
+  buffID: 2580
+  developerDescription: ChaosDungeon19 - Implicit heat damage reduction
+  displayName: module heat damage reduction
+  displayNameID: 1038979
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1211
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2581:
+  aggregateMode: Maximum
+  buffID: 2581
+  developerDescription: ChaosDungeon20 - Implicit Overheating Bonus - Includes Ewar
+  displayName: module overload bonus
+  displayNameID: 1038980
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers:
+  - dogmaAttributeID: 1181
+  - dogmaAttributeID: 1205
+  - dogmaAttributeID: 1206
+  - dogmaAttributeID: 1208
+  - dogmaAttributeID: 1210
+  - dogmaAttributeID: 1222
+  - dogmaAttributeID: 1223
+  - dogmaAttributeID: 1225
+  - dogmaAttributeID: 1226
+  - dogmaAttributeID: 1230
+  - dogmaAttributeID: 1231
+  - dogmaAttributeID: 1935
+  - dogmaAttributeID: 1936
+  - dogmaAttributeID: 1937
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2582:
+  aggregateMode: Maximum
+  buffID: 2582
+  developerDescription: Chaos Dungeon 16 - Reduced Web Strength (used with the other
+    dbuff ID)
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 20
+    groupID: 65
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: Hide
+2583:
+  aggregateMode: Maximum
+  buffID: 2583
+  developerDescription: Capsuleer Day - Energy Weapon Damage
+  displayName: Energy Weapon Damage Bonus
+  displayNameID: 1039934
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 64
+    groupID: 53
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2584:
+  aggregateMode: Maximum
+  buffID: 2584
+  developerDescription: Capsuleer Day Armor Resist
+  displayName: Armor Hit Points Bonus
+  displayNameID: 1039935
+  itemModifiers:
+  - dogmaAttributeID: 265
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2585:
+  aggregateMode: Maximum
+  buffID: 2585
+  developerDescription: Capsuleer Day - Missile Laucher Rate of Fire
+  displayName: Missile Launcher Rate of Fire Bonus
+  displayNameID: 1039936
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 51
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2586:
+  aggregateMode: Maximum
+  buffID: 2586
+  developerDescription: Capsuleer Day - Shield HP
+  displayName: Shield Hit Points Bonus
+  displayNameID: 1039937
+  itemModifiers:
+  - dogmaAttributeID: 263
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2587:
+  aggregateMode: Maximum
+  buffID: 2587
+  developerDescription: Capsuleer Day - Projectile Turret Falloff
+  displayName: Projectile Turret Falloff Bonus
+  displayNameID: 1039940
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 158
+    skillID: 3302
+  - dogmaAttributeID: 158
+    skillID: 3305
+  - dogmaAttributeID: 158
+    skillID: 3308
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2588:
+  aggregateMode: Maximum
+  buffID: 2588
+  developerDescription: Capsuleer Day - Velocity
+  displayName: Max Velocity Bonus
+  displayNameID: 1039941
+  itemModifiers:
+  - dogmaAttributeID: 37
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2589:
+  aggregateMode: Maximum
+  buffID: 2589
+  developerDescription: Capsuleer Day Amarr Warp Speed
+  displayName: Warp Speed Bonus
+  displayNameID: 1039964
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2590:
+  aggregateMode: Maximum
+  buffID: 2590
+  developerDescription: Capsuleer Day Caldari Warp Speed
+  displayName: Warp Speed Bonus
+  displayNameID: 1039965
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2591:
+  aggregateMode: Maximum
+  buffID: 2591
+  developerDescription: Capsuleer Day Minmatar Warp Speed
+  displayName: Warp Speed Bonus
+  displayNameID: 1039966
+  itemModifiers:
+  - dogmaAttributeID: 600
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2593:
+  aggregateMode: Maximum
+  buffID: 2593
+  developerDescription: Item Trader Shield Buff
+  displayName: Additional Base Shield Hitpoints
+  displayNameID: 1041619
+  itemModifiers:
+  - dogmaAttributeID: 263
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: ShowNormal
+2594:
+  aggregateMode: Maximum
+  buffID: 2594
+  developerDescription: Horde Mode - Vorton Projector Blocker
+  displayName: <color="#FFFF454B">Activation Blocked:</color> Vorton Projectors
+  displayNameID: 1042531
+  itemModifiers: []
+  locationGroupModifiers:
+  - dogmaAttributeID: 1349
+    groupID: 4060
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: ModAdd
+  showOutputValueInUI: Hide
+2595:
+  aggregateMode: Maximum
+  buffID: 2595
+  developerDescription: Horde Mode - Light Fighter Damage Bonus
+  displayName: Light Fighter Damage Bonus
+  displayNameID: 1042587
+  itemModifiers:
+  - dogmaAttributeID: 6182
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2596:
+  aggregateMode: Maximum
+  buffID: 2596
+  developerDescription: Horde Mode - Fighter Velocity Bonus
+  displayName: Fighter Velocity Bonus
+  displayNameID: 1042588
+  itemModifiers:
+  - dogmaAttributeID: 6183
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2597:
+  aggregateMode: Maximum
+  buffID: 2597
+  developerDescription: Horde Mode - Turret Optimal Range Bonus
+  displayName: Turret Optimal Range Bonus
+  displayNameID: 1042585
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 54
+    skillID: 3300
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2598:
+  aggregateMode: Maximum
+  buffID: 2598
+  developerDescription: Horde Mode - Missile Flight Time Bonus
+  displayName: Missile Flight Time Bonus
+  displayNameID: 1042584
+  itemModifiers: []
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 281
+    skillID: 3319
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2599:
+  aggregateMode: Maximum
+  buffID: 2599
+  developerDescription: AIR Epic Arc - Hull Resistance
+  displayName: Hull Damage Recieved
+  displayNameID: 1047372
+  itemModifiers:
+  - dogmaAttributeID: 109
+  - dogmaAttributeID: 110
+  - dogmaAttributeID: 111
+  - dogmaAttributeID: 113
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2600:
+  aggregateMode: Minimum
+  buffID: 2600
+  developerDescription: BPDC Damage Received Percentage
+  displayName: Breacher Pod Damage Received
+  displayNameID: 1047249
+  itemModifiers:
+  - dogmaAttributeID: 6255
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+2601:
+  aggregateMode: Maximum
+  buffID: 2601
+  developerDescription: AIR Epic Arc - Capacitor Recharge
+  displayName: Capacitor Recharge Rate
+  displayNameID: 1047373
+  itemModifiers:
+  - dogmaAttributeID: 55
+  locationGroupModifiers: []
+  locationModifiers: []
+  locationRequiredSkillModifiers: []
+  operationName: PostPercent
+  showOutputValueInUI: ShowInverted
