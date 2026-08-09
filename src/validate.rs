@@ -528,10 +528,7 @@ fn booster_slot(type_id: i32, info: &dyn InfoProvider) -> Option<i32> {
     })
 }
 
-fn find_attr(
-    attributes: &[TypeDogmaAttribute],
-    attribute_id: i32,
-) -> Option<f64> {
+fn find_attr(attributes: &[TypeDogmaAttribute], attribute_id: i32) -> Option<f64> {
     attributes
         .iter()
         .find_map(|attr| (attr.attribute_id == attribute_id).then_some(attr.value))
