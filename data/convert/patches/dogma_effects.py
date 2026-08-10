@@ -84,6 +84,14 @@ def patch(entries, patches, data):
         # Add new entries.
         if patch.get("new"):
             patch["effectName"] = patch["new"]["name"]
+            # Most effects don't care what number they have; some do.
+            # A pinned `id` is used as-is and does not consume a positional ID,
+            # keeping the positional IDs of all other patches stable.
+            if "id" in patch["new"]:
+                nextID = patch["new"]["id"]
+            else:
+                nextID = nextEffectID
+                nextEffectID -= 1
             del patch["new"]
 
             # Check if the name is unique.
@@ -93,8 +101,7 @@ def patch(entries, patches, data):
                         f"Effect name '{patch['effectName']}' is not unique."
                     )
 
-            entries[nextEffectID] = patch
-            nextEffectID -= 1
+            entries[nextID] = patch
 
         # Fixup patch entries.
         if patch.get("patch"):

@@ -1,0 +1,38 @@
+description: |
+  Patch in an attribute to indicate the capacity of fighters.
+
+attributes:
+- new:
+    name: fighterCapacityLoad
+    # Pinned so the positional IDs of other patches stay stable.
+    id: -87
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: fighterLoad
+    # Pinned so the positional IDs of other patches stay stable.
+    id: -64
+  effectCategory: passive
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: fighterCapacityLoad
+    modifyingAttribute: volume
+    operation: modAdd
+
+typeDogma:
+- patch:
+  - category: Fighter
+  dogmaEffects:
+  - effect: fighterLoad
+    isDefault: false
