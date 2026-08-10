@@ -1,4 +1,5 @@
-use crate::{calculate::Ship, provider::FitProvider};
+use crate::calculate::Ship;
+use crate::provider::FitProvider;
 
 const TYPE_ID_ARMOR_REPAIRER_CHARGE: i32 = 28668;
 const ATTR_ARMOR_MULT: i32 = 1886;

@@ -1,15 +1,10 @@
-use crate::{
-    calculate::item::EffectCategory,
-    constant::ATTRIBUTE_SKILLS,
-    fit::{self, Buff},
-    provider::{FitProvider, InfoProvider},
-};
-
-use super::{
-    Ship,
-    item::{Attribute, Item, Object},
-    pass_5::Cache,
-};
+use super::Ship;
+use super::item::{Attribute, Item, Object};
+use super::pass_5::Cache;
+use crate::calculate::item::EffectCategory;
+use crate::constant::ATTRIBUTE_SKILLS;
+use crate::fit::{self, Buff};
+use crate::provider::{FitProvider, InfoProvider};
 
 const WARFARE_BUFFS: [(i32, i32); 4] = [
     (2468, 2469), // warfareBuff1

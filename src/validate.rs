@@ -1,13 +1,13 @@
 use std::collections::HashMap;
 
-use crate::{
-    calculate::{
-        Ship,
-        item::{Item, SlotType},
-    },
-    fit::{FitContainer, ItemSlotType, TypeDogmaAttribute},
-    provider::InfoProvider,
+use crate::calculate::Ship;
+use crate::calculate::item::{EffectCategory, Item, SlotType};
+use crate::constant::patches::attr::{
+    ATTR_CPU_FREE, ATTR_DRONE_ACTIVE, ATTR_DRONE_CAPACITY_LOAD, ATTR_POWER_FREE,
+    ATTR_UPGRADE_USED,
 };
+use crate::fit::{FitContainer, ItemSlotType, ItemState, TypeDogmaAttribute};
+use crate::provider::InfoProvider;
 
 const EFFECT_LAUNCHER: i32 = 40;
 const EFFECT_TURRET: i32 = 42;
@@ -23,6 +23,24 @@ const ATTR_BOOSTER_SLOT: i32 = 1087;
 const ATTR_SUBSYSTEM_TURRET: i32 = 1368;
 const ATTR_SUBSYSTEM_LAUNCHER: i32 = 1369;
 const ATTR_RIG_SIZE: i32 = 1547;
+
+const ATTR_POWER_OUTPUT: i32 = 11;
+const ATTR_CPU_OUTPUT: i32 = 48;
+const ATTR_DRONE_CAPACITY: i32 = 283;
+const ATTR_MAX_ACTIVE_DRONES: i32 = 352;
+const ATTR_UPGRADE_CAPACITY: i32 = 1132;
+const ATTR_DRONE_BANDWIDTH: i32 = 1271;
+const ATTR_DRONE_BANDWIDTH_LOAD: i32 = 1273;
+const ATTR_FIGHTER_TUBES: i32 = 2216;
+const ATTR_FIGHTER_LIGHT_SLOTS: i32 = 2217;
+const ATTR_FIGHTER_SUPPORT_SLOTS: i32 = 2218;
+const ATTR_FIGHTER_HEAVY_SLOTS: i32 = 2219;
+
+const GROUP_LIGHT_FIGHTER: [i32; 2] = [1652, 4777];
+const GROUP_SUPPORT_FIGHTER: [i32; 2] = [1537, 4778];
+const GROUP_HEAVY_FIGHTER: [i32; 2] = [1653, 4779];
+
+const RESOURCE_EPSILON: f64 = 1e-6;
 
 const ATTR_CHARGE_GROUPS: [i32; 5] = [604, 605, 606, 609, 610];
 const CAN_FIT_GROUP_ATTR_IDS: [i32; 20] = [
@@ -46,6 +64,44 @@ pub enum ValidationSlotType {
     Booster,
     Drone,
     Fighter,
+    Ship,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum FighterSquadron {
+    Light,
+    Support,
+    Heavy,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ValidationState {
+    Passive,
+    Online,
+    Active,
+    Overload,
+}
+
+impl From<ItemState> for ValidationState {
+    fn from(value: ItemState) -> Self {
+        match value {
+            ItemState::Passive => Self::Passive,
+            ItemState::Online => Self::Online,
+            ItemState::Active => Self::Active,
+            ItemState::Overload => Self::Overload,
+        }
+    }
+}
+
+impl From<EffectCategory> for ValidationState {
+    fn from(value: EffectCategory) -> Self {
+        match value {
+            EffectCategory::Passive => Self::Passive,
+            EffectCategory::Online => Self::Online,
+            EffectCategory::Active => Self::Active,
+            _ => Self::Overload,
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -63,16 +119,79 @@ pub enum ValidationIssueKind {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum ValidationErrorKey {
-    IncompatibleChargeSize { expected: u8, actual: u8 },
-    IncompatibleChargeCapacity { max: f64, actual: f64 },
-    IncompatibleChargeGroup { expected: Vec<i32>, actual: i32 },
-    TooMuchTurret { expected: u8, actual: u8 },
-    TooMuchLauncher { expected: u8, actual: u8 },
-    ConflictItem { group_id: i32 },
-    DuplicateBooster { slot: i32 },
-    IncompatibleShipGroup { expected: Vec<i32> },
-    IncompatibleShipType { expected: Vec<i32> },
-    IncompatibleRigSize { expected: u8, actual: u8 },
+    IncompatibleChargeSize {
+        expected: u8,
+        actual: u8,
+    },
+    IncompatibleChargeCapacity {
+        max: f64,
+        actual: f64,
+    },
+    IncompatibleChargeGroup {
+        expected: Vec<i32>,
+        actual: i32,
+    },
+    TooMuchTurret {
+        expected: u8,
+        actual: u8,
+    },
+    TooMuchLauncher {
+        expected: u8,
+        actual: u8,
+    },
+    ConflictItem {
+        group_id: i32,
+    },
+    DuplicateBooster {
+        slot: i32,
+    },
+    IncompatibleShipGroup {
+        expected: Vec<i32>,
+    },
+    IncompatibleShipType {
+        expected: Vec<i32>,
+    },
+    IncompatibleRigSize {
+        expected: u8,
+        actual: u8,
+    },
+    PowergridExceeded {
+        expected: f64,
+        actual: f64,
+    },
+    CpuExceeded {
+        expected: f64,
+        actual: f64,
+    },
+    CalibrationExceeded {
+        expected: f64,
+        actual: f64,
+    },
+    DroneBandwidthExceeded {
+        expected: f64,
+        actual: f64,
+    },
+    DroneBayExceeded {
+        expected: f64,
+        actual: f64,
+    },
+    TooManyActiveDrones {
+        expected: u32,
+        actual: u32,
+    },
+    TooMuchFighterTube {
+        expected: u32,
+        actual: u32,
+    },
+    TooMuchFighterSquadron {
+        category: FighterSquadron,
+        expected: u32,
+        actual: u32,
+    },
+    StateExceedsMax {
+        state: ValidationState,
+        max_state: ValidationState,
+    },
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -95,6 +214,10 @@ const VALIDATION_RULES: &[ValidationRule] = &[
     validate_booster_slots,
     validate_charges,
     validate_max_active_groups,
+    validate_ship_resources,
+    validate_drone_capacity,
+    validate_fighter_capacity,
+    validate_module_states,
 ];
 
 pub fn validate_fit(
@@ -438,6 +561,207 @@ fn validate_max_active_groups(
             index: item.slot.index,
             kind: ValidationIssueKind::Error(ValidationErrorKey::ConflictItem {
                 group_id,
+            }),
+        });
+    }
+}
+
+fn validate_ship_resources(
+    context: &ValidationContext<'_>,
+    issues: &mut Vec<ValidationIssue>,
+) {
+    let hull = &context.ship.hull;
+
+    if let Some(free) = item_attribute(hull, ATTR_POWER_FREE) {
+        if free < -RESOURCE_EPSILON {
+            let expected = item_attribute(hull, ATTR_POWER_OUTPUT).unwrap_or(0.0);
+            issues.push(ValidationIssue {
+                slot_type: ValidationSlotType::Ship,
+                index: None,
+                kind: ValidationIssueKind::Error(
+                    ValidationErrorKey::PowergridExceeded {
+                        expected,
+                        actual: expected - free,
+                    },
+                ),
+            });
+        }
+    }
+
+    if let Some(free) = item_attribute(hull, ATTR_CPU_FREE) {
+        if free < -RESOURCE_EPSILON {
+            let expected = item_attribute(hull, ATTR_CPU_OUTPUT).unwrap_or(0.0);
+            issues.push(ValidationIssue {
+                slot_type: ValidationSlotType::Ship,
+                index: None,
+                kind: ValidationIssueKind::Error(ValidationErrorKey::CpuExceeded {
+                    expected,
+                    actual: expected - free,
+                }),
+            });
+        }
+    }
+
+    let used = item_attribute(hull, ATTR_UPGRADE_USED).unwrap_or(0.0);
+    let capacity = item_attribute(hull, ATTR_UPGRADE_CAPACITY).unwrap_or(0.0);
+    if used > capacity + RESOURCE_EPSILON {
+        issues.push(ValidationIssue {
+            slot_type: ValidationSlotType::Ship,
+            index: None,
+            kind: ValidationIssueKind::Error(ValidationErrorKey::CalibrationExceeded {
+                expected: capacity,
+                actual: used,
+            }),
+        });
+    }
+}
+
+fn validate_drone_capacity(
+    context: &ValidationContext<'_>,
+    issues: &mut Vec<ValidationIssue>,
+) {
+    let hull = &context.ship.hull;
+
+    let bandwidth_load = item_attribute(hull, ATTR_DRONE_BANDWIDTH_LOAD).unwrap_or(0.0);
+    let bandwidth = item_attribute(hull, ATTR_DRONE_BANDWIDTH).unwrap_or(0.0);
+    if bandwidth_load > bandwidth + RESOURCE_EPSILON {
+        issues.push(ValidationIssue {
+            slot_type: ValidationSlotType::Drone,
+            index: None,
+            kind: ValidationIssueKind::Error(
+                ValidationErrorKey::DroneBandwidthExceeded {
+                    expected: bandwidth,
+                    actual: bandwidth_load,
+                },
+            ),
+        });
+    }
+
+    let bay_load = item_attribute(hull, ATTR_DRONE_CAPACITY_LOAD).unwrap_or(0.0);
+    let bay = item_attribute(hull, ATTR_DRONE_CAPACITY).unwrap_or(0.0);
+    if bay_load > bay + RESOURCE_EPSILON {
+        issues.push(ValidationIssue {
+            slot_type: ValidationSlotType::Drone,
+            index: None,
+            kind: ValidationIssueKind::Error(ValidationErrorKey::DroneBayExceeded {
+                expected: bay,
+                actual: bay_load,
+            }),
+        });
+    }
+
+    let active = item_attribute(hull, ATTR_DRONE_ACTIVE).unwrap_or(0.0);
+    if let Some(max_active) =
+        item_attribute(&context.ship.character, ATTR_MAX_ACTIVE_DRONES)
+    {
+        if active > max_active + RESOURCE_EPSILON {
+            issues.push(ValidationIssue {
+                slot_type: ValidationSlotType::Drone,
+                index: None,
+                kind: ValidationIssueKind::Error(
+                    ValidationErrorKey::TooManyActiveDrones {
+                        expected: max_active as u32,
+                        actual: active as u32,
+                    },
+                ),
+            });
+        }
+    }
+}
+
+fn validate_fighter_capacity(
+    context: &ValidationContext<'_>,
+    issues: &mut Vec<ValidationIssue>,
+) {
+    if context.fit.fit.fighters.is_empty() {
+        return;
+    }
+    let hull = &context.ship.hull;
+
+    let total = context.fit.fit.fighters.len() as u32;
+    let tubes = item_attribute(hull, ATTR_FIGHTER_TUBES).unwrap_or(0.0) as u32;
+    if total > tubes {
+        issues.push(ValidationIssue {
+            slot_type: ValidationSlotType::Fighter,
+            index: None,
+            kind: ValidationIssueKind::Error(ValidationErrorKey::TooMuchFighterTube {
+                expected: tubes,
+                actual: total,
+            }),
+        });
+    }
+
+    for (category, groups, limit_attr) in [
+        (
+            FighterSquadron::Light,
+            GROUP_LIGHT_FIGHTER,
+            ATTR_FIGHTER_LIGHT_SLOTS,
+        ),
+        (
+            FighterSquadron::Support,
+            GROUP_SUPPORT_FIGHTER,
+            ATTR_FIGHTER_SUPPORT_SLOTS,
+        ),
+        (
+            FighterSquadron::Heavy,
+            GROUP_HEAVY_FIGHTER,
+            ATTR_FIGHTER_HEAVY_SLOTS,
+        ),
+    ] {
+        let count = context
+            .fit
+            .fit
+            .fighters
+            .iter()
+            .filter(|fighter| {
+                groups.contains(&context.info.get_type(fighter.type_id).group_id)
+            })
+            .count() as u32;
+        if count == 0 {
+            continue;
+        }
+        let limit = item_attribute(hull, limit_attr).unwrap_or(0.0) as u32;
+        if count > limit {
+            issues.push(ValidationIssue {
+                slot_type: ValidationSlotType::Fighter,
+                index: None,
+                kind: ValidationIssueKind::Error(
+                    ValidationErrorKey::TooMuchFighterSquadron {
+                        category,
+                        expected: limit,
+                        actual: count,
+                    },
+                ),
+            });
+        }
+    }
+}
+
+fn validate_module_states(
+    context: &ValidationContext<'_>,
+    issues: &mut Vec<ValidationIssue>,
+) {
+    // pass_1 pushes fitted modules first, preserving input order.
+    for (module, item) in context
+        .fit
+        .fit
+        .modules
+        .iter()
+        .zip(context.ship.modules.iter())
+    {
+        let state = EffectCategory::from(module.state);
+        if state <= item.max_state {
+            continue;
+        }
+        let Some(slot_type) = validation_slot_type(module.slot.slot_type) else {
+            continue;
+        };
+        issues.push(ValidationIssue {
+            slot_type,
+            index: Some(module.slot.index),
+            kind: ValidationIssueKind::Error(ValidationErrorKey::StateExceedsMax {
+                state: module.state.into(),
+                max_state: item.max_state.into(),
             }),
         });
     }
