@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
 use crate::calculate::Ship;
 use crate::calculate::item::{EffectCategory, Item, SlotType};
@@ -6,7 +6,9 @@ use crate::constant::patches::attr::{
     ATTR_CPU_FREE, ATTR_DRONE_ACTIVE, ATTR_DRONE_CAPACITY_LOAD, ATTR_POWER_FREE,
     ATTR_UPGRADE_USED,
 };
-use crate::fit::{FitContainer, ItemSlotType, ItemState, TypeDogmaAttribute};
+use crate::fit::{
+    FitContainer, ItemFighter, ItemSlotType, ItemState, TypeDogmaAttribute,
+};
 use crate::provider::InfoProvider;
 
 const EFFECT_LAUNCHER: i32 = 40;
@@ -669,6 +671,14 @@ fn validate_drone_capacity(
     }
 }
 
+fn count_fighter_squadrons(fighters: &[ItemFighter]) -> u32 {
+    fighters
+        .iter()
+        .map(|fighter| fighter.group_id)
+        .collect::<HashSet<_>>()
+        .len() as u32
+}
+
 fn validate_fighter_capacity(
     context: &ValidationContext<'_>,
     issues: &mut Vec<ValidationIssue>,
@@ -677,8 +687,7 @@ fn validate_fighter_capacity(
         return;
     }
     let hull = &context.ship.hull;
-
-    let total = context.fit.fit.fighters.len() as u32;
+    let total = count_fighter_squadrons(&context.fit.fit.fighters);
     let tubes = item_attribute(hull, ATTR_FIGHTER_TUBES).unwrap_or(0.0) as u32;
     if total > tubes {
         issues.push(ValidationIssue {
@@ -716,7 +725,9 @@ fn validate_fighter_capacity(
             .filter(|fighter| {
                 groups.contains(&context.info.get_type(fighter.type_id).group_id)
             })
-            .count() as u32;
+            .map(|fighter| fighter.group_id)
+            .collect::<HashSet<_>>()
+            .len() as u32;
         if count == 0 {
             continue;
         }

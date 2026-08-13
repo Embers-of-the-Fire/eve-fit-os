@@ -253,15 +253,13 @@ fn test_validate_drone_bay_exceeded() {
 #[test]
 fn test_validate_fighter_tubes_exceeded() {
     let mut fit = base_fit(SHIP_CARRIER);
-    fit.fighters = repeat_n(
-        ItemFighter {
+    fit.fighters = (0..6)
+        .map(|group_id| ItemFighter {
             type_id: FIGHTER_LIGHT,
-            group_id: 0,
+            group_id,
             ability: FighterAbility::ATTACK_MISSILE | FighterAbility::MISSILES,
-        },
-        6,
-    )
-    .collect();
+        })
+        .collect();
 
     let issues = validate(fit);
     let errors = errors(&issues);
@@ -281,6 +279,32 @@ fn test_validate_fighter_tubes_exceeded() {
                 if *category == FighterSquadron::Light && *expected == 3 && *actual == 6
         )),
         "expected TooMuchFighterSquadron(Light), got {issues:?}"
+    );
+}
+
+#[test]
+fn test_validate_fighter_squadron_uses_single_tube() {
+    let mut fit = base_fit(SHIP_CARRIER);
+    fit.fighters = repeat_n(
+        ItemFighter {
+            type_id: FIGHTER_LIGHT,
+            group_id: 0,
+            ability: FighterAbility::ATTACK_MISSILE | FighterAbility::MISSILES,
+        },
+        6,
+    )
+    .collect();
+
+    let issues = validate(fit);
+    let errors = errors(&issues);
+
+    assert!(
+        !errors.iter().any(|key| matches!(
+            key,
+            ValidationErrorKey::TooMuchFighterTube { .. }
+                | ValidationErrorKey::TooMuchFighterSquadron { .. }
+        )),
+        "a single squadron of 6 fighters must use 1 tube, got {issues:?}"
     );
 }
 
