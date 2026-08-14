@@ -4,6 +4,7 @@ use super::Ship;
 use super::item::{Attribute, EffectOperator, Item, Object};
 use crate::calculate::item::{ModifierSource, ModifierTracker};
 use crate::constant::PENALTY_FACTOR;
+use crate::constant::patches::attr::ATTR_CHARGE_AMOUNT;
 use crate::provider::{FitProvider, InfoProvider};
 
 const OPERATOR_HAS_PENALTY: [EffectOperator; 5] = [
@@ -276,6 +277,8 @@ impl Attribute {
         ];
         let current_value = if RESONANCE_VALUE.contains(&attribute_id) {
             current_value.clamp(0.0, 1.0)
+        } else if attribute_id == ATTR_CHARGE_AMOUNT {
+            current_value.floor()
         } else {
             current_value
         };
