@@ -278,7 +278,12 @@ impl Attribute {
         let current_value = if RESONANCE_VALUE.contains(&attribute_id) {
             current_value.clamp(0.0, 1.0)
         } else if attribute_id == ATTR_CHARGE_AMOUNT {
-            current_value.floor()
+            let rounded = current_value.round();
+            if (current_value - rounded).abs() < 1e-4 {
+                rounded
+            } else {
+                current_value.floor()
+            }
         } else {
             current_value
         };
