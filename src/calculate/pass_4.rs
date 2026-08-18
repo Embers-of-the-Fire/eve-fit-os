@@ -6,7 +6,10 @@ use crate::constant::ATTRIBUTE_SKILLS;
 use crate::fit::{self, Buff};
 use crate::provider::{FitProvider, InfoProvider};
 
-const WARFARE_BUFFS: [(i32, i32); 4] = [
+/// Warfare buff attribute ID pairs `(buff_id, buff_value)` consulted by
+/// pass 4. Also consumed by the platform fit-storage worker to prefetch the
+/// referenced dogma attributes.
+pub const WARFARE_BUFFS: [(i32, i32); 4] = [
     (2468, 2469), // warfareBuff1
     (2470, 2471), // warfareBuff2
     (2472, 2473), // warfareBuff3

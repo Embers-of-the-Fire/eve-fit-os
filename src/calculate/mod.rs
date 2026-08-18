@@ -12,6 +12,8 @@ mod pass_4;
 mod pass_5;
 mod pass_6;
 
+pub use pass_4::WARFARE_BUFFS;
+
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct DamageProfile {
     pub em: f64,
