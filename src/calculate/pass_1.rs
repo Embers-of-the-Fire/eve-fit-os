@@ -102,7 +102,7 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
         let state: EffectCategory = drone.state.into();
         let state = state.fallback_active();
 
-        let mut item = Item::new_drone(drone.type_id, drone.group_id, state);
+        let mut item = Item::new_drone(drone.item_id, drone.group_id, state);
         item.update_attributes(info, fit);
 
         ship.modules.push(item);

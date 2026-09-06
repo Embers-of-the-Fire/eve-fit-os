@@ -195,7 +195,7 @@ pub struct ItemModule {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ItemDrone {
-    pub type_id: i32,
+    pub item_id: ItemID,
     pub group_id: u8,
     pub state: ItemState,
 }

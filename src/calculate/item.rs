@@ -301,9 +301,9 @@ impl Item {
         }
     }
 
-    pub fn new_drone(type_id: i32, group_id: u8, state: EffectCategory) -> Self {
+    pub fn new_drone(item_id: ItemID, group_id: u8, state: EffectCategory) -> Self {
         Self {
-            item_id: ItemID::Item(type_id),
+            item_id,
             slot: Slot {
                 slot_type: SlotType::DroneBay { group_id },
                 index: Some(group_id as i32),

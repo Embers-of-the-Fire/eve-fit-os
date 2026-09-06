@@ -173,7 +173,7 @@ fn test_validate_drone_bandwidth_and_active_count() {
     let mut fit = base_fit(SHIP_ARBITRATOR);
     fit.drones = repeat_n(
         ItemDrone {
-            type_id: DRONE_HOBGOBLIN,
+            item_id: ItemID::Item(DRONE_HOBGOBLIN),
             group_id: 10,
             state: ItemState::Active,
         },
@@ -222,7 +222,7 @@ fn test_validate_drone_bay_exceeded() {
     let mut fit = base_fit(SHIP_ARBITRATOR);
     fit.drones = repeat_n(
         ItemDrone {
-            type_id: DRONE_HOBGOBLIN,
+            item_id: ItemID::Item(DRONE_HOBGOBLIN),
             group_id: 10,
             state: ItemState::Passive,
         },
@@ -349,7 +349,7 @@ fn test_validate_legal_fit_has_no_capacity_issues() {
     }
     fit.drones = repeat_n(
         ItemDrone {
-            type_id: DRONE_HOBGOBLIN,
+            item_id: ItemID::Item(DRONE_HOBGOBLIN),
             group_id: 10,
             state: ItemState::Passive,
         },

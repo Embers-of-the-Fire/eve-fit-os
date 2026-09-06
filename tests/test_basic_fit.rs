@@ -58,7 +58,7 @@ fn test_basic_fit() {
             ])
             .collect(),
         drones: vec![ItemDrone {
-            type_id: 2456,
+            item_id: ItemID::Item(2456),
             group_id: 10,
             state: ItemState::Active,
         }],
