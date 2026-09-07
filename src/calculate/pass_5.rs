@@ -55,9 +55,10 @@ impl Attribute {
                 .implants
                 .get(&index)
                 .and_then(|x| x.get(&attribute_id)),
-            Object::Booster(index) => {
-                cache.charge.get(&index).and_then(|x| x.get(&attribute_id))
-            }
+            Object::Booster(index) => cache
+                .boosters
+                .get(&index)
+                .and_then(|x| x.get(&attribute_id)),
             Object::Charge(index) => {
                 cache.charge.get(&index).and_then(|x| x.get(&attribute_id))
             }
