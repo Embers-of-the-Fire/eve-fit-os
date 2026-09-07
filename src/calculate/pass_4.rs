@@ -148,10 +148,9 @@ pub(crate) fn pass(
             .iter_mut()
             .chain(std::iter::once(&mut ship.hull))
         {
+            // Buffs describe ship/module attributes (e.g. hull resonances);
+            // never inject them into charges.
             module.update_buff(info, fit, *buff_id, buff);
-            if let Some(charge) = &mut module.charge {
-                charge.update_buff(info, fit, *buff_id, buff);
-            }
         }
     }
 }
