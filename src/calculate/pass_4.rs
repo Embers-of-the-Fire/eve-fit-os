@@ -60,14 +60,21 @@ impl Item {
         }
     }
 
-    fn update_buff(
+    /// Registers a buff's `itemModifiers` on this item.
+    ///
+    /// `itemModifiers` describe attributes of the buff holder itself, so
+    /// this must only be called on the ship hull. Injecting them into
+    /// equipped items is wrong twice over: modules that carry the same
+    /// attributes (e.g. shield resonances on a Damage Control) would forward
+    /// the buffed value to the hull through their own dogma effects
+    /// (double-dipping the buff and inflating EHP), and items that don't
+    /// carry them (e.g. rigs) would gain spurious attributes.
+    fn update_buff_holder(
         &mut self,
         info: &impl InfoProvider,
-        dynamic: &impl FitProvider,
         buff_id: i32,
         buff: &Buff,
     ) {
-        let type_id = self.item_id.as_type_id(dynamic);
         for m in buff.item_modifiers.iter().map(|u| u.dogma_attribute_id) {
             self.attributes
                 .entry(m)
@@ -77,6 +84,21 @@ impl Item {
                 .buffs
                 .push(buff_id);
         }
+    }
+
+    /// Registers a buff's `location*Modifiers` on this item.
+    ///
+    /// Location modifiers describe items located on the buff holder, i.e.
+    /// the ship's equipped items (modules, drones, fighters). They must
+    /// never be registered on the hull itself.
+    fn update_buff_location(
+        &mut self,
+        info: &impl InfoProvider,
+        dynamic: &impl FitProvider,
+        buff_id: i32,
+        buff: &Buff,
+    ) {
+        let type_id = self.item_id.as_type_id(dynamic);
         for m in buff.location_modifiers.iter().map(|u| u.dogma_attribute_id) {
             self.attributes
                 .entry(m)
@@ -143,14 +165,14 @@ pub(crate) fn pass(
     }
     for buff_id in cache.buffs.keys() {
         let buff = info.get_buff(*buff_id);
-        for module in ship
-            .modules
-            .iter_mut()
-            .chain(std::iter::once(&mut ship.hull))
-        {
-            // Buffs describe ship/module attributes (e.g. hull resonances);
-            // never inject them into charges.
-            module.update_buff(info, fit, *buff_id, buff);
+        // itemModifiers describe the buff holder itself (the ship hull,
+        // e.g. shield resonances for the harmonizing charge).
+        ship.hull.update_buff_holder(info, *buff_id, buff);
+        // location*Modifiers describe items in the holder's location (fitted
+        // modules, drones, fighters) — never the hull itself, and never
+        // charges.
+        for module in ship.modules.iter_mut() {
+            module.update_buff_location(info, fit, *buff_id, buff);
         }
     }
 }
