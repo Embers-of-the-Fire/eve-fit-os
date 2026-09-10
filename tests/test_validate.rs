@@ -56,6 +56,7 @@ fn module(
         slot: ItemSlot { slot_type, index },
         state,
         charge: None,
+        damage_turns: 0,
     }
 }
 

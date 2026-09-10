@@ -34,6 +34,7 @@ fn test_basic_fit() {
                 },
                 state: ItemState::Active,
                 charge: Some(ItemCharge { type_id: 2613 }),
+                damage_turns: 0,
             })
             .chain(vec![
                 ItemModule {
@@ -44,6 +45,7 @@ fn test_basic_fit() {
                     },
                     state: ItemState::Overload,
                     charge: None,
+                    damage_turns: 0,
                 },
                 ItemModule {
                     item_id: ItemID::Item(3568),
@@ -54,6 +56,7 @@ fn test_basic_fit() {
                     state: ItemState::Active,
                     // charge: None,
                     charge: Some(ItemCharge { type_id: 11285 }),
+                    damage_turns: 0,
                 },
             ])
             .collect(),

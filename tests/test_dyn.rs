@@ -29,6 +29,7 @@ fn test_dyn() {
             },
             state: ItemState::Active,
             charge: None,
+            damage_turns: 0,
         }],
         drones: vec![],
         implants: vec![],

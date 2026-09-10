@@ -39,6 +39,7 @@ fn calculate_with_rah(
             },
             state,
             charge: None,
+            damage_turns: 0,
         }],
         drones: vec![],
         implants: vec![],

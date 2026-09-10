@@ -74,7 +74,8 @@ let fit = ItemFit {
                 // Mjolnir Fury Light Missile
                 // 雷神愤怒轻型导弹
                 type_id: 2613,
-            })
+            }),
+            damage_turns: 0,
         })
         .collect(),
     drones: vec![ItemDrone {

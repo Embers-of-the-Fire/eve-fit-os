@@ -32,6 +32,7 @@ fn test_warfare() {
                 // state: ItemState::Active,
                 state: ItemState::Active,
                 charge: Some(ItemCharge { type_id: 42833 }),
+                damage_turns: 0,
             },
             ItemModule {
                 item_id: ItemID::Item(3530),
@@ -41,6 +42,7 @@ fn test_warfare() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             },
         ],
         drones: vec![],
@@ -99,6 +101,7 @@ fn test_warfare_charge_attributes_not_polluted() {
                 },
                 state: ItemState::Active,
                 charge: Some(ItemCharge { type_id: *type_id }),
+                damage_turns: 0,
             })
             .collect(),
         drones: vec![],
@@ -194,6 +197,7 @@ fn test_warfare_item_modifiers_apply_to_hull_only() {
                 charge: Some(ItemCharge {
                     type_id: SHIELD_HARMONIZING_CHARGE,
                 }),
+                damage_turns: 0,
             });
         }
         modules.push(ItemModule {
@@ -204,6 +208,7 @@ fn test_warfare_item_modifiers_apply_to_hull_only() {
             },
             state: ItemState::Active,
             charge: None,
+            damage_turns: 0,
         });
         modules.push(ItemModule {
             item_id: ItemID::Item(CORE_DEFENSE_FIELD_EXTENDER_I),
@@ -213,6 +218,7 @@ fn test_warfare_item_modifiers_apply_to_hull_only() {
             },
             state: ItemState::Passive,
             charge: None,
+            damage_turns: 0,
         });
 
         FitContainer::new(

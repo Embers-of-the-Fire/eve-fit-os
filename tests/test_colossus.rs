@@ -32,6 +32,7 @@ fn test_colossus() {
                 },
                 state: ItemState::Active,
                 charge: Some(ItemCharge { type_id: 24521 }),
+                damage_turns: 0,
             })
             .collect(),
         drones: vec![],

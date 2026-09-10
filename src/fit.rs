@@ -191,6 +191,9 @@ pub struct ItemModule {
     pub slot: ItemSlot,
     pub state: ItemState,
     pub charge: Option<ItemCharge>,
+    /// Number of completed damage ramp-up cycles of a precursor turret
+    /// (0 = first shot, base damage).
+    pub damage_turns: u32,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

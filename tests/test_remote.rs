@@ -33,6 +33,7 @@ fn test_remote() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             },
             ItemModule {
                 item_id: ItemID::Item(3588),
@@ -42,6 +43,7 @@ fn test_remote() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             },
             ItemModule {
                 item_id: ItemID::Item(26912),
@@ -51,6 +53,7 @@ fn test_remote() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             },
             ItemModule {
                 item_id: ItemID::Item(1190),
@@ -60,6 +63,7 @@ fn test_remote() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             },
         ],
         drones: vec![],

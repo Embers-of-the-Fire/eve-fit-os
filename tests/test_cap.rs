@@ -33,6 +33,7 @@ fn test_cap() {
             state: ItemState::Active,
             charge: Some(ItemCharge { type_id: 3554 }),
             // charge: None,
+            damage_turns: 0,
         }],
         drones: vec![],
         implants: vec![],
@@ -118,6 +119,7 @@ fn test_cap_raw() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             })
             .chain(std::iter::once(ItemModule {
                 item_id: ItemID::Item(15154),
@@ -127,6 +129,7 @@ fn test_cap_raw() {
                 },
                 state: ItemState::Active,
                 charge: None,
+                damage_turns: 0,
             }))
             .collect(),
         drones: vec![],

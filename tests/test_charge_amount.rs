@@ -38,6 +38,7 @@ fn test_interdiction_sphere_launcher_holds_three_probes() {
             charge: Some(ItemCharge {
                 type_id: CHARGE_WARP_DISRUPT_PROBE,
             }),
+            damage_turns: 0,
         }],
         drones: vec![],
         implants: vec![],

@@ -28,6 +28,7 @@ fn test_implant_group() {
             },
             state: ItemState::Active,
             charge: None,
+            damage_turns: 0,
         }],
         drones: vec![],
         implants: vec![

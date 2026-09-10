@@ -46,6 +46,17 @@ pub const ATTRIBUTE_RECHARGE_RATE_ID: i32 = 55;
 /// Capacitor capacity attribute name (base capacitor value)
 pub const ATTRIBUTE_CAPACITOR_CAPACITY_ID: i32 = 482;
 
+/// Damage multiplier attribute ID (corresponding to `damageMultiplier`)
+pub const ATTRIBUTE_DAMAGE_MULTIPLIER_ID: i32 = 64;
+
+/// Precursor turret damage ramp-up per cycle (corresponding to
+/// `damageMultiplierBonusPerCycle`)
+pub const ATTRIBUTE_DAMAGE_MULTIPLIER_BONUS_PER_CYCLE_ID: i32 = 2733;
+
+/// Precursor turret maximum damage ramp-up bonus (corresponding to
+/// `damageMultiplierBonusMax`)
+pub const ATTRIBUTE_DAMAGE_MULTIPLIER_BONUS_MAX_ID: i32 = 2734;
+
 // #######################
 // Skill-related Constants
 // #######################

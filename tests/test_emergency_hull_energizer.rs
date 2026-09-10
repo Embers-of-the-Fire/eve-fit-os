@@ -30,6 +30,7 @@ fn calculate_with_cehe(state: ItemState) -> HashMap<i32, f64> {
             },
             state,
             charge: None,
+            damage_turns: 0,
         }],
         drones: vec![],
         implants: vec![],
