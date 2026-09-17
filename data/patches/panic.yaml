@@ -1,0 +1,86 @@
+description: |
+  Patch in the Pulse Activated Nexus Invulnerability Core (PANIC) buff.
+
+  The PANIC module's effect `moduleBonusIndustrialInvulnerability` is
+  server-side only in EVE Online: it carries no dogma modifiers and its
+  buff values are absent from client data (the PANIC buffs 8/9/55/56/58/
+  59/61 exist in dbuffcollections, but nothing links the effect to them;
+  see also pyfa issue #1762). This patch models the self-affecting part
+  of the buff documented in the module description: near-total shield
+  resistance (resonance scaled to 0) and a -90% shield recharge time
+  bonus while the module is active.
+
+  The module also requires an activated industrial core in-game, which is
+  enforced server-side and absent from client dogma. Mark it with
+  `activationRequiresActiveIndustrialCore` like the compressor modules
+  (group "Compressors") so the validator can check both uniformly.
+
+attributes:
+- new:
+    name: panicShieldResonanceBonus
+    # Pinned ID: does not consume a positional ID.
+    id: -1001
+  published: false
+  defaultValue: 0
+  highIsGood: false
+  stackable: false
+- new:
+    name: panicShieldRechargeBonus
+    # Pinned ID: does not consume a positional ID.
+    id: -1002
+  published: false
+  defaultValue: 0
+  highIsGood: false
+  stackable: false
+
+effects:
+- new:
+    name: panicShieldInvulnerability
+    # Pinned ID: does not consume a positional ID.
+    id: -1001
+  effectCategory: active
+  modifierInfo:
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: shieldEmDamageResonance
+    modifyingAttribute: panicShieldResonanceBonus
+    operation: postPercent
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: shieldExplosiveDamageResonance
+    modifyingAttribute: panicShieldResonanceBonus
+    operation: postPercent
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: shieldKineticDamageResonance
+    modifyingAttribute: panicShieldResonanceBonus
+    operation: postPercent
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: shieldThermalDamageResonance
+    modifyingAttribute: panicShieldResonanceBonus
+    operation: postPercent
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: shieldRechargeRate
+    modifyingAttribute: panicShieldRechargeBonus
+    operation: postPercent
+
+typeDogma:
+- patch:
+  - category: Module
+    hasAnyEffects:
+    - name: moduleBonusIndustrialInvulnerability
+  dogmaAttributes:
+  # The shield resonance bonus is a postPercent modifier; -100 scales
+  # every shield resonance to exactly 0 (full damage immunity).
+  - attribute: panicShieldResonanceBonus
+    value: -100
+  # -90% shield recharge time, per the module description.
+  - attribute: panicShieldRechargeBonus
+    value: -90
+  - attribute: activationRequiresActiveIndustrialCore
+    value: 1
+  dogmaEffects:
+  - effect: panicShieldInvulnerability
+    isDefault: false

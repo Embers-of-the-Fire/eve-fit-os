@@ -38,6 +38,16 @@ const ATTR_FIGHTER_LIGHT_SLOTS: i32 = 2217;
 const ATTR_FIGHTER_SUPPORT_SLOTS: i32 = 2218;
 const ATTR_FIGHTER_HEAVY_SLOTS: i32 = 2219;
 
+/// `activationRequiresActiveIndustrialCore` attribute ID. Carried by the
+/// compressor modules (group "Compressors") and patched onto the Pulse
+/// Activated Nexus Invulnerability Core (see `data/patches/panic.yaml`).
+const ATTR_REQUIRES_ACTIVE_INDUSTRIAL_CORE: i32 = 3265;
+
+/// Effects of the industrial core modules: `industrialCoreEffect2`
+/// (Capital Industrial Core I/II) and `industrialCompactCoreEffect2`
+/// (Medium/Large Industrial Core I/II).
+const EFFECT_INDUSTRIAL_CORES: [i32; 2] = [4575, 8119];
+
 const GROUP_LIGHT_FIGHTER: [i32; 2] = [1652, 4777];
 const GROUP_SUPPORT_FIGHTER: [i32; 2] = [1537, 4778];
 const GROUP_HEAVY_FIGHTER: [i32; 2] = [1653, 4779];
@@ -194,6 +204,7 @@ pub enum ValidationErrorKey {
         state: ValidationState,
         max_state: ValidationState,
     },
+    RequiresActiveIndustrialCore,
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -220,6 +231,7 @@ const VALIDATION_RULES: &[ValidationRule] = &[
     validate_drone_capacity,
     validate_fighter_capacity,
     validate_module_states,
+    validate_industrial_core_requirement,
 ];
 
 pub fn validate_fit(
@@ -774,6 +786,55 @@ fn validate_module_states(
                 state: module.state.into(),
                 max_state: item.max_state.into(),
             }),
+        });
+    }
+}
+
+/// Modules carrying `activationRequiresActiveIndustrialCore` (compressor
+/// modules, and the PANIC module via `data/patches/panic.yaml`) can only be
+/// activated while an industrial core module is active on the same fit.
+fn validate_industrial_core_requirement(
+    context: &ValidationContext<'_>,
+    issues: &mut Vec<ValidationIssue>,
+) {
+    // pass_1 pushes fitted modules first, preserving input order.
+    let modules = context
+        .fit
+        .fit
+        .modules
+        .iter()
+        .zip(context.ship.modules.iter());
+
+    let has_active_core = modules.clone().any(|(module, item)| {
+        item.state.is_active()
+            && context
+                .info
+                .get_dogma_effects(module.item_id.as_type_id(context.fit))
+                .iter()
+                .any(|effect| EFFECT_INDUSTRIAL_CORES.contains(&effect.effect_id))
+    });
+    if has_active_core {
+        return;
+    }
+
+    for (module, item) in modules {
+        if !item.state.is_active() {
+            continue;
+        }
+        let requires_core = item_attribute(item, ATTR_REQUIRES_ACTIVE_INDUSTRIAL_CORE)
+            .is_some_and(|value| value > 0.0);
+        if !requires_core {
+            continue;
+        }
+        let Some(slot_type) = validation_slot_type(module.slot.slot_type) else {
+            continue;
+        };
+        issues.push(ValidationIssue {
+            slot_type,
+            index: Some(module.slot.index),
+            kind: ValidationIssueKind::Error(
+                ValidationErrorKey::RequiresActiveIndustrialCore,
+            ),
         });
     }
 }
