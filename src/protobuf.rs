@@ -36,6 +36,9 @@ pub struct Database {
     pub dogma_attributes: HashMap<i32, fit::DogmaAttribute>,
     pub dogma_effects: HashMap<i32, fit::DogmaEffect>,
     pub buff_collections: HashMap<i32, fit::Buff>,
+    /// Returned for buff IDs missing from `buff_collections` so that unknown
+    /// buffs degrade to a no-op instead of panicking.
+    placeholder_buff: fit::Buff,
 }
 
 impl Database {
@@ -266,10 +269,20 @@ impl Database {
                                     skill_id: m.skill_id,
                                 })
                                 .collect(),
+                            charge_required_skill_modifiers: v
+                                .charge_required_skill_modifiers
+                                .into_iter()
+                                .map(|m| fit::BuffSkillModifier {
+                                    dogma_attribute_id: m.dogma_attribute_id,
+                                    skill_id: m.skill_id,
+                                })
+                                .collect(),
+                            penalized: v.penalized.unwrap_or(true),
                         },
                     )
                 })
                 .collect(),
+            placeholder_buff: fit::Buff::noop(),
         }
     }
 }
@@ -298,7 +311,9 @@ impl InfoProvider for Database {
     }
 
     fn get_buff(&self, buff_id: i32) -> &fit::Buff {
-        self.buff_collections.get(&buff_id).unwrap()
+        self.buff_collections
+            .get(&buff_id)
+            .unwrap_or(&self.placeholder_buff)
     }
 
     fn get_type(&self, type_id: i32) -> &fit::Type {

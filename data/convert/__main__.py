@@ -21,6 +21,7 @@ from .patches import (  # noqa: E402
     dogma_attributes as patch_dogma_attributes,
     dogma_effects as patch_dogma_effects,
     type_dogma as patch_type_dogma,
+    dbuffcollections as patch_dbuffcollections,
 )
 from .patches.loader import load_patches  # noqa: E402
 
@@ -60,6 +61,7 @@ patches = load_patches(PATCH_DIR)
 patch_dogma_attributes.patch(data["dogmaAttributes"], patches["attributes"], data)
 patch_dogma_effects.patch(data["dogmaEffects"], patches["effects"], data)
 patch_type_dogma.patch(data["typeDogma"], patches["typeDogma"], data)
+patch_dbuffcollections.patch(data["dbuffcollections"], patches["buffs"], data)
 
 # Second iteration actually writes all the information.
 for gen in gens:

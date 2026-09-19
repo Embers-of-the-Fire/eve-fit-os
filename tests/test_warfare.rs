@@ -48,6 +48,7 @@ fn test_warfare() {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());
@@ -107,6 +108,7 @@ fn test_warfare_charge_attributes_not_polluted() {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());
@@ -230,6 +232,7 @@ fn test_warfare_item_modifiers_apply_to_hull_only() {
                 drones: vec![],
                 implants: vec![],
                 boosters: vec![],
+                system_buffs: vec![],
             },
             skill_all_5.clone(),
             Default::default(),

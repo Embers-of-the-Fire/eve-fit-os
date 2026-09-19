@@ -40,6 +40,7 @@ fn test_cap() {
             type_id: 81083,
             index: 0,
         }],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());
@@ -107,6 +108,7 @@ fn test_booster_cache_not_polluted_by_charge() {
             type_id: BOOSTER_TYPE_ID,
             index: 0,
         }],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());

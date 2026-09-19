@@ -54,6 +54,7 @@ fn fit_with(modules: Vec<ItemModule>) -> ItemFit {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     }
 }
 

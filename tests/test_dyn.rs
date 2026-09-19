@@ -34,6 +34,7 @@ fn test_dyn() {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     };
 
     let dyn_container = {

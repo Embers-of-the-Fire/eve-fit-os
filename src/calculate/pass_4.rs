@@ -16,6 +16,30 @@ pub const WARFARE_BUFFS: [(i32, i32); 4] = [
     (2536, 2537), // warfareBuff4
 ];
 
+/// Merges a `(buff_id, value)` pair into the buff aggregation cache,
+/// keeping the strongest value according to the buff's aggregate mode.
+fn aggregate_buff(
+    info: &impl InfoProvider,
+    cache: &mut Cache,
+    buff_id: i32,
+    value: f64,
+) {
+    if let Some(entry) = cache.buffs.get_mut(&buff_id) {
+        let buff = info.get_buff(buff_id);
+        match (buff.aggregate_mode, entry.total_cmp(&value)) {
+            (fit::BuffAggregateMode::Maximum, std::cmp::Ordering::Less) => {
+                *entry = value;
+            }
+            (fit::BuffAggregateMode::Minimum, std::cmp::Ordering::Greater) => {
+                *entry = value;
+            }
+            _ => {}
+        };
+    } else {
+        cache.buffs.insert(buff_id, value);
+    }
+}
+
 impl Item {
     pub(super) fn calculate_warfares(
         &self,
@@ -43,20 +67,7 @@ impl Item {
             let buff_value_value = buff_value_value_attr
                 .calculate_value(info, ship, cache, item, buff_value);
 
-            if let Some(entry) = cache.buffs.get_mut(&buff_id_value) {
-                let buff = info.get_buff(buff_id_value);
-                match (buff.aggregate_mode, entry.total_cmp(&buff_value_value)) {
-                    (fit::BuffAggregateMode::Maximum, std::cmp::Ordering::Less) => {
-                        *entry = buff_value_value;
-                    }
-                    (fit::BuffAggregateMode::Minimum, std::cmp::Ordering::Greater) => {
-                        *entry = buff_value_value;
-                    }
-                    _ => {}
-                };
-            } else {
-                cache.buffs.insert(buff_id_value, buff_value_value);
-            }
+            aggregate_buff(info, cache, buff_id_value, buff_value_value);
         }
     }
 
@@ -76,13 +87,12 @@ impl Item {
         buff: &Buff,
     ) {
         for m in buff.item_modifiers.iter().map(|u| u.dogma_attribute_id) {
-            self.attributes
-                .entry(m)
-                .or_insert_with(|| {
-                    Attribute::new_base(info.get_dogma_attribute(m).default_value)
-                })
-                .buffs
-                .push(buff_id);
+            let attribute = self.attributes.entry(m).or_insert_with(|| {
+                Attribute::new_base(info.get_dogma_attribute(m).default_value)
+            });
+            if !attribute.buffs.contains(&buff_id) {
+                attribute.buffs.push(buff_id);
+            }
         }
     }
 
@@ -100,27 +110,28 @@ impl Item {
     ) {
         let type_id = self.item_id.as_type_id(dynamic);
         for m in buff.location_modifiers.iter().map(|u| u.dogma_attribute_id) {
-            self.attributes
-                .entry(m)
-                .or_insert_with(|| {
-                    Attribute::new_base(info.get_dogma_attribute(m).default_value)
-                })
-                .buffs
-                .push(buff_id);
+            let attribute = self.attributes.entry(m).or_insert_with(|| {
+                Attribute::new_base(info.get_dogma_attribute(m).default_value)
+            });
+            if !attribute.buffs.contains(&buff_id) {
+                attribute.buffs.push(buff_id);
+            }
         }
         for m in &buff.location_group_modifiers {
             let ty = info.get_type(type_id);
             if ty.group_id == m.group_id {
-                self.attributes
+                let attribute = self
+                    .attributes
                     .entry(m.dogma_attribute_id)
                     .or_insert_with(|| {
                         Attribute::new_base(
                             info.get_dogma_attribute(m.dogma_attribute_id)
                                 .default_value,
                         )
-                    })
-                    .buffs
-                    .push(buff_id);
+                    });
+                if !attribute.buffs.contains(&buff_id) {
+                    attribute.buffs.push(buff_id);
+                }
             }
         }
         for m in &buff.location_required_skill_modifiers {
@@ -136,16 +147,61 @@ impl Item {
                     && self.attributes[attribute_skill_id].base_value
                         == skill_type_id as f64
                 {
-                    self.attributes
+                    let attribute = self
+                        .attributes
                         .entry(m.dogma_attribute_id)
                         .or_insert_with(|| {
                             Attribute::new_base(
                                 info.get_dogma_attribute(m.dogma_attribute_id)
                                     .default_value,
                             )
-                        })
-                        .buffs
-                        .push(buff_id);
+                        });
+                    if !attribute.buffs.contains(&buff_id) {
+                        attribute.buffs.push(buff_id);
+                    }
+                }
+            }
+        }
+    }
+
+    /// Registers a buff's `chargeRequiredSkillModifiers` on this charge.
+    ///
+    /// This must only be called on charge items. Client data has no such
+    /// modifiers; they exist for hand-authored patches modeling system-wide
+    /// effects that target charge attributes (e.g. wormhole missile damage
+    /// and velocity bonuses).
+    fn update_buff_charge(
+        &mut self,
+        info: &impl InfoProvider,
+        dynamic: &impl FitProvider,
+        buff_id: i32,
+        buff: &Buff,
+    ) {
+        let type_id = self.item_id.as_type_id(dynamic);
+        for m in &buff.charge_required_skill_modifiers {
+            let skill_type_id = if m.skill_id == -1 {
+                type_id
+            } else {
+                m.skill_id
+            };
+
+            for attribute_skill_id in &ATTRIBUTE_SKILLS {
+                if self.attributes.contains_key(attribute_skill_id)
+                    && self.attributes[attribute_skill_id].base_value
+                        == skill_type_id as f64
+                {
+                    let attribute = self
+                        .attributes
+                        .entry(m.dogma_attribute_id)
+                        .or_insert_with(|| {
+                            Attribute::new_base(
+                                info.get_dogma_attribute(m.dogma_attribute_id)
+                                    .default_value,
+                            )
+                        });
+                    if !attribute.buffs.contains(&buff_id) {
+                        attribute.buffs.push(buff_id);
+                    }
                 }
             }
         }
@@ -163,6 +219,12 @@ pub(crate) fn pass(
             item.calculate_warfares(info, ship, cache, Object::Item(index));
         }
     }
+    // System-wide warfare buffs (environmental effects such as wormhole
+    // system effects or abyssal/metaliminal weather) are supplied directly
+    // by the fit input rather than sourced from a fitted module.
+    for system_buff in &fit.fit().system_buffs {
+        aggregate_buff(info, cache, system_buff.buff_id, system_buff.value);
+    }
     for buff_id in cache.buffs.keys() {
         let buff = info.get_buff(*buff_id);
         // itemModifiers describe the buff holder itself (the ship hull,
@@ -173,6 +235,11 @@ pub(crate) fn pass(
         // charges.
         for module in ship.modules.iter_mut() {
             module.update_buff_location(info, fit, *buff_id, buff);
+            // chargeRequiredSkillModifiers (hand-authored patches only)
+            // describe the module's charge.
+            if let Some(charge) = module.charge.as_mut() {
+                charge.update_buff_charge(info, fit, *buff_id, buff);
+            }
         }
     }
 }
