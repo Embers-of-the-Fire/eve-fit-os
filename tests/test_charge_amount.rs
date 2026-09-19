@@ -43,6 +43,7 @@ fn test_interdiction_sphere_launcher_holds_three_probes() {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skills(), Default::default());

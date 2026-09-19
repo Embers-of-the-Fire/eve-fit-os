@@ -1,0 +1,647 @@
+description: "  Patch in system-wide effect buffs: wormhole system effects (Black Hole,\n  Cataclysmic Variable, Magnetar,\
+  \ Pulsar, Red Giant, Wolf Rayet; classes\n  1-6) and metaliminal/volatile storms (Electrical, Exotic Matter, Gamma\n  Ray,\
+  \ Plasma Firestorm, Volatile Ice; weak/strong).\n\n  In EVE Online these effects are delivered as System-category dogma\
+  \ effects\n  on in-space \"effect beacon\" items. This patch models them as buff\n  collections, mirroring how the client\
+  \ delivers other system-wide effects\n  (weather, sovereignty upgrades) via dbuffcollections. The buff strength\n  per wormhole\
+  \ class / storm strength is supplied by the fit input,\n  resolved from the active snapshot's beacon dogma at runtime\n\
+  \  (tool/system_effects/extract_wormhole.py).\n\n  `chargeRequiredSkillModifiers` and `penalized: false` are hand-authored\n\
+  \  extensions: charge modifiers cover effects that target charge attributes\n  (missile/bomb damage, velocity, explosion\
+  \ radius/velocity), and\n  `penalized: false` marks effects that are not stacking-penalized in-game\n  (hull HP, capacitor,\
+  \ heat damage, overload, smart bomb and rep duration\n  bonuses).\n"
+buffs:
+- id: -2001
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Shield Hitpoint Bonus (Pulsar)
+  displayName: Shield Hitpoint Bonus (Pulsar)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 263
+- id: -2002
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Signature Radius Penalty (Pulsar)
+  displayName: Signature Radius Penalty (Pulsar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 552
+- id: -2003
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Armor Resistance Penalty (Pulsar)
+  displayName: Armor Resistance Penalty (Pulsar)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 267
+  - dogmaAttributeID: 270
+  - dogmaAttributeID: 269
+  - dogmaAttributeID: 268
+- id: -2004
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Capacitor Recharge Time Bonus (Pulsar)
+  displayName: Capacitor Recharge Time Bonus (Pulsar)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 55
+- id: -2005
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Energy Warfare Strength Bonus (Pulsar)
+  displayName: Energy Warfare Strength Bonus (Pulsar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationGroupModifiers:
+  - dogmaAttributeID: 97
+    groupID: 71
+  - dogmaAttributeID: 90
+    groupID: 68
+- id: -2006
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Agility Penalty (Black Hole)
+  displayName: Agility Penalty (Black Hole)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 70
+- id: -2007
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Targeting Range Bonus (Black Hole)
+  displayName: Targeting Range Bonus (Black Hole)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 76
+- id: -2008
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Missile Velocity Bonus (Black Hole)
+  displayName: Missile Velocity Bonus (Black Hole)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 37
+    skillID: 3319
+- id: -2009
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Maximum Velocity Bonus (Black Hole)
+  displayName: Maximum Velocity Bonus (Black Hole)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 37
+- id: -2010
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Missile Explosion Velocity Bonus (Black Hole)
+  displayName: Missile Explosion Velocity Bonus (Black Hole)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 653
+    skillID: 55033
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 653
+    skillID: 3319
+- id: -2011
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Stasis Webifier Strength Penalty (Black Hole)
+  displayName: Stasis Webifier Strength Penalty (Black Hole)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationGroupModifiers:
+  - dogmaAttributeID: 20
+    groupID: 65
+- id: -2012
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Armor Repair Amount Penalty (Cataclysmic Variable)
+  displayName: Armor Repair Amount Penalty (Cataclysmic Variable)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 3393
+  - dogmaAttributeID: 84
+    skillID: 21803
+- id: -2013
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Shield Boost Amount Penalty (Cataclysmic Variable)
+  displayName: Shield Boost Amount Penalty (Cataclysmic Variable)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3416
+  - dogmaAttributeID: 68
+    skillID: 21802
+- id: -2014
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Remote Shield Repair Amount Bonus (Cataclysmic Variable)
+  displayName: Remote Shield Repair Amount Bonus (Cataclysmic Variable)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3422
+  - dogmaAttributeID: 68
+    skillID: 24571
+- id: -2015
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Remote Armor Repair Amount Bonus (Cataclysmic Variable)
+  displayName: Remote Armor Repair Amount Bonus (Cataclysmic Variable)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 16069
+  - dogmaAttributeID: 84
+    skillID: 24568
+- id: -2016
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Capacitor Capacity Bonus (Cataclysmic Variable)
+  displayName: Capacitor Capacity Bonus (Cataclysmic Variable)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 482
+- id: -2017
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Capacitor Recharge Time Penalty (Cataclysmic Variable)
+  displayName: Capacitor Recharge Time Penalty (Cataclysmic Variable)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 55
+- id: -2018
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Remote Capacitor Transmitter Amount Penalty (Cataclysmic Variable)
+  displayName: Remote Capacitor Transmitter Amount Penalty (Cataclysmic Variable)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationGroupModifiers:
+  - dogmaAttributeID: 90
+    groupID: 67
+- id: -2019
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Targeting Range Penalty (Magnetar)
+  displayName: Targeting Range Penalty (Magnetar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 76
+- id: -2020
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Tracking Speed Penalty (Magnetar)
+  displayName: Tracking Speed Penalty (Magnetar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 160
+    skillID: 3300
+  - dogmaAttributeID: 160
+    skillID: 3436
+- id: -2021
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Damage Bonus (Magnetar)
+  displayName: Damage Bonus (Magnetar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 3300
+  - dogmaAttributeID: 64
+    skillID: 3436
+  - dogmaAttributeID: 64
+    skillID: 23069
+  - dogmaAttributeID: 64
+    skillID: 55033
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 114
+    skillID: 3319
+  - dogmaAttributeID: 118
+    skillID: 3319
+  - dogmaAttributeID: 117
+    skillID: 3319
+  - dogmaAttributeID: 116
+    skillID: 3319
+- id: -2022
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Missile Explosion Radius Penalty (Magnetar)
+  displayName: Missile Explosion Radius Penalty (Magnetar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 654
+    skillID: 55033
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 654
+    skillID: 3319
+- id: -2023
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Target Painter Strength Penalty (Magnetar)
+  displayName: Target Painter Strength Penalty (Magnetar)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 554
+    skillID: 19921
+- id: -2024
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Module Heat Damage Penalty (Red Giant)
+  displayName: Module Heat Damage Penalty (Red Giant)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationModifiers:
+  - dogmaAttributeID: 1211
+- id: -2025
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Overload Bonus (Red Giant)
+  displayName: Overload Bonus (Red Giant)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationModifiers:
+  - dogmaAttributeID: 1230
+  - dogmaAttributeID: 1210
+  - dogmaAttributeID: 1181
+  - dogmaAttributeID: 1226
+  - dogmaAttributeID: 1225
+  - dogmaAttributeID: 1208
+  - dogmaAttributeID: 1222
+  - dogmaAttributeID: 1205
+  - dogmaAttributeID: 1206
+  - dogmaAttributeID: 1231
+  - dogmaAttributeID: 1223
+- id: -2026
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Smart Bomb Range Bonus (Red Giant)
+  displayName: Smart Bomb Range Bonus (Red Giant)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationGroupModifiers:
+  - dogmaAttributeID: 99
+    groupID: 72
+- id: -2027
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Smart Bomb Damage Bonus (Red Giant)
+  displayName: Smart Bomb Damage Bonus (Red Giant)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationGroupModifiers:
+  - dogmaAttributeID: 114
+    groupID: 72
+  - dogmaAttributeID: 118
+    groupID: 72
+  - dogmaAttributeID: 117
+    groupID: 72
+  - dogmaAttributeID: 116
+    groupID: 72
+- id: -2028
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Bomb Damage Bonus (Red Giant)
+  displayName: Bomb Damage Bonus (Red Giant)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 116
+    skillID: 28073
+  - dogmaAttributeID: 117
+    skillID: 28073
+  - dogmaAttributeID: 118
+    skillID: 28073
+  - dogmaAttributeID: 114
+    skillID: 28073
+  - dogmaAttributeID: 97
+    skillID: 28073
+  - dogmaAttributeID: 238
+    skillID: 28073
+  - dogmaAttributeID: 239
+    skillID: 28073
+  - dogmaAttributeID: 240
+    skillID: 28073
+  - dogmaAttributeID: 241
+    skillID: 28073
+- id: -2029
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Armor Hitpoint Bonus (Wolf Rayet)
+  displayName: Armor Hitpoint Bonus (Wolf Rayet)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 265
+- id: -2030
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Signature Radius Bonus (Wolf Rayet)
+  displayName: Signature Radius Bonus (Wolf Rayet)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 552
+- id: -2031
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Shield Resistance Penalty (Wolf Rayet)
+  displayName: Shield Resistance Penalty (Wolf Rayet)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 271
+  - dogmaAttributeID: 274
+  - dogmaAttributeID: 273
+  - dogmaAttributeID: 272
+- id: -2032
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Small Weapon Damage Bonus (Wolf Rayet)
+  displayName: Small Weapon Damage Bonus (Wolf Rayet)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 3303
+  - dogmaAttributeID: 64
+    skillID: 3302
+  - dogmaAttributeID: 64
+    skillID: 3301
+  - dogmaAttributeID: 64
+    skillID: 47870
+  - dogmaAttributeID: 64
+    skillID: 55034
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 114
+    skillID: 3320
+  - dogmaAttributeID: 118
+    skillID: 3320
+  - dogmaAttributeID: 117
+    skillID: 3320
+  - dogmaAttributeID: 116
+    skillID: 3320
+  - dogmaAttributeID: 114
+    skillID: 3321
+  - dogmaAttributeID: 118
+    skillID: 3321
+  - dogmaAttributeID: 117
+    skillID: 3321
+  - dogmaAttributeID: 116
+    skillID: 3321
+- id: -2101
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - EM Resistance Penalty (Electrical Storm)
+  displayName: EM Resistance Penalty (Electrical Storm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 113
+  - dogmaAttributeID: 267
+  - dogmaAttributeID: 271
+- id: -2102
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Capacitor Recharge Time Bonus (Electrical Storm)
+  displayName: Capacitor Recharge Time Bonus (Electrical Storm)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 55
+- id: -2103
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Kinetic Resistance Penalty (Exotic Matter Storm)
+  displayName: Kinetic Resistance Penalty (Exotic Matter Storm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 109
+  - dogmaAttributeID: 269
+  - dogmaAttributeID: 273
+- id: -2104
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Armor Repair Duration Bonus (Exotic Matter Storm)
+  displayName: Armor Repair Duration Bonus (Exotic Matter Storm)
+  penalized: false
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 3393
+  - dogmaAttributeID: 73
+    skillID: 21803
+- id: -2105
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Shield Booster Duration Bonus (Exotic Matter Storm)
+  displayName: Shield Booster Duration Bonus (Exotic Matter Storm)
+  penalized: false
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 3416
+  - dogmaAttributeID: 73
+    skillID: 21802
+- id: -2106
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Mining Duration Bonus (Exotic Matter Storm)
+  displayName: Mining Duration Bonus (Exotic Matter Storm)
+  penalized: false
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 73
+    skillID: 3386
+- id: -2107
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Warp Speed Bonus (Exotic Matter Storm)
+  displayName: Warp Speed Bonus (Exotic Matter Storm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 600
+- id: -2108
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Scan Resolution Bonus (Exotic Matter Storm)
+  displayName: Scan Resolution Bonus (Exotic Matter Storm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 564
+- id: -2109
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Explosive Resistance Penalty (Gamma Ray Storm)
+  displayName: Explosive Resistance Penalty (Gamma Ray Storm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 111
+  - dogmaAttributeID: 268
+  - dogmaAttributeID: 272
+- id: -2110
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Remote Shield Repair Amount Penalty (Gamma Ray Storm)
+  displayName: Remote Shield Repair Amount Penalty (Gamma Ray Storm)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 68
+    skillID: 3422
+  - dogmaAttributeID: 68
+    skillID: 24571
+- id: -2111
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Remote Armor Repair Amount Penalty (Gamma Ray Storm)
+  displayName: Remote Armor Repair Amount Penalty (Gamma Ray Storm)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 84
+    skillID: 16069
+  - dogmaAttributeID: 84
+    skillID: 24568
+- id: -2112
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Shield Hitpoint Bonus (Gamma Ray Storm)
+  displayName: Shield Hitpoint Bonus (Gamma Ray Storm)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 263
+- id: -2113
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Capacitor Capacity Bonus (Gamma Ray Storm)
+  displayName: Capacitor Capacity Bonus (Gamma Ray Storm)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 482
+- id: -2114
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Signature Radius Bonus (Gamma Ray Storm)
+  displayName: Signature Radius Bonus (Gamma Ray Storm)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 552
+- id: -2115
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Thermal Resistance Penalty (Plasma Firestorm)
+  displayName: Thermal Resistance Penalty (Plasma Firestorm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 110
+  - dogmaAttributeID: 270
+  - dogmaAttributeID: 274
+- id: -2116
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Damage Bonus (Plasma Firestorm)
+  displayName: Damage Bonus (Plasma Firestorm)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 64
+    skillID: 3300
+  - dogmaAttributeID: 64
+    skillID: 3436
+  - dogmaAttributeID: 64
+    skillID: 23069
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 114
+    skillID: 3319
+  - dogmaAttributeID: 118
+    skillID: 3319
+  - dogmaAttributeID: 117
+    skillID: 3319
+  - dogmaAttributeID: 116
+    skillID: 3319
+- id: -2117
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Tracking Speed Penalty (Plasma Firestorm)
+  displayName: Tracking Speed Penalty (Plasma Firestorm)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 160
+    skillID: 3300
+  - dogmaAttributeID: 160
+    skillID: 3436
+- id: -2118
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Explosion Radius Penalty (Plasma Firestorm)
+  displayName: Explosion Radius Penalty (Plasma Firestorm)
+  penalized: true
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  locationRequiredSkillModifiers:
+  - dogmaAttributeID: 2234
+    skillID: 23069
+  - dogmaAttributeID: 2125
+    skillID: 23069
+  chargeRequiredSkillModifiers:
+  - dogmaAttributeID: 654
+    skillID: 3319
+- id: -2119
+  aggregateMode: Maximum
+  developerDescription: System-wide effect - Armor Hitpoint Bonus (Plasma Firestorm)
+  displayName: Armor Hitpoint Bonus (Plasma Firestorm)
+  penalized: false
+  operationName: PostMul
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 265
+- id: -2120
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Thermal Resistance Bonus (Volatile Ice Storm)
+  displayName: Thermal Resistance Bonus (Volatile Ice Storm)
+  penalized: true
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  itemModifiers:
+  - dogmaAttributeID: 110
+  - dogmaAttributeID: 270
+  - dogmaAttributeID: 274
+- id: -2121
+  aggregateMode: Minimum
+  developerDescription: System-wide effect - Module Heat Damage Bonus (Volatile Ice Storm)
+  displayName: Module Heat Damage Bonus (Volatile Ice Storm)
+  penalized: false
+  operationName: PostPercent
+  showOutputValueInUI: ShowNormal
+  locationModifiers:
+  - dogmaAttributeID: 1211

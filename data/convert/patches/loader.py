@@ -7,6 +7,7 @@ def load_patches(root: PathLike):
     effects = []
     attributes = []
     typeDogma = []
+    buffs = []
 
     for patch in sorted(os.listdir(root)):
         if not patch.endswith(".yaml"):
@@ -24,8 +25,12 @@ def load_patches(root: PathLike):
         for entry in patch.get("typeDogma", []):
             typeDogma.append(entry)
 
+        for entry in patch.get("buffs", []):
+            buffs.append(entry)
+
     return {
         "effects": effects,
         "attributes": attributes,
         "typeDogma": typeDogma,
+        "buffs": buffs,
     }

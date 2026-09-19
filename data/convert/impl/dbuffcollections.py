@@ -48,6 +48,15 @@ def convert(path: Path, out: Path, data):
             cache.skillID = x["skillID"]
             pb2.entries[id].locationRequiredSkillModifiers.append(cache)
 
+        # Hand-authored patches only: charge modifiers and penalty opt-out.
+        for x in entry.get("chargeRequiredSkillModifiers", []):
+            cache = efos_pb2.BuffCollections.Buff.LocationRequiredSkillModifier()
+            cache.dogmaAttributeID = x["dogmaAttributeID"]
+            cache.skillID = x["skillID"]
+            pb2.entries[id].chargeRequiredSkillModifiers.append(cache)
+
+        pb2.entries[id].penalized = entry.get("penalized", True)
+
         pb2.entries[id].operationName = {
             "PreAssign": efos_pb2.BuffCollections.Buff.OperationName.PRE_ASSIGN,
             "PreAssignment": efos_pb2.BuffCollections.Buff.OperationName.PRE_ASSIGN,

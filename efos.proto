@@ -135,6 +135,17 @@ message BuffCollections {
         repeated LocationRequiredSkillModifier locationRequiredSkillModifiers = 6;
         required OperationName operationName = 7;
         required ShowOutputValueInUI showOutputValueInUI = 8;
+
+        // Modifiers applied to the charge of an equipped module when the
+        // charge requires the given skill (e.g. missile damage bonuses).
+        // Client data never uses this; it exists for hand-authored patches
+        // modeling system-wide effects (wormholes).
+        repeated LocationRequiredSkillModifier chargeRequiredSkillModifiers = 9;
+
+        // Whether this buff participates in stacking penalties.
+        // Native dbuffcollections buffs are always penalized; hand-authored
+        // patches may opt out for effects that are not penalized in-game.
+        optional bool penalized = 10 [default = true];
     }
 
     map<int32, Buff> entries = 1;

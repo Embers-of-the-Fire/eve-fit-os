@@ -145,7 +145,32 @@ pub struct Buff {
     pub location_modifiers: Vec<BuffItemModifier>,
     pub location_group_modifiers: Vec<BuffGroupModifier>,
     pub location_required_skill_modifiers: Vec<BuffSkillModifier>,
+    /// Modifiers applied to the charge of an equipped module when the
+    /// charge requires the given skill. Only used by hand-authored data
+    /// patches (system-wide effects); client data has no such modifiers.
+    pub charge_required_skill_modifiers: Vec<BuffSkillModifier>,
+    /// Whether this buff participates in stacking penalties.
+    pub penalized: bool,
     pub operation: BuffOperation,
+}
+
+impl Buff {
+    /// A buff with no modifiers: registering it on any attribute is a
+    /// complete no-op. Used as the placeholder for buff IDs missing from the
+    /// loaded data (e.g. stale snapshots or corrupt input), so missing buffs
+    /// degrade silently instead of panicking.
+    pub fn noop() -> Self {
+        Self {
+            aggregate_mode: BuffAggregateMode::Maximum,
+            item_modifiers: Vec::new(),
+            location_modifiers: Vec::new(),
+            location_group_modifiers: Vec::new(),
+            location_required_skill_modifiers: Vec::new(),
+            charge_required_skill_modifiers: Vec::new(),
+            penalized: true,
+            operation: BuffOperation::PostAssign,
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq)]
@@ -222,6 +247,22 @@ pub struct ItemBooster {
     pub index: i32,
 }
 
+/// A system-wide warfare buff (environmental effect) applied to the whole
+/// fit, e.g. wormhole system effects, abyssal/metaliminal weather, or
+/// sovereignty upgrades.
+///
+/// Unlike command bursts, these buffs are not sourced from a fitted module;
+/// the `(buff_id, value)` pair is supplied directly by the user and merged
+/// into the buff aggregation in calculate pass 4.
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct ItemSystemBuff {
+    /// Buff collection ID (`dbuffcollections`).
+    pub buff_id: i32,
+    /// Buff strength, interpreted according to the buff's `operation`
+    /// (e.g. percentage for `PostPercent`).
+    pub value: f64,
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct ItemFit {
     pub ship_type_id: i32,
@@ -231,6 +272,7 @@ pub struct ItemFit {
     pub fighters: Vec<ItemFighter>,
     pub implants: Vec<ItemImplant>,
     pub boosters: Vec<ItemBooster>,
+    pub system_buffs: Vec<ItemSystemBuff>,
 }
 
 #[derive(Debug, Clone)]

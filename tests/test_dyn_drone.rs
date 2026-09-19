@@ -23,6 +23,7 @@ fn fit_with_drone(item_id: ItemID) -> ItemFit {
         }],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     }
 }
 

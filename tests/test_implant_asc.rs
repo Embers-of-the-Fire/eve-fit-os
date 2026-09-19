@@ -21,6 +21,7 @@ fn test_implant_asc() {
         modules: vec![],
         drones: vec![],
         boosters: vec![],
+        system_buffs: vec![],
         implants: vec![
             ItemImplant {
                 type_id: 33516,

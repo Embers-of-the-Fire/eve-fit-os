@@ -35,6 +35,7 @@ fn calculate_with_cehe(state: ItemState) -> HashMap<i32, f64> {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());

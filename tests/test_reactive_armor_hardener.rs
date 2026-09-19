@@ -44,6 +44,7 @@ fn calculate_with_rah(
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     };
 
     let container = FitContainer::new(fit, skill_all_5, Default::default());

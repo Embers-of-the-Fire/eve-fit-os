@@ -42,6 +42,7 @@ fn base_fit(ship_type_id: i32) -> ItemFit {
         drones: vec![],
         implants: vec![],
         boosters: vec![],
+        system_buffs: vec![],
     }
 }
 

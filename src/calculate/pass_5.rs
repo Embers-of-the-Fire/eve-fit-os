@@ -152,7 +152,9 @@ impl Attribute {
                     source_value,
                     ModifierSource::Buff { buff_id: *buff_id },
                 );
-                if OPERATOR_HAS_PENALTY.contains(&buff.operation.into()) {
+                if buff.penalized
+                    && OPERATOR_HAS_PENALTY.contains(&buff.operation.into())
+                {
                     if normalized_value.is_sign_negative() {
                         penalty_negative.push(value_group);
                     } else {
