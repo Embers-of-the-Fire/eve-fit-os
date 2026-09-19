@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Generate the Dart system-effect catalog from tool/system_effects/out/environment_catalog.json.
 
+Usage: gen_dart_catalog.py --output <path to system_effect_catalog.dart>
+
 The catalog carries no buff values: wormhole/storm presets reference their
 effect beacon plus a beacon-attribute -> buff mapping, abyssal weather and
 hazard presets expand the beacon's warfareBuff1-4 pairs at runtime, and only
@@ -8,10 +10,19 @@ the sovereignty/Triglavian/insurgency presets (whose beacons carry no usable
 dogma on any server) keep pre-expanded static entries.
 """
 
+import argparse
 import json
-import os
+import subprocess
+from pathlib import Path
 
-CAT = json.load(open("tool/system_effects/out/environment_catalog.json"))
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("--output", type=Path, required=True,
+                    help="path of the generated system_effect_catalog.dart")
+args = parser.parse_args()
+
+CAT = json.load(open(REPO_ROOT / "tool/system_effects/out/environment_catalog.json"))
 
 WH_ZH = {
     "Black Hole": "黑洞",
@@ -361,8 +372,8 @@ for key, _, _ in WEATHER:
         emit_native(buff_id, f"defaultBeaconTypeId: {beacon}")
 
 for key, _, _ in SOV + [(k, None, None) for k, _, _, _, _ in STATIC_MISC]:
-    for buff_id, _ in CAT["static"][key]:
-        emit_native(buff_id, "staticDefault: 1")
+    for buff_id, value in CAT["static"][key]:
+        emit_native(buff_id, f"staticDefault: {fmt_num(value)}")
 
 for key, _, _ in HAZARDS:
     beacon = CAT["warfare"][key]["beacons"]["0"]
@@ -376,13 +387,11 @@ out.append("final systemBuffLibraryById = <int, SystemBuffLibraryEntry>{")
 out.append("  for (final entry in systemBuffLibrary) entry.buffId: entry,")
 out.append("};")
 
-path = ("/home/admin/Develop/eve-fit-assistant/eve-fit-assistant/apps/eve-fit-assistant/"
-        "lib/pages/fit/components/system_effect/system_effect_catalog.dart")
-os.makedirs(os.path.dirname(path), exist_ok=True)
+path = args.output
+path.parent.mkdir(parents=True, exist_ok=True)
 with open(path, "w", encoding="utf-8") as fp:
     fp.write("\n".join(out) + "\n")
 
-import subprocess
-subprocess.run(["dart", "format", path], check=True)
+subprocess.run(["dart", "format", str(path)], check=True)
 
 print(f"wrote {path} ({len(out)} lines)")

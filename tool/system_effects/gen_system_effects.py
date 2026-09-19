@@ -14,10 +14,13 @@ values are resolved from the active snapshot at runtime by the app.
 """
 
 import json
+from pathlib import Path
 
 import yaml
 
-RAW = json.load(open("tool/system_effects/out/beacons.json"))
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+RAW = json.load(open(REPO_ROOT / "tool/system_effects/out/beacons.json"))
 A = RAW["attributes"]
 S = RAW["skills"]
 G = RAW["groups"]
@@ -404,12 +407,7 @@ doc = {
     "buffs": patch_buffs,
 }
 
-with open(
-    "/home/admin/Develop/eve-fit-assistant/eve-fit-assistant/packages/eve-fit-os/"
-    "data/patches/system_effects.yaml",
-    "w",
-    encoding="utf-8",
-) as fp:
+with open(REPO_ROOT / "data/patches/system_effects.yaml", "w", encoding="utf-8") as fp:
     yaml.dump(doc, fp, allow_unicode=True, indent=2, sort_keys=False, width=120)
 
 # ---------------------------------------------------------------------------
@@ -453,7 +451,7 @@ json.dump(
     {"wormholes": wormholes, "storms": storms, "warfare": warfare, "static": static,
      "wh_buff_names": {str(WH_IDS[b["key"]]): b["en"] for b, _, _ in WH},
      "storm_buff_names": {str(STORM_IDS[b["key"]]): b["en"] for b, _ in STORM}},
-    open("tool/system_effects/out/environment_catalog.json", "w"), indent=1)
+    open(REPO_ROOT / "tool/system_effects/out/environment_catalog.json", "w"), indent=1)
 
 print(f"patch: {len(patch_buffs)} buffs "
       f"(wormhole {len(WH)}, storm {len(STORM)}); catalog rules written")

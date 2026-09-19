@@ -16,9 +16,12 @@ uv run --with msgpack python tool/system_effects/extract_wormhole.py
 #    the catalog resolution rules tool/system_effects/out/environment_catalog.json.
 uv run --with pyyaml --with msgpack python tool/system_effects/gen_system_effects.py
 
-# 3. Generate the app catalog
-#    apps/eve-fit-assistant/lib/pages/fit/components/system_effect/system_effect_catalog.dart.
-python3 tool/system_effects/gen_dart_catalog.py
+# 3. Generate the app catalog. The output path is passed explicitly; from the
+#    monorepo workspace root it is
+#    apps/eve-fit-assistant/lib/pages/fit/components/system_effect/system_effect_catalog.dart
+#    (../../apps/... from the crate root).
+python3 tool/system_effects/gen_dart_catalog.py \
+  --output ../../apps/eve-fit-assistant/lib/pages/fit/components/system_effect/system_effect_catalog.dart
 
 # 4. Rebuild the engine data (see ../../README.md).
 uv run -m data.convert
