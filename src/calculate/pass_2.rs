@@ -26,6 +26,7 @@ pub(super) struct Pass2Effect {
     source_attribute_id: i32,
     target: Object,
     target_attribute_id: i32,
+    effect_id: i32,
 }
 
 fn get_modifier_func(
@@ -120,12 +121,39 @@ impl Item {
             && !EXEMPT_PENALTY_CATEGORY_IDS.contains(&source_category_id);
 
         let attribute = self.attributes.get_mut(&attribute_id).unwrap();
+        // Skill-gated modifiers use their skill gate as a target filter: an
+        // effect listing several skills means "applies to items requiring any
+        // of these skills", so an item matching several gates (e.g. an
+        // integrated analyzer requiring both Hacking and Archaeology, targeted
+        // by effect 5460 on Covert Ops hulls) must receive the effect only
+        // once per (source, target attribute).
+        //
+        // Ungated modifiers (ItemModifier, LocationModifier, and group gates,
+        // which a type can match at most once) are exempt: duplicate rows are
+        // authored deliberately (e.g. the alignTime patch divides by 1000
+        // twice).
+        let skill_gated = matches!(
+            effect.modifier,
+            Modifier::LocationRequiredSkillModifier(_)
+                | Modifier::OwnerRequiredSkillModifier(_)
+        );
+        if skill_gated
+            && attribute.effects.iter().any(|e| {
+                e.effect_id == effect.effect_id
+                    && e.source == effect.source
+                    && e.operator == effect.operator
+                    && e.source_attribute_id == effect.source_attribute_id
+            })
+        {
+            return;
+        }
         attribute.effects.push(Effect {
             operator: effect.operator,
             penalty,
             source: effect.source,
             source_category: effect.source_category,
             source_attribute_id: effect.source_attribute_id,
+            effect_id: effect.effect_id,
         });
     }
 
@@ -178,6 +206,7 @@ impl Item {
                         source_attribute_id: modifier.modifying_attribute_id.unwrap(),
                         target,
                         target_attribute_id: modifier.modified_attribute_id.unwrap(),
+                        effect_id: dogma_effect.effect_id,
                     });
                 }
             } else {
