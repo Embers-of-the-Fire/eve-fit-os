@@ -125,6 +125,7 @@ pub struct Effect {
     pub source: Object,
     pub source_category: EffectCategory,
     pub source_attribute_id: i32,
+    pub effect_id: i32,
 }
 
 #[derive(Debug, Clone)]
