@@ -9,3 +9,11 @@ attributes:
   defaultValue: 1000
   highIsGood: true
   stackable: true
+- new:
+    name: million
+    # Pinned: positional IDs of all other patches must stay stable.
+    id: -1003
+  published: true
+  defaultValue: 1000000
+  highIsGood: true
+  stackable: true
