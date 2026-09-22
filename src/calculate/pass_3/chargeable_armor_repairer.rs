@@ -18,7 +18,17 @@ pub fn attribute_chargeable_armor_repairer(fit: &impl FitProvider, ship: &mut Sh
             let Some(amo) = module.attributes.get(&ATTR_ARMOR_AMO) else {
                 continue;
             };
-            module.set_attribute(ATTR_ARMOR_AMO, amo.base_value * mult.base_value);
+            let amount = amo.base_value * mult.base_value;
+            // Multiply the base value in place: replacing the attribute would
+            // drop the effects pass 2 already collected on it (rigs, ship
+            // bonuses, overload, boosters).
+            // Note: the multiplier is read from its base value, so effects
+            // modifying ATTR_ARMOR_MULT itself would not be honored here.
+            module
+                .attributes
+                .get_mut(&ATTR_ARMOR_AMO)
+                .unwrap()
+                .base_value = amount;
         }
     }
 }
