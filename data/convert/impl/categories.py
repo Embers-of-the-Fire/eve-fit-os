@@ -8,7 +8,7 @@ def convert(path: Path, loc: dict[int, str], out: Path, data):
 
     categories = loader(path / "categories")
     for c in categories.values():
-        c["name"] = loc[c["categoryNameID"]]
+        c["name"] = loc.get(c["categoryNameID"])
 
     data["categories"] = categories
     yield

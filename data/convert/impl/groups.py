@@ -8,7 +8,7 @@ def convert(path: Path, loc: dict[int, str], out: Path, data):
 
     groups = loader(path / "groups")
     for g in groups.values():
-        g["name"] = loc[g["groupNameID"]]
+        g["name"] = loc.get(g["groupNameID"])
 
     data["groups"] = groups
     yield
