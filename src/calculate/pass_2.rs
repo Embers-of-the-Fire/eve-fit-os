@@ -1,5 +1,5 @@
 use super::Ship;
-use super::item::{Effect, EffectCategory, EffectOperator, Item, Object};
+use super::item::{Effect, EffectCategory, EffectOperator, Item, Object, SlotType};
 use crate::constant::{
     ATTRIBUTE_CAPACITOR_NEED_ID, ATTRIBUTE_SKILLS, CHARACTER_TYPE_ID,
     EXEMPT_PENALTY_CATEGORY_IDS,
@@ -68,6 +68,14 @@ fn get_target_object(domain: DogmaEffectModifierInfoDomain, origin: Object) -> O
         DogmaEffectModifierInfoDomain::TargetID => Object::Target,
         DogmaEffectModifierInfoDomain::Target => Object::Target,
     }
+}
+
+fn requires_skill(item: &Item, skill_type_id: i32) -> bool {
+    ATTRIBUTE_SKILLS.iter().any(|attribute_skill_id| {
+        item.attributes
+            .get(attribute_skill_id)
+            .is_some_and(|attribute| attribute.base_value == skill_type_id as f64)
+    })
 }
 
 fn get_effect_category(category: i32) -> EffectCategory {
@@ -365,8 +373,7 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                     }
                 }
             }
-            Modifier::OwnerRequiredSkillModifier(skill_type_id)
-            | Modifier::LocationRequiredSkillModifier(skill_type_id) => {
+            Modifier::LocationRequiredSkillModifier(skill_type_id) => {
                 // Some skills apply on -1, indicating they should apply on anything that uses that skill.
                 let skill_type_id = if skill_type_id == -1 {
                     source_type_id
@@ -374,38 +381,59 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                     skill_type_id
                 };
 
-                for attribute_skill_id in &ATTRIBUTE_SKILLS {
-                    if ship.hull.attributes.contains_key(attribute_skill_id)
-                        && ship.hull.attributes[attribute_skill_id].base_value
-                            == skill_type_id as f64
-                    {
-                        ship.hull.add_effect(
-                            info,
-                            effect.target_attribute_id,
-                            category_id,
-                            &effect,
-                        );
-                    }
-
-                    for item in &mut ship.modules {
-                        if item.attributes.contains_key(attribute_skill_id)
-                            && item.attributes[attribute_skill_id].base_value
-                                == skill_type_id as f64
-                        {
-                            item.add_effect(
-                                info,
-                                effect.target_attribute_id,
-                                category_id,
-                                &effect,
-                            );
-                        }
-
-                        if let Some(charge) = &mut item.charge {
-                            if charge.attributes.contains_key(attribute_skill_id)
-                                && charge.attributes[attribute_skill_id].base_value
-                                    == skill_type_id as f64
+                match effect.target {
+                    // shipID domain: fitted modules and their charges.
+                    Object::Ship => {
+                        for item in &mut ship.modules {
+                            if item.slot.is_module()
+                                && requires_skill(item, skill_type_id)
                             {
-                                charge.add_effect(
+                                item.add_effect(
+                                    info,
+                                    effect.target_attribute_id,
+                                    category_id,
+                                    &effect,
+                                );
+                            }
+
+                            if let Some(charge) = &mut item.charge {
+                                if requires_skill(charge, skill_type_id) {
+                                    charge.add_effect(
+                                        info,
+                                        effect.target_attribute_id,
+                                        category_id,
+                                        &effect,
+                                    );
+                                }
+                            }
+                        }
+                    }
+                    // charID domain: character-location items, e.g. implant
+                    // set bonuses gating on the Cybernetics skill.
+                    Object::Character => {
+                        for implant in &mut ship.implants {
+                            if requires_skill(implant, skill_type_id) {
+                                implant.add_effect(
+                                    info,
+                                    effect.target_attribute_id,
+                                    category_id,
+                                    &effect,
+                                );
+                            }
+                        }
+                        for booster in &mut ship.boosters {
+                            if requires_skill(booster, skill_type_id) {
+                                booster.add_effect(
+                                    info,
+                                    effect.target_attribute_id,
+                                    category_id,
+                                    &effect,
+                                );
+                            }
+                        }
+                        for skill in &mut ship.skills {
+                            if requires_skill(skill, skill_type_id) {
+                                skill.add_effect(
                                     info,
                                     effect.target_attribute_id,
                                     category_id,
@@ -414,13 +442,42 @@ pub(super) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
                             }
                         }
                     }
+                    // Other domains (targetID, ...) are not implemented.
+                    _ => {}
+                }
+            }
+            Modifier::OwnerRequiredSkillModifier(skill_type_id) => {
+                // Some skills apply on -1, indicating they should apply on anything that uses that skill.
+                let skill_type_id = if skill_type_id == -1 {
+                    source_type_id
+                } else {
+                    skill_type_id
+                };
 
-                    for item in &mut ship.implants {
-                        if item.attributes.contains_key(attribute_skill_id)
-                            && item.attributes[attribute_skill_id].base_value
-                                == skill_type_id as f64
-                        {
-                            item.add_effect(
+                // Owner-gated modifiers only affect owner-modifiable items:
+                // drones, fighters, and charges. Fitted modules, the hull and
+                // implants must not receive them, even when they happen to
+                // require the gating skill (e.g. the Federation Navy
+                // 'Khryseos' Magnetic Field Stabilizer requires the Drones
+                // skill, but hull drone damage bonuses must not multiply its
+                // turret damage bonus).
+                for item in &mut ship.modules {
+                    if matches!(
+                        item.slot.slot_type,
+                        SlotType::DroneBay { .. } | SlotType::Fighter { .. }
+                    ) && requires_skill(item, skill_type_id)
+                    {
+                        item.add_effect(
+                            info,
+                            effect.target_attribute_id,
+                            category_id,
+                            &effect,
+                        );
+                    }
+
+                    if let Some(charge) = &mut item.charge {
+                        if requires_skill(charge, skill_type_id) {
+                            charge.add_effect(
                                 info,
                                 effect.target_attribute_id,
                                 category_id,
