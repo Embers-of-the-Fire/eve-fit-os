@@ -41,6 +41,7 @@ fn test_dyn_drone() {
             1,
             DynamicItem {
                 base_type: DRONE_HOBGOBLIN,
+                resulting_type: 0,
                 dynamic_attributes: [(ATTR_DAMAGE_MULTIPLIER, DAMAGE_FACTOR)]
                     .into_iter()
                     .collect(),

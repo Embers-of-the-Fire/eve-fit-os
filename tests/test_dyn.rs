@@ -43,6 +43,7 @@ fn test_dyn() {
             1,
             DynamicItem {
                 base_type: 400,
+                resulting_type: 0,
                 dynamic_attributes: [
                     (73, 0.949999988079071),
                     (50, 1.0),

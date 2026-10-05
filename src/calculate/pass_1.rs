@@ -35,8 +35,45 @@ impl Item {
 
         if let ItemID::Dynamic(dy) = self.item_id {
             let dyn_item = dynamic.get_dynamic_item(dy);
-            for (attribute_id, value) in &dyn_item.dynamic_attributes {
-                self.set_attribute_dynamic(*attribute_id, *value);
+            let resulting_type = match dyn_item.resulting_type {
+                0 => type_id,
+                id => id,
+            };
+
+            // The resulting type carries the mutated item's own template
+            // attributes (notably its required skills, e.g. Mutated Drone
+            // Specialization on mutated drones). Overlay them on the origin's
+            // attributes, except for the attributes rolled by the mutator,
+            // which are computed from the origin's values below.
+            if resulting_type != type_id {
+                for dogma_attribute in info.get_dogma_attributes(resulting_type) {
+                    if !dyn_item
+                        .dynamic_attributes
+                        .contains_key(&dogma_attribute.attribute_id)
+                    {
+                        self.set_attribute(
+                            dogma_attribute.attribute_id,
+                            dogma_attribute.value,
+                        );
+                    }
+                }
+            }
+
+            for (attribute_id, factor) in &dyn_item.dynamic_attributes {
+                if self.attributes.contains_key(attribute_id) {
+                    self.set_attribute_dynamic(*attribute_id, *factor);
+                } else {
+                    // The origin does not carry this attribute; seed it from
+                    // the resulting type's own value if it has one.
+                    let base = info
+                        .get_dogma_attributes(resulting_type)
+                        .into_iter()
+                        .find(|attr| attr.attribute_id == *attribute_id)
+                        .map(|attr| attr.value);
+                    if let Some(base) = base {
+                        self.set_attribute(*attribute_id, base * factor);
+                    }
+                }
             }
         }
 

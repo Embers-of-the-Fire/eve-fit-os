@@ -176,6 +176,11 @@ impl Buff {
 #[derive(Debug, Clone, PartialEq)]
 pub struct DynamicItem {
     pub base_type: i32,
+    /// The mutated type created by the mutator (e.g. Light Mutated Drone).
+    /// Its dogma attributes form the item's template together with
+    /// `base_type`; notably it carries the resulting item's required skills.
+    /// `0` falls back to `base_type` (origin-only behavior).
+    pub resulting_type: i32,
     /// attr key, factor
     pub dynamic_attributes: HashMap<i32, f64>,
 }
