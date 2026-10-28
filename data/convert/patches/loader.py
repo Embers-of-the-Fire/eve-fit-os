@@ -14,7 +14,9 @@ def load_patches(root: PathLike):
             continue
         
         with open(f"{root}/{patch}", 'r', encoding='utf-8') as fp:
-            patch = yaml.load(fp, Loader=yaml.CSafeLoader)
+            # Fall back to the pure-Python loader when PyYAML lacks the
+            # libyaml extension (no prebuilt wheel for the running CPython).
+            patch = yaml.load(fp, Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
 
         for attribute in patch.get("attributes", []):
             attributes.append(attribute)

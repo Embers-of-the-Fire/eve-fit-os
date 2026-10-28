@@ -13,7 +13,9 @@ def convert(path: Path, patch: Path, out: Path, data):
     typeDogma = loader(path / "typedogma")
 
     with open(f"{patch}/ignoredDogma.yaml", encoding="utf-8") as f:
-        ignored_types = yaml.load(f, yaml.CLoader)
+        # PyYAML built without libyaml (e.g. no cp3xx wheel for a new CPython)
+        # only ships the pure-Python loaders; fall back to them.
+        ignored_types = yaml.load(f, getattr(yaml, "CLoader", yaml.Loader))
 
     data["typeDogma"] = typeDogma
     yield

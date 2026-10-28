@@ -10,7 +10,9 @@ def convert(path: Path, out: Path, data):
     print("Loading DBuffCollections ...")
 
     with open(f"{path}/dbuffcollections.yaml", encoding="utf-8") as fp:
-        buffs = yaml.load(fp, Loader=yaml.CSafeLoader)
+        # Fall back to the pure-Python loader when PyYAML lacks the libyaml
+        # extension (no prebuilt wheel for the running CPython).
+        buffs = yaml.load(fp, Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
 
     data["dbuffcollections"] = buffs
     yield
