@@ -24,6 +24,7 @@ fn test_basic_fit() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 628,
         modules: (0..3)
             .map(|index| ItemModule {

@@ -272,6 +272,12 @@ pub struct ItemSystemBuff {
 pub struct ItemFit {
     pub ship_type_id: i32,
     pub damage_profile: DamageProfile,
+    /// The pilot's security status, clamped to `-10.0..=10.0` when applied.
+    /// Written onto the hull as `pilotSecurityStatus` (attribute 2610) so
+    /// hulls with security-status-scaling effects (CONCORD and Alliance
+    /// Tournament ships) compute their bonuses accordingly. Defaults to
+    /// `0.0` (no bonus).
+    pub security_status: f64,
     pub modules: Vec<ItemModule>,
     pub drones: Vec<ItemDrone>,
     pub fighters: Vec<ItemFighter>,

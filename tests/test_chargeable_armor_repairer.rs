@@ -40,6 +40,7 @@ fn fit(charge: Option<i32>) -> ItemFit {
     ItemFit {
         fighters: vec![],
         damage_profile: Default::default(),
+        security_status: 0.0,
         ship_type_id: SHIP_VEXOR_NAVY_ISSUE,
         modules: vec![
             module(

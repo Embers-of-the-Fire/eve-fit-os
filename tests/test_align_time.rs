@@ -22,6 +22,7 @@ fn test_align_time() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 11192,
         modules: vec![],
         drones: vec![],

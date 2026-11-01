@@ -88,6 +88,7 @@ fn run(
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: SHIP,
         modules,
         drones,

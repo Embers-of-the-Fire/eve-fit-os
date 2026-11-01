@@ -49,6 +49,7 @@ fn fit_with(modules: Vec<ItemModule>) -> ItemFit {
     ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: SHIP_RORQUAL,
         modules,
         drones: vec![],

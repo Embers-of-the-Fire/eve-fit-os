@@ -21,6 +21,7 @@ fn fit_with_drone(item_id: ItemID) -> ItemFit {
     ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 603,
         modules: vec![],
         drones: vec![ItemDrone {

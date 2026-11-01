@@ -27,6 +27,7 @@ fn test_interdiction_sphere_launcher_holds_three_probes() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: Default::default(),
+        security_status: 0.0,
         ship_type_id: SHIP_SABRE,
         modules: vec![ItemModule {
             item_id: ItemID::Item(MODULE_INTERDICTION_SPHERE_LAUNCHER),

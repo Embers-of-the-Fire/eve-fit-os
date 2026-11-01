@@ -22,6 +22,7 @@ fn test_cap() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 628,
         modules: vec![ItemModule {
             item_id: ItemID::Item(499),
@@ -90,6 +91,7 @@ fn test_booster_cache_not_polluted_by_charge() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 628,
         modules: vec![ItemModule {
             // Armored Command Burst II

@@ -21,6 +21,7 @@ fn calculate_with_cehe(state: ItemState) -> HashMap<i32, f64> {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 19720, // Revelation
         modules: vec![ItemModule {
             item_id: ItemID::Item(40714), // Capital Emergency Hull Energizer I

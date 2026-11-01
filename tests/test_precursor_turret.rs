@@ -31,6 +31,7 @@ fn calculate_with_spool(
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 603,
         modules: vec![ItemModule {
             item_id: ItemID::Item(TYPE_LIGHT_ENTROPIC_DISINTEGRATOR),

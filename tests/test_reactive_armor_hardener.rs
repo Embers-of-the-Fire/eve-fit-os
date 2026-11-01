@@ -28,6 +28,7 @@ fn calculate_with_rah(
     let fit = ItemFit {
         fighters: vec![],
         damage_profile,
+        security_status: 0.0,
         // Merlin: base armor resonances are 0.5 / 0.9 / 0.75 / 0.55, so the
         // damage the RAH reacts to is not uniform even with a uniform profile.
         ship_type_id: 603,

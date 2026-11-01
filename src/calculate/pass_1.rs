@@ -5,8 +5,8 @@ use crate::constant::patches::attr::{
     ATTR_DAMAGE_PROFILE_THERMAL,
 };
 use crate::constant::{
-    ATTRIBUTE_CAPACITY_ID, ATTRIBUTE_MASS_ID, ATTRIBUTE_RADIUS_ID,
-    ATTRIBUTE_SKILL_LEVEL_ID, ATTRIBUTE_VOLUME_ID,
+    ATTRIBUTE_CAPACITY_ID, ATTRIBUTE_MASS_ID, ATTRIBUTE_PILOT_SECURITY_STATUS_ID,
+    ATTRIBUTE_RADIUS_ID, ATTRIBUTE_SKILL_LEVEL_ID, ATTRIBUTE_VOLUME_ID,
 };
 use crate::provider::{FitProvider, InfoProvider};
 
@@ -106,6 +106,14 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
     ]
     .into_iter()
     .for_each(|(id, val)| ship.hull.set_attribute(id, val));
+
+    // The pilot's security status lives on the hull (attribute 2610); the
+    // hull's own dogma effects (CONCORD/AT sec-status bonus chains) scale
+    // from it. In-game security status is bounded to -10.0..=10.0.
+    ship.hull.set_attribute(
+        ATTRIBUTE_PILOT_SECURITY_STATUS_ID,
+        fit.fit().security_status.clamp(-10.0, 10.0),
+    );
 
     for (skill_id, skill_level) in fit.skills() {
         let mut skill = Item::new_fake(*skill_id);

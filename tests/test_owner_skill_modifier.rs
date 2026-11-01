@@ -31,6 +31,7 @@ fn test_owner_skill_modifier_not_applied_to_modules() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: SIN_TYPE_ID,
         modules: [ItemModule {
             item_id: ItemID::Item(RAILGUN_425_TYPE_ID),

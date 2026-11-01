@@ -20,6 +20,7 @@ fn test_fighter() {
 
     let fit = ItemFit {
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 23919,
         modules: vec![],
         drones: vec![],
@@ -74,7 +75,8 @@ fn test_fighter() {
         .expect("No value");
     println!("Fighter attack dps: {}", fighter_attack_dps);
 
-    let ship_fighter_dps = out.hull
+    let ship_fighter_dps = out
+        .hull
         .attributes
         .get(&ATTR_FIGHTER_DAMAGE_PER_SECOND)
         // .get(&2226)
@@ -92,6 +94,7 @@ fn test_fighter_slot_index_is_group_id() {
     // calculated item; it must not be the position in the expanded list.
     let fit = ItemFit {
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 23919,
         modules: vec![],
         drones: vec![],

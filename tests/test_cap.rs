@@ -23,6 +23,7 @@ fn test_cap() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 628,
         modules: vec![ItemModule {
             item_id: ItemID::Item(32772),
@@ -110,6 +111,7 @@ fn test_cap_raw() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 47271,
         modules: (0..4)
             .map(|t| ItemModule {

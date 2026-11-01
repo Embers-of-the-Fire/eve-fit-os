@@ -21,6 +21,7 @@ fn test_warfare() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 23919,
         modules: vec![
             ItemModule {
@@ -90,6 +91,7 @@ fn test_warfare_charge_attributes_not_polluted() {
     let fit = ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id: 23919,
         modules: CHARGES
             .iter()
@@ -227,6 +229,7 @@ fn test_warfare_item_modifiers_apply_to_hull_only() {
             ItemFit {
                 fighters: vec![],
                 damage_profile: DamageProfile::default(),
+                security_status: 0.0,
                 ship_type_id: SHIP,
                 modules,
                 drones: vec![],

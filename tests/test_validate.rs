@@ -37,6 +37,7 @@ fn base_fit(ship_type_id: i32) -> ItemFit {
     ItemFit {
         fighters: vec![],
         damage_profile: DamageProfile::default(),
+        security_status: 0.0,
         ship_type_id,
         modules: vec![],
         drones: vec![],

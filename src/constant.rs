@@ -49,6 +49,11 @@ pub const ATTRIBUTE_CAPACITOR_CAPACITY_ID: i32 = 482;
 /// Damage multiplier attribute ID (corresponding to `damageMultiplier`)
 pub const ATTRIBUTE_DAMAGE_MULTIPLIER_ID: i32 = 64;
 
+/// Pilot security status attribute ID (corresponding to
+/// `pilotSecurityStatus`); drives the CONCORD/AT hull effect chain
+/// (effects 6869-6871 and friends).
+pub const ATTRIBUTE_PILOT_SECURITY_STATUS_ID: i32 = 2610;
+
 /// Precursor turret damage ramp-up per cycle (corresponding to
 /// `damageMultiplierBonusPerCycle`)
 pub const ATTRIBUTE_DAMAGE_MULTIPLIER_BONUS_PER_CYCLE_ID: i32 = 2733;
