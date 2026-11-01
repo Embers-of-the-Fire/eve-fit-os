@@ -59,8 +59,14 @@ const CAN_FIT_GROUP_ATTR_IDS: [i32; 20] = [
     1298, 1299, 1300, 1301, 1872, 1879, 1880, 1881, 2065, 2396, 2476, 2477, 2478, 2479,
     2480, 2481, 2482, 2483, 2484, 2485,
 ];
-const CAN_FIT_TYPE_ATTR_IDS: [i32; 12] = [
-    1302, 1303, 1304, 1305, 1944, 2103, 2463, 2486, 2487, 2488, 2758, 5948,
+// FIXME(serenity): The last nine IDs are Serenity-only `canFitShipType`
+// attributes (5293 duplicates the name canFitShipType12; 5294/5295 are 13/14;
+// 5400-5405 are 15-20). They are unused on Tranquility/Singularity today, but
+// if CCP ever assigns these IDs a different meaning this list must be split
+// per server. See Embers-of-the-Fire/eve-fit-assistant#566.
+const CAN_FIT_TYPE_ATTR_IDS: [i32; 21] = [
+    1302, 1303, 1304, 1305, 1944, 2103, 2463, 2486, 2487, 2488, 2758, 5948, 5293, 5294,
+    5295, 5400, 5401, 5402, 5403, 5404, 5405,
 ];
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

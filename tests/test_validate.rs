@@ -339,6 +339,153 @@ fn test_validate_state_exceeds_max() {
     );
 }
 
+/// Serenity's large compressors restrict fitting via `canFitShipType1`
+/// (attribute 1302 = Orca) plus the Serenity-only `canFitShipType20`
+/// (attribute 5405 = Cachalot). The engine must honor the extended
+/// `canFitShipType*` attribute IDs. Serenity data is not available to this
+/// crate's tests, so the dogma entries are synthesized from the real FSD
+/// values. See Embers-of-the-Fire/eve-fit-assistant#566.
+#[test]
+fn test_validate_fit_targets_serenity_extended_attributes() {
+    use eve_fit_os::protobuf::efos;
+
+    const SHIP_CACHALOT: i32 = 91901; // Serenity-only industrial command ship
+    const SHIP_ORCA: i32 = 28606;
+    const SHIP_VENTURE: i32 = 32880;
+    const MODULE_LARGE_COMPRESSOR: i32 = 62625; // Large Asteroid Ore Compressor I
+    const ATTR_CAN_FIT_SHIP_TYPE_1: i32 = 1302;
+    const ATTR_CAN_FIT_SHIP_TYPE_20: i32 = 5405; // Serenity-only
+
+    let synthetic_info = || {
+        let types = efos::Types {
+            entries: [
+                (SHIP_CACHALOT, 941, 6),
+                (SHIP_ORCA, 941, 6),
+                (SHIP_VENTURE, 25, 6),
+                (MODULE_LARGE_COMPRESSOR, 1733, 7),
+            ]
+            .into_iter()
+            .map(|(type_id, group_id, category_id)| {
+                (
+                    type_id,
+                    efos::types::Type {
+                        group_id,
+                        category_id,
+                        capacity: None,
+                        mass: None,
+                        radius: None,
+                        volume: None,
+                    },
+                )
+            })
+            .collect(),
+        };
+        let type_dogma = efos::TypeDogma {
+            entries: [(
+                MODULE_LARGE_COMPRESSOR,
+                efos::type_dogma::TypeDogmaEntry {
+                    dogma_attributes: vec![
+                        efos::type_dogma::type_dogma_entry::DogmaAttributes {
+                            attribute_id: ATTR_CAN_FIT_SHIP_TYPE_1,
+                            value: SHIP_ORCA as f64,
+                        },
+                        efos::type_dogma::type_dogma_entry::DogmaAttributes {
+                            attribute_id: ATTR_CAN_FIT_SHIP_TYPE_20,
+                            value: SHIP_CACHALOT as f64,
+                        },
+                    ],
+                    dogma_effects: vec![],
+                },
+            )]
+            .into_iter()
+            .collect(),
+        };
+        let dogma_attributes = efos::DogmaAttributes {
+            entries: [ATTR_CAN_FIT_SHIP_TYPE_1, ATTR_CAN_FIT_SHIP_TYPE_20]
+                .into_iter()
+                .map(|attribute_id| {
+                    (
+                        attribute_id,
+                        efos::dogma_attributes::DogmaAttribute {
+                            published: false,
+                            default_value: 0.0,
+                            high_is_good: true,
+                            stackable: true,
+                            name: format!("canFitShipType attr {attribute_id}"),
+                        },
+                    )
+                })
+                .collect(),
+        };
+        Database::init_from_protobuf(
+            dogma_attributes,
+            efos::DogmaEffects::default(),
+            type_dogma,
+            types,
+            efos::BuffCollections::default(),
+        )
+    };
+
+    let validate_with = |fit: ItemFit, info: &Database| {
+        let container = FitContainer::new(fit, HashMap::new(), Default::default());
+        let ship = calculate(&container, info);
+        validate_fit(&container, &ship, info)
+    };
+    let incompatible_types = |issues: &[ValidationIssue]| {
+        issues.iter().find_map(|issue| match &issue.kind {
+            ValidationIssueKind::Error(ValidationErrorKey::IncompatibleShipType {
+                expected,
+            }) => Some(expected.clone()),
+            _ => None,
+        })
+    };
+
+    let info = synthetic_info();
+
+    // Cachalot (matched only via the Serenity-only attribute 5405): no error.
+    let mut fit = base_fit(SHIP_CACHALOT);
+    fit.modules.push(module(
+        MODULE_LARGE_COMPRESSOR,
+        ItemSlotType::High,
+        0,
+        ItemState::Passive,
+    ));
+    let issues = validate_with(fit, &info);
+    assert!(
+        errors(&issues).is_empty(),
+        "Cachalot must accept the large compressor, got {issues:?}"
+    );
+
+    // Orca (matched via the classic attribute 1302): no error.
+    let mut fit = base_fit(SHIP_ORCA);
+    fit.modules.push(module(
+        MODULE_LARGE_COMPRESSOR,
+        ItemSlotType::High,
+        0,
+        ItemState::Passive,
+    ));
+    let issues = validate_with(fit, &info);
+    assert!(
+        errors(&issues).is_empty(),
+        "Orca must accept the large compressor, got {issues:?}"
+    );
+
+    // Any other hull: still rejected, listing both allowed ship types.
+    let mut fit = base_fit(SHIP_VENTURE);
+    fit.modules.push(module(
+        MODULE_LARGE_COMPRESSOR,
+        ItemSlotType::High,
+        0,
+        ItemState::Passive,
+    ));
+    let issues = validate_with(fit, &info);
+    assert_eq!(
+        incompatible_types(&issues),
+        Some(vec![SHIP_ORCA, SHIP_CACHALOT]),
+        "other hulls must be rejected with both expected ship types, got {issues:?}"
+    );
+}
+
 #[test]
 fn test_validate_legal_fit_has_no_capacity_issues() {
     let mut fit = base_fit(SHIP_ARBITRATOR);
