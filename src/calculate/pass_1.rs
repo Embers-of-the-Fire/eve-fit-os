@@ -109,10 +109,12 @@ pub(crate) fn pass(fit: &impl FitProvider, info: &impl InfoProvider, ship: &mut 
 
     // The pilot's security status lives on the hull (attribute 2610); the
     // hull's own dogma effects (CONCORD/AT sec-status bonus chains) scale
-    // from it. In-game security status is bounded to -10.0..=10.0.
+    // from it. The effective in-game range is -10.0..=5.0: +5 is the
+    // maximum reachable pilot security status, anything above is legacy
+    // data (and the CONCORD trait ceiling of +50% equals 10x at sec 5).
     ship.hull.set_attribute(
         ATTRIBUTE_PILOT_SECURITY_STATUS_ID,
-        fit.fit().security_status.clamp(-10.0, 10.0),
+        fit.fit().security_status.clamp(-10.0, 5.0),
     );
 
     for (skill_id, skill_level) in fit.skills() {
