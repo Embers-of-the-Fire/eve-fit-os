@@ -4,10 +4,10 @@
 Usage: gen_dart_catalog.py --output <path to system_effect_catalog.dart>
 
 The catalog carries no buff values: wormhole/storm presets reference their
-effect beacon plus a beacon-attribute -> buff mapping, abyssal weather and
-hazard presets expand the beacon's warfareBuff1-4 pairs at runtime, and only
-the sovereignty/Triglavian/insurgency presets (whose beacons carry no usable
-dogma on any server) keep pre-expanded static entries.
+effect beacon plus a beacon-attribute -> buff mapping, abyssal weather, hazard,
+and Titan generator presets expand the source type's warfareBuff1-4 pairs at
+runtime, and only the sovereignty/Triglavian/insurgency presets (whose beacons
+carry no usable dogma on any server) keep pre-expanded static entries.
 """
 
 import argparse
@@ -48,6 +48,13 @@ STORM_TYPES = [
     ("gamma", "超阈限伽玛射线风暴", "Metaliminal Gamma Ray Storm"),
     ("plasma", "超阈限等离子火焰风暴", "Metaliminal Plasma Firestorm"),
     ("icestorm", "不稳定冰风暴", "Volatile Ice Storm"),
+]
+
+TITAN_GENERATORS = [
+    ("titan_amarr", "amarr", "艾玛", "Amarr"),
+    ("titan_caldari", "caldari", "加达里", "Caldari"),
+    ("titan_gallente", "gallente", "盖伦特", "Gallente"),
+    ("titan_minmatar", "minmatar", "米玛塔尔", "Minmatar"),
 ]
 
 BUFF_ZH = {
@@ -119,6 +126,23 @@ NATIVE_BUFF_NAMES = {
     98: ("速度加成", "Velocity Bonus"),
     99: ("动能抗性惩罚", "Kinetic Resistance Penalty"),
     100: ("扫描分辨率加成", "Scan Resolution Bonus"),
+    # Titan Phenomena Generators (preset-only; not individual custom buffs).
+    39: ("电容回充量加成", "Capacitor Recharge Bonus"),
+    40: ("动能抗性加成", "Kinetic Resistance Bonus"),
+    41: ("电磁抗性惩罚", "EM Resistance Penalty"),
+    51: ("速度惩罚", "Velocity Penalty"),
+    48: ("护盾值加成", "Shield HP Bonus"),
+    49: ("电磁抗性加成", "EM Resistance Bonus"),
+    50: ("动能抗性惩罚", "Kinetic Resistance Penalty"),
+    53: ("远程装甲维修器强度惩罚", "Remote Armor Repairer Strength Penalty"),
+    42: ("装甲值加成", "Armor HP Bonus"),
+    43: ("爆炸抗性加成", "Explosive Resistance Bonus"),
+    44: ("热能抗性惩罚", "Thermal Resistance Penalty"),
+    52: ("远程护盾回充增量器强度惩罚", "Remote Shield Booster Strength Penalty"),
+    45: ("信号半径加成", "Signature Radius Bonus"),
+    46: ("热能抗性加成", "Thermal Resistance Bonus"),
+    47: ("爆炸抗性惩罚", "Explosive Resistance Penalty"),
+    54: ("能量和混合炮台最佳射程惩罚", "Energy and Hybrid Turret Optimal Penalty"),
     2433: ("护盾值加成", "Shield Hitpoint Bonus"),
     2434: ("电容容量加成", "Capacitor Capacity Bonus"),
     2441: ("本地护盾回充加成", "Local Shield Booster Bonus"),
@@ -178,7 +202,7 @@ out.append("// hand-authored buff definitions and the generation tooling under")
 out.append("// packages/eve-fit-os/tool/system_effects/. Regenerate instead of hand-editing.")
 out.append("//")
 out.append("// The catalog carries no buff values: presets describe how to resolve values")
-out.append("// from the active snapshot's effect-beacon dogma at runtime; see")
+out.append("// from the active snapshot's source-type dogma at runtime; see")
 out.append("// system_effect_resolver.dart (hand-written) for the expansion logic.")
 out.append("")
 out.append('import "package:eve_fit_assistant/storage/fit/schema.dart";')
@@ -188,6 +212,7 @@ out.append("enum SystemEffectCategory {")
 out.append('  wormhole("虫洞", "Wormhole"),')
 out.append('  abyssalWeather("深渊天气", "Abyssal Weather"),')
 out.append('  storm("风暴", "Storm"),')
+out.append('  titan("泰坦效果", "Titan Effect"),')
 out.append('  sovUpgrade("主权升级", "Sovereignty Upgrade"),')
 out.append('  triglavian("三神裔", "Triglavian"),')
 out.append('  insurgency("海盗叛乱", "Pirate Insurgency"),')
@@ -201,7 +226,7 @@ out.append("}")
 out.append("")
 out.append("/// A system-wide environment preset: bilingual display metadata plus a")
 out.append("/// rule for expanding the preset into concrete [FitSystemBuff] entries")
-out.append("/// from the active snapshot's effect-beacon dogma.")
+out.append("/// from the active snapshot's source-type dogma.")
 out.append("class SystemEffectPreset {")
 out.append("  const SystemEffectPreset({")
 out.append("    required this.id,")
@@ -219,16 +244,16 @@ out.append("  final SystemEffectCategory category;")
 out.append("  final String zh;")
 out.append("  final String en;")
 out.append("")
-out.append("  /// Effect beacon type carrying this preset's values in the active")
-out.append("  /// snapshot's engine data; null for [staticBuffs] presets.")
+out.append("  /// Effect beacon or generator module carrying this preset's values in")
+out.append("  /// the active snapshot's engine data; null for [staticBuffs] presets.")
 out.append("  final int? beaconTypeId;")
 out.append("")
 out.append("  /// Buff ID -> beacon attribute ID: each buff's value is the beacon's")
 out.append("  /// attribute value (wormholes and metaliminal/volatile storms).")
 out.append("  final Map<int, int>? buffAttrs;")
 out.append("")
-out.append("  /// Expand the beacon's `warfareBuff1-4ID/Value` attribute pairs")
-out.append("  /// directly (abyssal weather and hazard clouds).")
+out.append("  /// Expand the source type's `warfareBuff1-4ID/Value` attribute pairs")
+out.append("  /// directly (abyssal weather, hazard clouds, and Titan generators).")
 out.append("  final bool warfareFromBeacon;")
 out.append("")
 out.append("  /// Pre-expanded entries for effects whose beacons carry no usable")
@@ -265,6 +290,11 @@ for key, zh, en in STORM_TYPES:
         pid = f"storm.{key}.{strength}"
         out += preset_head(pid, "storm", f"{strength_zh}{zh}", f"{strength_en} {en}")
         out.append(f"      beaconTypeId: {rule['beacons'][strength]}, buffAttrs: {{{buff_attrs}}}),")
+
+for key, slug, zh, en in TITAN_GENERATORS:
+    generator = CAT["warfare"][key]["beacons"]["0"]
+    out += preset_head(f"titan.{slug}", "titan", f"{zh}现象发生器", f"{en} Phenomena Generator")
+    out.append(f"      beaconTypeId: {generator}, warfareFromBeacon: true),")
 
 
 def emit_static(pid, category, zh, en, entries):
@@ -382,9 +412,20 @@ for key, _, _ in HAZARDS:
 
 out.append("];")
 out.append("")
-out.append("/// Custom-buff library lookup by buff id.")
+out.append("/// Preset-only buffs, available for display but not individual custom selection.")
+out.append("const presetOnlySystemBuffLibrary = <SystemBuffLibraryEntry>[")
+for key, _, _, _ in TITAN_GENERATORS:
+    generator = CAT["warfare"][key]["beacons"]["0"]
+    for buff_id in CAT["warfare"][key]["buffs"]:
+        zh, en = NATIVE_BUFF_NAMES[buff_id]
+        out.append(f'  SystemBuffLibraryEntry(buffId: {buff_id}, zh: "{zh}", en: "{en}",')
+        out.append(f"      defaultBeaconTypeId: {generator}),")
+out.append("];")
+out.append("")
+out.append("/// Known-buff lookup by id, including buffs offered only through presets.")
 out.append("final systemBuffLibraryById = <int, SystemBuffLibraryEntry>{")
 out.append("  for (final entry in systemBuffLibrary) entry.buffId: entry,")
+out.append("  for (final entry in presetOnlySystemBuffLibrary) entry.buffId: entry,")
 out.append("};")
 
 path = args.output

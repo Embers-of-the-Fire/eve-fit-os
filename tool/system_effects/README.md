@@ -1,7 +1,8 @@
 # System Effects Tooling
 
-Generators for the system-wide warfare buff feature (environmental effects:
-wormholes, metaliminal/volatile storms, and the native dbuff environments).
+Generators for externally supplied warfare buffs (environmental effects such as
+wormholes and metaliminal/volatile storms, native dbuff environments, and Titan
+Phenomena Generators).
 
 Pipeline (run from the crate root, requires `uv` and Python 3.12+):
 
@@ -38,8 +39,9 @@ The catalog carries no buff values:
 
 - Wormhole and storm presets reference their effect beacon plus a
   buff-ID -> beacon-attribute mapping.
-- Abyssal weather and hazard cloud presets expand the beacon's
-  `warfareBuff1-4ID/Value` attribute pairs directly.
+- Abyssal weather, hazard cloud, and Titan Phenomena Generator presets expand
+  the source type's `warfareBuff1-4ID/Value` attribute pairs directly. Titan
+  values are fixed by the generator module, independent of hull and skills.
 - Sovereignty/Triglavian/insurgency presets stay hardcoded (accepted risk):
   their beacons carry no usable attributes on any server (pyfa hardcodes
   them too).

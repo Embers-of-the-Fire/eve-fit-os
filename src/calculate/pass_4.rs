@@ -219,9 +219,9 @@ pub(crate) fn pass(
             item.calculate_warfares(info, ship, cache, Object::Item(index));
         }
     }
-    // System-wide warfare buffs (environmental effects such as wormhole
-    // system effects or abyssal/metaliminal weather) are supplied directly
-    // by the fit input rather than sourced from a fitted module.
+    // External warfare buffs (environmental effects or Titan generators) are
+    // supplied directly by the fit input rather than sourced from a fitted
+    // module on the affected ship.
     for system_buff in &fit.fit().system_buffs {
         aggregate_buff(info, cache, system_buff.buff_id, system_buff.value);
     }
