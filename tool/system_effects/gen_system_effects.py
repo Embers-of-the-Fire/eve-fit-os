@@ -4,7 +4,7 @@
    - wormhole system-effect buffs (-2001..-2032)
    - metaliminal/volatile storm buffs  (-2101..-2121)
 2. tool/system_effects/out/environment_catalog.json
-   - resolution rules for the app catalog (beacon type IDs + beacon
+   - resolution rules for the app catalog (source type IDs + beacon
      attribute -> buff mappings / warfareBuff pairs / accepted-risk statics),
      consumed by gen_dart_catalog.py
 
@@ -28,7 +28,8 @@ WH_CLASSES = RAW["wormhole_classes"]      # wtype -> class -> beacon type id
 STORM_BEACONS = RAW["storm_beacons"]      # stype -> strength -> beacon type id
 WEATHER_BEACONS = RAW["weather_beacons"]  # key -> tier -> beacon type id
 HAZARD_BEACONS = RAW["hazard_beacons"]    # key -> beacon type id
-BEACON_VALUES = RAW["beacon_values"]      # beacon type id -> attr id -> value
+TITAN_GENERATORS = RAW["titan_generators"]  # key -> generator module type id
+BEACON_VALUES = RAW["beacon_values"]      # source type id -> attr id -> value
 
 MLO = S["Missile Launcher Operation"]
 
@@ -318,6 +319,10 @@ EXPECTED_WARFARE_BUFFS = {
     "hazard_filament_small": {88, 89},
     "hazard_filament_medium": {88, 89},
     "hazard_filament_large": {88, 89},
+    "titan_amarr": {39, 40, 41, 51},
+    "titan_caldari": {48, 49, 50, 53},
+    "titan_gallente": {42, 43, 44, 52},
+    "titan_minmatar": {45, 46, 47, 54},
 }
 
 
@@ -332,12 +337,14 @@ def warfare_buff_ids(type_id):
 
 
 for key, expected in EXPECTED_WARFARE_BUFFS.items():
-    beacons = (WEATHER_BEACONS.get(key) or {0: HAZARD_BEACONS[key]})
+    beacons = (WEATHER_BEACONS.get(key) or HAZARD_BEACONS.get(key) or TITAN_GENERATORS[key])
+    if isinstance(beacons, int):
+        beacons = {0: beacons}
     for label, beacon in beacons.items():
         found = set(warfare_buff_ids(beacon))
         if found != expected:
             raise SystemExit(
-                f"{key} (beacon {beacon}): warfare buffs {sorted(found)} != "
+                f"{key} (source {beacon}): warfare buffs {sorted(found)} != "
                 f"expected {sorted(expected)}")
 
 # ---------------------------------------------------------------------------
@@ -431,6 +438,8 @@ for key, beacons in WEATHER_BEACONS.items():
     warfare[key] = {"beacons": beacons, "buffs": warfare_buff_ids(tier1)}
 for key, beacon in HAZARD_BEACONS.items():
     warfare[key] = {"beacons": {0: beacon}, "buffs": warfare_buff_ids(beacon)}
+for key, generator in TITAN_GENERATORS.items():
+    warfare[key] = {"beacons": {0: generator}, "buffs": warfare_buff_ids(generator)}
 
 # Accepted-risk hardcodes: these beacons carry no usable attributes on ANY
 # server (pyfa hardcodes them too).

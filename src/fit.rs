@@ -252,9 +252,9 @@ pub struct ItemBooster {
     pub index: i32,
 }
 
-/// A system-wide warfare buff (environmental effect) applied to the whole
-/// fit, e.g. wormhole system effects, abyssal/metaliminal weather, or
-/// sovereignty upgrades.
+/// An externally supplied warfare buff applied to the whole fit, e.g. wormhole
+/// system effects, abyssal/metaliminal weather, sovereignty upgrades, or Titan
+/// Phenomena Generators.
 ///
 /// Unlike command bursts, these buffs are not sourced from a fitted module;
 /// the `(buff_id, value)` pair is supplied directly by the user and merged

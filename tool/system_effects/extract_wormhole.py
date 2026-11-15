@@ -8,8 +8,8 @@ localization pickle for skill/group names) for every server and emits
   - attributes / skills / groups: name -> ID maps (resolved per server,
     verified identical across servers)
   - wormhole_classes: wormhole type -> class -> beacon type ID
-  - beacon_values: canonical-server attribute table of every effect beacon
-    (wormhole, storm, abyssal weather, abyssal hazard clouds)
+  - beacon_values: canonical-server attribute table of every effect source
+    (wormhole, storm, abyssal weather, abyssal hazard clouds, Titan generators)
 
 A per-server value report is printed; any divergence between servers is a
 WARNING (not an error): the app resolves preset values from the ACTIVE
@@ -74,6 +74,15 @@ HAZARD_BEACONS = {
     "hazard_filament_small": 47620,
     "hazard_filament_medium": 47472,
     "hazard_filament_large": 47473,
+}
+
+# Titan Phenomena Generator modules: preset key -> module type ID. Their four
+# warfareBuff pairs contain fixed values, independent of the source hull and skills.
+TITAN_GENERATORS = {
+    "titan_amarr": 43658,
+    "titan_caldari": 43660,
+    "titan_gallente": 43662,
+    "titan_minmatar": 43664,
 }
 
 # Dogma attribute names referenced by the generators: ship/charge modifier
@@ -156,6 +165,7 @@ def all_beacon_ids() -> list[int]:
     for m in WEATHER_BEACONS.values():
         ids.update(m.values())
     ids.update(HAZARD_BEACONS.values())
+    ids.update(TITAN_GENERATORS.values())
     return sorted(ids)
 
 
@@ -272,6 +282,7 @@ def main() -> None:
         "storm_beacons": STORM_BEACONS,
         "weather_beacons": WEATHER_BEACONS,
         "hazard_beacons": HAZARD_BEACONS,
+        "titan_generators": TITAN_GENERATORS,
         "beacon_values": {str(k): {str(a): v for a, v in vals.items()}
                           for k, vals in beacon_values.items()},
     }
