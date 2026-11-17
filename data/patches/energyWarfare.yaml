@@ -1,0 +1,103 @@
+description: |
+  Patch in attributes for the nominal offensive energy-warfare rates of active modules.
+
+  The rates are calculated on each module in GJ/s and aggregated onto the ship. They do
+  not account for range, falloff, target capacitor, or the nosferatu capacitor-gain rules.
+
+attributes:
+- new:
+    name: energyNeutralizerRate
+    id: -1004
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+- new:
+    name: energyNosferatuRate
+    id: -1005
+  published: true
+  defaultValue: 0
+  highIsGood: true
+  stackable: true
+
+effects:
+- new:
+    name: energyNeutralizerRate
+    id: -1002
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: energyNeutralizerRate
+    modifyingAttribute: thousand
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: energyNeutralizerRate
+    modifyingAttribute: energyNeutralizerAmount
+    operation: postMul
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: energyNeutralizerRate
+    modifyingAttribute: duration
+    operation: postDiv
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: energyNeutralizerRate
+    modifyingAttribute: energyNeutralizerRate
+    operation: modAdd
+- new:
+    name: energyNosferatuRate
+    id: -1003
+  effectCategory: active
+  electronicChance: false
+  isAssistance: false
+  isOffensive: false
+  isWarpSafe: true
+  propulsionChance: false
+  rangeChance: false
+  modifierInfo:
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: energyNosferatuRate
+    modifyingAttribute: thousand
+    operation: preAssign
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: energyNosferatuRate
+    modifyingAttribute: powerTransferAmount
+    operation: postMul
+  - domain: itemID
+    func: ItemModifier
+    modifiedAttribute: energyNosferatuRate
+    modifyingAttribute: duration
+    operation: postDiv
+  - domain: shipID
+    func: ItemModifier
+    modifiedAttribute: energyNosferatuRate
+    modifyingAttribute: energyNosferatuRate
+    operation: modAdd
+
+typeDogma:
+- patch:
+  - group: Energy Neutralizer
+    hasAllAttributes:
+    - name: energyNeutralizerAmount
+    - name: duration
+  dogmaEffects:
+  - effect: energyNeutralizerRate
+    isDefault: false
+- patch:
+  - group: Energy Nosferatu
+    hasAllAttributes:
+    - name: powerTransferAmount
+    - name: duration
+  dogmaEffects:
+  - effect: energyNosferatuRate
+    isDefault: false
